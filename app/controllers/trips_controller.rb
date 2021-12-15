@@ -1,4 +1,9 @@
 class TripsController < ApplicationController
-    def show
-    end
+  def index
+    @trips = Trip.all
+  end
+
+  def new
+    @trip = Trip.new
+  end
 end

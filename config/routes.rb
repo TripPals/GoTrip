@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-
-  get "/trips", to: "trips#show"
+  resources :trips
+  # get "/trips", to: "trips#new"
 
 end
 
