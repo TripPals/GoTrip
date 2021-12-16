@@ -1,8 +1,7 @@
 <h1>建立行程</h1>
-<%= link_to "行程總覽", trips_path(@trips) %>
 
 
-<%= form_for(@trip, url: 'trips_path') do |t| %>
+<%= form_for(@trip, url: mytrips_new_create_path) do |t| %>
   <div class="fields">
     <%= t.label :name, "行程名稱" %>
     <%= t.text_field :name %>
@@ -11,7 +10,12 @@
     <%= t.label :length, "天數" %>
     <%= t.number_field :length %>
   </div>
+  <div>
+  <%= t.label :start_date, "起始日期" %>
+  <%= t.date_field :start_date, start_year: 1800, end_year: Time.now.year %>
+  </div>
 
   <%= t.submit  %>
-  
+  <%= link_to "行程總覽", mytrips_path %>
+
 <% end %>

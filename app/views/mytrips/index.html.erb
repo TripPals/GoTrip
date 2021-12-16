@@ -1,0 +1,11 @@
+<h1>行程總覽</h1>
+<%= link_to "建立行程", mytrips_new_path %>
+
+<% @trips.each do |trip| %>
+    <p>行程名稱：<%= trip.name %></p>
+    <p>天數：<%= trip.length %></p>
+    <p>起始日期：<%= trip.start_date %></p>
+
+
+<% end %>
+
