@@ -6,6 +6,6 @@
     <p>天數：<%= trip.length %></p>
     <p>起始日期：<%= trip.start_date %></p>
 
-
+  <%= link_to "edit", mytrips_edit_path(trip[:id]) %>
 <% end %>
 
