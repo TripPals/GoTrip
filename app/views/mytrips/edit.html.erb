@@ -1,5 +1,5 @@
 <h1>編輯行程</h1>
-  <%= form_for(@trip, url: mytrips_path) do |t| %>
+  <%= form_for(@trip, url: mytrips_update_path(@trip.id)) do |t| %>
   <div class="fields">
     <%= t.label :name, "行程名稱" %>
     <%= t.text_field :name %>

@@ -21,8 +21,9 @@ class MytripsController < ApplicationController
   end
   
   def update
+    @trip = Trip.find(params[:trip_id])
     if @trip.update(trip_params)
-      redirect_to "/mytrips", notice: "旅程更新成功"
+      redirect_to mytrips_path, notice: "旅程更新成功"
     else
       render :edit
     end
