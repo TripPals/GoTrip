@@ -18,12 +18,14 @@ class MytripsController < ApplicationController
 
   def edit
     @trip = Trip.find(params[:trip_id])
-
-
   end
-
+  
   def update
-
+    if @trip.update(trip_params)
+      redirect_to "/mytrips", notice: "旅程更新成功"
+    else
+      render :edit
+    end
   end
 
   def destroy
