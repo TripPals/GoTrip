@@ -1,11 +1,13 @@
 class User < ApplicationRecord
   extend Devise::Models
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable
+  # :confirmable, :lockable, :timeoutable, :trackable, :validatable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable, :rememberable,
          :omniauthable, omniauth_providers: [:google_oauth2, :github]
-
+  
+  validates_presence_of   :email, presence: true
+  validates_uniqueness_of :email, { scope: :provider }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
