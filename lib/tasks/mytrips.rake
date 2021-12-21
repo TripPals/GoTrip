@@ -1,4 +1,6 @@
 # rake 檢視 Model: Trip
+require 'pp'
+
 namespace :selc do
   task :first => :environment do
     desc "select * from trips where trips_id = 1"
@@ -12,6 +14,7 @@ namespace :selc do
     t = Trip.connection
     ta = Trip.all
     p ta
+    pp ta
   end
 
   task :last => :environment do
