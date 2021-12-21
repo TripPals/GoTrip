@@ -20,4 +20,8 @@ class User < ApplicationRecord
       user.image = auth.info.image
     end
   end
+
+  def display_name
+    name == "" ? email : name
+  end
 end
