@@ -18,8 +18,5 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %><br />
-  <% end %>
-<% end %>
+<%= link_to "使用GOOGLE帳號登入", user_google_oauth2_omniauth_authorize_path, method: :post %><br />
+<%= link_to "使用GITHUB帳號登入", user_github_omniauth_authorize_path, method: :post %><br />
