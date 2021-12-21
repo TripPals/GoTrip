@@ -22,5 +22,4 @@ task :add_specific_spot_data => :environment do
 
       @spot.save
 
-    
 end
