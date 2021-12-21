@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # You should configure your model like this:
-  # devise :omniauthable, omniauth_providers: [:twitter]
 
   def google_oauth2
     callback_for(:google)
@@ -24,7 +22,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def failure
-    redirect_to root_path, alert: "無法獲得驗證！"
-  end
+  # def failure
+  #   redirect_to root_path, alert: "無法獲得驗證！"
+  # end
 end
