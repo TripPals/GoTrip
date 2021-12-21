@@ -30,8 +30,9 @@ class MytripsController < ApplicationController
   end
 
   def destroy
-    @trip.destroy
-    redirect_to trip_path, notice: "旅程已刪除"
+    @trip = Trip.find_by(id: params[:trip_id])
+    @trip.destroy if @trip
+    redirect_to mytrips_path, notice: "旅程已刪除"
   end
 
   private
