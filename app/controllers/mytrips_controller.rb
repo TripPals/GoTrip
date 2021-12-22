@@ -19,7 +19,7 @@ class MytripsController < ApplicationController
 #Add Schedule
   def create
     @trip = Trip.new(trip_params.merge(end_date: trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days))
-    # debugger
+
     
     if @trip.save
       redirect_to "/mytrips"
@@ -34,7 +34,8 @@ class MytripsController < ApplicationController
   
   def update
     @trip = Trip.find(params[:trip_id])
-    if @trip.update(trip_params)
+    if @trip.update(trip_params.merge(end_date: trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days))
+
       redirect_to mytrips_path, notice: "旅程更新成功"
     else
       render :edit
