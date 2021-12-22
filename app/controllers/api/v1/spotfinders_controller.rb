@@ -20,7 +20,7 @@ class Api::V1::SpotfindersController < ApplicationController
     if @spots 
       # 把找到的資料丟回去給前端，用JSON的方式
       respond_to do |format|
-        format.json { render :json => @spots, only: [:name, :address, :phone], status => 200 }
+        format.json { render :json => @spots, only: [:name, :address, :phone, :hour], status => 200 }
       end
     else
       # 打我們自己的Service Object去跟google要資料
