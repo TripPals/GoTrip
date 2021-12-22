@@ -4,7 +4,8 @@
 <% @trips.each do |trip| %>
     <p>行程名稱：<%= trip.name %></p>
     <p>天數：<%= trip.length %></p>
-    <p>起始日期：<%= trip.start_date %></p>
+    <p>開始日期：<%= trip.start_date %></p>
+    <p>結束日期：<%= trip.end_date %></p>
   <%= link_to "edit", mytrips_edit_path(trip) %>
   <%= link_to "delete", mytrips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
 

@@ -11,9 +11,10 @@
     <%= t.number_field :length %>
   </div>
   <div>
-  <%= t.label :start_date, "起始日期" %>
+  <%= t.label :start_date, "開始日期" %>
   <%= t.date_field :start_date, start_year: 1800, end_year: Time.now.year %>
   </div>
+  
 
   <%= t.submit  %>
   <%= link_to "行程總覽", mytrips_path %>
