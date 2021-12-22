@@ -19,7 +19,7 @@ class Api::V1::SpotfindersController < ApplicationController
     if !@spots.empty?
       # 把找到的資料丟回去給前端，用JSON的方式
       respond_to do |format|
-        format.json { render :json => @spots, only: [:name, :address, :phone], status => 200 }
+        format.json { render :json => @spots, status => 200 }
       end
 
     else
@@ -30,7 +30,7 @@ class Api::V1::SpotfindersController < ApplicationController
       @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_input_keyword).call
 
       respond_to do |format|
-        format.json { render :json => @new_spots, only: [:name, :address, :phone], status => 200 }
+        format.json { render :json => @new_spots, status => 200 }
       end
 
     end
