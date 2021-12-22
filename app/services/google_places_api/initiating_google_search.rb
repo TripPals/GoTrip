@@ -2,7 +2,7 @@ module GooglePlacesApi
   
   class InitiatingGoogleSearch
     
-    def initialize(keyword: "竹子湖")
+    def initialize(keyword: "美麗華")
       @keyword = keyword
     end
 
@@ -38,9 +38,14 @@ module GooglePlacesApi
       @tuesday_hr = hour[1]
       @wednesday_hr = hour[2]
       @thursday_hr = hour[3]
+      @friday_hr = hour[4]
+      @saturday_hr = hour[3]
+      @sunday_hr = hour[3]
       @photo_reference1 = second_batch_data["result"]["photos"][0]["photo_reference"]
       @photo_reference2 = second_batch_data["result"]["photos"][1]["photo_reference"]
       @photo_reference3 = second_batch_data["result"]["photos"][2]["photo_reference"]
+      @photo_reference4 = second_batch_data["result"]["photos"][2]["photo_reference"]
+      @photo_reference5 = second_batch_data["result"]["photos"][2]["photo_reference"]
 
       # description資料
 
@@ -51,12 +56,31 @@ module GooglePlacesApi
       # puts @govData
 
       # 呼叫saveData方法把資料存入spot資料表
-
+      saveData
 
     end
 
     def saveData
-      @spot = Spot.create(name: @name, city: @city, phone: @phone, address: @address, hour: @hour, latitude: @latitude, longitude: @longitude, place_id: @place_id)
+      @spot = Spot.create(name: @name, 
+                          city: @city, 
+                          phone: @phone, 
+                          address: @address, 
+                          monday_hr: @monday_hr,
+                          tuesday_hr: @tuesday_hr,
+                          wednesday_hr: @wednesday_hr,
+                          thursday_hr: @thursday_hr,
+                          friday_hr: @friday_hr,
+                          saturday_hr: @saturday_hr,
+                          sunday_hr: @sunday_hr,
+                          latitude: @latitude, 
+                          longitude: @longitude, 
+                          place_id: @place_id,
+                          photo_reference_1: @photo_reference1,
+                          photo_reference_2: @photo_reference2,
+                          photo_reference_3: @photo_reference3,
+                          photo_reference_4: @photo_reference4,
+                          photo_reference_5: @photo_reference5,
+                          photo_reference_6: @photo_reference6)
     end
   
   end

@@ -5,19 +5,41 @@ one:
   city: MyString
   description: MyText
   phone: MyString
-  address: MyString
-  hour: MyString
+  monday_hr: MyString
+  tuesday_hr: MyString
+  wednesday_hr: MyString
+  thursday_hr: MyString
+  friday_hr: MyString
+  saturday_hr: MyString
+  sunday_hr: MyString
   latitude: 9.99
   longitude: 9.99
   place_id: MyString
+  photo_reference_1: MyString
+  photo_reference_2: MyString
+  photo_reference_3: MyString
+  photo_reference_4: MyString
+  photo_reference_5: MyString
+  photo_reference_6: MyString
 
 two:
   name: MyString
   city: MyString
   description: MyText
   phone: MyString
-  address: MyString
-  hour: MyString
+  monday_hr: MyString
+  tuesday_hr: MyString
+  wednesday_hr: MyString
+  thursday_hr: MyString
+  friday_hr: MyString
+  saturday_hr: MyString
+  sunday_hr: MyString
   latitude: 9.99
   longitude: 9.99
   place_id: MyString
+  photo_reference_1: MyString
+  photo_reference_2: MyString
+  photo_reference_3: MyString
+  photo_reference_4: MyString
+  photo_reference_5: MyString
+  photo_reference_6: MyString
