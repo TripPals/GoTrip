@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+<p>歡迎：）快來規劃新旅程吧！</p>
+<div class="user_profile">
+    <img src="<%= current_user.image %>" alt="" id="user_image">
+    <p><%= current_user.display_name %></p>
+</div>
+  <%= link_to "登出", destroy_user_session_path, method: :delete, data: {confirm:'您的帳號將登出。掰掰～下次再一起出遊。'} %>
+  <%= link_to '編輯', edit_user_registration_path %>
+<% else %>
+<p>想來場新旅程嗎？</p>
+  <%= link_to '登入', new_user_session_path %>
+  <%= link_to '註冊', new_user_registration_path %>
+<% end %>
