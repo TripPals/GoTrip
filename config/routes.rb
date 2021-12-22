@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   
   # resources :mytrips member do
 
@@ -13,6 +14,15 @@ Rails.application.routes.draw do
   patch "/mytrips/:trip_id/edit/update", to: "mytrips#update", as: "mytrips_update"
   # delete
   delete "/mytrips/:trip_id/delete", to: "mytrips#destroy", as: "mytrips_delete"
+  
+  root "welcome#index"
+
+  devise_for :users
+  
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get '/mytrips/:trip_id/plan', to: "mytrips#plan"
+
 
 end
 

@@ -1,0 +1,11 @@
+<h1>Welcome!吉祥物們：）</h1>
+
+
+
+<% if user_signed_in? %>
+  <%= link_to '登出', destroy_user_session_path, method: 'delete', data: {confirm:'資料將被刪除。Are you sure!?'} %>
+  <%= link_to '編輯', edit_user_registration_path %>
+<% else %>
+  <%= link_to '登入', new_user_session_path %>
+  <%= link_to '註冊', new_user_registration_path %>
+<% end %>
