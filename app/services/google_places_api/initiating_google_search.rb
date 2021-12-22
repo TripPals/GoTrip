@@ -2,50 +2,77 @@ module GooglePlacesApi
   
   class InitiatingGoogleSearch
     
-    def initialize(keyword: "美麗華")
+    def initialize(keyword)
+      
       @keyword = keyword
+
+      # Call 3rd party Api & 解構資料 ＆ 儲存景點資料
+      callThirdPartyApiAndSaveData
+
     end
 
     def call
 
-      # 請把call api的部分一到這邊
-      # 步驟 1: 先打Find Place Api 獲取： A. place_id B. 經緯度
+      return Spot.where("name LIKE ?", "%#{@keyword}%")
 
-      find_places_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?language=zh-TW&inputtype=textquery&fields=name%2Cgeometry%2Cplace_id%2Cformatted_address"
-      response = RestClient.get find_places_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
-                                                  input: @keyword}
-                                                 }
-      first_batch_data = JSON.parse(response.body)
-      @address = first_batch_data["candidates"][0]["formatted_address"]
-      @place_id = first_batch_data["candidates"][0]["place_id"]
-      @latitude = first_batch_data["candidates"][0]["geometry"]["location"]["lat"]
-      @longitude = first_batch_data["candidates"][0]["geometry"]["location"]["lng"]
-      @name = first_batch_data["candidates"][0]["name"]
+      # @address = first_batch_data["candidates"][0]["formatted_address"]
+      # @place_id = first_batch_data["candidates"][0]["place_id"]
+      # @latitude = first_batch_data["candidates"][0]["geometry"]["location"]["lat"]
+      # @longitude = first_batch_data["candidates"][0]["geometry"]["location"]["lng"]
+      # @name = first_batch_data["candidates"][0]["name"]
 
-      # step 2: 拿place_id 打 Place Details Api
+      # # step 2: 拿place_id 打 Place Details Api
       
-      places_details_url = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=formatted_phone_number%2Caddress_components%2Copening_hours%2Cphotos"
-      response = RestClient.get places_details_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
-                                                     place_id: @place_id}
-                                                    }
+      # places_details_url = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=formatted_phone_number%2Caddress_components%2Copening_hours%2Cphotos"
+      # response = RestClient.get places_details_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
+      #                                                place_id: @place_id}
+      #                                               }
       
-      second_batch_data = JSON.parse(response.body)
-      @address_component = second_batch_data["result"]["address_components"]
-      @city = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}[0]["short_name"]
-      @phone = second_batch_data["result"]["formatted_phone_number"]
-      hour = second_batch_data["result"]["opening_hours"]["weekday_text"]
-      @monday_hr = hour[0]
-      @tuesday_hr = hour[1]
-      @wednesday_hr = hour[2]
-      @thursday_hr = hour[3]
-      @friday_hr = hour[4]
-      @saturday_hr = hour[3]
-      @sunday_hr = hour[3]
-      @photo_reference1 = second_batch_data["result"]["photos"][0]["photo_reference"]
-      @photo_reference2 = second_batch_data["result"]["photos"][1]["photo_reference"]
-      @photo_reference3 = second_batch_data["result"]["photos"][2]["photo_reference"]
-      @photo_reference4 = second_batch_data["result"]["photos"][2]["photo_reference"]
-      @photo_reference5 = second_batch_data["result"]["photos"][2]["photo_reference"]
+      # second_batch_data = JSON.parse(response.body)
+      # @address_component = second_batch_data["result"]["address_components"]
+      # @city = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}[0]["short_name"]
+
+      # if second_batch_data["result"]["formatted_phone_number"]
+      #   @phone = second_batch_data["result"]["formatted_phone_number"]
+      # else
+      #   @phone = "暫無資訊"
+      # end 
+      
+      # if second_batch_data["result"]["opening_hours"]
+
+      # hour = second_batch_data["result"]["opening_hours"]["weekday_text"]
+      #   @monday_hr = hour[0]
+      #   @tuesday_hr = hour[1]
+      #   @wednesday_hr = hour[2]
+      #   @thursday_hr = hour[3]
+      #   @friday_hr = hour[4]
+      #   @saturday_hr = hour[5]
+      #   @sunday_hr = hour[6]
+      # else
+      #   @monday_hr = "暫無資訊"
+      #   @tuesday_hr = "暫無資訊"
+      #   @wednesday_hr = "暫無資訊"
+      #   @thursday_hr = "暫無資訊"
+      #   @friday_hr = "暫無資訊"
+      #   @saturday_hr = "暫無資訊"
+      #   @sunday_hr = "暫無資訊"
+      # end  
+
+      # if second_batch_data["result"]["photos"]
+      #   @photo_reference1 = second_batch_data["result"]["photos"][0]["photo_reference"]
+      #   @photo_reference2 = second_batch_data["result"]["photos"][1]["photo_reference"]
+      #   @photo_reference3 = second_batch_data["result"]["photos"][2]["photo_reference"]
+      #   @photo_reference4 = second_batch_data["result"]["photos"][3]["photo_reference"]
+      #   @photo_reference5 = second_batch_data["result"]["photos"][4]["photo_reference"]
+      #   @photo_reference6 = second_batch_data["result"]["photos"][5]["photo_reference"]
+      # else
+      #   @photo_reference1 = nil  
+      #   @photo_reference2 = nil 
+      #   @photo_reference3 = nil 
+      #   @photo_reference4 = nil 
+      #   @photo_reference5 = nil
+      #   @photo_reference6 = nil  
+      # end  
 
       # description資料
 
@@ -56,7 +83,102 @@ module GooglePlacesApi
       # puts @govData
 
       # 呼叫saveData方法把資料存入spot資料表
-      saveData
+      # saveData
+
+    end
+
+    def callThirdPartyApiAndSaveData
+    
+      # 步驟 1: 先打Find Place Api 獲取： A. place_id B. 經緯度
+
+      find_places_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?language=zh-TW&inputtype=textquery&fields=name%2Cgeometry%2Cplace_id%2Cformatted_address"
+      response = RestClient.get find_places_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
+                                                  input: @keyword}
+                                                 }
+      first_batch_data = JSON.parse(response.body)
+
+      i = 0
+      datalength = first_batch_data["candidates"].length
+
+      while i < datalength do
+        
+        @address = first_batch_data["candidates"][i]["formatted_address"]
+        @place_id = first_batch_data["candidates"][i]["place_id"]
+        @latitude = first_batch_data["candidates"][i]["geometry"]["location"]["lat"]
+        @longitude = first_batch_data["candidates"][i]["geometry"]["location"]["lng"]
+        @name = first_batch_data["candidates"][i]["name"]
+
+        # step 2: 拿place_id 打 Place Details Api
+        
+        places_details_url = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=formatted_phone_number%2Caddress_components%2Copening_hours%2Cphotos"
+        response = RestClient.get places_details_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
+                                                      place_id: @place_id}
+                                                      }
+        
+        second_batch_data = JSON.parse(response.body)
+        @address_component = second_batch_data["result"]["address_components"]
+      
+        level_1 = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}
+        level_2 = @address_component.select{ |item| item["types"].include?("administrative_area_level_2")}
+        # @city = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}[0]["short_name"]
+        case
+        when level_1 !=[] && level_2 !=[]
+          @city = level_1[0]["short_name"]
+        when level_1 !=[] && level_2 =[]
+          @city = level_1[0]["short_name"]
+        when level_1 =[] && level_2 !=[] 
+          @city = level_2[0]["short_name"]
+        when level_1 =[] && level_2 =[]
+          @city = "暫無資訊"
+        end
+
+        if second_batch_data["result"]["formatted_phone_number"]
+          @phone = second_batch_data["result"]["formatted_phone_number"]
+        else
+          @phone = "暫無資訊"
+        end 
+        
+        if second_batch_data["result"]["opening_hours"]
+
+          hour = second_batch_data["result"]["opening_hours"]["weekday_text"]
+          @monday_hr = hour[0]
+          @tuesday_hr = hour[1]
+          @wednesday_hr = hour[2]
+          @thursday_hr = hour[3]
+          @friday_hr = hour[4]
+          @saturday_hr = hour[5]
+          @sunday_hr = hour[6]
+        else
+          @monday_hr = "暫無資訊"
+          @tuesday_hr = "暫無資訊"
+          @wednesday_hr = "暫無資訊"
+          @thursday_hr = "暫無資訊"
+          @friday_hr = "暫無資訊"
+          @saturday_hr = "暫無資訊"
+          @sunday_hr = "暫無資訊"
+        end  
+
+        if second_batch_data["result"]["photos"]
+          @photo_reference1 = second_batch_data["result"]["photos"][0]["photo_reference"]
+          @photo_reference2 = second_batch_data["result"]["photos"][1]["photo_reference"]
+          @photo_reference3 = second_batch_data["result"]["photos"][2]["photo_reference"]
+          @photo_reference4 = second_batch_data["result"]["photos"][3]["photo_reference"]
+          @photo_reference5 = second_batch_data["result"]["photos"][4]["photo_reference"]
+          @photo_reference6 = second_batch_data["result"]["photos"][5]["photo_reference"]
+        else
+          @photo_reference1 = nil  
+          @photo_reference2 = nil 
+          @photo_reference3 = nil 
+          @photo_reference4 = nil 
+          @photo_reference5 = nil 
+          @photo_reference6 = nil 
+        end  
+
+        saveData
+
+        i += 1
+
+      end  
 
     end
 
@@ -80,7 +202,8 @@ module GooglePlacesApi
                           photo_reference_3: @photo_reference3,
                           photo_reference_4: @photo_reference4,
                           photo_reference_5: @photo_reference5,
-                          photo_reference_6: @photo_reference6)
+                          photo_reference_6: @photo_reference6
+                         )
     end
   
   end
