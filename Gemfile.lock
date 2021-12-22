@@ -232,8 +232,8 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
-  faker (~> 2.19)
   devise (~> 4.8)
+  faker (~> 2.19)
   figaro (~> 1.2)
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)

@@ -1,5 +1,4 @@
 class MytripsController < ApplicationController
-<<<<<<< HEAD
   def index
     @trips = Trip.all
   end
@@ -8,6 +7,16 @@ class MytripsController < ApplicationController
     @trip = Trip.new
   end
 
+  # def create
+  #   @trip = Trip.new(trip_params)
+  #   if @trip.save
+  #     redirect_to "/mytrips"
+  #   else
+  #     render :new
+  #   end
+  # end
+
+#Add Schedule
   def create
     @trip = Trip.new(trip_params)
     if @trip.save
@@ -40,10 +49,8 @@ class MytripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:name, :length, :start_date)
   end
-=======
 
   def plan
   end
 
->>>>>>> develop
 end
