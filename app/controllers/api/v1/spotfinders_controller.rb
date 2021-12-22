@@ -14,8 +14,8 @@ class Api::V1::SpotfindersController < ApplicationController
       @spots = Spot.where("name LIKE ?", "%#{search_input_keyword}%")
     when search_input_keyword == nil && search_input_city # 只有城市關鍵字input存在
       @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
-    end  
-    
+    end
+
 
     if @spots 
       # 把找到的資料丟回去給前端，用JSON的方式
