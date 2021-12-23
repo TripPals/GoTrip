@@ -1,4 +1,6 @@
 class MytripsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @trips = Trip.order(id: :desc)
   end
