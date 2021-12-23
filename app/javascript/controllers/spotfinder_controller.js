@@ -7,35 +7,50 @@ export default class extends Controller {
   connect() {
   }
 
-
   search() {
 
     const cityinput = this.cityinputTarget.value
     const keywordinput = this.keywordinputTarget.value
 
-    // var spotResultData = fetch(`http://127.0.0.1:3000/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`)
-    // .then((response) => {
-    //   return response.json()
-    // })
-    // .then((response) => {
-    //   return response
-    // })
-
-    async fetchData() {
+    async function fetchData() {
       try {
         const response = await fetch(`http://127.0.0.1:3000/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`, {
           method: 'GET'
         })
-        const spotData = await response.json()
-        return spotData
+        const result = await response.json()
+        return result
       } catch {
-        console.error(error);
+        const result = "Empty Result"
+        console.error("Something went wrong...");
+        return result
       }
+    };
+
+    async function renderData() {
+      
+      const spotResultData = await fetchData()
+      
+      if (spotResultData === "Empty Result") {
+
+        console.log(spotResultData)
+
+        const resultBox = document.querySelector(".searchResultBox")
+        const noResultMessage = document.createElement("p")
+
+        noResultMessage.innerText = "抱歉，似乎沒有您搜尋的資料，或許可以再試一次，或者調整關鍵字讓搜尋更精準!"
+        // noResultMessage.classList.add("noResultMessage")
+
+        console.log(resultBox);
+        console.log(noResultMessage);
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+
+      } else {
+        console.log(spotResultData);
+      }
+
     }
 
-    async renderData() {
-      const result = await fetchData()
-    }
+    renderData()
 
 
 
