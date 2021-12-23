@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
-  static targets = [ "cityinput", "keywordinput" ]
+  static targets = [ "cityinput", "keywordinput", "clearCitybtn", "clearKeywordbtn" ]
 
   connect() {
   }
@@ -47,7 +47,15 @@ export default class extends Controller {
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
       } else {
-        console.log(spotResultData);
+        spotResultData.forEach(({name}) => {
+          const spotbox = document.createElement("div")
+          spotbox.classList.add("spotCardInSearch")
+
+          spotbox.innerHTML = `<p>${name}</p>`
+
+          resultBox.insertAdjacentElement("afterbegin", spotbox)
+
+        })
       }
 
     }
@@ -60,4 +68,14 @@ export default class extends Controller {
 
 
   }
+
+  clearCityInput() {
+    this.cityinputTarget.value.clear()
+  }
+
+  clearKeywordInput() {
+    this.keywordinputTarget.value.clear()
+  }
+
+
 }
