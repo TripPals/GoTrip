@@ -1,0 +1,16 @@
+<h1>行程總覽</h1>
+<%= link_to "建立行程", mytrips_new_path %>
+
+<% @trips.each do |trip| %>
+    <p>行程名稱：<%= trip.name %></p>
+    <% if trip.length > 1 %>
+      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
+    <% else %>
+      <p><%= trip.length %>天</p>
+    <% end %>
+    <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
+  <%= link_to "edit", mytrips_edit_path(trip) %>
+  <%= link_to "delete", mytrips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+
+<% end %>
+

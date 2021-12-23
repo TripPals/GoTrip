@@ -10,10 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_094342) do
+ActiveRecord::Schema.define(version: 2021_12_22_081044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "spots", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.text "description"
+    t.string "phone"
+    t.string "monday_hr"
+    t.string "tuesday_hr"
+    t.string "wednesday_hr"
+    t.string "thursday_hr"
+    t.string "friday_hr"
+    t.string "saturday_hr"
+    t.string "sunday_hr"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.string "place_id"
+    t.string "photo_reference_1"
+    t.string "photo_reference_2"
+    t.string "photo_reference_3"
+    t.string "photo_reference_4"
+    t.string "photo_reference_5"
+    t.string "photo_reference_6"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "address"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string "name"
+    t.integer "length", default: 1
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
