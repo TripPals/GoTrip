@@ -113,27 +113,33 @@ module GooglePlacesApi
     end
 
     def saveData
-      @spot = Spot.create(name: @name, 
-                          city: @city, 
-                          phone: @phone, 
-                          address: @address, 
-                          monday_hr: @monday_hr,
-                          tuesday_hr: @tuesday_hr,
-                          wednesday_hr: @wednesday_hr,
-                          thursday_hr: @thursday_hr,
-                          friday_hr: @friday_hr,
-                          saturday_hr: @saturday_hr,
-                          sunday_hr: @sunday_hr,
-                          latitude: @latitude, 
-                          longitude: @longitude, 
-                          place_id: @place_id,
-                          photo_reference_1: @photo_reference1,
-                          photo_reference_2: @photo_reference2,
-                          photo_reference_3: @photo_reference3,
-                          photo_reference_4: @photo_reference4,
-                          photo_reference_5: @photo_reference5,
-                          photo_reference_6: @photo_reference6
-                         )
+      @spot_in_table = Spot.find_by(name: @name)
+
+      if @spot_in_table
+        return @spot_in_table
+      else  
+        return @spot = Spot.create(name: @name, 
+                            city: @city, 
+                            phone: @phone, 
+                            address: @address, 
+                            monday_hr: @monday_hr,
+                            tuesday_hr: @tuesday_hr,
+                            wednesday_hr: @wednesday_hr,
+                            thursday_hr: @thursday_hr,
+                            friday_hr: @friday_hr,
+                            saturday_hr: @saturday_hr,
+                            sunday_hr: @sunday_hr,
+                            latitude: @latitude, 
+                            longitude: @longitude, 
+                            place_id: @place_id,
+                            photo_reference_1: @photo_reference1,
+                            photo_reference_2: @photo_reference2,
+                            photo_reference_3: @photo_reference3,
+                            photo_reference_4: @photo_reference4,
+                            photo_reference_5: @photo_reference5,
+                            photo_reference_6: @photo_reference6
+                          )
+      end                    
     end
   
   end

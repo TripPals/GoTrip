@@ -23,8 +23,7 @@ class Api::V1::SpotfindersController < ApplicationController
       if !@spots.empty?
         # 把找到的資料丟回去給前端，用JSON的方式
         respond_to do |format|
-          # format.json { render :json => @spots, status => 200 }
-          format.json { head :ok }
+          format.json { render :json => @spots, status => 200 }
         end
 
       else

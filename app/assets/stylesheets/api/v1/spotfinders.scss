@@ -1,3 +1,25 @@
 // Place all the styles related to the api/v1/spotfinders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.searchResultBox {
+  padding-top: 30px;
+}
+
+.noResultMessageDiv {
+  width: 90%;
+  margin: auto;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    width: 80%;
+    font-size: 1.5rem;
+
+  }
+
+}

@@ -7,10 +7,17 @@ export default class extends Controller {
   connect() {
   }
 
-  search() {
+  search(event) {
+
+    // prevent link to redirect page
+    event.preventDefault()
 
     const cityinput = this.cityinputTarget.value
     const keywordinput = this.keywordinputTarget.value
+    const resultBox = document.querySelector(".searchResultBox")
+
+    // 每次按下搜尋先清空搜尋結果列表
+    resultBox.innerHTML = ""
 
     async function fetchData() {
       try {
@@ -30,18 +37,13 @@ export default class extends Controller {
       
       const spotResultData = await fetchData()
       
-      if (spotResultData === "Empty Result") {
+      if (spotResultData.length === 0) {
 
-        console.log(spotResultData)
+        const noResultMessage = document.createElement("div")
 
-        const resultBox = document.querySelector(".searchResultBox")
-        const noResultMessage = document.createElement("p")
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">抱歉，似乎沒有您搜尋的資料，或許可以再試一次，或者調整關鍵字讓搜尋更精準!</p>`
 
-        noResultMessage.innerText = "抱歉，似乎沒有您搜尋的資料，或許可以再試一次，或者調整關鍵字讓搜尋更精準!"
-        // noResultMessage.classList.add("noResultMessage")
-
-        console.log(resultBox);
-        console.log(noResultMessage);
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
       } else {
@@ -53,32 +55,8 @@ export default class extends Controller {
     renderData()
 
 
-
-
-
-    // const obj = {}
-    // const aaa = fetchData()
-
-
-    // function fetchData() {
-    //   fetch(`http://127.0.0.1:3000/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`)
-    //   .then((response) => {
-    //     return response.json()
-    //   })
-    //   .then((response) => obj = response)
-    // }
-
-    // console.log(obj);
-
-    // const datalength = spotResultData.then((res) => {
-    //   console.log(res);
-    // })
-
-    // console.log(datalength);
-
-
     // 看有沒有什麼loader可以用？
-    // 切記要加上如果沒有結果，要顯示no result
+    // 清除input field
 
 
   }
