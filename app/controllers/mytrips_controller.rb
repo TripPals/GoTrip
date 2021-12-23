@@ -18,9 +18,10 @@ class MytripsController < ApplicationController
 
 #Add Schedule
   def create
-    @trip = Trip.new(trip_params.merge(end_date: trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days))
 
-    
+    @trip = Trip.new(trip_params)
+    @trip.end_date = trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days
+
     if @trip.save
       redirect_to "/mytrips"
     else

@@ -8,7 +8,7 @@
   </div>
   <div class="fields">
     <%= t.label :length, "天數" %>
-    <%= t.number_field :length %>
+    <%= t.number_field :length, min: 1 %>
   </div>
   <div>
   <%= t.label :start_date, "開始日期" %>
