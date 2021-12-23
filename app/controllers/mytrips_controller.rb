@@ -17,31 +17,46 @@ class MytripsController < ApplicationController
   # end
 
 #Add Schedule
-  def create
+def create
 
-    @trip = Trip.new(trip_params)
+  @trip = Trip.new(trip_params)
+
+  if @trip.start_date.present?
     @trip.end_date = trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days
 
     if @trip.save
-      redirect_to "/mytrips"
+      redirect_to "/mytrips", notice: "新增旅程成功!"
     else
+      flash.alert = "旅程新增未成功。"
       render :new
     end
-  end
 
-  def edit
-    @trip = Trip.find(params[:trip_id])
-  end
-  
-  def update
-    @trip = Trip.find(params[:trip_id])
+  else
+      flash.alert = "請選擇開始日期！"
+      render :new
+  end  
+
+end
+
+def edit
+  @trip = Trip.find(params[:trip_id])
+end
+
+def update
+  @trip = Trip.find(params[:trip_id])
+
+  if trip_params[:start_date].present?
     if @trip.update(trip_params.merge(end_date: trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days))
-
-      redirect_to mytrips_path, notice: "旅程更新成功"
+      redirect_to mytrips_path, notice: "旅程更新成功！"
     else
+      flash.alert = "旅程未更新。"
       render :edit
     end
-  end
+  else
+    flash.alert = "請選擇起始日期！"
+    render :edit
+  end    
+end
 
   def destroy
     @trip = Trip.find_by(id: params[:trip_id])
