@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
 
-  
-  # resources :mytrips member do
+  root "welcome#index"
 
-  # end
-  # init use trips, but demo use mytrips, and then I tran trips to mytrips. I use key in. not use rails g controller..
+  devise_for :users, controllers: 
+  { omniauth_callbacks: "users/omniauth_callbacks",
+    registrations: 'users/registrations' }
+  
+  devise_scope :user do  
+    get '/users/sign_out' => 'devise/sessions#destroy'     
+    get "/auth/:provider/callback" => "authentications#create"
+  end
+  # get "/auth/github/callback" => "authentications#github"
+  # get "/auth/google/callback"  => "authentications#google"
+
+
+
+
   get "/mytrips", to: "mytrips#index"
   # new, create 
   get "/mytrips/new", to: "mytrips#new"
@@ -15,15 +26,9 @@ Rails.application.routes.draw do
   # delete
   delete "/mytrips/:trip_id/delete", to: "mytrips#destroy", as: "mytrips_delete"
   
-  root "welcome#index"
-
-  devise_for :users
-  
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
   get '/mytrips/:trip_id/plan', to: "mytrips#plan"
-
-
+  
+  
 end
 
 
