@@ -27,6 +27,10 @@ def create
     @trip.end_date = trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days
 
     if @trip.save
+        UserTrip.create(user: current_user,
+                        trip: @trip,
+                        role: "owner")
+
       redirect_to "/mytrips", notice: "新增旅程成功!"
     else
       flash.alert = "旅程新增未成功。"

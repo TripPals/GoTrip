@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: lambda {self.password.present?}
   
   has_many :user_trips
-  has_many :trips through :user_trips
+  has_many :trips, through: :user_trips
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
