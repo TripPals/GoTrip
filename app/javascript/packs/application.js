@@ -13,6 +13,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import "stylesheets"
 // import "google_maps"
 
 import "controllers"
