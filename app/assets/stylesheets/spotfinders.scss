@@ -123,18 +123,30 @@
 .spotCardInSearch {
 
   width: 90%;
+  height: 150px;
   margin: auto;
   margin-bottom: 20px;
-  height: 150px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
   p {
-    width: 80%;
+    width: 50%;
     font-size: 1.5rem;
+    padding-left: 20px;
+  }
+
+  div {
+    width: 50%;
+    overflow: hidden;
+  }
+
+  img {
+    width: 150%;
+    border-radius: 0px 10px 10px 0px;
   }
 
 

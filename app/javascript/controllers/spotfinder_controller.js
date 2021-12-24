@@ -47,11 +47,19 @@ export default class extends Controller {
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
       } else {
-        spotResultData.forEach(({name}) => {
+        spotResultData.forEach(({name, photo_reference_1}) => {
           const spotbox = document.createElement("div")
           spotbox.classList.add("spotCardInSearch")
 
-          spotbox.innerHTML = `<p>${name}</p>`
+          spotbox.innerHTML = 
+          `
+          <p>${name}</p>
+          <div>
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
+          </div>
+          `
+
+          // needs to make it same proportion photo
 
           resultBox.insertAdjacentElement("afterbegin", spotbox)
 
