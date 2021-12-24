@@ -1,5 +1,5 @@
 
-<div id="searchPageBox">
+<div data-controller="mapInSearch" id="searchPageBox">
 
   
   <div id="searchSection">
@@ -25,10 +25,7 @@
 
   </div>
 
-
-  <div id="mapInSearchSection" 
-       data-controller="mapInSearch"
-       data-action="mapsLoaded@document->mapInSearch#renderMap"
-       data-mapInSearch-target="searchmap"></div>
+  <div id="mapInSearchSection"
+       data-action="mapsLoaded@document->mapInSearch#renderMap"></div>
 
 </div>

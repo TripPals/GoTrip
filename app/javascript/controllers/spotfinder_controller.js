@@ -47,15 +47,17 @@ export default class extends Controller {
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
       } else {
-        spotResultData.forEach(({name, photo_reference_1}) => {
+        spotResultData.forEach(({name, photo_reference_1, latitude, longitude}) => {
           const spotbox = document.createElement("div")
           spotbox.classList.add("spotCardInSearch")
 
           spotbox.innerHTML = 
           `
-          <p>${name}</p>
-          <div>
-          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
+          <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+            <p>${name}</p>
+            <div>
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
+            </div>
           </div>
           `
           

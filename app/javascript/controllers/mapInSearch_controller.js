@@ -3,7 +3,7 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
-  static targets = [ "searchmap" ]
+  static targets = [ "spotitem" ]
 
   connect() {
     if (typeof google != "undefined") {
@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   renderMap() {
-    const map = new google.maps.Map(this.searchmapTarget, {
+    const map = new google.maps.Map(document.querySelector("#mapInSearchSection"), {
       center: {"lat": 23.888984, "lng": 121.089659 },
       zoom: 9,
       fullscreenControl: false,
@@ -21,4 +21,4 @@ export default class extends Controller {
     });
   }
 
-};
+}
