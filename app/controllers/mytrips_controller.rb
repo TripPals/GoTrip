@@ -46,6 +46,7 @@ end
 
 def edit
   @trip = Trip.find(params[:trip_id])
+  authorize @trip
 end
 
 def update
