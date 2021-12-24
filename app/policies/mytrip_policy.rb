@@ -1,4 +1,4 @@
-class TripPolicy < ApplicationPolicy
+class MytripPolicy < ApplicationPolicy
     attr_reader :user, :trip
 
     def initialize(user, trip)

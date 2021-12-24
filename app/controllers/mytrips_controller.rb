@@ -2,7 +2,11 @@ class MytripsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @trips = Trip.order(id: :desc)
+    # @trips = Trip.order(id: :desc)
+    @trips_all = current_user.trips.all
+        # @trips_yours = current_user.user_trip_authorities.owner
+        @trips_yours = Trip.own_trip(current_user.id)
+        @trips_followed = Trip.followed_trip(current_user.id)
   end
 
   def new
