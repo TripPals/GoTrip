@@ -26,6 +26,9 @@
   </div>
 
 
-  <div id="mapInSearchSection"></div>
+  <div id="mapInSearchSection" 
+       data-controller="mapInSearch"
+       data-action="mapsLoaded@document->mapInSearch#renderMap"
+       data-mapInSearch-target="searchmap"></div>
 
 </div>

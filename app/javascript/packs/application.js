@@ -13,3 +13,15 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "controllers"
+
+
+
+
+
+
+
+
+window.mapInitialization = function () {
+  const evt = new Event("mapsLoaded")
+  document.dispatchEvent(evt)
+}
