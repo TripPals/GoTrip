@@ -58,9 +58,7 @@ export default class extends Controller {
           <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
           </div>
           `
-
-          // needs to make it same proportion photo
-
+          
           resultBox.insertAdjacentElement("afterbegin", spotbox)
 
         })
