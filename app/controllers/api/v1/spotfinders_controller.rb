@@ -10,11 +10,6 @@ class Api::V1::SpotfindersController < ApplicationController
       @search_input_keyword = params[:keyword]
       search_input_city = params[:city]
 
-      puts "====================="
-      puts @search_input_keyword
-      puts search_input_city
-      puts "====================="
-
       # 先判斷前端傳回來的input組合
       case 
       when  @search_input_keyword && search_input_city # 兩個input都存在
@@ -24,10 +19,6 @@ class Api::V1::SpotfindersController < ApplicationController
       when @search_input_keyword == "" && search_input_city # 只有城市關鍵字input存在
         @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
       end
-
-      puts "====================="
-      puts @spots.empty?
-      puts "====================="
 
       if !@spots.empty?
         # 把找到的資料丟回去給前端，用JSON的方式

@@ -57,20 +57,42 @@ export default class extends Controller {
 
       } else {
         spotResultData.forEach(({name, photo_reference_1, latitude, longitude}) => {
-          const spotbox = document.createElement("div")
-          spotbox.classList.add("spotCardInSearch")
-
-          spotbox.innerHTML = 
-          `
-          <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
-            <p>${name}</p>
-            <div>
-            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
-            </div>
-          </div>
-          `
           
-          resultBox.insertAdjacentElement("afterbegin", spotbox)
+          if (photo_reference_1 === null) {
+
+            const spotbox = document.createElement("div")
+            spotbox.classList.add("spotCardInSearch")
+  
+            spotbox.innerHTML = 
+            `
+            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+              <p>${name}</p>
+              <div class="spotitemphotodiv">
+                <div class="nophoto"></div>
+              </div>
+            </div>
+            `
+            
+            resultBox.insertAdjacentElement("afterbegin", spotbox)
+            
+          } else {
+
+            const spotbox = document.createElement("div")
+            spotbox.classList.add("spotCardInSearch")
+  
+            spotbox.innerHTML = 
+            `
+            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+              <p>${name}</p>
+              <div class="spotitemphotodiv">
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
+              </div>
+            </div>
+            `
+            
+            resultBox.insertAdjacentElement("afterbegin", spotbox)
+
+          }
 
         })
       }
