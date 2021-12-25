@@ -40,7 +40,7 @@ module GooglePlacesApi
 
         # step 2: 拿place_id 打 Place Details Api
         
-        places_details_url = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=formatted_phone_number%2Caddress_components%2Copening_hours%2Cphotos"
+        places_details_url = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=formatted_phone_number%2Caddress_components%2Copening_hours%2Cphotos%2Creviews"
         response = RestClient.get places_details_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
                                                       place_id: @place_id}
                                                       }
@@ -102,9 +102,35 @@ module GooglePlacesApi
           @photo_reference4 = nil 
           @photo_reference5 = nil 
           @photo_reference6 = nil 
-        end  
+        end 
+        
+        if second_batch_data["result"]["reviews"]
+          @ugc_1_name = second_batch_data["result"]["reviews"][0]["author_name"]
+          @ugc_1_stars = second_batch_data["result"]["reviews"][0]["rating"]
+          @ugc_1_comment = second_batch_data["result"]["reviews"][0]["text"]
+          @ugc_2_name = second_batch_data["result"]["reviews"][1]["author_name"]
+          @ugc_2_stars = second_batch_data["result"]["reviews"][1]["rating"]
+          @ugc_2_comment = second_batch_data["result"]["reviews"][1]["text"]
+          @ugc_3_name = second_batch_data["result"]["reviews"][2]["author_name"]
+          @ugc_3_stars = second_batch_data["result"]["reviews"][2]["rating"]
+          @ugc_3_comment = second_batch_data["result"]["reviews"][2]["text"]
+        else
+          @ugc_1_name = nil
+          @ugc_1_stars = nil
+          @ugc_1_comment = nil
+          @ugc_2_name = nil
+          @ugc_2_stars = nil
+          @ugc_2_comment = nil
+          @ugc_3_name = nil
+          @ugc_3_stars = nil
+          @ugc_3_comment = nil
+        end
 
-        saveData
+        puts @ugc_1_name
+        puts @ugc_1_stars
+        puts @ugc_1_comment
+
+        # saveData
 
         i += 1
 
