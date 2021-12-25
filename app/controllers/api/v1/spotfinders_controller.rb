@@ -10,15 +10,24 @@ class Api::V1::SpotfindersController < ApplicationController
       @search_input_keyword = params[:keyword]
       search_input_city = params[:city]
 
+      puts "====================="
+      puts @search_input_keyword
+      puts search_input_city
+      puts "====================="
+
       # 先判斷前端傳回來的input組合
       case 
       when  @search_input_keyword && search_input_city # 兩個input都存在
         @spots = Spot.where("name LIKE ? AND city LIKE ?", "%#{@search_input_keyword}%", "%#{search_input_city}%")
-      when @search_input_keyword && search_input_city == nil # 只有景點關鍵字input存在
+      when @search_input_keyword && search_input_city == "" # 只有景點關鍵字input存在
         @spots = Spot.where("name LIKE ?", "%#{@search_input_keyword}%")
-      when @search_input_keyword == nil && search_input_city # 只有城市關鍵字input存在
+      when @search_input_keyword == "" && search_input_city # 只有城市關鍵字input存在
         @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
       end
+
+      puts "====================="
+      puts @spots.empty?
+      puts "====================="
 
       if !@spots.empty?
         # 把找到的資料丟回去給前端，用JSON的方式
@@ -30,12 +39,18 @@ class Api::V1::SpotfindersController < ApplicationController
         # 打我們自己的Service Object去跟google要資料
         # google.call(search_input)
         # @result = sdfkjsdlfkjsdf.call
-        
-        @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_input_keyword).call
+        if @search_input_keyword != ""
+          @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_input_keyword).call
 
-        respond_to do |format|
-          format.json { render :json => @new_spots, status => 200 }
-        end
+          respond_to do |format|
+            format.json { render :json => @new_spots, status => 200 }
+          end
+
+        else
+          respond_to do |format|
+            format.json { render :json => ["Database has no record of such city"], status => 200 }
+          end
+        end  
 
       end
 

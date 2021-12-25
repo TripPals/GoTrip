@@ -9,6 +9,7 @@ module GooglePlacesApi
       # Call 3rd party Api & 解構資料 ＆ 儲存景點資料
       callThirdPartyApiAndSaveData
 
+
     end
 
     def call

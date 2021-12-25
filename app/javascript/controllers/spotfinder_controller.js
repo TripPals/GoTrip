@@ -46,6 +46,15 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
+      } else if (spotResultData[0] === 'Database has no record of such city') {
+        
+        const noResultMessage = document.createElement("div")
+
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">抱歉，目前沒有${cityinput}的資料，或許可以使用關鍵字讓搜尋更精準!</p>`
+
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+
       } else {
         spotResultData.forEach(({name, photo_reference_1, latitude, longitude}) => {
           const spotbox = document.createElement("div")
