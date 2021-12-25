@@ -6,8 +6,15 @@ export default class extends Controller {
   static targets = [ "spotitem" ]
 
   connect() {
+
+    // This is how we can get the params from url by JS
+    const urlString = window.location.search;
+    console.log(urlString);
+    console.log("hello");
+
     if (typeof google != "undefined") {
       this.renderMap();
+
     }
   }
 
