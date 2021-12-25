@@ -105,32 +105,28 @@ module GooglePlacesApi
         end 
         
         if second_batch_data["result"]["reviews"]
-          @ugc_1_name = second_batch_data["result"]["reviews"][0]["author_name"]
-          @ugc_1_stars = second_batch_data["result"]["reviews"][0]["rating"]
-          @ugc_1_comment = second_batch_data["result"]["reviews"][0]["text"]
-          @ugc_2_name = second_batch_data["result"]["reviews"][1]["author_name"]
-          @ugc_2_stars = second_batch_data["result"]["reviews"][1]["rating"]
-          @ugc_2_comment = second_batch_data["result"]["reviews"][1]["text"]
-          @ugc_3_name = second_batch_data["result"]["reviews"][2]["author_name"]
-          @ugc_3_stars = second_batch_data["result"]["reviews"][2]["rating"]
-          @ugc_3_comment = second_batch_data["result"]["reviews"][2]["text"]
+          @ugc1_name = second_batch_data["result"]["reviews"][0]["author_name"]
+          @ugc1_stars = second_batch_data["result"]["reviews"][0]["rating"]
+          @ugc1_comment = second_batch_data["result"]["reviews"][0]["text"]
+          @ugc2_name = second_batch_data["result"]["reviews"][1]["author_name"]
+          @ugc2_stars = second_batch_data["result"]["reviews"][1]["rating"]
+          @ugc2_comment = second_batch_data["result"]["reviews"][1]["text"]
+          @ugc3_name = second_batch_data["result"]["reviews"][2]["author_name"]
+          @ugc3_stars = second_batch_data["result"]["reviews"][2]["rating"]
+          @ugc3_comment = second_batch_data["result"]["reviews"][2]["text"]
         else
-          @ugc_1_name = nil
-          @ugc_1_stars = nil
-          @ugc_1_comment = nil
-          @ugc_2_name = nil
-          @ugc_2_stars = nil
-          @ugc_2_comment = nil
-          @ugc_3_name = nil
-          @ugc_3_stars = nil
-          @ugc_3_comment = nil
+          @ugc1_name = nil
+          @ugc1_stars = nil
+          @ugc1_comment = nil
+          @ugc2_name = nil
+          @ugc2_stars = nil
+          @ugc2_comment = nil
+          @ugc3_name = nil
+          @ugc3_stars = nil
+          @ugc3_comment = nil
         end
 
-        puts @ugc_1_name
-        puts @ugc_1_stars
-        puts @ugc_1_comment
-
-        # saveData
+        saveData
 
         i += 1
 
@@ -163,7 +159,16 @@ module GooglePlacesApi
                             photo_reference_3: @photo_reference3,
                             photo_reference_4: @photo_reference4,
                             photo_reference_5: @photo_reference5,
-                            photo_reference_6: @photo_reference6
+                            photo_reference_6: @photo_reference6,
+                            ugc1_name: @ugc1_name,
+                            ugc1_stars: @ugc1_stars,
+                            ugc1_comment: @ugc1_comment,
+                            ugc2_name: @ugc2_name,
+                            ugc2_stars: @ugc2_stars,
+                            ugc2_comment: @ugc2_comment,
+                            ugc3_name: @ugc3_name,
+                            ugc3_stars: @ugc3_stars,
+                            ugc3_comment: @ugc3_comment
                           )
       end                    
     end
