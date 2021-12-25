@@ -13,20 +13,31 @@ Rails.application.routes.draw do
   # get "/auth/github/callback" => "authentications#github"
   # get "/auth/google/callback"  => "authentications#google"
 
-
-
-
-  get "/mytrips", to: "mytrips#index"
+  get "/mytrips", to: "trips#index", as: "trips"
   # new, create 
-  get "/mytrips/new", to: "mytrips#new"
-  post "/mytrips/new/create", to: "mytrips#create"
+  get "/mytrips/new", to: "trips#new", as: "trips_new"
+  post "/mytrips/new/create", to: "trips#create", as: "trips_create"
   # edit
-  get "/mytrips/:trip_id/edit", to: "mytrips#edit", as: "mytrips_edit"
-  patch "/mytrips/:trip_id/edit/update", to: "mytrips#update", as: "mytrips_update"
+  get "/mytrips/:trip_id/edit", to: "trips#edit", as: "trips_edit"
+  patch "/mytrips/:trip_id/edit/update", to: "trips#update", as: "trips_update"
   # delete
-  delete "/mytrips/:trip_id/delete", to: "mytrips#destroy", as: "mytrips_delete"
+  delete "/mytrips/:trip_id/delete", to: "trips#destroy", as: "trips_delete"
   
-  get '/mytrips/:trip_id/plan', to: "mytrips#plan"
+  get '/mytrips/:trip_id/plan', to: "trips#plan"
+
+
+
+  # get "/mytrips", to: "mytrips#index"
+  # # new, create 
+  # get "/mytrips/new", to: "mytrips#new"
+  # post "/mytrips/new/create", to: "mytrips#create"
+  # # edit
+  # get "/mytrips/:trip_id/edit", to: "mytrips#edit", as: "mytrips_edit"
+  # patch "/mytrips/:trip_id/edit/update", to: "mytrips#update", as: "mytrips_update"
+  # # delete
+  # delete "/mytrips/:trip_id/delete", to: "mytrips#destroy", as: "mytrips_delete"
+  
+  # get '/mytrips/:trip_id/plan', to: "mytrips#plan"
   
   
 end

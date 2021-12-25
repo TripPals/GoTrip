@@ -1,0 +1,47 @@
+<h1>行程管理頁</h1>
+<div>
+    <p><%#= current_user.user_trips.find_by(trip: trip).role%><%= current_user.email%></p>
+    
+</div>
+<h2>all trips</h2>
+<%= link_to "建立行程", trips_new_path %>
+<% @trips_all.each do |trip| %>
+    <p>行程名稱：<%= trip.name %></p>
+    <% if trip.length > 1 %>
+      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
+    <% else %>
+      <p><%= trip.length %>天</p>
+    <% end %>
+    <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
+  <%= link_to "edit", trips_edit_path(trip) %>
+  <%= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+<% end %>
+
+<h2>my trips</h2>
+<%= link_to "建立行程", trips_new_path %>
+<% @trips_yours.each do |trip| %>
+    <p>行程名稱：<%= trip.name %></p>
+    <% if trip.length > 1 %>
+      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
+    <% else %>
+      <p><%= trip.length %>天</p>
+    <% end %>
+    <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
+  <%= link_to "edit", trips_edit_path(trip) %>
+  <%= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+<% end %>
+
+
+<h2>followed trips</h2>
+<%  @trips_followed.each do |trip| %>
+    <p>行程名稱：<%= trip.name %></p>
+    <% if trip.length > 1 %>
+      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
+    <% else %>
+      <p><%= trip.length %>天</p>
+    <% end %>
+    <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
+  <%#= link_to "edit", trips_edit_path(trip) %>
+  <%#= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+<% end %>
+

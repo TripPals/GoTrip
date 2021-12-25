@@ -1,12 +1,13 @@
-class MytripsController < ApplicationController
+class TripsController < ApplicationController
   before_action :authenticate_user!
   
   def index
+   
     # @trips = Trip.order(id: :desc)
     @trips_all = current_user.trips.all
-        # @trips_yours = current_user.user_trip_authorities.owner
-        @trips_yours = Trip.own_trip(current_user.id)
-        @trips_followed = Trip.followed_trip(current_user.id)
+    # @trips_yours = current_user.user_trip_authorities.owner
+    @trips_yours = Trip.own_trip(current_user.id)
+    @trips_followed = Trip.followed_trip(current_user.id)
   end
 
   def new
@@ -50,6 +51,9 @@ end
 
 def edit
   @trip = Trip.find(params[:trip_id])
+  # p "==============="
+  # p @trip
+  # p "==============="
   authorize @trip
 end
 
@@ -58,7 +62,7 @@ def update
 
   if trip_params[:start_date].present?
     if @trip.update(trip_params.merge(end_date: trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days))
-      redirect_to mytrips_path, notice: "旅程更新成功！"
+      redirect_to trips_path, notice: "旅程更新成功！"
     else
       flash.alert = "旅程未更新。"
       render :edit
@@ -70,9 +74,11 @@ def update
 end
 
   def destroy
-    @trip = Trip.find_by(id: params[:trip_id])
+    @trip = UserTrip.find_by(id: params[:trip_id])
+    # && Trip.find_by(id: params[:trip_id])
+    authorize @trip,  policy_class: TripPolicy
     @trip.destroy if @trip
-    redirect_to mytrips_path, notice: "旅程已刪除"
+    redirect_to trips_path, notice: "旅程已刪除"
   end
 
   private
