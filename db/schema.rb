@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_22_081044) do
+ActiveRecord::Schema.define(version: 2021_12_25_082656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,25 @@ ActiveRecord::Schema.define(version: 2021_12_22_081044) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "address"
+    t.string "ugc1_name"
+    t.integer "ugc1_stars"
+    t.text "ugc1_comment"
+    t.string "ugc2_name"
+    t.integer "ugc2_stars"
+    t.text "ugc2_comment"
+    t.string "ugc3_name"
+    t.integer "ugc3_stars"
+    t.text "ugc3_comment"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string "name"
+    t.integer "length", default: 1
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,7 +67,12 @@ ActiveRecord::Schema.define(version: 2021_12_22_081044) do
     t.datetime "reset_password_sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.datetime "remember_created_at"
+    t.string "name"
+    t.string "provider", default: "register"
+    t.string "uid"
+    t.string "image"
+    t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
