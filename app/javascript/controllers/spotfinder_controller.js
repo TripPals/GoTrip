@@ -36,6 +36,7 @@ export default class extends Controller {
     async function renderData() {
       
       const spotResultData = await fetchData()
+      console.log(spotResultData);
       
       if (spotResultData.length === 0) {
 
@@ -56,6 +57,7 @@ export default class extends Controller {
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
       } else {
+        console.log("Hello");
         spotResultData.forEach(({name, photo_reference_1, latitude, longitude}) => {
           
           if (photo_reference_1 === null) {

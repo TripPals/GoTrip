@@ -14,7 +14,15 @@ module GooglePlacesApi
 
     def call
 
-      return Spot.where("name LIKE ?", "%#{@keyword}%")
+      result_a = Spot.where("name LIKE ?", "%#{@keyword}%")
+      result_b = Spot.last(1)
+      return result_a | result_b
+
+
+      # return result.push(result_a).push(result_b)
+
+      # return result.push(Spot.last)
+      # if last, only 
 
     end
 
