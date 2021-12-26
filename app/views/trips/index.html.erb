@@ -18,7 +18,7 @@
 <% end %>
 
 <h2>my trips</h2>
-<%= link_to "建立行程", trips_new_path %>
+<%#= link_to "建立行程", trips_new_path %>
 <% @trips_yours.each do |trip| %>
     <p>行程名稱：<%= trip.name %></p>
     <% if trip.length > 1 %>
