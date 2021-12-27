@@ -25,8 +25,26 @@ def create
 
   if @trip.start_date.present?
     @trip.end_date = trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days
+    
+    # create baseline for populating schedule data
+    # @trip.schedules = [Schedule.new()]
 
-    @trip.schedules = [Schedule.new()]
+    # run 迴圈 -> 不管輸入幾天, 都只有一筆schedule的row
+    # days = trip_params[:length].to_i
+    # days.times do
+    #   @trip.schedules = [Schedule.create(day_id: days)]
+    # end 
+    
+    # 想方法增加陣列內容, 陣列element 依照:length多寡, 增減筆數.
+    # @trip.schedules = [Schedule.new(), Schedule.new()]
+    #...
+    total_days = [] 
+    days = trip_params[:length].to_i
+    days.times do 
+      total_days << Schedule.new(day_id: days)
+      @trip.schedules = total_days
+    end
+
 
     
 
