@@ -26,6 +26,10 @@ def create
   if @trip.start_date.present?
     @trip.end_date = trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days
 
+    @trip.schedules = [Schedule.new()]
+
+    
+
     if @trip.save
       redirect_to "/mytrips", notice: "新增旅程成功!"
     else
