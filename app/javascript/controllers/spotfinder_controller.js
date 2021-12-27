@@ -58,8 +58,13 @@ export default class extends Controller {
 
       } else {
         console.log("Hello");
-        spotResultData.forEach(({name, photo_reference_1, latitude, longitude}) => {
+        spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
           
+          const spot_name_char_limit = 25
+          const spot_name_adjusted = name.length > spot_name_char_limit ?
+                                     name.substring(0, spot_name_char_limit - 3) + "..." :
+                                     name
+
           if (photo_reference_1 === null) {
 
             const spotbox = document.createElement("div")
@@ -68,7 +73,10 @@ export default class extends Controller {
             spotbox.innerHTML = 
             `
             <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
-              <p>${name}</p>
+              <div class="spotmeta">
+                <p>${spot_name_adjusted}</p>
+                <p>${city}</p>
+              </div>
               <div class="spotitemphotodiv">
                 <div class="nophoto"></div>
               </div>
@@ -85,7 +93,10 @@ export default class extends Controller {
             spotbox.innerHTML = 
             `
             <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
-              <p>${name}</p>
+              <div class="spotmeta">
+                <p>${spot_name_adjusted}</p>
+                <p>${city}</p>
+              </div>
               <div class="spotitemphotodiv">
               <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
               </div>
