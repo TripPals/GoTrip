@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
-      get "spotfinders/search/spotphotos", to: "spotfinders#fetchphoto"
     end
   end
   
