@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     end
     
     def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = "很抱歉，您沒有此行為權限，請確認您當前行程的權限"
     redirect_to(request.referrer || root_path)
     end
 
