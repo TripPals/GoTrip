@@ -8,16 +8,14 @@ class TripPolicy < ApplicationPolicy
   
     def edit?
     # byebug
-    p record
-    # record = Trip.find(params[:trip_id])
       
-      user.user_trips.find_by(trip: trip).owner? ||
-      user.user_trips.find_by(trip: trip).editor?
+    user.user_trips.find_by(trip_id: @trip.id).owner? ||
+    user.user_trips.find_by(trip_id: @trip.id).editor?
     #   user.user_trip_authority.owner? || !post.published?
-
-    end
-
-    def destroy?
-      user.user_trips.find_by(trip: trip).owner?
+    
+  end
+  
+  def destroy?
+      user.user_trips.find_by(trip_id: @trip.trip_id).owner?
     end
 end

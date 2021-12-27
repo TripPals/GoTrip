@@ -1,6 +1,6 @@
 class UserTrip < ApplicationRecord
   belongs_to :user
-  belongs_to :trip
+  belongs_to :trip 
 
   enum role: {
     owner: 0,
