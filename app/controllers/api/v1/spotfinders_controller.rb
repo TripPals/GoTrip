@@ -27,11 +27,12 @@ class Api::V1::SpotfindersController < ApplicationController
         end
 
       else
-        # 打我們自己的Service Object去跟google要資料
-        # google.call(search_input)
-        # @result = sdfkjsdlfkjsdf.call
+
         if @search_input_keyword != ""
-          @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_input_keyword).call
+
+          @search_query_for_google = search_input_city + " " + @search_input_keyword
+
+          @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_query_for_google).call
 
           respond_to do |format|
             format.json { render :json => @new_spots, status => 200 }

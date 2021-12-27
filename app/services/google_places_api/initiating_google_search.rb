@@ -14,9 +14,11 @@ module GooglePlacesApi
 
     def call
 
-      result_a = Spot.where("name LIKE ?", "%#{@keyword}%")
-      result_b = Spot.last(1)
-      return result_a | result_b
+      # result_a = Spot.where("name LIKE ?", "%#{@keyword}%")
+      # result_b = Spot.last(1)
+      # return result_a | result_b
+
+      return Spot.last(@datalength)
 
 
     end
@@ -32,9 +34,9 @@ module GooglePlacesApi
       first_batch_data = JSON.parse(response.body)
 
       i = 0
-      datalength = first_batch_data["candidates"].length
+      @datalength = first_batch_data["candidates"].length
 
-      while i < datalength do
+      while i < @datalength do
         
         @address = first_batch_data["candidates"][i]["formatted_address"]
         @place_id = first_batch_data["candidates"][i]["place_id"]
