@@ -27,4 +27,9 @@ class User < ApplicationRecord
   def display_name
     name == "" ? email : name
   end
+
+  def current_trip_role(trip_id)
+    user_trips.find_by(trip_id: trip_id).role
+  end
+  
 end

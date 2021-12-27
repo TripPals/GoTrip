@@ -1,0 +1,15 @@
+<h1>邀請朋友頁</h1>
+<% @users.each do |user| %>
+<div>
+    <%= user.current_trip_role(params[:trip_id]) %>
+</div>
+<div>
+    <%= user.name %>
+</div>
+<div>
+    <%= user.email %>
+</div>
+
+
+
+<% end %>

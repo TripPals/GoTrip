@@ -20,27 +20,14 @@ Rails.application.routes.draw do
   # edit
   get "/mytrips/:trip_id/edit", to: "trips#edit", as: "trips_edit"
   patch "/mytrips/:trip_id/edit/update", to: "trips#update", as: "trips_update"
-  get "/mytrips/:trip_id/invite", to: "trips#invite", as: "trips_invite"
   # delete
   delete "/mytrips/:trip_id/delete", to: "trips#destroy", as: "trips_delete"
   
   get '/mytrips/:trip_id/plan', to: "trips#plan"
 
+  get "/mytrips/:trip_id/invite", to: "rights#invite"
 
 
-  # get "/mytrips", to: "mytrips#index"
-  # # new, create 
-  # get "/mytrips/new", to: "mytrips#new"
-  # post "/mytrips/new/create", to: "mytrips#create"
-  # # edit
-  # get "/mytrips/:trip_id/edit", to: "mytrips#edit", as: "mytrips_edit"
-  # patch "/mytrips/:trip_id/edit/update", to: "mytrips#update", as: "mytrips_update"
-  # # delete
-  # delete "/mytrips/:trip_id/delete", to: "mytrips#destroy", as: "mytrips_delete"
-  
-  # get '/mytrips/:trip_id/plan', to: "mytrips#plan"
-  
-  
 end
 
 
