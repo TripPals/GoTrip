@@ -35,13 +35,13 @@ def create
     #   @trip.schedules = [Schedule.create(day_id: days)]
     # end 
     
-    # 想方法增加陣列內容, 陣列element 依照:length多寡, 增減筆數.
+    # 設法增加陣列內容, 陣列element 依照:length多寡, 增減筆數.
     # @trip.schedules = [Schedule.new(), Schedule.new()]
     #...
     total_days = [] 
     days = trip_params[:length].to_i
-    days.times do 
-      total_days << Schedule.new(day_id: days)
+    1.upto(days) do |day|
+      total_days << Schedule.new(day_id: day)
       @trip.schedules = total_days
     end
 
