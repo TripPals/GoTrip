@@ -19,11 +19,6 @@ module GooglePlacesApi
       return result_a | result_b
 
 
-      # return result.push(result_a).push(result_b)
-
-      # return result.push(Spot.last)
-      # if last, only 
-
     end
 
     def callThirdPartyApiAndSaveData
