@@ -36,6 +36,9 @@ gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'rails-i18n', '~> 6.0'
 gem 'pundit', '~> 2.1', '>= 2.1.1'
+gem 'carrierwave', '~> 2.2', '>= 2.2.2'
+gem 'mini_magick', '~> 4.11'
+gem 'fog-aws', '~> 3.12'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

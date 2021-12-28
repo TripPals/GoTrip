@@ -3,6 +3,24 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+      <%= image_tag @user.avatar_url %><br/>
+      <%= f.file_field :avatar %>
+    
+    <p>
+      <label>
+        <%= f.check_box :remove_avatar %>
+        回復預設圖像
+      </label>
+    </p>
+    <div class="actions">
+      <%= f.submit "更新個人圖像" %>
+    </div>
+<% end %>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
   <div class="field">
     <%= f.label :姓名 %><br />
     <%= f.text_field :name, placeholder: '請輸入姓名' %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_070645) do
+ActiveRecord::Schema.define(version: 2021_12_28_055532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,8 @@ ActiveRecord::Schema.define(version: 2021_12_24_070645) do
     t.string "name"
     t.string "provider", default: "register"
     t.string "uid"
-    t.string "image"
+    t.string "image", default: "https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/479478_ninja_avatar_samurai_warrior_icon.png"
+    t.string "avatar"
     t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
