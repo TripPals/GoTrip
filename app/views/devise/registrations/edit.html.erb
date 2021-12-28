@@ -1,11 +1,10 @@
-<h2>編輯顯示名稱</h2>
+<h2>編輯顯示圖像</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-      <%= image_tag @user.avatar_url %><br/>
-      <%= f.file_field :avatar %>
-    
+    <%= image_tag @user.avatar_url, class:"avatar_original" %><br/>
+    <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png"  %>
     <p>
       <label>
         <%= f.check_box :remove_avatar %>
@@ -16,7 +15,8 @@
       <%= f.submit "更新個人圖像" %>
     </div>
 <% end %>
-
+<br/>
+<h2>編輯顯示名稱</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -30,9 +30,9 @@
     <%= f.submit "更新" %>
   </div>
 <% end %>
-
+<br/>
 <h3>刪除帳號</h3>
 
-<p>不想再使用我們的服務了嗎？ <%= button_to "刪除我的帳號", registration_path(resource_name), data: { confirm: "您的帳號將被從此消失，確定嗎？" }, method: :delete %></p>
+<p>不想再出去走走了嗎？ <%= button_to "刪除我的帳號", registration_path(resource_name), data: { confirm: "您的帳號將被從此消失，確定嗎？" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

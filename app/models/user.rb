@@ -28,5 +28,15 @@ class User < ApplicationRecord
   def display_name
     name == "" ? email : name
   end
+
+  def show_image
+    if avatar.present?
+      avatar
+    elsif image.present?
+      image
+    else
+      avatar
+    end
+  end
   
 end

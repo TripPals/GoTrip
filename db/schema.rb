@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_055532) do
     t.string "name"
     t.string "provider", default: "register"
     t.string "uid"
-    t.string "image", default: "https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/479478_ninja_avatar_samurai_warrior_icon.png"
+    t.string "image"
     t.string "avatar"
     t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
