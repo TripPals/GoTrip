@@ -41,7 +41,7 @@ def create
     total_days = [] 
     days = trip_params[:length].to_i
     1.upto(days) do |day|
-      total_days << Schedule.new(day_id: day)
+      total_days << Schedule.new(day_order: day)
       @trip.schedules = total_days
     end
 
