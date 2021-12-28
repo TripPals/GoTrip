@@ -1,22 +1,21 @@
 <h1>邀請朋友頁</h1>
-<%= form_for(@user_trip_role, url: rights_update_path) do |form| %>
- <div class="fields">
-    <%= form.label :role, "權限" %>
-    <%= form.select :role, options_from_collection_for_select(UserTrip.all, :role, :role), {include_blank: true}%>
-  <%#= form.label :role, "權限" %>
-  <%#= form.select :role, options_from_collection_for_select(UserTrip.all, :role, :role), {include_blank: true}%>
-  <%= form.submit %>
- </div>
-<% end %>
-<% @users.each do |user| %>
-<div>
-    <%= user.current_trip_role(params[:trip_id]) %>
-</div>
-<div>
-    <%= user.name %>
-</div>
-<div>
-    <%= user.email %>
-</div>
 
+<section class="invite">
+<% @users.each do |user| %>
+<ul>
+    <li>角色：<%= user.current_trip_role(params[:trip_id]) %></li>
+    <li>姓名：<%= user.name %></li>
+    <li>e-mail：<%= user.email %></li>
+</ul>
 <% end %>
+</section>
+
+<div class='nav-container'>
+    <form class="search-field">
+    <div>
+        <label for ="emailaddress">邀請朋友加入行程</label>
+    </div>
+    <input id ="emailaddress" type="email" class="search-term" placeholder="請輸入email" title="請輸入正確的e-mail">
+    <button type="submit" class="search-button">搜尋</button>
+    </form>
+</div>

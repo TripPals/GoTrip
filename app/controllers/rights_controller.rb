@@ -10,6 +10,9 @@ class RightsController < ApplicationController
     def create
     end
 
+    def edit_role
+    end
+
 
     private
 
