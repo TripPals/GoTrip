@@ -24,7 +24,6 @@ gem 'jbuilder', '~> 2.7'
 
 # http REST client for Ruby
 gem 'rest-client', '>= 2.0.1'
-gem 'httparty', '~> 0.20.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
