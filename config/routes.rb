@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   get "/mytrips/:trip_id/invite", to: "rights#invite"
 
+  post "/mytrips/:trip_id/invite/update", to: "rights#update", as: "rights_update"
+
 
 end
 
