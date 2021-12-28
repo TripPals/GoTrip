@@ -6,7 +6,7 @@ module GooglePlacesApi
       
       @keyword = keyword
 
-      # Call 3rd party Api & 解構資料 ＆ 儲存景點資料
+      # Call google Apis & 解構資料 ＆ 儲存景點資料
       callThirdPartyApiAndSaveData
 
 
@@ -14,12 +14,7 @@ module GooglePlacesApi
 
     def call
 
-      # result_a = Spot.where("name LIKE ?", "%#{@keyword}%")
-      # result_b = Spot.last(1)
-      # return result_a | result_b
-
       return Spot.last(@datalength)
-
 
     end
 

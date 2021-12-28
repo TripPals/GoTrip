@@ -4,6 +4,7 @@ export default class extends mapInSearch {
 
   static targets = ["searchmap","spotitem"]
 
+  // 點選搜尋結果任何一個景點會來呼叫這個方法
   refreshMap() {
     const latitude = parseFloat(this.spotitemTarget.dataset.lat)
     const longitude = parseFloat(this.spotitemTarget.dataset.lng)

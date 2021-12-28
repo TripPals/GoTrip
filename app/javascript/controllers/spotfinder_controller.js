@@ -12,8 +12,8 @@ export default class extends Controller {
     // prevent link to redirect page
     event.preventDefault()
 
-    const cityinput = this.cityinputTarget.value
-    const keywordinput = this.keywordinputTarget.value
+    const cityinput = this.cityinputTarget.value.trim()
+    const keywordinput = this.keywordinputTarget.value.trim()
     const resultBox = document.querySelector(".searchResultBox")
 
     // 每次按下搜尋先清空搜尋結果列表
@@ -38,6 +38,7 @@ export default class extends Controller {
       const spotResultData = await fetchData()
       console.log(spotResultData);
       
+      // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
 
         const noResultMessage = document.createElement("div")
@@ -47,6 +48,7 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
+        // 如果搜尋只用了城市＆我們的資料表沒有該城市的任何資料
       } else if (spotResultData[0] === 'Database has no record of such city') {
         
         const noResultMessage = document.createElement("div")
@@ -56,6 +58,7 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
+        // 如果搜尋結果有>=1筆資料
       } else {
         console.log("Hello");
         spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
@@ -64,7 +67,8 @@ export default class extends Controller {
           const spot_name_adjusted = name.length > spot_name_char_limit ?
                                      name.substring(0, spot_name_char_limit - 3) + "..." :
                                      name
-
+          
+          // 如果搜尋結果的第一張照片是空的
           if (photo_reference_1 === null) {
 
             const spotbox = document.createElement("div")
@@ -84,7 +88,8 @@ export default class extends Controller {
             `
             
             resultBox.insertAdjacentElement("afterbegin", spotbox)
-            
+          
+            // 如果搜尋結果的第一張照片不是空的
           } else {
 
             const spotbox = document.createElement("div")
@@ -112,12 +117,8 @@ export default class extends Controller {
 
     }
 
+    // 呼叫renderData方法（上頭定義的）傳回來的資料長出來
     renderData()
-
-
-    // 看有沒有什麼loader可以用？
-    // 清除input field
-
 
   }
 
