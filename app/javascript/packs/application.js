@@ -22,3 +22,5 @@ window.mapInitialization = function () {
   const evt = new Event("mapsLoaded")
   document.dispatchEvent(evt)
 }
+
+import "./avatar"

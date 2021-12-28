@@ -1,19 +1,23 @@
+
 <h2>編輯顯示圖像</h2>
-
+<%= render "devise/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-    <%= image_tag @user.avatar_url, class:"avatar_original" %><br/>
-    <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png"  %>
-    <p>
-      <label>
-        <%= f.check_box :remove_avatar %>
-        回復預設圖像
-      </label>
-    </p>
-    <div class="actions">
-      <%= f.submit "更新個人圖像" %>
+  <div id='app' data-turbolinks-track = "reload"> 
+    <div class="avatar-container">
+      <img  v-if="avatar !== ''" :src="avatar" />
     </div>
+    <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
+    <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected" %>
+  </div>
+  <p>
+    <label>
+      <%= f.check_box :remove_avatar %>
+      回復預設圖像
+    </label>
+  </p>
+  <div class="actions">
+    <%= f.submit "更新圖像設定" %>
+  </div>
 <% end %>
 <br/>
 <h2>編輯顯示名稱</h2>

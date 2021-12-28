@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
 <p>歡迎：）快來規劃新旅程吧！</p>
 
-<div class="user_profile">
-    <img src="<%= current_user.show_image %>" alt="嗨" id="user_image">
+<div class="user-profile">
+    <img src="<%= current_user.show_image %>" alt="嗨" >
     <p><%= link_to current_user.display_name, edit_user_registration_path %></p>
 </div>
   <%= link_to "登出", destroy_user_session_path, method: :delete, data: {confirm:'您的帳號將登出。掰掰～下次再一起出遊。'} %>
