@@ -27,6 +27,7 @@
     <% end %>
     <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
   <%= link_to "edit", trips_edit_path(trip) %>
+  <%= link_to "invite", rights_invite_path(trip) %>
   <%= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
 <% end %>
 

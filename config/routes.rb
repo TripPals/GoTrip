@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   
   get '/mytrips/:trip_id/plan', to: "trips#plan"
 
-  get "/mytrips/:trip_id/invite", to: "rights#invite"
+  get "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
 
   post "/mytrips/:trip_id/invite/update", to: "rights#update", as: "rights_update"
 
