@@ -22,6 +22,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# http REST client for Ruby
+gem 'rest-client', '>= 2.0.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -30,6 +33,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'figaro', '~> 1.2'
 gem 'devise', '~> 4.8'
+gem 'rack-cors'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'
 gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'

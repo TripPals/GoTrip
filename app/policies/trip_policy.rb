@@ -16,6 +16,6 @@ class TripPolicy < ApplicationPolicy
   end
   
   def destroy?
-      user.user_trips.find_by(trip_id: @trip.trip_id).owner?
+      user.user_trips.find_by(trip_id: @trip.id).owner?
     end
 end

@@ -27,18 +27,19 @@ Rails.application.routes.draw do
   get '/mytrips/:trip_id/plan', to: "trips#plan"
 
 
+  # 景點搜尋route
 
-  # get "/mytrips", to: "mytrips#index"
-  # # new, create 
-  # get "/mytrips/new", to: "mytrips#new"
-  # post "/mytrips/new/create", to: "mytrips#create"
-  # # edit
-  # get "/mytrips/:trip_id/edit", to: "mytrips#edit", as: "mytrips_edit"
-  # patch "/mytrips/:trip_id/edit/update", to: "mytrips#update", as: "mytrips_update"
-  # # delete
-  # delete "/mytrips/:trip_id/delete", to: "mytrips#destroy", as: "mytrips_delete"
+  get "/mytrips/:trip_id/:day_number/search", to: "trips#search"
+
+  # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
+  namespace :api do
+    namespace :v1 do 
+      get "spotfinders/search", to: "spotfinders#search"
+    end
+  end
   
-  # get '/mytrips/:trip_id/plan', to: "mytrips#plan"
+  # /api/v1/spotfinders/search
+
   
   
 end

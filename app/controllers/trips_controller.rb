@@ -30,6 +30,28 @@ def create
 
   if @trip.start_date.present?
     @trip.end_date = trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days
+    
+    # create baseline for populating schedule data
+    # @trip.schedules = [Schedule.new()]
+
+    # run 迴圈 -> 不管輸入幾天, 都只有一筆schedule的row
+    # days = trip_params[:length].to_i
+    # days.times do
+    #   @trip.schedules = [Schedule.create(day_id: days)]
+    # end 
+    
+    # 設法增加陣列內容, 陣列element 依照:length多寡, 增減筆數.
+    # @trip.schedules = [Schedule.new(), Schedule.new()]
+    #...
+    total_days = [] 
+    days = trip_params[:length].to_i
+    1.upto(days) do |day|
+      total_days << Schedule.new(day_order: day)
+      @trip.schedules = total_days
+    end
+
+
+    
 
     if @trip.save
         UserTrip.create(user: current_user,
@@ -74,11 +96,14 @@ def update
 end
 
   def destroy
-    @trip = UserTrip.find_by(trip_id: params[:trip_id])
+    @trip = Trip.find_by(id: params[:trip_id])
     # && Trip.find_by(id: params[:trip_id])
     authorize @trip,  policy_class: TripPolicy
     @trip.destroy if @trip
     redirect_to trips_path, notice: "旅程已刪除"
+  end
+
+  def search
   end
 
   private
