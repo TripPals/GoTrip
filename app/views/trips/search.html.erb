@@ -18,13 +18,14 @@
           <a data-action="click->spotfinder#search" href=""><button>搜尋</button></a>
         </form>
       </div>
-      <div class="searchResultBox">
+      <div class="searchResultBox" data-controller="spotInfo">
       </div>
     </div>
 
   </div>
 
   <div id="mapInSearchSection"
+       class="mapInSearchSection"
        data-action="mapsLoaded@document->mapInSearch#renderMap">
   </div>
 
