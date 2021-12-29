@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trip: one
+  day_id: 1
+  starting_time: 2021-12-27 14:41:04
+  spot_id: 1
+  stayed_time: 1
+  spot_order: 1
+  note: MyText
+
+two:
+  trip: two
+  day_id: 1
+  starting_time: 2021-12-27 14:41:04
+  spot_id: 1
+  stayed_time: 1
+  spot_order: 1
+  note: MyText
