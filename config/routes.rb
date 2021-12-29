@@ -35,10 +35,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
+      get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
     end
   end
   
   # /api/v1/spotfinders/search
+  # /api/v1/spotfinders/spotinfo
 
   
   
