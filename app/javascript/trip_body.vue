@@ -11,25 +11,29 @@
     
     <div id="dataBody" >
       <div class="dayBox">
-        <div class="dayBack" v-on:click="slideLeft">＜</div>
+        <div class="dayBack" @click="slideLeft">＜</div>
         <div ref="dayTitle" class="dayTitle">
-          <div v-for="n in dayPages" class="dayBTN">
-            第 {{n}} 天
+          <div v-for="(value,index) in totalPage" :key="index" id="dayBTN">
+            <div @click="changePage(index)">第 {{value}} 天</div>
           </div>
         </div>
-        <div class="dayNext" v-on:click="slideRight">＞</div>
+        <div class="dayNext" @click="slideRight">＞</div>
       </div>
       <div>
         <div class="spotBox">
-          <!-- 關於行程與地圖的連結方式，目前粗略構想:預設顯示第一天的景點，如果修改或切換到其他天數，將景點用sessionStorage方式存取資訊 -->
-          <!-- 所以地圖的景點判讀可能會是先確認有無sessionStorage，沒有就讀取預設第一天景點 -->
-          <!-- 但還要研究sessionStorage是否可行 -->
           <div class="spotStartTime">出發時間</div>
-          <draggable v-model="firstDay.spots" @change="dragSpot">
-          <div v-if="firstDay !== null || firstDay.spots.length > 0 " v-for="s in firstDay.spots.length" class="spotItem">
+          <draggable v-model="spotData.spots" @change="dragSpot">
+          <div v-if="spotData !== null || spotData.spots.length > 0 " v-for="s in spotData.spots.length" class="spotItem">
             <div>{{s}}</div>
-            <div ref="spotName" class="spotName">{{firstDay.spots[s-1].info[0].name}}</div>
-            <div class="address">{{firstDay.spots[s-1].info[0].address}}</div>
+            <div ref="spotName" class="spotName">
+              {{spotData.spots[s-1].info[0].name}}
+            </div>
+            <div class="address">
+              {{spotData.spots[s-1].info[0].address}}
+            </div>
+            <div ref="position" class="position">
+              {{spotData.spots[s-1].info[0].lat}},{{spotData.spots[s-1].info[0].lng}}
+            </div>
           </div>
           </draggable>
         </div>
@@ -45,15 +49,18 @@ import dayjs from "dayjs";
 import {tripsData} from './api/tripdata.js';
 import draggable from 'vuedraggable';
 // 抓假資料陣列第一筆的行程資料，之後要再修改
-const tripData = tripsData[0];
+let tripData = tripsData[0];
+
 // 設定起始和結束日期以及顯示的格式
 let startDay = new Date(tripData.startDate);
 startDay = dayjs(startDay).format('YYYY/MM/DD');
 let endDay = dayjs(startDay).add(tripData.length - 1, "day").format('YYYY/MM/DD');
+
 // 天數分頁
-const dayPages = tripData.length;
-// 第一天的景點資訊，之後要再修改抓法
-const firstDay = tripData.schedules[0];
+const totalPage = tripData.length;
+
+// 預設顯示第一天的景點資訊，之後要再修改抓法
+var spotData = tripData.schedules[0];
 
 export default {
   components: { draggable },
@@ -66,34 +73,66 @@ export default {
       startDay: startDay,
       endDay: endDay,
       // 帶入網頁資訊的內容，天數選擇區的總頁數
-      dayPages: dayPages,
-      firstDay: firstDay,
+      totalPage: totalPage,
+      spotData: spotData,
     }
   },
   methods: {
-    // 設定拖曳改變後執行的方法，用空陣列得到一組改變後的結果(之後應該存景點id)
-    dragSpot() {
-      const spotName = this.$refs.spotName;
-
-      let spotlist = [];
-      spotName.forEach(el => {
-        return spotlist.push(el.innerText);
-      });
-      // console.log(spotlist);
-      sessionStorage.setItem('spotsArr', JSON.stringify(spotlist));
-      let spotJsonStr = sessionStorage.getItem('spotsArr');
-      spotlist = JSON.parse(spotJsonStr);
-      console.log(sessionStorage);
+    setposition() {
+      
     },
-    // 天數選擇區的左右移動按鈕
+    changePage(index) {
+      this.spotData = tripData.schedules[index];
+      
+      // 因為點擊後會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行
+      setTimeout(() => {
+        const position = this.$refs.position;
+        const spotName = this.$refs.spotName;
+
+        let spotList = [];
+        spotName.forEach(el => {
+          spotList.push(el.innerText);
+        });
+        let positionList = [];
+        position.forEach(el => {
+          const obj = {}
+          obj.lat = el.innerText.split(",")[0]
+          obj.lng = el.innerText.split(",")[1]
+          return positionList.push(obj);
+        });
+        sessionStorage.setItem('spotList', JSON.stringify(spotList));
+        sessionStorage.setItem('positionList', JSON.stringify(positionList));
+        })
+    },
+    // 天數選擇的左右移動按鈕
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
-      dayTitle.scrollLeft += 100;
+      dayTitle.scrollLeft += 140;
     },
     slideLeft() {
       const dayTitle = this.$refs.dayTitle;
-      dayTitle.scrollLeft -= 100;
-    }
+      dayTitle.scrollLeft -= 140;
+    },
+
+    // 設定拖曳改變後執行的方法，用空陣列儲存需要傳給地圖的資料存到sessionStorage
+    dragSpot() {
+      const position = this.$refs.position;
+      const spotName = this.$refs.spotName;
+
+      let spotList = [];
+      spotName.forEach(el => {
+        spotList.push(el.innerText);
+      });
+      let positionList = [];
+      position.forEach(el => {
+        const obj = {}
+        obj.lat = el.innerText.split(",")[0]
+        obj.lng = el.innerText.split(",")[1]
+        return positionList.push(obj);
+      });
+      sessionStorage.setItem('spotList', JSON.stringify(spotList));
+      sessionStorage.setItem('positionList', JSON.stringify(positionList));
+    },
   }
 }
 </script>
@@ -158,7 +197,7 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  .dayBTN {
+  #dayBTN {
     flex-shrink: 0;
     padding: 10px;
     margin-right: 5px;
