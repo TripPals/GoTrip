@@ -28,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource_updated
       # set_flash_message_for_update(resource)
-      redirect_to root_path, notice: "更新成功!"
+      redirect_to trips_path, notice: "個人資料更新成功!"
     else
       render :edit
     end
