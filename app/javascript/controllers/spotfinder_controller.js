@@ -61,7 +61,7 @@ export default class extends Controller {
         // 如果搜尋結果有>=1筆資料
       } else {
         console.log("Hello");
-        spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
+        spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude, id}) => {
           
           const spot_name_char_limit = 25
           const spot_name_adjusted = name.length > spot_name_char_limit ?
@@ -76,7 +76,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
@@ -97,7 +97,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
