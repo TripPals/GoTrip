@@ -23,7 +23,8 @@ module GooglePlacesApi
       # 步驟 1: 先打Find Place Api 獲取： A. place_id B. 經緯度
 
       find_places_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?language=zh-TW&inputtype=textquery&fields=name%2Cgeometry%2Cplace_id%2Cformatted_address"
-      response = RestClient.get find_places_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
+      response = RestClient.get find_places_url, {params: {
+                                                  key: ENV['GOOGLE_API_KEY_SEARCH'],
                                                   input: @keyword}
                                                  }
       first_batch_data = JSON.parse(response.body)
@@ -42,7 +43,8 @@ module GooglePlacesApi
         # step 2: 拿place_id 打 Place Details Api
         
         places_details_url = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=formatted_phone_number%2Caddress_components%2Copening_hours%2Cphotos%2Creviews"
-        response = RestClient.get places_details_url, {params: {key: "AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg", 
+        response = RestClient.get places_details_url, {params: {
+                                                      key: ENV['GOOGLE_API_KEY_SEARCH'], 
                                                       place_id: @place_id}
                                                       }
         
