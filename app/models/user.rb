@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,
          :omniauthable, omniauth_providers: [:google_oauth2, :github]
-  
+  #validation
   validates_presence_of   :email, presence: true
   validates_uniqueness_of :email, { scope: :provider }
   validates_presence_of   :password, { on: :create }

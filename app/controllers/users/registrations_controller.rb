@@ -21,7 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # PUT /resource
-
   def update
 
     resource_updated = update_resource(resource, account_update_params)
