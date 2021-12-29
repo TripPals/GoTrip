@@ -103,6 +103,9 @@ end
     redirect_to trips_path, notice: "旅程已刪除"
   end
 
+  def search
+  end
+
   private
   def trip_params
     params.require(:trip).permit(:name, :length, :start_date)

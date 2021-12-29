@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   # 景點搜尋route
 
-  get "/mytrips/:trip_id/:day_number/search", to: "mytrips#search"
+  get "/mytrips/:trip_id/:day_number/search", to: "trips#search"
 
   # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
   namespace :api do
