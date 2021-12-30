@@ -41,7 +41,6 @@ Rails.application.routes.draw do
   
   # /api/v1/spotfinders/search
   # /api/v1/spotfinders/spotinfo
-
   
   
 end
