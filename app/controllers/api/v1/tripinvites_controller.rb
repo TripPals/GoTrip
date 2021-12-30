@@ -2,28 +2,25 @@ class Api::V1::TripinvitesController < ApplicationController
     before_action :authenticate_user!
 
     def search
-        User.where("email like ? or user_name like ?", "%#{search}%","%#{search}%")
-
-        # get the search parameters, but only
-        # keep those that that are actually present
-        search_params = {
-            first_name: params[:fname],
-            last_name:  params[:lname]
-        }.keep_if { |_, value| value.present? }
-  
-            # now do the search
-            @users = if search_params.any?
-             # chaining `where` calls will implicitly add the `AND` in between
-                search_params.inject(nil) do |memo, pair|
-                column, string = pair
-                (memo || User).where("#{column} LIKE ?", "%#{string}%")
+            # get the search parameters, but only
+            # keep those that that are actually present
+            if params[:search].blank?
+               flash.alert = "請輸入使用者正確的e-mail"
+            else
+                @email = params[:search]
+                @results = User.where("email LIKE ?", "%#{@email}%")
+                # render ：search
+                # @email != User.find_by(:email)
             end
-            elsif params[:email_search].present?
-                User.where("email LIKE ?", "%#{params[:email_search]}%")
+            
+            if @results.present?
+                respond_to do |format|
+                    format.json{render :json => @results, status => 200}
+                end
+            else
+                respond_to do |format|
+                    format.json{render :json => [status:"failed",message:"查無此位使用者"],status => 200}
+                 end
             end
-  
-            head :not_found if @users.blank?
-  
-
     end
 end
