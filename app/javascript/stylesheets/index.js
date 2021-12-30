@@ -1,7 +1,6 @@
 import "./welcome.scss"
 import "./css_reset.css"
 import "./grid.css"
-import "./mytrips.scss"
 import "./spotfinders.scss"
 import "./tripPlanningView.scss"
 import "./trips.scss"

@@ -64,7 +64,7 @@ class Api::V1::SpotfindersController < ApplicationController
     @spot_id = params[:spot_id]
 
     # 第二步：去Spot資料表找吻合的景點資料
-    @spot_details = Spot.find_by(@spot_id)
+    @spot_details = Spot.find_by(id: @spot_id)
 
     # 第三步：判斷，如果找到，就render json回去，找不到(nil)就回傳“No such spot found”
     if @spot_details.present?

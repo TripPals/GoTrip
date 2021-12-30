@@ -36,7 +36,6 @@ export default class extends Controller {
     async function renderData() {
       
       const spotResultData = await fetchData()
-      console.log(spotResultData);
       
       // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
@@ -76,7 +75,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
@@ -97,7 +96,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
