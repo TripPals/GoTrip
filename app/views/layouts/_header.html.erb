@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <p>歡迎：）快來規劃新旅程吧！</p>
+
+  <div class="user-container">
+    <div class="user-profile">
+      <img src="<%= current_user.show_image %>" alt="嗨">
+      <p><%= link_to current_user.display_name, edit_user_registration_path %></p>
+    </div>  
+    <%= link_to "登出", destroy_user_session_path, method: :delete, data: {confirm:'您的帳號將登出。掰掰～下次再一起出遊。'} %><p> | </p>
+    <%= link_to "我的行程", trips_path %>
+  </div>
+  
+<% else %>
+  <div class="user-container">
+    <p>想來場新旅程嗎？</p>
+    <%= link_to '登入', new_user_session_path %><p> | </p>
+    <%= link_to '註冊', new_user_registration_path %>
+  </div>
+<% end %>

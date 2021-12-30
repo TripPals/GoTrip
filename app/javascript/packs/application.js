@@ -13,9 +13,11 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// import "google_maps"
-
 import "controllers"
+
+import "stylesheets"
+
+// import "google_maps"
 
 window.mapInitialization = function () {
   const evt = new Event("mapsLoaded")
@@ -23,3 +25,4 @@ window.mapInitialization = function () {
 }
 
 import "./trip_body_vue"
+import "./avatar"

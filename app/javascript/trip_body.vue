@@ -3,7 +3,6 @@
 
     <div id="dataTitle">
       <input type="text" v-model.lazy="tripName" class="tripName">
-      <!-- 日曆以及要傳回資料表的寫法要再想，下面日期相關的顯示方式可能不變，另外增加一個日曆的選擇器並且由它回傳資料 -->
       <div class="starEnd">{{startDay}} - {{endDay}}</div>
       <div v-if="dayLength > 1" class="dayLength">{{dayLength}} 天 {{dayLength - 1}} 夜</div>
       <div v-else-if="dayLength == 1" class="dayLength">{{dayLength}} 天</div>
@@ -23,7 +22,7 @@
         <div class="spotBox">
           <div class="spotStartTime">出發時間</div>
           <draggable v-model="spotData.spots" @change="dragSpot">
-          <div v-if="spotData !== null || spotData.spots.length > 0 " v-for="s in spotData.spots.length" class="spotItem">
+          <div v-if="spotData !== null || spotData.spots.length > 0 " v-for="s in spotData.spots.length" class="spotList">
             <div>{{s}}</div>
             <div ref="spotName" class="spotName">
               {{spotData.spots[s-1].info[0].name}}
@@ -138,78 +137,5 @@ export default {
 </script>
 
 <style scoped>
-/* 為了避免誤改，有修改顯示尺寸的部分都放在前面幾項，設定為不超過顯示器高度並且隱藏滾動卷軸 */
-/* 之後應該要再修改最高尺寸，因為還需要放上方的header */
-  #dataTitle {
-    background-color: #fff;
-    height: 10vh;
-  }
-  #dataBody {
-    background-color: #fff;
-    height: 90vh;
-  }
-  .dayBox {
-    display: flex;
-    justify-content: space-between;
-    height: 5vh;
-  }
-  .dayTitle::-webkit-scrollbar {
-    height: 0px;
-    width: 0px;
-  }
-  .spotBox::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-  }
-  .spotBox {
-    height: 80vh;
-    max-height: 80vh;
-    overflow: auto;
-  }
-  .spotBTN {
-    background-color: rgb(101, 67, 196);
-    color: #fff;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-    .dayTitle {
-    display: flex;
-    width: 90%;
-    max-width: 90%;
-    overflow: scroll;
-  }
-  .dayTitle a {
-    text-decoration: none;
-    color: #000;
-  }
-  .spotItem {
-    padding: 20px;
-  }
-  .spotStartTime {
-    padding: 10px 20px;
-  }
-  .dayBack, .dayNext{
-    width: 5%;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #dayBTN {
-    flex-shrink: 0;
-    padding: 10px;
-    margin-right: 5px;
-  }
-  .tripName {
-    font-size: 16px;
-    margin-left: 16px;
-  }
-  .starEnd {
-    padding: 0px 20px;
-  }
-  .dayLength {
-    padding: 5px 20px;
-  }
+
 </style>

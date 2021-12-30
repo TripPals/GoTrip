@@ -1,0 +1,12 @@
+zh-TW:
+  activerecord:
+    attributes:
+      user:
+        name: "姓名"
+        email: "信箱"
+        password: "密碼"
+        password_confirmation: "重覆密碼"
+        current_password: "現有密碼"
+        provider: "登入管道"
+        avatar: "個人圖像"
+  
