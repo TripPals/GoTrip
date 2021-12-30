@@ -1,0 +1,30 @@
+<h1>邀請朋友頁</h1>
+<div class='invite-container'>
+    <h3>邀請朋友加入行程</h3>
+    <div class='search-field'>
+        <%= form_tag rights_search_path, method: :get do %>
+            <%= text_field_tag :search, params[:search], placeholder: "請輸入email" %>
+            <%= submit_tag "搜尋", name: nil %>
+        <% end %>
+    </div>
+    <h3>搜尋結果</h3>
+    <div class='search-field'>
+        <% @results.each do |e|%>
+            <%= e.name%><span>:</span><%= e.email%>
+        <% end %>
+    </div>
+</div>
+
+
+
+
+
+<div class='nav-container'>
+    <form class="search-field">
+    <div>
+        <label for ="emailaddress">邀請朋友加入行程</label>
+    </div>
+    <input id ="emailaddress" type="email" class="search-term" placeholder="請輸入email" title="請輸入正確的e-mail">
+    <button type="submit" class="search-button">搜尋</button>
+    </form>
+</div>

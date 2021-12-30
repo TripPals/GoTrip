@@ -25,16 +25,20 @@ Rails.application.routes.draw do
   
   get '/mytrips/:trip_id/plan', to: "trips#plan"
 
-  #邀請朋友
-  get "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
+  # search friend
+  get "/mytrips/:trip_id/search", to: "rights#search", as: "rights_search"
 
-  
-  post "/mytrips/:trip_id/invite/update", to: "rights#update", as: "rights_update"
+  # post "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
+
+
+  #調整權限
+  get "/mytrips/:trip_id/invite/editrole", to: "rights#editrole", as: "rights_editrole"
+  patch "/mytrips/:trip_id/invite/editrole/update", to: "rights#update", as: "rights_update"
 
   # e-mail API
   namespace :api do
     namespace :v1 do
-        get "mytrips/:trip_id/invite", to: "tripinvite#search"
+        get "mytrips/:trip_id/invite", to: "tripinvites#search"
     end
   end
 
