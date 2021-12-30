@@ -46,15 +46,14 @@ export default class extends mapInSearch  {
         <div class="spotDetailsTitle">${spotDetails.name}</div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
-            <img src="https://picsum.photos/300/300/?random=1">
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}">
           </div>
           <div class="spotDetailsPhotoListBox">
             <div class="photoLists">
-              <div><img src="https://picsum.photos/300/300/?random=2"></div>
-              <div><img src="https://picsum.photos/300/300/?random=3"></div>
-              <div><img src="https://picsum.photos/300/300/?random=4"></div>
-              <div><img src="https://picsum.photos/300/300/?random=5"></div>
-              <div><img src="https://picsum.photos/300/300/?random=6"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_2}"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_3}"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_4}"></div>
             </div>
           </div>
         </div>
@@ -105,15 +104,14 @@ export default class extends mapInSearch  {
         <div class="spotDetailsTitle">${spotDetails.name}</div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
-            <img src="https://picsum.photos/300/300/?random=1">
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}">
           </div>
           <div class="spotDetailsPhotoListBox">
             <div class="photoLists">
-              <div><img src="https://picsum.photos/300/300/?random=2"></div>
-              <div><img src="https://picsum.photos/300/300/?random=3"></div>
-              <div><img src="https://picsum.photos/300/300/?random=4"></div>
-              <div><img src="https://picsum.photos/300/300/?random=5"></div>
-              <div><img src="https://picsum.photos/300/300/?random=6"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_2}"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_3}"></div>
+              <div><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_4}"></div>
             </div>
           </div>
         </div>
