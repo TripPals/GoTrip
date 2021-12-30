@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   extend Devise::Models
+  mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable, :validatable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,
          :omniauthable, omniauth_providers: [:google_oauth2, :github]
-  
+  #validation
   validates_presence_of   :email, presence: true
   validates_uniqueness_of :email, { scope: :provider }
   validates_presence_of   :password, { on: :create }
@@ -27,4 +28,15 @@ class User < ApplicationRecord
   def display_name
     name == "" ? email : name
   end
+
+  def show_image
+    if avatar.present?
+      avatar
+    elsif image.present?
+      image
+    else
+      avatar
+    end
+  end
+  
 end
