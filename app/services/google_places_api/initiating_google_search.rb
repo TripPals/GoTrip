@@ -14,7 +14,8 @@ module GooglePlacesApi
 
     def call
 
-      return Spot.last(@datalength)
+      # 這邊要修正
+      return Spot.last(@count)
 
     end
 
@@ -22,7 +23,7 @@ module GooglePlacesApi
     
       # 步驟 1: 先打Find Place Api 獲取： A. place_id B. 經緯度
 
-      find_places_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?language=zh-TW&inputtype=textquery&fields=name%2Cgeometry%2Cplace_id%2Cformatted_address"
+      find_places_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?language=zh-TW"
       response = RestClient.get find_places_url, {params: {
                                                   key: ENV['GOOGLE_API_KEY_SEARCH'],
                                                   input: @keyword}
@@ -30,15 +31,22 @@ module GooglePlacesApi
       first_batch_data = JSON.parse(response.body)
 
       i = 0
-      @datalength = first_batch_data["candidates"].length
+      @count = 0
+
+      datalength = first_batch_data["results"].length
+      if datalength <= 20 && datalength > 10
+        @datalength = 10
+      else
+        @datalength = datalength
+      end
 
       while i < @datalength do
         
-        @address = first_batch_data["candidates"][i]["formatted_address"]
-        @place_id = first_batch_data["candidates"][i]["place_id"]
-        @latitude = first_batch_data["candidates"][i]["geometry"]["location"]["lat"]
-        @longitude = first_batch_data["candidates"][i]["geometry"]["location"]["lng"]
-        @name = first_batch_data["candidates"][i]["name"]
+        @address = first_batch_data["results"][i]["formatted_address"]
+        @place_id = first_batch_data["results"][i]["place_id"]
+        @latitude = first_batch_data["results"][i]["geometry"]["location"]["lat"]
+        @longitude = first_batch_data["results"][i]["geometry"]["location"]["lng"]
+        @name = first_batch_data["results"][i]["name"]
 
         # step 2: 拿place_id 打 Place Details Api
         
@@ -132,6 +140,7 @@ module GooglePlacesApi
         saveData
 
         i += 1
+        @count += 1
 
       end  
 

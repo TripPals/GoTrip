@@ -36,6 +36,10 @@ class Api::V1::SpotfindersController < ApplicationController
 
           @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_query_for_google).call
 
+          puts "===================="
+          puts @new_spots
+          puts "===================="
+
           respond_to do |format|
             format.json { render :json => @new_spots, status => 200 }
           end
