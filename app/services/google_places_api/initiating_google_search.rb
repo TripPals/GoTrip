@@ -64,11 +64,11 @@ module GooglePlacesApi
         # @city = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}[0]["short_name"]
         case
         when level_1 !=[] && level_2 !=[]
-          @city = level_1[0]["short_name"]
+          @city = level_1[0]["long_name"]
         when level_1 !=[] && level_2 =[]
-          @city = level_1[0]["short_name"]
+          @city = level_1[0]["long_name"]
         when level_1 =[] && level_2 !=[] 
-          @city = level_2[0]["short_name"]
+          @city = level_2[0]["long_name"]
         when level_1 =[] && level_2 =[]
           @city = "暫無資訊"
         end
