@@ -35,10 +35,10 @@ Rails.application.routes.draw do
   get "/mytrips/:trip_id/invite/editrole", to: "rights#editrole", as: "rights_editrole"
   patch "/mytrips/:trip_id/invite/editrole/update", to: "rights#update", as: "rights_update"
 
-  # e-mail API
+  # search friend e-mail API
   namespace :api do
     namespace :v1 do
-        get "mytrips/:trip_id/invite", to: "tripinvites#search"
+        get "tripinvites#search", to: "tripinvites#search"
     end
   end
 
