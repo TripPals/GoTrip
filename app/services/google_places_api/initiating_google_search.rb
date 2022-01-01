@@ -100,12 +100,54 @@ module GooglePlacesApi
         end  
 
         if second_batch_data["result"]["photos"]
-          @photo_reference1 = second_batch_data["result"]["photos"][0]["photo_reference"]
-          @photo_reference2 = second_batch_data["result"]["photos"][1]["photo_reference"]
-          @photo_reference3 = second_batch_data["result"]["photos"][2]["photo_reference"]
-          @photo_reference4 = second_batch_data["result"]["photos"][3]["photo_reference"]
-          @photo_reference5 = second_batch_data["result"]["photos"][4]["photo_reference"]
-          @photo_reference6 = second_batch_data["result"]["photos"][5]["photo_reference"]
+
+          photos = second_batch_data["result"]["photos"]
+          photo_list_length = photos.length
+
+          case 
+          when photo_list_length >= 6
+            @photo_reference1 = photos[0]["photo_reference"]
+            @photo_reference2 = photos[1]["photo_reference"]
+            @photo_reference3 = photos[2]["photo_reference"]
+            @photo_reference4 = photos[3]["photo_reference"]
+            @photo_reference5 = photos[4]["photo_reference"]
+            @photo_reference6 = photos[5]["photo_reference"]
+          when photo_list_length == 5
+            @photo_reference1 = photos[0]["photo_reference"]
+            @photo_reference2 = photos[1]["photo_reference"]
+            @photo_reference3 = photos[2]["photo_reference"]
+            @photo_reference4 = photos[3]["photo_reference"]
+            @photo_reference5 = photos[4]["photo_reference"]
+            @photo_reference6 = nil
+          when photo_list_length == 4
+            @photo_reference1 = photos[0]["photo_reference"]
+            @photo_reference2 = photos[1]["photo_reference"]
+            @photo_reference3 = photos[2]["photo_reference"]
+            @photo_reference4 = photos[3]["photo_reference"]
+            @photo_reference5 = nil
+            @photo_reference6 = nil
+          when photo_list_length == 3
+            @photo_reference1 = photos[0]["photo_reference"]
+            @photo_reference2 = photos[1]["photo_reference"]
+            @photo_reference3 = photos[2]["photo_reference"]
+            @photo_reference4 = nil
+            @photo_reference5 = nil
+            @photo_reference6 = nil
+          when photo_list_length == 2
+            @photo_reference1 = photos[0]["photo_reference"]
+            @photo_reference2 = photos[1]["photo_reference"]
+            @photo_reference3 = nil
+            @photo_reference4 = nil
+            @photo_reference5 = nil
+            @photo_reference6 = nil
+          when photo_list_length == 1
+            @photo_reference1 = photos[0]["photo_reference"]
+            @photo_reference2 = nil
+            @photo_reference3 = nil
+            @photo_reference4 = nil
+            @photo_reference5 = nil
+            @photo_reference6 = nil
+          end  
         else
           @photo_reference1 = nil  
           @photo_reference2 = nil 
@@ -116,15 +158,42 @@ module GooglePlacesApi
         end 
         
         if second_batch_data["result"]["reviews"]
-          @ugc1_name = second_batch_data["result"]["reviews"][0]["author_name"]
-          @ugc1_stars = second_batch_data["result"]["reviews"][0]["rating"]
-          @ugc1_comment = second_batch_data["result"]["reviews"][0]["text"]
-          @ugc2_name = second_batch_data["result"]["reviews"][1]["author_name"]
-          @ugc2_stars = second_batch_data["result"]["reviews"][1]["rating"]
-          @ugc2_comment = second_batch_data["result"]["reviews"][1]["text"]
-          @ugc3_name = second_batch_data["result"]["reviews"][2]["author_name"]
-          @ugc3_stars = second_batch_data["result"]["reviews"][2]["rating"]
-          @ugc3_comment = second_batch_data["result"]["reviews"][2]["text"]
+
+          reviews = second_batch_data["result"]["reviews"]
+          reviews_list_length = reviews.length
+
+          case 
+          when reviews_list_length >= 3
+            @ugc1_name = reviews[0]["author_name"]
+            @ugc1_stars = reviews[0]["rating"]
+            @ugc1_comment = reviews[0]["text"]
+            @ugc2_name = reviews[1]["author_name"]
+            @ugc2_stars = reviews[1]["rating"]
+            @ugc2_comment = reviews[1]["text"]
+            @ugc3_name = reviews[2]["author_name"]
+            @ugc3_stars = reviews[2]["rating"]
+            @ugc3_comment = reviews[2]["text"]
+          when reviews_list_length == 2
+            @ugc1_name = reviews[0]["author_name"]
+            @ugc1_stars = reviews[0]["rating"]
+            @ugc1_comment = reviews[0]["text"]
+            @ugc2_name = reviews[1]["author_name"]
+            @ugc2_stars = reviews[1]["rating"]
+            @ugc2_comment = reviews[1]["text"]
+            @ugc3_name = nil
+            @ugc3_stars = nil
+            @ugc3_comment = nil
+          when reviews_list_length == 1
+            @ugc1_name = reviews[0]["author_name"]
+            @ugc1_stars = reviews[0]["rating"]
+            @ugc1_comment = reviews[0]["text"]
+            @ugc2_name = nil
+            @ugc2_stars = nil
+            @ugc2_comment = nil
+            @ugc3_name = nil
+            @ugc3_stars = nil
+            @ugc3_comment = nil
+          end  
         else
           @ugc1_name = nil
           @ugc1_stars = nil
