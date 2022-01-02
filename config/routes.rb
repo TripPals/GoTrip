@@ -32,14 +32,16 @@ Rails.application.routes.draw do
   get "/mytrips/:trip_id/:day_number/search", to: "trips#search"
 
   # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
+  # TripDetail API : 行程規劃頁給前端的整大包該 Trip 資料
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
+      get "trip_detail/:trip_id", to: "trip_detail#show"
     end
   end
   
   # /api/v1/spotfinders/search
-
+  # /api/v1/trip_detail/:trip_id
   
   
 end
