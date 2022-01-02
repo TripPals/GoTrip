@@ -3,6 +3,10 @@
   --grid-gap: 15px;
 }
 
+body{
+  font-family: STHeiti, PingFang, "Microsoft JhengHei", Verdana, Charcoal;
+}
+
 .container {
   width: 100%;
   /* max-width: 1200px; */
@@ -10,7 +14,7 @@
       flex-wrap: wrap; */
   /* 以上直接給row來設定了 */
   margin: auto;
-  padding: 0 var(--grid-gap);
+  /* padding: 0 var(--grid-gap); */
   box-sizing: border-box;
 }
 
