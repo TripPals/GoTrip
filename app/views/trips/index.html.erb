@@ -1,20 +1,7 @@
 <div class="headingContainer">
-  <h1>我的行程縱覽</h1>
+  <h1><i class="fas fa-passport"></i>我的行程縱覽</h1>
   <a href="<%= trips_new_path %>"><i class="fas fa-plus-circle"></i> 建立行程</a>
 </div>
-<!-- <h2>all trips</h2>
-
-<#% @trips_all.each do |trip| %>
-    <p>行程名稱：<#%= trip.name %></p>
-    <#% if trip.length > 1 %>
-      <p><#%= trip.length %>天<#%= trip.length - 1%>夜</p>
-    <#% else %>
-      <p><#%= trip.length %>天</p>
-    <#% end %>
-    <p>日期：<#%= trip.start_date.to_date %>～<#%= trip.end_date.to_date%></p>
-  <#%= link_to "edit", trips_edit_path(trip) %>
-  <#%= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-<#% end %> -->
 
 <div class="tripOverviewContainer">
 
@@ -32,7 +19,7 @@
   <div class="tab-content" id="myTabContent">
 
     <div class="tab-pane fade show active" id="ownedtrips" role="tabpanel" aria-labelledby="ownedtrips-tab">
-      <div class="gridContainer">
+      <div class="gridContainer tripListBox">
         <div class="row">
           <% if @trips_yours.length == 0 %>
           
@@ -47,6 +34,13 @@
             <% @trips_yours.each do |trip| %>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="tripdata">
+                <% if DateTime.now().to_date > trip.end_date.to_date &&   %>
+                  <div class="timetag_past">過去式</div>
+                <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
+                  <div class="timetag_now">進行式</div>
+                <% else %>
+                  <div class="timetag_future">未來式</div>
+                <% end %>  
                 <div class="tripdataPic">
                   <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
                 </div>
@@ -82,7 +76,7 @@
     </div>  
 
     <div class="tab-pane fade" id="followedtrips" role="tabpanel" aria-labelledby="followedtrips-tab">
-      <div class="gridContainer">
+      <div class="gridContainer tripListBox">
         <div class="row">
 
           <% if @trips_followed.length == 0 %>
@@ -98,6 +92,13 @@
             <%  @trips_followed.each do |trip| %>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="tripdata">
+                <% if DateTime.now().to_date > trip.end_date.to_date &&   %>
+                  <div class="timetag_past">過去式</div>
+                <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
+                  <div class="timetag_now">進行式</div>
+                <% else %>
+                  <div class="timetag_future">未來式</div>
+                <% end %>
                 <div class="tripdataPic">
                   <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
                 </div>
@@ -115,7 +116,6 @@
 
           <% end %>
 
-          
         </div>
       </div>
     </div>

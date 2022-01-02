@@ -19,12 +19,13 @@
     text-decoration: none;
     display: inline-block;
     width: 200px;
-    height: 40px;
+    height: 50px;
     background-color: rgb(101, 67, 196);
     background-image: radial-gradient(100% 100% at 100% 0, rgb(186, 141, 228)0, rgb(101, 67, 196) 100%);
     color: white;
     text-align: center;
-    line-height: 40px;
+    font-size: 1.3rem;
+    line-height: 50px;
     border-radius: 10px;
     box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
     transition: box-shadow .15s,transform .15s;
@@ -81,6 +82,11 @@
   width: 90%;
   max-width: 1400px;
   margin: auto;
+  padding-top: 20px;
+}
+
+.tripListBox {
+  margin-top: 40px;
 }
 
 .tripdata {
@@ -90,6 +96,7 @@
   padding: 15px;
   padding-bottom: 15px;
   position: relative;
+  transform: none;
   transition: all 0.3s ease;
 
   
@@ -149,14 +156,31 @@
 
     }
 
+    div:nth-child(1) {
+      border-radius: 0 0 0 10px
+    }
+
+    div:nth-child(3) {
+      border-radius: 0 0 10px 0    
+    }
+
     div:nth-child(1) a,
     div:nth-child(2) a {
       color: rgb(101, 67, 196);
     }
 
+    div:nth-child(1):hover,
+    div:nth-child(2):hover {
+      border-bottom: 4px solid rgb(101, 67, 196);
+    }
+
     div:nth-child(3) a,
     div:nth-child(3) i {
       color: rgb(216, 71, 71);
+    }
+
+    div:nth-child(3):hover {
+      border-bottom: 4px solid rgb(216, 71, 71);
     }
 
   }
@@ -166,6 +190,7 @@
 .tripdata:hover {
 
   padding-bottom: 50px;
+  transform: translateY(-10px);
   transition: all 0.3s ease;
 
   .tripControlBox {
@@ -209,3 +234,31 @@
   
 
 }
+
+// 時間標籤
+.timetag_past, .timetag_now, .timetag_future {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  right: -5px;
+  top: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.timetag_past {
+  background-color: black;
+  color: white;
+}
+
+.timetag_future {
+  background-color: rgb(101, 67, 196);
+  color: white;
+}
+
+.timetag_now {
+  background-color: rgb(67, 196, 164);
+  color: white;
+}
+
+
