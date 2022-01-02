@@ -18,7 +18,7 @@
   a {
     text-decoration: none;
     display: inline-block;
-    width: 150px;
+    width: 200px;
     height: 40px;
     background-color: rgb(101, 67, 196);
     background-image: radial-gradient(100% 100% at 100% 0, rgb(186, 141, 228)0, rgb(101, 67, 196) 100%);
@@ -52,9 +52,30 @@
 
 }
 
+// Tab Element
+
+.mytriptab {
+  background-color: white;
+  border: none;
+}
+
+.nav .nav-item.show .nav-link, .nav .nav-link.active {
+  border-bottom: 4px solid rgb(101, 67, 196);
+  color: rgb(101, 67, 196);
+}
+
+.tab1 button, .tab2 button {
+  width: 100%;
+  text-align: left;
+  font-size: 1.3rem;
+  color: black;
+}
+
 .divider {
   margin-top: 0;
 }
+
+// Content Section
 
 .tripOverviewContainer {
   width: 90%;
