@@ -3,7 +3,7 @@
   --grid-gap: 15px;
 }
 
-.container {
+.gridContainer {
   width: 100%;
   /* max-width: 1200px; */
   /* display: flex;
