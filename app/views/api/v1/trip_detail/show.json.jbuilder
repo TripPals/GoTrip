@@ -16,3 +16,4 @@ json.length @trip.length
       end
     end
   end
+

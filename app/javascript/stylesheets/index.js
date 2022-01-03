@@ -1,8 +1,10 @@
 import "./cssReset.css"
 import "./grid.css"
 import "./errorMessages.scss"
+import "./layoutHeaderFooter.scss"
+import "./indexPage.scss"
 import "./user.scss"
 import "./spotfinders.scss"
 import "./tripPlanningView.scss"
 import "./trips.scss"
-import "./indexpage.scss"
+
