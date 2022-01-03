@@ -15,8 +15,10 @@ export default class extends Controller {
       const emailInput = this.emailinputTarget.value.trim()
       const resultBox = document.querySelector(".searchresultbox")
       // console.log(emailInput);
+      // 清除搜尋結果資料
       resultBox.innerHTML = ""
 
+      // call search friend e-mail API
       async function fetchData(){
         try{
           const response = await fetch(`http://127.0.0.1:3000/api/v1/tripinvites/search?search=${emailInput}`, {
@@ -34,29 +36,19 @@ export default class extends Controller {
       async function renderData() {
 
         const emailResultData = await fetchData()
-        console.log(emailResultData);
+        // console.log(emailResultData);
 
-      // 如果搜尋結果是空的
-       if (emailResultData.length === 0) {
-
+      // 如果搜尋結果是空的或不存在 
+       if (emailResultData[0].status === "failed") {
+          console.log("Hey");
          const noResultMessage = document.createElement("div")
 
          noResultMessage.classList.add("noresultmessagediv")
-         noResultMessage.innerHTML = `<p class="noresultmessagediv">抱歉，似乎沒有您搜尋的用戶資料，請重新輸入一次</p>`
+         noResultMessage.innerHTML = `<p class="noresultmessagediv">抱歉，您搜尋的用戶資料不存在，請重新輸入一次</p>`
 
          resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
-        // 如果搜尋非資料庫e-mail
-      // } else if (emailResultData[0] !== `${emailInput}`) {
-
-      //   const noResultMessage = document.createElement("div")
-
-      //   noResultMessage.classList.add("noresultmessagediv")
-      //   noResultMessage.innerHTML = `<p class="noresultmessagediv">抱歉，目前沒有${emailInput}的資料，請輸入正確的e-mail</p>`
-
-      //   resultBox.insertAdjacentElement("afterbegin", noResultMessage)
-
-        // 如果搜尋結果有>=1筆資料
+        
       } else {
         console.log("Hello");
         emailResultData.forEach(({name, email}) => {
@@ -75,7 +67,23 @@ export default class extends Controller {
         
        }
      };
-     renderData() 
+      //呼叫renderData前先做判斷
+     if (emailInput !== "") {
+      renderData() 
+     } else  {
+      console.log("No");
+      const noEmailInput = document.createElement("div")
+
+      noEmailInput.classList.add("noemailinputdiv")
+      noEmailInput.innerHTML = `<p class="noemailinputdiv">請輸入使用者的e-mail</p>`
+
+      resultBox.insertAdjacentElement("afterbegin", noEmailInput)
+
+    
+    }
+       
+     
+     
    }
   
  }

@@ -80,8 +80,6 @@
     .searchresultbox {
         padding-top: 30px;
         height: calc(100vh - 300px);
-        // overflow-x: hidden;
-        // overflow-y: auto;
       }
       
       .noresultmessagediv {
@@ -104,6 +102,17 @@
       }
 
       .emailresultdiv{
+        width: 90%;
+        margin: auto;
+        height: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .noemailinputdiv{
         width: 90%;
         margin: auto;
         height: 100px;

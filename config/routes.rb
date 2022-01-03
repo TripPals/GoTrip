@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   # search friend e-mail API
   namespace :api do
     namespace :v1 do
-        get "tripinvites#search", to: "tripinvites#search"
+        get "tripinvites/search", to: "tripinvites#search"
     end
   end
 
