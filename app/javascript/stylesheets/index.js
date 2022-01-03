@@ -1,5 +1,6 @@
-import "./welcome.scss"
-import "./css_reset.css"
+import "./errorMessages.scss"
+import "./user.scss"
+import "./cssReset.css"
 import "./grid.css"
 import "./spotfinders.scss"
 import "./tripPlanningView.scss"

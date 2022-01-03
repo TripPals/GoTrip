@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_054843) do
+ActiveRecord::Schema.define(version: 2022_01_03_065203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "schedule_spots", force: :cascade do |t|
+    t.integer "order"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "spot_id"
+    t.bigint "schedule_id"
+    t.index ["schedule_id"], name: "index_schedule_spots_on_schedule_id"
+    t.index ["spot_id"], name: "index_schedule_spots_on_spot_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "day_order"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_schedules_on_trip_id"
+  end
 
   create_table "spots", force: :cascade do |t|
     t.string "name"
@@ -48,13 +66,6 @@ ActiveRecord::Schema.define(version: 2021_12_28_054843) do
     t.string "ugc3_name"
     t.integer "ugc3_stars"
     t.text "ugc3_comment"
-    
-  create_table "schedules", force: :cascade do |t|
-    t.bigint "trip_id", null: false
-    t.integer "day_order"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["trip_id"], name: "index_schedules_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -68,11 +79,11 @@ ActiveRecord::Schema.define(version: 2021_12_28_054843) do
   end
 
   create_table "user_trips", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "trip_id", null: false
     t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "trip_id"
     t.index ["trip_id"], name: "index_user_trips_on_trip_id"
     t.index ["user_id"], name: "index_user_trips_on_user_id"
   end
@@ -89,11 +100,14 @@ ActiveRecord::Schema.define(version: 2021_12_28_054843) do
     t.string "provider", default: "register"
     t.string "uid"
     t.string "image"
+    t.string "avatar"
     t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "schedules", "trips"
-  add_foreign_key "user_trips", "trips"
-  add_foreign_key "user_trips", "users"
+  add_foreign_key "schedule_spots", "schedules", on_delete: :cascade
+  add_foreign_key "schedule_spots", "spots", on_delete: :cascade
+  add_foreign_key "schedules", "trips", on_delete: :cascade
+  add_foreign_key "user_trips", "trips", on_delete: :cascade
+  add_foreign_key "user_trips", "users", on_delete: :cascade
 end

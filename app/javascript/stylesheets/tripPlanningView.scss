@@ -10,6 +10,81 @@
 
 #spotPlanningSection {
   width: 30%;
+  min-width: 350px;
   height: 100vh;
   background-color: rgb(206, 206, 206);
+}
+
+// spotPlanningSection
+#dataTitle {
+  background-color: #fff;
+  height: 10vh;
+}
+#dataBody {
+  background-color: #fff;
+  height: 90vh;
+}
+.dayBox {
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+}
+.dayTitle::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+.spotBox::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.spotBox {
+  height: 80vh;
+  max-height: 80vh;
+  overflow: auto;
+}
+.spotBTN {
+  background-color: rgb(101, 67, 196);
+  color: #fff;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  .dayTitle {
+  display: flex;
+  width: 90%;
+  max-width: 90%;
+  overflow: scroll;
+}
+.dayTitle a {
+  text-decoration: none;
+  color: #000;
+}
+.spotList {
+  padding: 20px;
+}
+.spotStartTime {
+  padding: 10px 20px;
+}
+.dayBack, .dayNext{
+  width: 5%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#dayBTN {
+  flex-shrink: 0;
+  padding: 10px;
+  margin-right: 5px;
+}
+.tripName {
+  font-size: 16px;
+  margin-left: 16px;
+}
+.starEnd {
+  padding: 0px 20px;
+}
+.dayLength {
+  padding: 5px 20px;
 }

@@ -23,3 +23,6 @@ window.mapInitialization = function () {
   const evt = new Event("mapsLoaded")
   document.dispatchEvent(evt)
 }
+
+import "./trip_body_vue"
+import "./avatar"
