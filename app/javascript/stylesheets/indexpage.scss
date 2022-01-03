@@ -1,10 +1,14 @@
 .image-container{
   width: 100vw;
+  height: 96vh;
   margin: 0, auto;
+  background: url(http://localhost:3000/images/index_img/1.jpg), no-repeat;
+  background-position:center center;
+  background-size: cover;
   background-color: #EEBC38;
-  .image-item{
-    margin: 0px;
-    vertical-align:top;
-    width: 100%;
-  }
+  // .image-item{
+  //   margin: 0px;
+  //   vertical-align:top;
+  //   width: 100%;
+  // }
 }

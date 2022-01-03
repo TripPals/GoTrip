@@ -1,25 +1,72 @@
 #header{
-  background-color: rgba(255,255,204,0.2);
+  // background-color: rgba(5,5,5,0.3);
   width: 100%;
   position: absolute;
 }
+@keyframes swing{
+  15%{transform: translateX(5px);}
+  40%{transform: translateX(-5px);}
+  65%{transform: translateX(2px);}
+  85%{transform: translateX(-2px);}
+  100%{transform: translateX(0px);}
+}
+a{
+  text-decoration: none;
+}
+a:hover{
+  animation: swing 1s 1;
+  background-color:rgba(255,255,255,0.5);
+  color: #DB6A43;
+}
+.bg-dark{
+  background-color: #262C4C;
+}
+.bg-light{
+  background-color: #EEBC38;
+  background:linear-gradient(to top,#EEBC38,#f5da78 );
+}
+.font-dark{
+  color: #262C4C;
+}
+.font-light{
+  color: #EEBC38;
+}
+.header1-btn{
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: #262C4C;
+  letter-spacing: 2px;
+  font-size: 16px;
+}
+.btn-border{
+  border: 1px solid #262C4C;
+}
+.signup{
+  color: #EEBC38;
+  margin-left: 2px;
+}
 .header1-wrap{
-  background-color: rgba(100,255,204,0.2);
+  // background-color: rgba(100,255,204,0.2);
   display: flex;
+  margin: 40px 60px 0;
   justify-content: space-between;
   align-items: center;
   .header1-logo{
-    background-color: rgba(255,100,204,0.5);
-    width: 250px;
-    margin: 30px 60px;
+    width: 200px;
     img{
       width: 100%;
+      -webkit-filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8));
+      filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8))
     }
   }
   .header1-nav{
-    margin: 30px 60px;
-    background-color: rgba(255,100,204,0.5);
     display: flex;
+    width: 25vw;
+    justify-content: space-between;
+    box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    .header1-before-login{
+      display: flex;
+    }
     .header1-user{
       display: flex;
       .user-show{
@@ -33,14 +80,25 @@
     }
   }
 }
+
 .footer{
   width: 100%;
-  height: 20px;
-  line-height:20px;
+  height: 4vh;
   background-color: #EEBC38;
-  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
   p{
     font-size: smaller;
     color: #207F8C;
   }
+  a{
+    padding: 3px;
+    border-radius: 4px;
+  }
+  a:hover{
+    background-color: #207F8C;
+    color: #EEBC38;
+  }
 }
+ 
