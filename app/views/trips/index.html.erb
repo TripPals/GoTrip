@@ -64,7 +64,7 @@
                       <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
                     </div>
                   </div>
-                  <a class="planPageLink" href="<%= trip_plan_path(trip.id) %>"></a>
+                  <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
               </div>
             </div>
             <% end %>
@@ -109,7 +109,7 @@
                   <% else %>
                   <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
                   <% end %>
-                  <a class="planPageLink" href="<%= trip_plan_path(trip.id) %>"></a>
+                  <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
               </div>
             </div>
             <% end %>
