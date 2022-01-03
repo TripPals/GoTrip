@@ -56,10 +56,15 @@ export default class extends Controller {
           const emailBox = document.createElement("div")
           emailBox.classList.add("emailresultdiv")
           emailBox.innerHTML =`
-          <div class="emailinfo">
-          <p>${name}</p>
-          <p>${email}</p>
-          </div>
+            <div class="emailsection">
+              <div class="emailinfo">
+                <p>${name}</p>
+                <p>${email}</p>
+              </div>
+              <div class="connect">
+                <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#connect">加入行程</button>
+              </div>
+            </div>
           `
           resultBox.appendChild(emailBox)
          })
