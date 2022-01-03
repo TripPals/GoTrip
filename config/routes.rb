@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
         get "tripinvites/search", to: "tripinvites#search"
+        post "tripinvites/join_trip", to: "tripinvites#join_trip"
     end
   end
 

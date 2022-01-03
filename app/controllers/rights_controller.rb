@@ -1,11 +1,7 @@
 class RightsController < ApplicationController
     before_action :authenticate_user!
     before_action :find_trip
-    def search
-    end
-
-    def create
-    end
+    
 
     def editrole
         @users = @trip.users

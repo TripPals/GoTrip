@@ -51,18 +51,18 @@ export default class extends Controller {
         
       } else {
         console.log("Hello");
-        emailResultData.forEach(({name, email}) => {
+        emailResultData.forEach(({name, email, id,}) => {
 
           const emailBox = document.createElement("div")
           emailBox.classList.add("emailresultdiv")
           emailBox.innerHTML =`
             <div class="emailsection">
-              <div class="emailinfo">
+              <div class="emailinfo" >
                 <p>${name}</p>
                 <p>${email}</p>
               </div>
               <div class="connect">
-                <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#connect">加入行程</button>
+                <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
               </div>
             </div>
           `
@@ -86,8 +86,17 @@ export default class extends Controller {
 
     
     }
-       
+          
+   }
+
+   closeSearchCard() {
+
+     const hiddenTripID = document.querySelector(".hide-trip-id")
+     const searchSection = document.querySelector("#searchsection")
      
+     hiddenTripID.remove()
+     searchSection.classList.remove("show-search-section")
+
      
    }
   

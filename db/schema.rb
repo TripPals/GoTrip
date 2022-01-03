@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_12_24_070645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "trips", force: :cascade do |t|
+  create_table "  :cascade do |t|
     t.string "name"
     t.integer "length", default: 1
     t.datetime "start_date"

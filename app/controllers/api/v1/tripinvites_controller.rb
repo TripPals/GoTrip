@@ -26,4 +26,9 @@ class Api::V1::TripinvitesController < ApplicationController
 
             end
     end
+
+    def join_trip
+        
+
+    end
 end

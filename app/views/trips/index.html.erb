@@ -7,7 +7,7 @@
 <% @trips_all.each do |trip| %>
     <p>行程名稱：<%= trip.name %></p>
     <% if trip.length > 1 %>
-      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
+      <p data-tripid="<%= trip.id %>"><%= trip.length %>天<%= trip.length - 1%>夜</p>
     <% else %>
       <p><%= trip.length %>天</p>
     <% end %>
@@ -27,8 +27,9 @@
     <% end %>
     <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
   <%= link_to "edit", trips_edit_path(trip) %>
-  <%= link_to "invite", rights_search_path(trip) %>
   <%= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+  <button data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>">Invite</button>
+  
 <% end %>
 
 
@@ -45,3 +46,20 @@
   <%#= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
 <% end %>
 
+
+ <div id="searchsection" class="hide-search-section">
+   <div class="searchtitle">
+    <h1>邀請朋友加入行程</h1>
+   </div>
+   <div data-controller="tripinvite" class="searchform">
+    <button data-action="click->tripinvite#closeSearchCard">Close</button>
+    <form>
+          <input data-tripinvite-target="emailinput" type="email" placeholder="請輸入e-mail">
+          <a data-action="click->tripinvite#search" href=""><button class="searchbtn">搜尋</button></a>
+    </form>
+   </div>
+     <div>
+      <div class="searchresultbox">
+     </div>
+    </div>
+</div>
