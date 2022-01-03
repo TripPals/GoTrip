@@ -92,8 +92,8 @@ export default class extends mapInSearch  {
             <p>${spotDetails.friday_hr}</p>
           </div>
         </div>
-        <div class="addToScheduleBtn">
-          <button>加入行程</button>
+        <div class="addToScheduleBtn" data-controller="addSpot">
+          <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
         </div>
         
         `
@@ -151,8 +151,8 @@ export default class extends mapInSearch  {
             <p>${spotDetails.friday_hr}</p>
           </div>
         </div>
-        <div class="addToScheduleBtn">
-          <button>加入行程</button>
+        <div class="addToScheduleBtn" data-controller="addSpot">
+          <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
         </div>
   
         `
