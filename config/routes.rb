@@ -36,11 +36,13 @@ Rails.application.routes.draw do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
       get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
+      post "schedulespots/add", to: "schedulespots#addSpot"
     end
   end
   
   # /api/v1/spotfinders/search
   # /api/v1/spotfinders/spotinfo
+  # /api/v1/schedulespots/add
   
   
 end
