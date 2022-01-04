@@ -52,10 +52,11 @@
     <h1>邀請朋友加入行程</h1>
    </div>
    <div data-controller="tripinvite" class="searchform">
-    <button data-action="click->tripinvite#closeSearchCard">Close</button>
+    <button class="closebtn" data-action="click->tripinvite#closeSearchCard">X</button>
     <form>
-          <input data-tripinvite-target="emailinput" type="email" placeholder="請輸入e-mail">
-          <a data-action="click->tripinvite#search" href=""><button class="searchbtn">搜尋</button></a>
+          <input data-tripinvite-target="emailinput" type="email" placeholder="請輸入e-mail" required>
+          <input data-action="click->tripinvite#search" type="submit" value="搜尋"class="searchbtn">
+          
     </form>
    </div>
      <div>

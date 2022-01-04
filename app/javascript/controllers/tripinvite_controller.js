@@ -44,7 +44,7 @@ export default class extends Controller {
          const noResultMessage = document.createElement("div")
 
          noResultMessage.classList.add("noresultmessagediv")
-         noResultMessage.innerHTML = `<p class="noresultmessagediv">抱歉，您搜尋的用戶資料不存在，請重新輸入一次</p>`
+         noResultMessage.innerHTML = `<p "noresultmessage">抱歉，您搜尋的用戶資料不存在，請重新輸入一次</p>`
 
          resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
@@ -80,7 +80,7 @@ export default class extends Controller {
       const noEmailInput = document.createElement("div")
 
       noEmailInput.classList.add("noemailinputdiv")
-      noEmailInput.innerHTML = `<p class="noemailinputdiv">請輸入使用者的e-mail</p>`
+      noEmailInput.innerHTML = `<p>請輸入使用者的e-mail</p>`
 
       resultBox.insertAdjacentElement("afterbegin", noEmailInput)
 
@@ -93,10 +93,12 @@ export default class extends Controller {
 
      const hiddenTripID = document.querySelector(".hide-trip-id")
      const searchSection = document.querySelector("#searchsection")
+     const resultBox = document.querySelector(".searchresultbox")
      
      hiddenTripID.remove()
      searchSection.classList.remove("show-search-section")
-
+     this.emailinputTarget.value = ""
+     resultBox.innerHTML = ""
      
    }
   
