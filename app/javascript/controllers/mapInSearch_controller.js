@@ -23,4 +23,9 @@ export default class extends Controller {
     });
   }
 
+  closeConfirmModal() {
+    const confirmModal = document.querySelector(".hide-confirmed-message")
+    confirmModal.classList.remove("show-confirmed-message")
+  }
+
 }
