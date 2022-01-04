@@ -59,7 +59,7 @@ export default class extends Controller {
 
         // 如果搜尋結果有>=1筆資料
       } else {
-        console.log("Hello");
+
         spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude, id}) => {
           
           const spot_name_char_limit = 25

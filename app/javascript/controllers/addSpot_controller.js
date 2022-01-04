@@ -6,7 +6,6 @@ export default class extends Controller {
   static targets = ["button"]
 
   connect() {
-    console.log("SpotDetails here");
   }
 
   addSpot() {
@@ -36,7 +35,7 @@ export default class extends Controller {
       }
     }
 
-    async function processingApiCall() {
+    async function processingApiCallandAction() {
 
       const api_response = await fetchData()
       console.log(api_response);
@@ -48,14 +47,17 @@ export default class extends Controller {
 
       } else if ( api_response.status == "failed" ) {
 
+        // something went wrong
+
       } else {
+
+        // show a success message to user & redirect user back to plan page
 
       }
 
-
     }
 
-    processingApiCall()
+    processingApiCallandAction()
 
 
   }

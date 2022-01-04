@@ -31,8 +31,7 @@ class Api::V1::SchedulespotsController < ApplicationController
       elsif schedule_spot_record.nil? && !schedule_spot_all_records.empty?
 
         schedule.spots << [ spot ]
-        largest_order = ScheduleSpot.where(schedule_id: schedule.id).maximum("order")
-        ScheduleSpot.where(schedule_id: schedule.id).last.update(order: largest_order + 1)
+        fillSpotOrder(schedule.id)
 
         respond_to do |format|
           format.json { render :json => { status: "success", message: "Spot added successfully"}, status => 200 }
@@ -55,6 +54,33 @@ class Api::V1::SchedulespotsController < ApplicationController
     
     end  
 
+  end
+
+  def confirmToAdd
+  
+    trip_id = params[:trip_id]
+    day_order = params[:day_order]
+    spot_id = params[:spot_id]
+
+    schedule = Schedule.find_by(trip_id: trip_id, day_order: day_order)
+    spot = Spot.find(spot_id)
+
+    schedule.spots << [ spot ]
+    fillSpotOrder(schedule.id)
+
+    respond_to do |format|
+      format.json { render :json => { status: "success", message: "Spot added successfully"}, status => 200 }
+    end
+
+  end
+
+  private
+
+  def fillSpotOrder(schedule_id)
+
+    largest_order = ScheduleSpot.where(schedule_id: schedule_id).maximum("order")
+    ScheduleSpot.where(schedule_id: schedule_id).last.update(order: largest_order + 1)
+    
   end
 
 end

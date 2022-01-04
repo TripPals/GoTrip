@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       get "spotfinders/search", to: "spotfinders#search"
       get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
       post "schedulespots/add", to: "schedulespots#addSpot"
+      post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
     end
   end
   
