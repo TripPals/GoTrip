@@ -24,12 +24,27 @@ export default class extends Controller {
     async function fetchData() {
       try {
 
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/schedulespots/add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`)
+        const response = await fetch(`http://127.0.0.1:3000/api/v1/schedulespots/add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`, {
+          method: 'POST'
+        })  
+
+        const result = await response.json()
+        return result
 
       } catch {
-
+        console.error("Something went wrong...");
       }
     }
+
+    async function processingApiCall() {
+
+      const api_response = await fetchData()
+
+      console.log(api_response);
+
+    }
+
+    processingApiCall()
 
 
   }
