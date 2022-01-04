@@ -1,6 +1,6 @@
 /* Grid Setting ============================================================ */
 :root {
-  --grid-gap: 15px;
+  --grid-gap: 20px;
 }
 
 .gridContainer {

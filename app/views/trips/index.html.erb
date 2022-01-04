@@ -23,37 +23,39 @@
         <div class="row">
           <% if @trips_yours.length == 0 %>
           
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="tripdataEmpty">
-              <a href="<%= trips_new_path %>">
-                <img src="https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/notrip.png" alt="">
-              </a>
-              <p>Bon Voyage!</p>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="tripdataEmpty">
+                <a href="<%= trips_new_path %>">
+                  <img src="https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/notrip.png" alt="">
+                </a>
+                <p>Bon Voyage!</p>
+              </div>
             </div>
-          </div>
 
           <% else %>
 
             <% @trips_yours.each do |trip| %>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="tripdata">
-                <% if DateTime.now().to_date > trip.end_date.to_date &&   %>
-                  <div class="timetag_past">過去式</div>
-                <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
-                  <div class="timetag_now">進行式</div>
-                <% else %>
-                  <div class="timetag_future">未來式</div>
-                <% end %>  
-                <div class="tripdataPic">
-                  <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
-                </div>
-                <h2><%= trip.name %></h2>
-                <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
-                  <% if trip.length > 1 %>
-                  <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="tripdata">
+                  <% if DateTime.now().to_date > trip.end_date.to_date  %>
+                    <div class="timetag_past">過去式</div>
+                  <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
+                    <div class="timetag_now">進行式</div>
                   <% else %>
-                  <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
-                  <% end %>
+                    <div class="timetag_future">未來式</div>
+                  <% end %>  
+                  <div class="tripdataPic">
+                    <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
+                  </div>
+                  <div class="tripdataText">
+                    <h2><%= trip.name %></h2>
+                    <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
+                    <% if trip.length > 1 %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+                    <% else %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                    <% end %>
+                  </div>
                   <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
                   <div class="tripControlBox">
                     <div>
@@ -68,8 +70,8 @@
                     </div>
                   </div>
                   <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                </div>
               </div>
-            </div>
             <% end %>
 
           <% end %>
@@ -93,28 +95,28 @@
           <% else %>
 
             <%  @trips_followed.each do |trip| %>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="tripdata">
-                <% if DateTime.now().to_date > trip.end_date.to_date &&   %>
-                  <div class="timetag_past">過去式</div>
-                <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
-                  <div class="timetag_now">進行式</div>
-                <% else %>
-                  <div class="timetag_future">未來式</div>
-                <% end %>
-                <div class="tripdataPic">
-                  <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
-                </div>
-                <h2><%= trip.name %></h2>
-                <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
-                  <% if trip.length > 1 %>
-                  <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="tripdata">
+                  <% if DateTime.now().to_date > trip.end_date.to_date   %>
+                    <div class="timetag_past">過去式</div>
+                  <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
+                    <div class="timetag_now">進行式</div>
                   <% else %>
-                  <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                    <div class="timetag_future">未來式</div>
                   <% end %>
-                  <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                  <div class="tripdataPic">
+                    <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
+                  </div>
+                  <h2><%= trip.name %></h2>
+                  <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
+                    <% if trip.length > 1 %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+                    <% else %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                    <% end %>
+                    <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                </div>
               </div>
-            </div>
             <% end %>
 
           <% end %>
