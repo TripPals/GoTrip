@@ -43,7 +43,6 @@
 }
 
 .header1-wrap{
-  // background-color: rgba(100,255,204,0.2);
   display: flex;
   margin: 40px 60px 0;
   justify-content: space-between;
@@ -59,9 +58,8 @@
   .header1-nav{
     display: flex;
     max-width: 270px;
-    min-width: 100px;
+    min-width: 118px;
     box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
-    
     .about{
       margin-right: 60px;
     }
@@ -73,7 +71,6 @@
     display: flex;
     align-items: center;
     .user-show{
-      background-color: #fff;
       display: flex;
       .user-info{
         line-height: 42px;
@@ -84,15 +81,21 @@
         font-weight: bold;
       }
       img{
-        margin: 1px 6px 1px 0;
+        margin: 1px 10px 1px 2px;
         width: 40px;
         height: 40px;
         border-radius: 50%;
       }
     }
   }
-  .header1-after-login:hover .header1-after-list{
+  label:hover .header1-after-login{
+    color: #DB6A43;
+  }
+  #list-checked:checked ~ .header1-after-list{
     display: block;
+  }
+  #list-checked{
+    display: none;
   }
   .header1-after-list{
     display: none;

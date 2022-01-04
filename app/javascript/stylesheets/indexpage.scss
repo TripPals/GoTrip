@@ -16,8 +16,8 @@
     border-radius: 20px;
     position: absolute;
     top:30vh;
-    left:10vw;
-    width: 280px;
+    left: 15vw;
+    width: 290px;
     padding: 30px;
     overflow: hidden;
     background:linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
@@ -37,7 +37,7 @@
       }
       .start-btn{
         display: block;
-        width: 280px;
+        width: 290px;
         text-align: center;
         color: #EEBC38;
         padding: 10px 0;
@@ -49,7 +49,7 @@
     }
     .content-wrap::after{
       content: "";
-      width: 280px;
+      width: 290px;
       height: 1px;
       background: #207F8C;
       position: absolute;
