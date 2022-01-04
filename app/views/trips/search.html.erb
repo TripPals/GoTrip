@@ -1,4 +1,3 @@
-
 <div data-controller="mapInSearch" id="searchPageBox">
 
   <div id="searchSection">
@@ -28,6 +27,17 @@
   <div id="mapInSearchSection"
        class="mapInSearchSection"
        data-action="mapsLoaded@document->mapInSearch#renderMap">
+  </div>
+
+  <div class="hide-confirmed-message">
+    <div class="confirmed-message-content">
+      <i class="fas fa-bell confirmed-message-reminder-icon"></i>
+      <p>這個景點已經存在當天的行程囉!確定要再次加入嗎？</p>
+      <div>
+        <button><i class="far fa-times-circle"></i> 取消</button>
+        <button><i class="far fa-check-circle"></i> 確定</button>
+      </div>
+    </div>
   </div>
 
 </div>

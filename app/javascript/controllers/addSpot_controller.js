@@ -39,8 +39,19 @@ export default class extends Controller {
     async function processingApiCall() {
 
       const api_response = await fetchData()
-
       console.log(api_response);
+
+      if ( api_response.status == "paused" ) {
+
+        const confirmModal = document.querySelector(".hide-confirmed-message")
+        confirmModal.classList.add("show-confirmed-message")
+
+      } else if ( api_response.status == "failed" ) {
+
+      } else {
+
+      }
+
 
     }
 

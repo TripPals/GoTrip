@@ -11,11 +11,11 @@ class Api::V1::SchedulespotsController < ApplicationController
     schedule = Schedule.find_by(trip_id: trip_id, day_order: day_order)
     spot = Spot.find(spot_id)
 
-    schedule_spot_record = ScheduleSpot.find_by(spot_id: spot, schedule_id: schedule.id)
-    schedule_spot_all_records = ScheduleSpot.where(schedule_id: schedule.id)
-
 
     if !schedule.nil?
+
+      schedule_spot_record = ScheduleSpot.find_by(spot_id: spot_id, schedule_id: schedule.id)
+      schedule_spot_all_records = ScheduleSpot.where(schedule_id: schedule.id)  
 
       # 如果Schedule_spots資料表裡面沒有使用者想加入該天的景點關聯 ＆＆ Schedule_spots 資料表內從未有景點關聯資料（使用者正要在那天加入第一筆景點）
       if schedule_spot_record.nil? && schedule_spot_all_records.empty?
@@ -31,7 +31,7 @@ class Api::V1::SchedulespotsController < ApplicationController
       elsif schedule_spot_record.nil? && !schedule_spot_all_records.empty?
 
         schedule.spots << [ spot ]
-        largest_order = ScheduleSpot.where(schedule_id: schedule.id).second_to_last.order
+        largest_order = ScheduleSpot.where(schedule_id: schedule.id).maximum("order")
         ScheduleSpot.where(schedule_id: schedule.id).last.update(order: largest_order + 1)
 
         respond_to do |format|
