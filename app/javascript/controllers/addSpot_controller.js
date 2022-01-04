@@ -16,12 +16,15 @@ export default class extends Controller {
     // get the trip_id & day_order from the decomposed url
     const trip_id = decomposedUrl[4]
     const day_order = decomposedUrl[5]
+    // Get spot id 
+    const hiddenSpotIdDiv = document.querySelector(".hide-spotid-in-search")
+    const spot_id = hiddenSpotIdDiv.textContent
     
 
     async function fetchData() {
       try {
 
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/schedulespots/add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${}`)
+        const response = await fetch(`http://127.0.0.1:3000/api/v1/schedulespots/add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`)
 
       } catch {
 

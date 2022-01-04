@@ -165,4 +165,14 @@ export default class extends mapInSearch  {
     renderData()
   }
 
+  prepareSpotId() {
+
+    const hiddenSpotIdDiv = document.querySelector(".hide-spotid-in-search")
+
+    const targetedSpotId = this.spotitemTarget.dataset.id
+    
+    hiddenSpotIdDiv.innerText = targetedSpotId
+
+  }
+
 }

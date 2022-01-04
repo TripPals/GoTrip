@@ -75,7 +75,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo click->spotInfo#prepareSpotId" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
@@ -96,7 +96,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo click->spotInfo#prepareSpotId" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
