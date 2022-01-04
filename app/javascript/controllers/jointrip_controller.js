@@ -25,8 +25,8 @@ export default class extends Controller {
           data: `user_id=${userID}&trip_id=${tripID}`,
           success: (data) => {
             if (data.status === 'ok') {
-                console.log(123);
-
+                
+                resultBox.innerHTML = ""
                 const addFriendMessage = document.createElement("div")
                 addFriendMessage.classList.add("addfriendmessagediv") 
                 addFriendMessage.innerHTML = `<p class="addfriendmessage">您的朋友已成功加入此行程</p>`
@@ -35,10 +35,11 @@ export default class extends Controller {
             }
             else {
               
-              resultBox.innerHTML = ""
-              const addTwiceMessage = document.createElement("div")
+                resultBox.innerHTML = ""
+                const addTwiceMessage = document.createElement("div")
                 addTwiceMessage.classList.add("addtwicemessagediv") 
                 addTwiceMessage.innerHTML = `<p class="addtwicemessage">您的朋友已在此行程中</p>`
+                
                 resultBox.insertAdjacentElement("beforeend", addTwiceMessage)
 
             }
