@@ -1,5 +1,6 @@
 import "./cssReset.css"
 import "./grid.css"
+import "./application.scss"
 import "./errorMessages.scss"
 import "./layoutHeaderFooter.scss"
 import "./indexpage.scss"

@@ -1,3 +1,4 @@
+<%= render 'layouts/header1' %>
 <h2>編輯顯示圖像</h2>
 <%= render "devise/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -31,3 +32,4 @@
 <p>不想再出去走走了嗎？ <%= button_to "刪除我的帳號", registration_path(resource_name), data: { confirm: "您的帳號將被從此消失，確定嗎？" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+<%= render 'layouts/footer' %>

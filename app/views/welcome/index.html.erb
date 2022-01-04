@@ -1,14 +1,17 @@
 <%= render 'layouts/header1' %>
 
-<div class="image-container">
+<section class="page-container">
   <!-- <img src="images/index_img/1.jpg" alt="桌面首圖" class="image-item"> -->
-</div>
-<div>
-  <h1>出去走走吧！</h1>
-  <p>有GoTrip，讓規劃旅行更有趣<br/>
-    3分鐘上手最酷的行程規劃網站<br/>
-    還在猶豫什麼？快點開始吧！</p>
-  <%= link_to '開始規劃', trips_path, class: "about header1-btn" %>
-</div>
+
+  <div class="content-container">
+    <div class="content-wrap font-dark">
+      <h1>出去走走吧！</h1>
+      <p>3分鐘上手最酷的行程規劃網站。<br/>有了GoTrip，讓規劃旅行更有趣。<br/>
+        還在猶豫什麼？快點開始吧！</p>
+      <%= link_to '開始規劃', trips_path, class: "start-btn header1-btn bg-dark a-header" %>
+    </div>
+  </div>
+</section>
+
 
 <%= render 'layouts/footer' %>

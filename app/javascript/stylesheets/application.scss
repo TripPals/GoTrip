@@ -1,0 +1,14 @@
+body{
+  font-family: 'Noto Sans TC', STHeiti, PingFang, 'Microsoft JhengHei', sans-serif, Verdana, Charcoal;
+  a{
+    text-decoration: none;
+  }
+  ::selection {
+    background: #DB6A43;
+    color: white;
+  }
+  ::-moz-selection {
+    background: #DB6A43;
+    color: white;
+  }
+}

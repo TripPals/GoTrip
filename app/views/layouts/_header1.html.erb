@@ -1,26 +1,35 @@
 <%= content_for :header do %>
   <div class="header1-wrap">
     <div class="header1-logo">
-      <img src="images/logo.png" alt="GoTrip">
+      <% if request.path_info.include?("users")%>
+        <a href="<%= root_path %>"><img src="/images/logo-white.png" alt="GoTrip"></a>
+      <% else %>
+        <img src="/images/logo.png" alt="GoTrip">
+      <% end %>
     </div>
-    <div class="header1-nav header1-btn bg-light">
-      <%= link_to '關於我們', about_path, class: "about header1-btn" %>
-      <div class="header1-user">
-        <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <div class="header1-nav header1-btn bg-light header1-after-login">
           <div class="user-show">
             <img src="<%= current_user.show_image %>" alt="嗨">
-            <p><%= link_to current_user.display_name, edit_user_registration_path %></p>
+            <p class="user-info"><%= current_user.display_name %></p>
           </div>  
-          <%= link_to "登出", destroy_user_session_path, method: :delete, data: {confirm:'您的帳號將登出。掰掰～下次再一起出遊。'} %><p> | </p>
-          <%= link_to "我的行程", trips_path %>
-          </div>
-        <% else %>
-          <div class="header1-before-login">
-            <%= link_to '登入', new_user_session_path, class: "header1-btn btn-border" %>
-            <%= link_to '註冊', new_user_registration_path,class: "header1-btn btn-border bg-dark signup"%>
-          </div>
-        <% end %>
+      
+      
+          <div class="header1-after-list">
+            <%= link_to "<div class='header1-btn btn-border a-header btn-mytrip'>我的行程</div>".html_safe, trips_path %>
+        <%= link_to "<div class='header1-btn btn-border btn-list a-header btn-list'>個人資訊</div>".html_safe, edit_user_registration_path %>
+        <%= link_to "<div class='header1-btn btn-border btn-list a-header btn-list'>登出</div>".html_safe, destroy_user_session_path, method: :delete, data: {confirm:'您的帳號將登出。掰掰～下次再一起出遊。'} %>
+      </div>  
       </div>
-    </div>
+      
+    <% else %>
+      <div class="header1-nav header1-btn bg-light">
+        <%= link_to '關於我們', about_path, class: "about header1-btn a-header" %>
+        <div class="header1-before-login">
+          <%= link_to '登入', new_user_session_path, class: "header1-btn btn-border a-header" %>
+          <%= link_to '註冊', new_user_registration_path,class: "header1-btn btn-border bg-dark signup a-header"%>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>

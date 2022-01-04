@@ -3,10 +3,6 @@
   --grid-gap: 15px;
 }
 
-body{
-  font-family: STHeiti, PingFang, "Microsoft JhengHei", Verdana, Charcoal;
-}
-
 .gridContainer {
   width: 100%;
   /* max-width: 1200px; */
