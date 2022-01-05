@@ -8,7 +8,8 @@ export default class extends Controller {
         console.log("Heyayayaya");
     }
 
-    showInviteCard() {
+    showInviteCard(event) {
+        event.preventDefault()
         // click invite button to get tripID
         const tripID = this.buttonTarget.dataset.tripid
         const userSearchBox = document.querySelector("#searchsection")
