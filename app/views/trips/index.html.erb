@@ -1,46 +1,129 @@
-<h1>行程管理頁</h1>
-<div>
-    
+<div class="headingContainer">
+  <h1><i class="fas fa-passport"></i>我的行程縱覽</h1>
+  <a href="<%= trips_new_path %>"><i class="fas fa-plus-circle"></i> 建立行程</a>
 </div>
-<h2>all trips</h2>
-<%= link_to "建立行程", trips_new_path %>
-<% @trips_all.each do |trip| %>
-    <p>行程名稱：<%= trip.name %></p>
-    <% if trip.length > 1 %>
-      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
-    <% else %>
-      <p><%= trip.length %>天</p>
-    <% end %>
-    <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
-  <%= link_to "edit", trips_edit_path(trip) %>
-  <%= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-<% end %>
 
-<h2>my trips</h2>
-<%#= link_to "建立行程", trips_new_path %>
-<% @trips_yours.each do |trip| %>
-    <p>行程名稱：<%= trip.name %></p>
-    <% if trip.length > 1 %>
-      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
-    <% else %>
-      <p><%= trip.length %>天</p>
-    <% end %>
-    <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
-  <%= link_to "edit", trips_edit_path(trip) %>
-  <%= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-<% end %>
+<div class="tripOverviewContainer">
 
+  <ul class="nav" id="myTab" role="tablist">
+    <li class="nav-item tab1" role="presentation">
+      <button class="nav-link active mytriptab" id="ownedtrips-tab" data-bs-toggle="tab" data-bs-target="#ownedtrips" type="button" role="tab" aria-controls="ownedtrips" aria-selected="true">我的行程</button>
+    </li>
+    <li class="nav-item tab2" role="presentation">
+      <button class="nav-link mytriptab" id="followedtrips-tab" data-bs-toggle="tab" data-bs-target="#followedtrips" type="button" role="tab" aria-controls="followedtrips" aria-selected="false">參與的行程</button>
+    </li>
+  </ul>
 
-<h2>followed trips</h2>
-<%  @trips_followed.each do |trip| %>
-    <p>行程名稱：<%= trip.name %></p>
-    <% if trip.length > 1 %>
-      <p><%= trip.length %>天<%= trip.length - 1%>夜</p>
-    <% else %>
-      <p><%= trip.length %>天</p>
-    <% end %>
-    <p>日期：<%= trip.start_date.to_date %>～<%= trip.end_date.to_date%></p>
-  <%#= link_to "edit", trips_edit_path(trip) %>
-  <%#= link_to "delete", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-<% end %>
+  <hr class="divider">
 
+  <div class="tab-content" id="myTabContent">
+
+    <div class="tab-pane fade show active" id="ownedtrips" role="tabpanel" aria-labelledby="ownedtrips-tab">
+      <div class="gridContainer tripListBox">
+        <div class="row">
+          <% if @trips_yours.length == 0 %>
+          
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="tripdataEmpty">
+                <a href="<%= trips_new_path %>">
+                  <img src="https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/notrip.png" alt="">
+                </a>
+                <p>Bon Voyage!</p>
+              </div>
+            </div>
+
+          <% else %>
+
+            <% @trips_yours.each do |trip| %>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="tripdata">
+                  <% if DateTime.now().to_date > trip.end_date.to_date  %>
+                    <div class="timetag_past">過去式</div>
+                  <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
+                    <div class="timetag_now">進行式</div>
+                  <% else %>
+                    <div class="timetag_future">未來式</div>
+                  <% end %>  
+                  <div class="tripdataPic">
+                    <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
+                  </div>
+                  <div class="tripdataText">
+                    <h2><%= trip.name %></h2>
+                    <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
+                    <% if trip.length > 1 %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+                    <% else %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                    <% end %>
+                  </div>
+                  <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
+                  <div class="tripControlBox">
+                    <div>
+                      <a href=""><i class="fas fa-users"></i> 邀請旅伴</a>
+                    </div>
+                    <div>
+                      <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
+                    </div>
+                    <div>
+                      <i class="fas fa-trash-alt"></i>
+                      <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+                    </div>
+                  </div>
+                  <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                </div>
+              </div>
+            <% end %>
+
+          <% end %>
+          
+        </div>
+      </div>
+    </div>  
+
+    <div class="tab-pane fade" id="followedtrips" role="tabpanel" aria-labelledby="followedtrips-tab">
+      <div class="gridContainer tripListBox">
+        <div class="row">
+
+          <% if @trips_followed.length == 0 %>
+          
+            <div class="col-lg-12">
+              <div class="followedTripdataEmpty">
+                <p>目前尚無加入/被邀請的行程</p>
+              </div>
+            </div>
+
+          <% else %>
+
+            <%  @trips_followed.each do |trip| %>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="tripdata">
+                  <% if DateTime.now().to_date > trip.end_date.to_date   %>
+                    <div class="timetag_past">過去式</div>
+                  <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
+                    <div class="timetag_now">進行式</div>
+                  <% else %>
+                    <div class="timetag_future">未來式</div>
+                  <% end %>
+                  <div class="tripdataPic">
+                    <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
+                  </div>
+                  <h2><%= trip.name %></h2>
+                  <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
+                    <% if trip.length > 1 %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+                    <% else %>
+                    <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                    <% end %>
+                    <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                </div>
+              </div>
+            <% end %>
+
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

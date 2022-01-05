@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # delete
   delete "/mytrips/:trip_id/delete", to: "trips#destroy", as: "trips_delete"
   
-  get '/mytrips/:trip_id/plan', to: "trips#plan"
+  get '/mytrips/:trip_id/plan', to: "trips#plan", as: "trip_plan"
 
 
   # 景點搜尋route
