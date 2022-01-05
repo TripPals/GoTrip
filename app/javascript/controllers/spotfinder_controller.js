@@ -41,11 +41,8 @@ export default class extends Controller {
     async function renderData() {
       
       const spotResultData = await fetchData()
-<<<<<<< HEAD
-      console.log(spotResultData);
+
       loader.classList.remove("loaderBoxShow")
-=======
->>>>>>> addSpotToSchedule-ForDemo
       
       // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
