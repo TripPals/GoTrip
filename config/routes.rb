@@ -29,17 +29,21 @@ Rails.application.routes.draw do
 
   # 景點搜尋route
 
-  get "/mytrips/:trip_id/:day_number/search", to: "trips#search"
+  get "/mytrips/:trip_id/:day_order/search", to: "trips#search"
 
   # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
+      get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
+      post "schedulespots/add", to: "schedulespots#addSpot"
+      post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
     end
   end
   
   # /api/v1/spotfinders/search
-
+  # /api/v1/spotfinders/spotinfo
+  # /api/v1/schedulespots/add
   
   
 end

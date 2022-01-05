@@ -3,33 +3,12 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
-  static targets = [ "spotitem" ]
+  static targets = ["button"]
 
   connect() {
-
-    if (typeof google != "undefined") {
-      this.renderMap();
-
-    }
   }
 
-  renderMap() {
-    const map = new google.maps.Map(document.querySelector("#mapInSearchSection"), {
-      center: {"lat": 23.888984, "lng": 121.089659 },
-      zoom: 9,
-      fullscreenControl: false,
-      streetViewControl: false,
-      mapTypeControl: false
-    });
-  }
-
-  closeConfirmModal() {
-    const confirmModal = document.querySelector(".hide-confirmed-message")
-    confirmModal.classList.remove("show-confirmed-message")
-  }
-
-  confirmToAddSpot() {
-
+  addSpot() {
     // This is how we can get the params from url by JS
     const urlString = window.location.href;
     const decomposedUrl = urlString.split("/")
@@ -39,11 +18,12 @@ export default class extends Controller {
     // Get spot id 
     const hiddenSpotIdDiv = document.querySelector(".hide-spotid-in-search")
     const spot_id = hiddenSpotIdDiv.textContent
+    
 
     async function fetchData() {
       try {
 
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/schedulespots/confirm_to_add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`, {
+        const response = await fetch(`http://127.0.0.1:3000/api/v1/schedulespots/add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`, {
           method: 'POST'
         })  
 
@@ -58,29 +38,27 @@ export default class extends Controller {
     async function processingApiCallandAction() {
 
       const api_response = await fetchData()
-      
-      if (api_response.status = "success") {
+      console.log(api_response);
+
+      if ( api_response.status == "paused" ) {
 
         const confirmModal = document.querySelector(".hide-confirmed-message")
-        confirmModal.classList.remove("show-confirmed-message")
+        confirmModal.classList.add("show-confirmed-message")
 
-        // show a success message to user & redirect user back to plan page
+      } else if ( api_response.status == "failed" ) {
 
+        // something went wrong
 
       } else {
 
-        // something went wrong, no response
+        // show a success message to user & redirect user back to plan page
 
       }
-
-
-
-
-
 
     }
 
     processingApiCallandAction()
+
 
   }
 
