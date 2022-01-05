@@ -59,7 +59,11 @@ export default class extends Controller {
         const cssName = "searchMessageSuccess"
         showSearchMessage(message, cssName)
         
-        //redirecting ( with setTimeout )
+        //redirecting user back to the plan page
+
+        setTimeout(() => {
+          redirectBackToPlanPage(trip_id);
+        }, 1000);
 
       }
 
@@ -70,6 +74,10 @@ export default class extends Controller {
         searchMessage.innerText = message
         searchMessage.classList.add(cssName)
 
+      }
+
+      function redirectBackToPlanPage(trip_id) {
+        window.location.replace(`http://localhost:3000/mytrips/${trip_id}/plan`);
       }
 
     }

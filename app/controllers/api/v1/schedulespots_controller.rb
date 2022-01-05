@@ -74,6 +74,30 @@ class Api::V1::SchedulespotsController < ApplicationController
 
   end
 
+  def deleteSpot
+    
+    schedule_spot_id = params[:schedule_spot_id]
+    schedule_spot_targeted_record = ScheduleSpot.find(schedule_spot_id)
+    schedule_id = schedule_spot_targeted_record.schedule_id
+    schedule_spot_all_records = ScheduleSpot.where(schedule_id: schedule_id)
+
+    if schedule_spot_targeted_record
+
+      schedule_spot_targeted_record.destroy
+
+
+
+      respond_to do |format|
+        format.json { render :json => { status: "success", message: "Spot deleted successfully"}, status => 200 }
+      end
+
+    else
+    
+    end
+
+  end
+
+
   private
 
   def fillSpotOrder(schedule_id)
