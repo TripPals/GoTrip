@@ -13,12 +13,10 @@ export const tripsData = [
           {
             "order" : "序號",
             "ID" : "景點ID",
-            "info" : [{
-                "name" : "台北101",
-                "address" : "台北市信義區",
-                "lat": 111111,
-                "lng": 111111,
-            }]
+            "name" : "台北101",
+            "address" : "台北市信義區",
+            "lat": 111111,
+            "lng": 111111,
           },
           {
             "order" : "序號",

@@ -22,8 +22,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <div class="gridContainer">
+    <div id="header">
+      <%= yield :header %>
+    </div>
+    
+    <div class="container">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>

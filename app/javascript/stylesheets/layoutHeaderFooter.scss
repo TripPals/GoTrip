@@ -1,0 +1,151 @@
+#header{
+  // background-color: rgba(5,5,5,0.3);
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+}
+@keyframes swing{
+  15%{transform: translateX(5px);}
+  40%{transform: translateX(-5px);}
+  65%{transform: translateX(2px);}
+  85%{transform: translateX(-2px);}
+  100%{transform: translateX(0px);}
+}
+.a-header:hover{
+  animation: swing 1s;
+  background-color:rgba(255,255,255,0.5);
+  color: #DB6A43;
+}
+ 
+.bg-dark{
+  background-color: #262C4C;
+}
+.bg-light{
+  background:linear-gradient(to top,#EEBC38,#f5da78 );
+  background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
+}
+.font-dark{
+  color: #262C4C;
+}
+.header1-btn{
+  padding: 5px 8px;
+  border-radius: 7px;
+  color: #262C4C;
+  letter-spacing: 2px;
+  font-size: 16px;
+}
+.btn-border{
+  border: 1px solid #262C4C;
+}
+.signup{
+  color: #EEBC38;
+  margin-left: 2px;
+}
+
+.header1-wrap{
+  display: flex;
+  margin: 40px 60px 0;
+  justify-content: space-between;
+  align-items: center;
+  .header1-logo{
+    width: 200px;
+    img{
+      width: 100%;
+      -webkit-filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8));
+      filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8))
+    }
+  }
+  .header1-nav{
+    display: flex;
+    max-width: 270px;
+    min-width: 118px;
+    box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    .about{
+      margin-right: 60px;
+    }
+    .header1-before-login{
+      display: flex;
+    }
+  }
+  .header1-after-login{
+    display: flex;
+    align-items: center;
+    .user-show{
+      display: flex;
+      .user-info{
+        line-height: 42px;
+        // background-color: white;
+        overflow : hidden;
+        text-overflow : ellipsis;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      img{
+        margin: 1px 10px 1px 2px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+  }
+  label:hover .header1-after-login{
+    color: #DB6A43;
+  }
+  #list-checked:checked ~ .header1-after-list{
+    display: block;
+  }
+  #list-checked{
+    display: none;
+  }
+  .header1-after-list{
+    display: none;
+    position: absolute;
+    right: 60px;
+    bottom: -140px;
+    div{
+      width: 100px;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    }
+    div:hover{
+      animation: swing 1s;
+      background-color:rgba(255,255,255,0.9);
+      color: #DB6A43;
+    }
+    .btn-mytrip{
+      height: 40px;
+      line-height: 40px;
+      background-color: #262C4C;
+      color: #EEBC38;
+    }
+    .btn-list{
+      background-color: #EEBC38;
+    }
+  }
+}
+
+
+
+.footer{
+  width: 100%;
+  height: 20px;
+  background-color: #EEBC38;
+  display: flex;
+  justify-content: center;
+  line-height: 20px;
+  p{
+    font-size: x-small;
+    color: #207F8C;
+  }
+  a{
+    padding: 3px;
+    border-radius: 4px;
+  }
+  a:hover{
+    background-color: #207F8C;
+    color: #EEBC38;
+  }
+}
+
+

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root "welcome#index"
+  get '/about' => 'welcome#about'
 
   devise_for :users, controllers: 
   { omniauth_callbacks: "users/omniauth_callbacks",
@@ -32,18 +33,21 @@ Rails.application.routes.draw do
   get "/mytrips/:trip_id/:day_order/search", to: "trips#search"
 
   # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
+  # TripDetail API : 行程規劃頁給前端的整大包該 Trip 資料
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
       get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
       post "schedulespots/add", to: "schedulespots#addSpot"
       post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
+      get "trip_detail/:trip_id", to: "trip_detail#show"
     end
   end
   
   # /api/v1/spotfinders/search
   # /api/v1/spotfinders/spotinfo
   # /api/v1/schedulespots/add
+  # /api/v1/trip_detail/:trip_id
   
   
 end
