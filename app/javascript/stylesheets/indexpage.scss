@@ -2,17 +2,18 @@
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  height: calc(100% - 20px);
+  height: calc(100% - 19px);
   margin: 0, auto;
-  background: url(http://localhost:3000/images/index_img/1.jpg), no-repeat;
-  background-position:center center;
-  background-size: cover;
-  background-color: #EEBC38;
-  // .image-item{
-  //   margin: 0px;
-  //   vertical-align:top;
-  //   width: 100%;
-  // }
+  padding: 0;
+  .carousel{
+    height: 100%;
+    overflow: hidden;
+  }
+  .index-img{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
   .gotrip-index-content{
     border-radius: 20px;
     position: absolute;
@@ -26,6 +27,7 @@
     background:-webkit-linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
     box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
     backdrop-filter: blur(10px);
+    z-index: 2;
     .gotrip-index-wrap{
       width: 100%;
       h1{
