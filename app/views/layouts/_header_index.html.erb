@@ -10,7 +10,7 @@
     <% if user_signed_in? %>
     <input type="checkbox" id="list-checked">
     <label for="list-checked">
-      <div class="header-in-nav header-in-btn  bg-light header-in-after-login">
+      <div class="header-in-nav header-in-btn header-in-after-login">
         <div class="user-show">
           <img src="<%= current_user.show_image %>" alt="嗨">
           <p class="user-info"><%= current_user.display_name %></p>
@@ -24,7 +24,7 @@
     </div>   
     <% else %>
       <div class="header-in-nav header-in-btn bg-light">
-        <%= link_to '關於我們', about_path, class: "about header-in-btn a-header" %>
+        <%= link_to '關於我們', about_path, class: "gotrip-header-about header-in-btn a-header" %>
         <div class="header-in-before-login">
           <%= link_to '登入', new_user_session_path, class: "header-in-btn btn-border a-header" %>
           <%= link_to '註冊', new_user_registration_path,class: "header-in-btn btn-border bg-dark signup a-header"%>

@@ -5,13 +5,13 @@
     <h2>登入</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '郵件Email' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '郵件Email', class:'form-control form-control-sm' %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: '密碼' %>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: '密碼', class:'form-control form-control-sm' %>
     </div>
-    <% f.text_field :provider, default:'register' %>
+    <% f.text_field :provider, default:'register', class:'form-control form-control-sm' %>
 
     <div class="actions">
       <%= f.submit "立即登入" %>

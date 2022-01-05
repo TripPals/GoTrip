@@ -7,22 +7,22 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.text_field :name, placeholder: '姓名' %>
+        <%= f.text_field :name, placeholder: '姓名', class:'form-control form-control-sm' %>
       </div>
       
       <div class="field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '郵件Email' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '郵件Email', class:'form-control form-control-sm' %>
       </div>
 
       <div class="field">
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: '密碼' %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: '密碼', class:'form-control form-control-sm' %>
       </div>
 
       <div class="field">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '重新輸入密碼' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '重新輸入密碼', class:'form-control form-control-sm' %>
       </div>
 
       <div class="actions">

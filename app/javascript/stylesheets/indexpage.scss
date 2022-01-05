@@ -1,7 +1,8 @@
 .gotrip-index-container{
+  box-sizing: border-box;
   position: relative;
-  width: 100vw;
-  height: calc(100vh - 20px);
+  width: 100%;
+  height: calc(100% - 20px);
   margin: 0, auto;
   background: url(http://localhost:3000/images/index_img/1.jpg), no-repeat;
   background-position:center center;
@@ -17,7 +18,7 @@
     position: absolute;
     top:30vh;
     left: 15vw;
-    width: 290px;
+    width: 360px;
     padding: 30px;
     overflow: hidden;
     background:linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
@@ -35,16 +36,20 @@
         line-height: 26px;
         margin: 20px 0;
       }
-      .start-btn{
+      .gotrip-start-btn{
         display: block;
         width: 290px;
         text-align: center;
+        background-color: #262C4C;
         color: #EEBC38;
         padding: 10px 0;
         margin-top: 50px;
         box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
       }
-      .start-btn:hover{color: #DB6A43;
+      .gotrip-start-btn:hover{
+        animation: swing 1s;
+        background-color:rgba(255,255,255,0.5);
+        color: #DB6A43;
       }  
     }
     .gotrip-index-wrap::after{
