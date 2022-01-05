@@ -1,4 +1,4 @@
-.page-container{
+.gotrip-index-container{
   position: relative;
   width: 100vw;
   height: calc(100vh - 20px);
@@ -12,7 +12,7 @@
   //   vertical-align:top;
   //   width: 100%;
   // }
-  .content-container{
+  .gotrip-index-content{
     border-radius: 20px;
     position: absolute;
     top:30vh;
@@ -25,7 +25,7 @@
     background:-webkit-linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
     box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
     backdrop-filter: blur(10px);
-    .content-wrap{
+    .gotrip-index-wrap{
       width: 100%;
       h1{
         font-weight: 800;
@@ -47,7 +47,7 @@
       .start-btn:hover{color: #DB6A43;
       }  
     }
-    .content-wrap::after{
+    .gotrip-index-wrap::after{
       content: "";
       width: 290px;
       height: 1px;

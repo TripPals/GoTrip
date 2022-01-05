@@ -1,4 +1,4 @@
-#header{
+#gotrip-header{
   // background-color: rgba(5,5,5,0.3);
   width: 100%;
   position: absolute;
@@ -27,7 +27,7 @@
 .font-dark{
   color: #262C4C;
 }
-.header1-btn{
+.header-in-btn{
   padding: 5px 8px;
   border-radius: 7px;
   color: #262C4C;
@@ -42,12 +42,12 @@
   margin-left: 2px;
 }
 
-.header1-wrap{
+.header-in-wrap{
   display: flex;
   margin: 40px 60px 0;
   justify-content: space-between;
   align-items: center;
-  .header1-logo{
+  .header-in-logo{
     width: 200px;
     img{
       width: 100%;
@@ -55,7 +55,7 @@
       filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8))
     }
   }
-  .header1-nav{
+  .header-in-nav{
     display: flex;
     max-width: 270px;
     min-width: 118px;
@@ -63,11 +63,11 @@
     .about{
       margin-right: 60px;
     }
-    .header1-before-login{
+    .header-in-before-login{
       display: flex;
     }
   }
-  .header1-after-login{
+  .header-in-after-login{
     display: flex;
     align-items: center;
     .user-show{
@@ -88,16 +88,16 @@
       }
     }
   }
-  label:hover .header1-after-login{
+  label:hover .header-in-after-login{
     color: #DB6A43;
   }
-  #list-checked:checked ~ .header1-after-list{
+  #list-checked:checked ~ .header-in-after-list{
     display: block;
   }
   #list-checked{
     display: none;
   }
-  .header1-after-list{
+  .header-in-after-list{
     display: none;
     position: absolute;
     right: 60px;
