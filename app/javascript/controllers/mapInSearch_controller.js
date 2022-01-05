@@ -51,7 +51,9 @@ export default class extends Controller {
         return result
 
       } catch {
+        const result = "Server Error"
         console.error("Something went wrong...");
+        return result
       }
     }
 
@@ -59,21 +61,35 @@ export default class extends Controller {
 
       const api_response = await fetchData()
       
-      if (api_response.status = "success") {
+      if (api_response.status === "success") {
 
         const confirmModal = document.querySelector(".hide-confirmed-message")
         confirmModal.classList.remove("show-confirmed-message")
 
         // show a success message to user & redirect user back to plan page
+        const message = "此景點加入成功囉!"
+        const cssName = "searchMessageSuccess"
+        showSearchMessage(message, cssName)
+
+        //redirecting ( with setTimeout )
 
 
-      } else {
+      } else if (api_response === "Server Error" ) {
 
         // something went wrong, no response
+        const message = "很抱歉伺服器似乎出了一點狀況，目前暫時無法加入景點，請稍後再試試"
+        const cssName = "searchMessageFailed"
+        showSearchMessage(message, cssName)
 
       }
 
+      function showSearchMessage(message, cssName) {
 
+        const searchMessage = document.querySelector(".searchMessage")
+        searchMessage.innerText = message
+        searchMessage.classList.add(cssName)
+
+      }
 
 
 

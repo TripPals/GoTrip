@@ -40,18 +40,35 @@ export default class extends Controller {
       const api_response = await fetchData()
       console.log(api_response);
 
-      if ( api_response.status == "paused" ) {
+      if ( api_response.status === "paused" ) {
 
         const confirmModal = document.querySelector(".hide-confirmed-message")
         confirmModal.classList.add("show-confirmed-message")
 
-      } else if ( api_response.status == "failed" ) {
+      } else if ( api_response.status === "failed" ) {
 
         // something went wrong
+        const message = "新增失敗，我們的資料庫查無此天行程"
+        const cssName = "searchMessageFailed"
+        showSearchMessage(message, cssName)
 
       } else {
 
         // show a success message to user & redirect user back to plan page
+        const message = "Good choice!此景點加入成功囉!"
+        const cssName = "searchMessageSuccess"
+        showSearchMessage(message, cssName)
+        
+        //redirecting ( with setTimeout )
+
+      }
+
+
+      function showSearchMessage(message, cssName) {
+
+        const searchMessage = document.querySelector(".searchMessage")
+        searchMessage.innerText = message
+        searchMessage.classList.add(cssName)
 
       }
 

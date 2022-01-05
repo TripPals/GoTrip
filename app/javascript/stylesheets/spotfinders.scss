@@ -484,3 +484,41 @@
   animation-name: showConfirmModal;
   animation-duration: 0.5s;
 }
+
+// Search Message ( for server error OR adding spot response )
+
+@keyframes showSearchMessage {
+  from {
+    top: -30px;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+.searchMessage {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  top: -30px;
+  left: 0px;
+  z-index: 100;
+  line-height: 30px;
+}
+
+.searchMessageSuccess {
+  background-color: rgb(96, 180, 96);
+  color: white;
+  top: 0px;
+  animation-name: showSearchMessage;
+  animation-duration: 0.3s;
+}
+
+.searchMessageFailed {
+  background-color: rgb(211, 102, 102);
+  color: white;
+  top: 0px;
+  animation-name: showSearchMessage;
+  animation-duration: 0.3s;
+}
