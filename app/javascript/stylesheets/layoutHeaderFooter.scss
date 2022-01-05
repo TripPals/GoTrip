@@ -27,7 +27,7 @@
 .font-dark{
   color: #262C4C;
 }
-.header1-btn{
+.header1-btn-a{
   padding: 5px 8px;
   border-radius: 7px;
   color: #262C4C;
@@ -55,13 +55,13 @@
       filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8))
     }
   }
-  .header1-nav{
+  .header1-nav-a{
     display: flex;
     max-width: 270px;
     min-width: 118px;
     box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
-    .about{
-      margin-right: 60px;
+    .about-a{
+      margin-right: 20px;
     }
     .header1-before-login{
       display: flex;
