@@ -2,19 +2,16 @@
 
 <div class="users-container">
   <div class="users-wrap">
-  <div clacc="users-edit-image">
     <%= render "devise/shared/error_messages", resource: resource %>
-  </div>
-  <div clacc="users-edit-info">
+
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div id='app' data-turbolinks-track = "reload"> 
-      <div class="avatar-container">
-        <img  v-if="avatar !== ''" :src="avatar" />
-      </div>
+        <div class="avatar-container">
+          <img  v-if="avatar !== ''" :src="avatar" />
+        </div>
       
-      <h3>更新個人資料</h3>
-      <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
-      <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected", class:"form-control form-control-sm", id:"formFileSm" %>
+        <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
+        <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected", class:"form-control form-control-sm", id:"formFileSm" %>
       </div>
 
       <label>

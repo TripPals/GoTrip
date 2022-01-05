@@ -3,14 +3,17 @@
   width: 100vw;
   height: calc(100vh - 20px);
   margin: 0, auto;
+  background-color: #EEBC38;
 }
 .users-wrap{
   border-radius: 20px;
   position: absolute;
   top:30vh;
   left: 15vw;
-  width: 290px;
+  width: 330px;
   padding: 30px;
+  background: white;
+  box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
 }
 
 #app{
