@@ -14,8 +14,7 @@ module GooglePlacesApi
 
     def call
 
-      # 這邊要修正
-      return Spot.last(@count)
+      return Spot.last(@count - @counter_count)
 
     end
 
@@ -32,6 +31,7 @@ module GooglePlacesApi
 
       i = 0
       @count = 0
+      @counter_count = 0
 
       datalength = first_batch_data["results"].length
       if datalength <= 20 && datalength > 10
@@ -219,6 +219,7 @@ module GooglePlacesApi
       @spot_in_table = Spot.find_by(name: @name)
 
       if @spot_in_table
+        @counter_count += 1
         return @spot_in_table
       else  
         return @spot = Spot.create(name: @name, 
