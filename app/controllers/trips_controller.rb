@@ -72,8 +72,7 @@ def update
 end
 
   def destroy
-    @trip = UserTrip.find_by(trip_id: params[:trip_id])
-    # && Trip.find_by(id: params[:trip_id])
+    @trip = Trip.find_by(id: params[:trip_id])
     authorize @trip,  policy_class: TripPolicy
     @trip.destroy if @trip
     redirect_to trips_path, notice: "旅程已刪除"
