@@ -20,10 +20,6 @@ class Api::V1::SpotfindersController < ApplicationController
         @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
       end
 
-      puts "=============="
-      puts @spots
-      puts "=============="
-
       # 如果我們自己的資料表有模糊比對的資料，把找到的資料丟回去給前端，用JSON的方式
       if !@spots.empty?
 
@@ -39,10 +35,6 @@ class Api::V1::SpotfindersController < ApplicationController
           @search_query_for_google = search_input_city + " " + @search_input_keyword
 
           @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_query_for_google).call
-
-          puts "===================="
-          puts @new_spots
-          puts "===================="
 
           respond_to do |format|
             format.json { render :json => @new_spots, status => 200 }

@@ -29,6 +29,7 @@ class User < ApplicationRecord
     name == "" ? email : name
   end
 
+
   def show_image
     if avatar.present?
       avatar
@@ -37,6 +38,10 @@ class User < ApplicationRecord
     else
       avatar
     end
+  end
+
+  def current_trip_role(trip_id)
+    user_trips.find_by(trip_id: trip_id).role
   end
   
 end

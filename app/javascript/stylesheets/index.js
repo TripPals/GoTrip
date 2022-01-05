@@ -1,3 +1,4 @@
+
 import "./cssReset.css"
 import "./grid.css"
 import "./application.scss"
@@ -8,3 +9,4 @@ import "./user.scss"
 import "./spotfinders.scss"
 import "./tripPlanningView.scss"
 import "./trips.scss"
+import "./tripinvites.scss"
