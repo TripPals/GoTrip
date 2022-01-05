@@ -15,9 +15,14 @@ export default class extends Controller {
     const cityinput = this.cityinputTarget.value.trim()
     const keywordinput = this.keywordinputTarget.value.trim()
     const resultBox = document.querySelector(".searchResultBox")
+    
+
 
     // 每次按下搜尋先清空搜尋結果列表
     resultBox.innerHTML = ""
+    
+    const loader = document.querySelector(".loaderBox")
+    loader.classList.add("loaderBoxShow")
 
     async function fetchData() {
       try {
@@ -37,6 +42,7 @@ export default class extends Controller {
       
       const spotResultData = await fetchData()
       console.log(spotResultData);
+      loader.classList.remove("loaderBoxShow")
       
       // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
@@ -60,7 +66,7 @@ export default class extends Controller {
 
         // 如果搜尋結果有>=1筆資料
       } else {
-        console.log("Hello");
+
         spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
           
           const spot_name_char_limit = 25

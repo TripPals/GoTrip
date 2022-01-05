@@ -12,13 +12,17 @@ class Api::V1::SpotfindersController < ApplicationController
 
       # 先判斷前端傳回來的input組合
       case 
-      when  @search_input_keyword && search_input_city # 兩個input都存在
+      when  @search_input_keyword != "" && search_input_city != "" # 兩個input都存在
         @spots = Spot.where("name LIKE ? AND city LIKE ?", "%#{@search_input_keyword}%", "%#{search_input_city}%")
-      when @search_input_keyword && search_input_city == "" # 只有景點關鍵字input存在
+      when @search_input_keyword != "" && search_input_city == "" # 只有景點關鍵字input存在
         @spots = Spot.where("name LIKE ?", "%#{@search_input_keyword}%")
-      when @search_input_keyword == "" && search_input_city # 只有城市關鍵字input存在
+      when @search_input_keyword == "" && search_input_city !="" # 只有城市關鍵字input存在
         @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
       end
+
+      puts "=============="
+      puts @spots
+      puts "=============="
 
       # 如果我們自己的資料表有模糊比對的資料，把找到的資料丟回去給前端，用JSON的方式
       if !@spots.empty?
@@ -35,6 +39,10 @@ class Api::V1::SpotfindersController < ApplicationController
           @search_query_for_google = search_input_city + " " + @search_input_keyword
 
           @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_query_for_google).call
+
+          puts "===================="
+          puts @new_spots
+          puts "===================="
 
           respond_to do |format|
             format.json { render :json => @new_spots, status => 200 }
