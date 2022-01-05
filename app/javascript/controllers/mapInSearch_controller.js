@@ -72,6 +72,10 @@ export default class extends Controller {
         showSearchMessage(message, cssName)
 
         //redirecting ( with setTimeout )
+        setTimeout(() => {
+          redirectBackToPlanPage(trip_id);
+        }, 1000);
+
 
 
       } else if (api_response === "Server Error" ) {
@@ -91,7 +95,9 @@ export default class extends Controller {
 
       }
 
-
+      function redirectBackToPlanPage(trip_id) {
+        window.location.replace(`http://localhost:3000/mytrips/${trip_id}/plan`);
+      }
 
 
     }
