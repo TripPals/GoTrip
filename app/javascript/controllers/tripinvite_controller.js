@@ -61,7 +61,7 @@ export default class extends Controller {
                   <p>GoTrip註冊</p>
                 </div>
                 <div class="connect">
-                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入</button>
                 </div>
               </div>
             `
@@ -77,7 +77,7 @@ export default class extends Controller {
                   <p>GitHub第三方註冊</p>
                 </div>
                 <div class="connect">
-                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入</button>
                 </div>
               </div>
             `
@@ -93,7 +93,7 @@ export default class extends Controller {
                   <p>Google第三方註冊</p>
                 </div>
                 <div class="connect">
-                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入</button>
                 </div>
               </div>
             `
