@@ -2,11 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-#searchsection{
-  border: 1rem;
-  border-radius: 8px;
+#inviteSearchSection {
+
+  width: 100%;
+  height: calc(100% - 60px);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 60px;
+  left: 0;
+  background-color: grey;
+  
+
+  .inviteSearchModal {
+    width: 50%;
+    height: 400px;
+    max-width: 800px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+
 }
-.searchtitle {
+
+.inviteSearchTitle {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,7 +76,6 @@
   
 .searchresultbox {
     padding-top: 30px;
-    height: calc(100vh - 300px);
 
     p {
       width: 80%;
@@ -165,7 +184,8 @@
 }
 
 .hide-search-section {
-  visibility: hidden;
+  // 暫時開起來
+  visibility: visible;
 }
 
 .show-search-section {
