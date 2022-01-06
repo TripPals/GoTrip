@@ -2,10 +2,7 @@ class TripsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-   
-    # @trips = Trip.order(id: :desc)
     @trips_all = current_user.trips.all
-    # @trips_yours = current_user.user_trip_authorities.owner
     @trips_yours = Trip.own_trip(current_user.id)
     @trips_followed = Trip.followed_trip(current_user.id)
   end
@@ -14,44 +11,19 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
-  # def create
-  #   @trip = Trip.new(trip_params)
-  #   if @trip.save
-  #     redirect_to "/mytrips"
-  #   else
-  #     render :new
-  #   end
-  # end
-
-#Add Schedule
 def create
 
   @trip = Trip.new(trip_params)
 
   if @trip.start_date.present?
     @trip.end_date = trip_params[:start_date].to_date + trip_params[:length].to_i.days - 1.days
-    
-    # create baseline for populating schedule data
-    # @trip.schedules = [Schedule.new()]
-
-    # run 迴圈 -> 不管輸入幾天, 都只有一筆schedule的row
-    # days = trip_params[:length].to_i
-    # days.times do
-    #   @trip.schedules = [Schedule.create(day_id: days)]
-    # end 
-    
-    # 設法增加陣列內容, 陣列element 依照:length多寡, 增減筆數.
-    # @trip.schedules = [Schedule.new(), Schedule.new()]
-    #...
     total_days = [] 
     days = trip_params[:length].to_i
+
     1.upto(days) do |day|
       total_days << Schedule.new(day_order: day)
       @trip.schedules = total_days
     end
-
-
-    
 
     if @trip.save
         UserTrip.create(user: current_user,
@@ -71,8 +43,6 @@ def create
 
 end
 
-def invite
-end
 
 def edit
   @trip = Trip.find(params[:trip_id])
@@ -97,7 +67,6 @@ end
 
   def destroy
     @trip = Trip.find_by(id: params[:trip_id])
-    # && Trip.find_by(id: params[:trip_id])
     authorize @trip,  policy_class: TripPolicy
     @trip.destroy if @trip
     redirect_to trips_path, notice: "旅程已刪除"
