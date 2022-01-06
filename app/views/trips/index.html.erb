@@ -62,7 +62,7 @@
 
                     </div>
                     <div>
-                      <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
+                      <a href=""data-controller="authority" data-authority-target="rightbtn" data-action="click->authority#showRightCard" data-tripid="<%= trip.id %>"><i class="fas fa-unlock-alt"></i> 權限設定</a>
                     </div>
                     <div>
                       <i class="fas fa-trash-alt"></i>
@@ -128,19 +128,32 @@
   </div>
 
    <div id="searchsection" class="hide-search-section">
-    <div class="searchtitle">
-      <h1>邀請朋友加入行程</h1>
-    </div>
-    <div data-controller="tripinvite" class="searchform">
-      <button class="closebtn" data-action="click->tripinvite#closeSearchCard">X</button>
+      <div class="searchtitle">
+        <h1>邀請朋友加入行程</h1>
+      </div>
+      <div data-controller="tripinvite" class="searchform">
+        <button class="closebtn" data-action="click->tripinvite#closeSearchCard">X</button>
       <form>
             <input data-tripinvite-target="emailinput" type="email" placeholder="請輸入e-mail" required>
             <input data-action="click->tripinvite#search" type="submit" value="搜尋"class="searchbtn">
             
       </form>
-    </div>
-      <div>
-        <div class="searchresultbox">
       </div>
+        <div>
+          <div class="searchresultbox">
+          </div>
+        </div>
+  </div>
+
+  <div id="rightsection" class="hide-right-section">
+      <div class="righttitle">
+        <h1>目前行程所有夥伴</h1>
       </div>
-</div>
+      <div data-controller="authority" class="rightform">
+        <button class="closebtn" data-action="click->tripinvite#closeSearchCard">X</button>
+      </div>
+        <div>
+          <div class="searchresultbox">
+          </div>
+        </div>
+  </div>

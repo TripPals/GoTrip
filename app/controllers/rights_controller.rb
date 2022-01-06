@@ -6,6 +6,7 @@ class RightsController < ApplicationController
     def editrole
         @users = @trip.users
         @user_trip_role = UserTrip.new
+        #  byebug
     end
 
 

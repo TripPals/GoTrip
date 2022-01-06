@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
 
   #調整權限
-  get "/mytrips/:trip_id/invite/editrole", to: "rights#editrole", as: "rights_editrole"
+  get "/mytrips/:trip_id/editrole", to: "rights#editrole", as: "rights_editrole"
   patch "/mytrips/:trip_id/invite/editrole/update", to: "rights#update", as: "rights_update"
 
   # search friend e-mail API
@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     namespace :v1 do
         get "tripinvites/search", to: "tripinvites#search"
         post "tripinvites/join_trip", to: "tripinvites#join_trip"
+  # get all users in current_trip API
+        get "authorities/alluser", to: "authorities#alluser"
     end
   end
 
