@@ -36,14 +36,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
-      get "trip_detail/:trip_id", to: "trip_detail#show"
+      get "trip_detail", to: "trip_detail#show"
     end
   end
   
   # /api/v1/spotfinders/search
   # /api/v1/trip_detail/:trip_id
-  
-  
 end
 
 
