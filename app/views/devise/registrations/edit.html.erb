@@ -2,37 +2,38 @@
 
 <div class="users-container">
   <div class="users-wrap">
-    <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <div id='app' data-turbolinks-track = "reload"> 
-        <div class="avatar-container">
-          <img  v-if="avatar !== ''" :src="avatar" />
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <div id='app' data-turbolinks-track = "reload"> 
+          <div class="avatar-container">
+            <img  v-if="avatar !== ''" :src="avatar" />
+          </div>
+        
+          <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
+          <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected", class:"form-control form-control-sm", id:"formFileSm" %>
         </div>
-      
-        <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
-        <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected", class:"form-control form-control-sm", id:"formFileSm" %>
-      </div>
 
-      <label>
-        <%= f.check_box :remove_avatar %>
-        回復預設圖像
-      </label>
+        <label>
+          <%= f.check_box :remove_avatar %>
+          回復預設圖像
+        </label>
+        
+        <div class="field">
+          <%= f.label :編輯顯示名稱 %><br />
+          <%= f.text_field :name, placeholder: '請輸入姓名', class:'form-control form-control-sm' %>
+        </div>  
+        <div class="actions">
+          <%= f.submit "更新個人資料" %>
+        </div>
+      <% end %>
       
-      <div class="field">
-        <%= f.label :編輯顯示名稱 %><br />
-        <%= f.text_field :name, placeholder: '請輸入姓名', class:'form-control form-control-sm' %>
-      </div>  
-      <div class="actions">
-        <%= f.submit "更新個人資料" %>
-      </div>
-    <% end %>
-    </div>
-    <div class="user-delete">
-      <h3>刪除帳號</h3>
+      <div class="user-delete">
+        <h3>刪除帳號</h3>
 
-      <p>不想再出去走走了嗎？ <%= button_to "刪除我的帳號", registration_path(resource_name), data: { confirm: "您的帳號將被從此消失，確定嗎？" }, method: :delete %></p>
-    </div>
+        <p>不想再出去走走了嗎？ <%= button_to "刪除我的帳號", registration_path(resource_name), data: { confirm: "您的帳號將被從此消失，確定嗎？" }, method: :delete %></p>
+      </div>
+    
     <%= link_to "Back", :back %>
   </div>
 </div>
