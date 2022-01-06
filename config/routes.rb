@@ -21,12 +21,24 @@ Rails.application.routes.draw do
   # edit
   get "/mytrips/:trip_id/edit", to: "trips#edit", as: "trips_edit"
   patch "/mytrips/:trip_id/edit/update", to: "trips#update", as: "trips_update"
-  get "/mytrips/:trip_id/invite", to: "trips#invite", as: "trips_invite"
   # delete
   delete "/mytrips/:trip_id/delete", to: "trips#destroy", as: "trips_delete"
   
   get '/mytrips/:trip_id/plan', to: "trips#plan", as: "trip_plan"
 
+  # search friend
+  get "/mytrips/:trip_id/search", to: "rights#search", as: "rights_search"
+
+  # post "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
+
+
+  # search friend e-mail API
+  namespace :api do
+    namespace :v1 do
+        get "tripinvites/search", to: "tripinvites#search"
+        post "tripinvites/join_trip", to: "tripinvites#join_trip"
+    end
+  end
 
   # 景點搜尋route
 
@@ -40,7 +52,6 @@ Rails.application.routes.draw do
       get "trip_detail", to: "trip_detail#show"
     end
   end
-  
   # /api/v1/spotfinders/search
   # /api/v1/trip_detail/:trip_id
 end
