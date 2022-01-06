@@ -2,6 +2,7 @@
   <h1><i class="fas fa-passport"></i>我的行程縱覽</h1>
   <a href="<%= trips_new_path %>"><i class="fas fa-plus-circle"></i> 建立行程</a>
 </div>
+
 <div class="tripOverviewContainer">
 
   <ul class="nav" id="myTab" role="tablist">
@@ -127,20 +128,20 @@
 
   </div>
 
-   <div id="searchsection" class="hide-search-section">
+  <div id="searchsection" class="hide-search-section">
     <div class="searchtitle">
       <h1>邀請朋友加入行程</h1>
     </div>
     <div data-controller="tripinvite" class="searchform">
       <button class="closebtn" data-action="click->tripinvite#closeSearchCard">X</button>
       <form>
-            <input data-tripinvite-target="emailinput" type="email" placeholder="請輸入e-mail" required>
-            <input data-action="click->tripinvite#search" type="submit" value="搜尋"class="searchbtn">
-            
+        <input data-tripinvite-target="emailinput" type="email" placeholder="請輸入e-mail" required>
+        <input data-action="click->tripinvite#search" type="submit" value="搜尋"class="searchbtn">
       </form>
     </div>
-      <div>
-        <div class="searchresultbox">
-      </div>
-      </div>
+    <div>
+      <div class="searchresultbox"></div>
+    </div>
+  </div>
+  
 </div>

@@ -5,17 +5,13 @@ export default class extends Controller {
 
 
     connect(){
-        console.log("click");
     }
 
     
     join(event){
         event.preventDefault()
 
-        const addBtn = this.addbtnTarget
-        // console.log(addBtn);
         const userID = this.data.get("id")
-        // console.log(userID);
         const tripID = document.querySelector(".hide-trip-id").textContent
         const resultBox = document.querySelector(".searchresultbox")
 

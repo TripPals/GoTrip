@@ -5,8 +5,8 @@ export default class extends Controller {
     static targets = ["emailinput"]
    
     connect(){
-      console.log("載入成功");
     }
+    
     search(event) {
       event.preventDefault()
       const emailInput = this.emailinputTarget.value.trim()
@@ -37,7 +37,7 @@ export default class extends Controller {
 
       // 如果搜尋結果是空的或不存在 
        if (emailResultData[0].status === "failed") {
-          console.log("Hey");
+
          const noResultMessage = document.createElement("div")
 
          noResultMessage.classList.add("noresultmessagediv")
@@ -47,7 +47,7 @@ export default class extends Controller {
 
         
       } else {
-        console.log("Hello");
+
         emailResultData.forEach(({name, email, id, provider}) => {
 
           if (provider === "register") {
@@ -107,7 +107,7 @@ export default class extends Controller {
      if (emailInput !== "") {
       renderData() 
      } else  {
-      console.log("No");
+
       const noEmailInput = document.createElement("div")
 
       noEmailInput.classList.add("noemailinputdiv")
