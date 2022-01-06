@@ -31,10 +31,6 @@ Rails.application.routes.draw do
   # post "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
 
 
-  #調整權限
-  get "/mytrips/:trip_id/invite/editrole", to: "rights#editrole", as: "rights_editrole"
-  patch "/mytrips/:trip_id/invite/editrole/update", to: "rights#update", as: "rights_update"
-
   # search friend e-mail API
   namespace :api do
     namespace :v1 do

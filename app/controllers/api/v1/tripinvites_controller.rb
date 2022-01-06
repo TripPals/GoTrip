@@ -1,5 +1,4 @@
 class Api::V1::TripinvitesController < ApplicationController
-    # before_action :authenticate_user!
 
     def search
             # get the search parameters, but only
@@ -11,8 +10,7 @@ class Api::V1::TripinvitesController < ApplicationController
             else
                 @email = params[:search]
                 @results = User.where(email:@email)
-                # render ：search
-                # @email != User.find_by(:email)
+            
            
                 if @results.present?
                     respond_to do |format|
@@ -28,18 +26,18 @@ class Api::V1::TripinvitesController < ApplicationController
     end
 
     def join_trip
-        # byebug
+
         
         @trip = Trip.find(params[:trip_id])
         @user = User.find(params[:user_id])
         @userTripRecord = UserTrip.find_by(user_id: @user.id, trip_id: @trip.id)
 
         if @userTripRecord.nil?
-        # @usertrip = current_user.usertrips.find_by(params[:trip_id])
+  
             UserTrip.create(user: @user,trip: @trip)
             render json: { status: 'ok'}
         else
-            render json: { status: 'faild',message:"此位使用者已加入此行程"}
+            render json: { status: 'faild',message:"此位使用者已經在此行程內"}
         end    
     end
 end

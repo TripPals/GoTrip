@@ -1,12 +1,9 @@
 import { Controller } from "stimulus"
-// import httpClient from "lib/token"
 
 
 export default class extends Controller {
     static targets = ["emailinput"]
-    // static values = {
-    //   email: String,
-    // }
+   
     connect(){
       console.log("載入成功");
     }
@@ -14,7 +11,7 @@ export default class extends Controller {
       event.preventDefault()
       const emailInput = this.emailinputTarget.value.trim()
       const resultBox = document.querySelector(".searchresultbox")
-      // console.log(emailInput);
+  
       // 清除搜尋結果資料
       resultBox.innerHTML = ""
 
@@ -36,7 +33,7 @@ export default class extends Controller {
       async function renderData() {
 
         const emailResultData = await fetchData()
-        // console.log(emailResultData);
+      
 
       // 如果搜尋結果是空的或不存在 
        if (emailResultData[0].status === "failed") {
@@ -104,10 +101,9 @@ export default class extends Controller {
           }
 
          })
-        //  resultBox.insertAdjacentElement("afterbegin", emailBox)
        }
      };
-      //呼叫renderData前先做判斷
+      //判斷emailInput有無輸入值
      if (emailInput !== "") {
       renderData() 
      } else  {
