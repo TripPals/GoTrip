@@ -51,25 +51,60 @@ export default class extends Controller {
         
       } else {
         console.log("Hello");
-        emailResultData.forEach(({name, email, id,}) => {
+        emailResultData.forEach(({name, email, id, provider}) => {
 
-          const emailBox = document.createElement("div")
-          emailBox.classList.add("emailresultdiv")
-          emailBox.innerHTML =`
-            <div class="emailsection">
-              <div class="emailinfo" >
-                <p>${name}</p>
-                <p>${email}</p>
+          if (provider === "register") {
+            const emailBox = document.createElement("div")
+            emailBox.classList.add("emailresultdiv")
+            emailBox.innerHTML =`
+              <div class="emailsection">
+                <div class="emailinfo" >
+                  <p>${name}</p>
+                  <p>${email}</p>
+                  <p>GoTrip註冊</p>
+                </div>
+                <div class="connect">
+                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+                </div>
               </div>
-              <div class="connect">
-                <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+            `
+            resultBox.appendChild(emailBox)
+          } else if (provider === "github"){
+            const emailBox = document.createElement("div")
+            emailBox.classList.add("emailresultdiv")
+            emailBox.innerHTML =`
+              <div class="emailsection">
+                <div class="emailinfo" >
+                  <p>${name}</p>
+                  <p>${email}</p>
+                  <p>GitHub第三方註冊</p>
+                </div>
+                <div class="connect">
+                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+                </div>
               </div>
-            </div>
-          `
-          resultBox.appendChild(emailBox)
+            `
+            resultBox.appendChild(emailBox)
+          } else {
+            const emailBox = document.createElement("div")
+            emailBox.classList.add("emailresultdiv")
+            emailBox.innerHTML =`
+              <div class="emailsection">
+                <div class="emailinfo" >
+                  <p>${name}</p>
+                  <p>${email}</p>
+                  <p>Google第三方註冊</p>
+                </div>
+                <div class="connect">
+                  <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+                </div>
+              </div>
+            `
+            resultBox.appendChild(emailBox)
+          }
+
          })
         //  resultBox.insertAdjacentElement("afterbegin", emailBox)
-        
        }
      };
       //呼叫renderData前先做判斷
