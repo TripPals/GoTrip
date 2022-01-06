@@ -16,7 +16,8 @@ export default class extends mapInSearch {
       zoom: 16,
       fullscreenControl: false,
       streetViewControl: false,
-      mapTypeControl: false
+      mapTypeControl: false,
+      mapId:'6a6a764043bbe98b'
     });
 
     const marker = new google.maps.Marker({

@@ -32,7 +32,8 @@ export default class extends Controller {
         zoom: 16,
         fullscreenControl: false,
         streetViewControl: false,
-        mapTypeControl: false
+        mapTypeControl: false,
+        mapId:'6a6a764043bbe98b'
       });
   
       // 展開所有的景點marker
@@ -158,7 +159,8 @@ export default class extends Controller {
         zoom: 16,
         fullscreenControl: false,
         streetViewControl: false,
-        mapTypeControl: false
+        mapTypeControl: false,
+        mapId:'6a6a764043bbe98b'
       });
 
       const marker = new google.maps.Marker({
@@ -178,7 +180,8 @@ export default class extends Controller {
         zoom: 16,
         fullscreenControl: false,
         streetViewControl: false,
-        mapTypeControl: false
+        mapTypeControl: false,
+        mapId:'6a6a764043bbe98b'
       });
 
     }

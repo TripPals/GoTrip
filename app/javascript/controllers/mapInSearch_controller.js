@@ -19,7 +19,8 @@ export default class extends Controller {
       zoom: 9,
       fullscreenControl: false,
       streetViewControl: false,
-      mapTypeControl: false
+      mapTypeControl: false,
+      mapId:'6a6a764043bbe98b'
     });
   }
 
