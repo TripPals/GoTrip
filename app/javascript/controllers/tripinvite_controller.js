@@ -123,7 +123,7 @@ export default class extends Controller {
    closeSearchCard() {
 
      const hiddenTripID = document.querySelector(".hide-trip-id")
-     const searchSection = document.querySelector("#searchsection")
+     const searchSection = document.querySelector("#inviteSearchSection")
      const resultBox = document.querySelector(".searchresultbox")
      
      hiddenTripID.remove()

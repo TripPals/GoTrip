@@ -11,11 +11,13 @@ export default class extends Controller {
         event.preventDefault()
         // click invite button to get tripID
         const tripID = this.buttonTarget.dataset.tripid
-        const userSearchBox = document.querySelector("#searchsection")
+        const userSearchBox = document.querySelector("#inviteSearchSection")
         const hiddenTripId = document.createElement("div")
+
         //hide tripID with CSS visibility: hidden
         hiddenTripId.innerText = tripID
         hiddenTripId.classList.add("hide-trip-id")
+
         userSearchBox.appendChild(hiddenTripId)
         //show search-email field  with CSS visibility: visible
         userSearchBox.classList.add("show-search-section")

@@ -131,19 +131,19 @@
 </div>
 
 <div id="inviteSearchSection" class="hide-search-section">
-  <div class="inviteSearchModal">
+  <div data-controller="tripinvite" class="inviteSearchModal">
     <div class="inviteSearchTitle">
       <h1>邀請朋友加入行程</h1>
+      <button class="closebtn" data-action="click->tripinvite#closeSearchCard">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
-    <div data-controller="tripinvite" class="searchform">
-      <button class="closebtn" data-action="click->tripinvite#closeSearchCard">X</button>
+    <div class="searchform">
       <form>
         <input data-tripinvite-target="emailinput" type="email" placeholder="請輸入e-mail" required>
-        <input data-action="click->tripinvite#search" type="submit" value="搜尋"class="searchbtn">
+        <input data-action="click->tripinvite#search" type="submit" value="搜尋" class="searchbtn">
       </form>
     </div>
-    <div>
-      <div class="searchresultbox"></div>
-    </div>
+    <div class="searchresultbox"></div>
   </div>
 </div>
