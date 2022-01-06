@@ -1,0 +1,35 @@
+<%= content_for :header do %>
+  <div class="header-in-wrap">
+    <div class="header-in-logo">
+      <% if request.path_info.include?("users")%>
+        <a href="<%= root_path %>"><img src="/images/logo-white.png" alt="GoTrip"></a>
+      <% else %>
+        <img src="/images/logo.png" alt="GoTrip">
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+    <input type="checkbox" id="list-checked">
+    <label for="list-checked">
+      <div class="header-in-nav header-in-btn header-in-after-login">
+        <div class="user-show">
+          <img src="<%= current_user.show_image %>" alt="嗨">
+          <p class="user-info"><%= current_user.display_name %></p>
+        </div>  
+      </div>
+    </label> 
+    <div class="header-in-after-list">
+      <%= link_to "<div class='header-in-btn btn-border a-header btn-mytrip'>我的行程</div>".html_safe, trips_path %>
+      <%= link_to "<div class='header-in-btn btn-border btn-list a-header btn-list'>個人資訊</div>".html_safe, edit_user_registration_path %>
+      <%= link_to "<div class='header-in-btn btn-border btn-list a-header btn-list'>登出</div>".html_safe, destroy_user_session_path, method: :delete, data: {confirm:'您的帳號將登出。掰掰～下次再一起出遊。'} %>
+    </div>   
+    <% else %>
+      <div class="header-in-nav header-in-btn bg-light">
+        <%= link_to '關於我們', about_path, class: "gotrip-header-about header-in-btn a-header" %>
+        <div class="header-in-before-login">
+          <%= link_to '登入', new_user_session_path, class: "header-in-btn btn-border a-header" %>
+          <%= link_to '註冊', new_user_registration_path,class: "header-in-btn btn-border bg-dark signup a-header"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
