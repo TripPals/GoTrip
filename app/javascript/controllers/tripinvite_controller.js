@@ -3,56 +3,55 @@ import { Controller } from "stimulus"
 
 
 export default class extends Controller {
-    static targets = ["emailinput"]
-    // static values = {
-    //   email: String,
-    // }
-    connect(){
-      console.log("載入成功");
-    }
-    search(event) {
-      event.preventDefault()
-      const emailInput = this.emailinputTarget.value.trim()
-      const resultBox = document.querySelector(".searchresultbox")
-      // console.log(emailInput);
-      // 清除搜尋結果資料
-      resultBox.innerHTML = ""
+  static targets = ["emailinput"]
+   
+  connect(){
+    console.log("載入成功");
+  }
+  search(event) {
+    event.preventDefault()
+    const emailInput = this.emailinputTarget.value.trim()
+    const resultBox = document.querySelector(".searchresultbox")
+    // console.log(emailInput);
+    // 清除搜尋結果資料
+    resultBox.innerHTML = ""
 
-      // call search friend e-mail API
-      async function fetchData(){
-        try{
-          const response = await fetch(`http://127.0.0.1:3000/api/v1/tripinvites/search?search=${emailInput}`, {
-            method: 'GET'
-          })
-          const result = await response.json()
-          return result
-        } catch {
-          const result = "Empty Result"
-          console.error("Something went wrong...");
-          return result
-        }
-      };
+    // call search friend e-mail API
+    async function fetchData(){
+      try{
+        const response = await fetch(`http://127.0.0.1:3000/api/v1/tripinvites/search?search=${emailInput}`, {
+          method: 'GET'
+        })
+        const result = await response.json()
+        return result
+      } catch {
+        const result = "Empty Result"
+        console.error("Something went wrong...");
+        return result
+      }
+    };
 
-      async function renderData() {
+    async function renderData() {
 
-        const emailResultData = await fetchData()
-        // console.log(emailResultData);
+      const emailResultData = await fetchData()
+      // console.log(emailResultData);
 
       // 如果搜尋結果是空的或不存在 
-       if (emailResultData[0].status === "failed") {
-          console.log("Hey");
-         const noResultMessage = document.createElement("div")
+      if (emailResultData[0].status === "failed") {
+        console.log("Hey");
+        const noResultMessage = document.createElement("div")
 
-         noResultMessage.classList.add("noresultmessagediv")
-         noResultMessage.innerHTML = `<p "noresultmessage">抱歉，您搜尋的用戶資料不存在，請重新輸入一次</p>`
+        noResultMessage.classList.add("noresultmessagediv")
+        noResultMessage.innerHTML = `<p "noresultmessage">抱歉，您搜尋的用戶資料不存在，請重新輸入一次</p>`
 
-         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
-        
+      
       } else {
-        console.log("Hello");
-        emailResultData.forEach(({name, email}) => {
+      console.log("Hello");
+      emailResultData.forEach(({name, email, id, provider}) => {
 
+        if (provider === "register") {
           const emailBox = document.createElement("div")
           emailBox.classList.add("emailresultdiv")
           emailBox.innerHTML =`
@@ -60,6 +59,7 @@ export default class extends Controller {
               <div class="emailinfo" >
                 <p>${name}</p>
                 <p>${email}</p>
+                <p>GoTrip註冊</p>
               </div>
               <div class="connect">
                 <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
@@ -67,16 +67,48 @@ export default class extends Controller {
             </div>
           `
           resultBox.appendChild(emailBox)
-         })
-        //  resultBox.insertAdjacentElement("afterbegin", emailBox)
-        
-       }
-     };
-      //呼叫renderData前先做判斷
+        } else if (provider === "github"){
+          const emailBox = document.createElement("div")
+          emailBox.classList.add("emailresultdiv")
+          emailBox.innerHTML =`
+            <div class="emailsection">
+              <div class="emailinfo" >
+                <p>${name}</p>
+                <p>${email}</p>
+                <p>GitHub第三方註冊</p>
+              </div>
+              <div class="connect">
+                <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+              </div>
+            </div>
+          `
+          resultBox.appendChild(emailBox)
+        } else {
+          const emailBox = document.createElement("div")
+          emailBox.classList.add("emailresultdiv")
+          emailBox.innerHTML =`
+            <div class="emailsection">
+              <div class="emailinfo" >
+                <p>${name}</p>
+                <p>${email}</p>
+                <p>Google第三方註冊</p>
+              </div>
+              <div class="connect">
+                <button class="addbtn" data-controller="jointrip" data-jointrip-target="addbtn" data-action="click->jointrip#join" data-jointrip-id=${id}>加入行程</button>
+              </div>
+            </div>
+          `
+          resultBox.appendChild(emailBox)
+        }
+
+        })
+      }
+    };
+      //判斷emailInput有無輸入值
      if (emailInput !== "") {
       renderData() 
      } else  {
-      console.log("No");
+
       const noEmailInput = document.createElement("div")
 
       noEmailInput.classList.add("noemailinputdiv")
@@ -84,14 +116,14 @@ export default class extends Controller {
 
       resultBox.insertAdjacentElement("afterbegin", noEmailInput)
 
-    
+
     }
-          
+
    }
 
    closeSearchCard() {
 
-     const hiddenTripID = document.querySelector(".hide-trip-id")
+     const hiddenTripID = document.querySelector(".invite-hide-trip-id")
      const searchSection = document.querySelector("#searchsection")
      const resultBox = document.querySelector(".searchresultbox")
      
