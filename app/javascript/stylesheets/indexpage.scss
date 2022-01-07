@@ -5,6 +5,7 @@
   height: calc(100% - 19px);
   margin: 0, auto;
   padding: 0;
+  color: #262C4C;
   .carousel{
     height: 100%;
     overflow: hidden;
@@ -39,13 +40,14 @@
         margin: 20px 0;
       }
       .gotrip-start-btn{
-        display: block;
-        width: 290px;
+        width: 100%;
         text-align: center;
+        letter-spacing: 2px;
         background-color: #262C4C;
         color: #EEBC38;
         padding: 10px 0;
         margin-top: 50px;
+        border-radius: 7px;
         box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
       }
       .gotrip-start-btn:hover{
