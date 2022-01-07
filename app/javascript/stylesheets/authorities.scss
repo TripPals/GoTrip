@@ -1,10 +1,67 @@
-#rightsection{
+#rightresultcard{
     display: flex;
     justify-content: center;
     border: #623AD6;
   }
 
-.closebtn{
+
+.rightresultdiv {
+  width: 50%;
+  margin: auto;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightresultbox {
+    padding-top: 10px;
+    height: calc(100vh - 300px);
+
+  p {
+      width: 80%;
+      font-size: 1.5rem;
+      text-align: center;
+  
+  }
+}
+
+.rightsection {
+  display: flex;
+  justify-content: center;
+}
+.rightinfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+
+  p:nth-child(1) {
+    font-size: 1.3rem;
+    margin-bottom: 0px;
+  }
+
+  p:nth-child(2) {
+    font-size: 1.3rem;
+  }
+
+  p:nth-child(3) {
+    font-size: 1.3rem;
+  }
+
+}
+
+
+
+
+
+
+
+
+.au-closebtn{
     width: 40px;
     height: 40px;
     background-color: #623AD6;
@@ -14,7 +71,7 @@
     border-radius: 8px;
   }
 
-.hide-right-sectio{
+.hide-right-section{
     visibility: hidden;
   }
   
@@ -22,6 +79,6 @@
     visibility: visible;
   }
 
-.hide-trip-id {
+.authority-hide-trip-id {
     visibility: hidden;
   }
