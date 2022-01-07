@@ -1,17 +1,18 @@
 
 #planView {
+  padding-top: 60px;
   display: flex;
 }
 
 #googleMapSection {
   width: 70%;
-  height: 100vh;
+  height: calc(100vh - 60px);
 }
 
 #spotPlanningSection {
   width: 30%;
   min-width: 350px;
-  height: 100vh;
+  height: calc(100vh - 60px);
   background-color: rgb(206, 206, 206);
 }
 
@@ -20,19 +21,27 @@
   position: relative;
   background-color: #fff;
   height: 120px;
-  font-family: sans-serif;
   #tripName {
     font-weight: bold;
     font-size: 24px;
     border: none;
     padding: 5px 20px;
   }
+  .tripDate {
+    display: flex;
+  }
+  .nameError {
+    height: 16px;
+    color: #f00;
+    font-size: 14px;
+    padding: 5px 20px 0px 20px;
+  }
   .starEnd {
-    padding: 10px 20px;
+    padding: 5px 20px;
     color: #666;
   }
   .dayLength {
-    padding: 0px 20px;
+    padding: 5px 20px;
     color: #666;
   }
 }
@@ -40,7 +49,6 @@
 #dataBody {
   background-color: #fff;
   height: calc(100vh - 230px);
-  font-family: sans-serif;
   .dayBox {
     display: flex;
     justify-content: space-between;
@@ -85,7 +93,6 @@
   }
   .active {
     background-image: linear-gradient(to top, #eebc39 0%, #eebc39 8%, transparent 8%, transparent 100%);
-    // background-color: #eebc39;
     color: #000;
     font-weight: bold;
   }
@@ -105,7 +112,7 @@
       background-color: #ddd;
       height: 30px;
     }
-    .spotList {
+    .spotMapList {
       background-color: #fff;
       box-shadow: 0px 3px 3px 0px #ccc;
       padding: 30px 40px;
@@ -131,7 +138,6 @@
   background-color: #eebc39;
   text-decoration: none;
   color: #fff;
-  font-family: sans-serif;
   font-size: 20px;
   height: 40px;
   display: flex;
