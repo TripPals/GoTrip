@@ -10,26 +10,90 @@
   align-items: center;
 }
 
-.register-page-image-box {
-  width: 40%;
-  background-color: grey;
+@keyframes showcaseIllustration {
+  from {
+    margin-left: -180px;
+    opacity: 0;
+  }
+  to {
+    margin-left: -100px;
+    opacity: 1;
+  }
 }
 
+@keyframes showcaseMessage {
+  from {
+    margin-left: -180px;
+    opacity: 0;
+  }
+  to {
+    margin-left: 15px;
+    opacity: 1;
+  }
+}
+
+.registeration-message-illustration-box {
+  
+  width: 30%;
+  min-width: 350px;
+  position: relative;
+  margin-top: 140px;
+  z-index: 0;
+
+  .register-page-title {
+    width: 120%;
+    text-align: left;
+    margin-left: 15px;
+    position: absolute;
+    left: 0;
+    top: -25px;
+    animation-name: showcaseMessage;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+
+    p {
+      font-size: 1.7rem;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 2.8rem;
+    }
+  }
+
+  .register-page-image-box {
+
+    img {
+      height: 500px;
+      margin-left: -100px;
+      animation-name: showcaseIllustration;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+}
+
+
 .users-wrap {
-  width: 40%;
+  width: 25%;
+  min-width: 350px;
   // position: absolute;
   // top:30vh;
   // left: 15vw;
   // width: 330px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
+
 
 .register-form {
   width: 100%;
   border-radius: 20px;
   background: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  margin-top: 65px;
 }
 
 .register-title {
@@ -42,14 +106,117 @@
 }
 
 .register-form-content {
-  padding: 30px;
+  padding: 15px 20px 15px 20px;
 }
 
 .register-field {
+  width: 100%;
+  height: 40px;
+  font-size: 1rem;
   background-color: #DEDEDE;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #262D4B;
+  border: none;
+  border-radius: 8px;
+  padding-left: 10px;
 }
+
+.register-button-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  input {
+    display: inline-block;
+    height: 40px;
+    width: 100%;
+    background-color: #262D4B;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+  }
+
+  input:hover {
+    background-color: #257F8B;
+  }
+}
+
+.registerlogin-already-message {
+  text-align: center;
+
+  a {
+    color: #D96A49;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.third-party-btn {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #262D4B;
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 10px;
+  background-color: white;
+  transition: all 0.3s ease;
+
+  i {
+    font-size: 1.5rem;
+    color: #262D4B;
+    position: absolute;
+    left: 15px;
+    top: 6px;
+  }
+
+  a {
+    display: inline-block;
+    color: #262D4B;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 36px;
+    margin: auto;
+  }
+}
+
+.third-party-btn:last-child {
+  margin-bottom: 0px;
+}
+
+.third-party-btn:hover {
+  background-color: #D96A49;
+  color: white;
+  border: 2px solid #D96A49;
+}
+
+.registerlogin-divider {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0px 5px 0px;
+
+  hr {
+    display: block;
+    width: 40%;
+    height: 2px;
+    border-width: 0;
+    background-color: #262D4B;
+  }
+
+  p {
+    width: 15%;
+    color: #262D4B;
+    text-align: center;
+  }
+
+}
+
 
 #app{
   position: relative;
