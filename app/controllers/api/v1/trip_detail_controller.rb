@@ -1,8 +1,20 @@
 class Api::V1::TripDetailController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+
   def show
     @trip = Trip.find(params[:trip_id])
+  end
+
+  def add
+    @trip = Trip.find(params[:trip_id])
+    @trip.update(length: @trip.length.to_i+1, end_date: @trip.end_date.to_date + 1.days)
+
+    max_order = Schedule.where(trip_id: @trip.id).maximum(:day_order).to_i
+    Schedule.create(trip_id: @trip.id, day_order: max_order + 1)
+
+    respond_to do |format|
+      format.json{render :json => [message:"增加天數成功！"],status => 200}
+    end
   end
 
   def destroy
