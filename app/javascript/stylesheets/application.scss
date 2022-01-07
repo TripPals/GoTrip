@@ -1,3 +1,23 @@
-body {
-  font-family: 'Noto Sans TC', sans-serif;
+body{
+  font-family: 'Noto Sans TC', STHeiti, PingFang, 'Microsoft JhengHei', sans-serif, Verdana, Charcoal;
+  
+  a{
+    text-decoration: none;
+  }
+  ::selection {
+    background: #DB6A43;
+    color: white;
+  }
+  ::-moz-selection {
+    background: #DB6A43;
+    color: white;
+  }
+}
+.gotrip-all-container{
+  width: 100vw;
+  height: 100vh;
+}
+body::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }

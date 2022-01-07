@@ -2,9 +2,9 @@
 export const tripsData = [
   {
     "id" : "行程id",
-    "name" : "台北三天兩夜",
-    "startDate" : "2021/12/31",
-    "length" : 9,
+    "name" : "吉祥物出去玩",
+    "startDate" : "2022/01/23",
+    "length" : 5,
     "schedules" : [
       {
         "Id" : "第一天日程ID",
@@ -14,8 +14,8 @@ export const tripsData = [
             "order" : "序號",
             "ID" : "景點ID",
             "info" : [{
-                "name" : "台北101",
-                "address" : "台北市信義區",
+                "name" : "淡水老街",
+                "address" : "新北市淡水區",
                 "lat": 111111,
                 "lng": 111111,
             }]
@@ -24,7 +24,7 @@ export const tripsData = [
             "order" : "序號",
             "ID" : "景點ID",
             "info" : [{
-                "name" : "淡水老街",
+                "name" : "漁人碼頭",
                 "address" : "新北市淡水區",
                 "lat": 222222,
                 "lng": 222222,
@@ -34,10 +34,40 @@ export const tripsData = [
             "order" : "序號",
             "ID" : "景點ID",
             "info" : [{
-                "name" : "台北車站",
-                "address" : "台北市中正區",
+                "name" : "紅毛城",
+                "address" : "新北市淡水區",
                 "lat": 333333,
                 "lng": 333333,
+            }]
+          },
+          {
+            "order" : "序號",
+            "ID" : "景點ID",
+            "info" : [{
+                "name" : "北投地熱谷",
+                "address" : "台北市北投區",
+                "lat": 444444,
+                "lng": 444444,
+            }]
+          },
+          {
+            "order" : "序號",
+            "ID" : "景點ID",
+            "info" : [{
+                "name" : "溫泉博物館",
+                "address" : "台北市北投區",
+                "lat": 555555,
+                "lng": 555555,
+            }]
+          },
+          {
+            "order" : "序號",
+            "ID" : "景點ID",
+            "info" : [{
+                "name" : "水美溫泉會館",
+                "address" : "台北市北投區",
+                "lat": 666666,
+                "lng": 666666,
             }]
           },
         ]
@@ -49,8 +79,8 @@ export const tripsData = [
           "order" : "序號",
           "ID" : "景點ID",
           "info" : [{
-              "name" : "頂埔捷運站",
-              "address" : "新北市土城區",
+              "name" : "故宮博物院",
+              "address" : "台北市士林區",
               "lat": 111111,
               "lng": 111111,
             }]
@@ -59,12 +89,22 @@ export const tripsData = [
             "order" : "序號",
             "ID" : "景點ID",
             "info" : [{
-                "name" : "板橋車站",
-                "address" : "新北市板橋區",
-                "lat": 111111,
-                "lng": 111111,
+                "name" : "兒童新樂園",
+                "address" : "台北市士林區",
+                "lat": 222222,
+                "lng": 222222,
               }]
             },
+            {
+              "order" : "序號",
+              "ID" : "景點ID",
+              "info" : [{
+                  "name" : "士林夜市",
+                  "address" : "台北市士林區",
+                  "lat": 333333,
+                  "lng": 333333,
+                }]
+              },
           {
             "order" : "序號",
             "ID" : "景點ID",
@@ -82,7 +122,19 @@ export const tripsData = [
         "spots" : [
           
         ]
-      }
+      },
+      {
+        "Id" : "第四天日程ID",
+        "spots" : [
+          
+        ]
+      },
+      {
+        "Id" : "第五天日程ID",
+        "spots" : [
+          
+        ]
+      },
     ]
   }
 ]

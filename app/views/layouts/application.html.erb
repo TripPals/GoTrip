@@ -22,8 +22,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <div>
+    <div id="gotrip-header">
+      <%= yield :header %>
+    </div>
+    
+    <div class="gotrip-all-container">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
