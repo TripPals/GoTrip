@@ -2,41 +2,42 @@
   <div>
 
     <div id="dataTitle">
-      <input type="text" v-model.lazy="tripName" class="tripName">
+      <input type="text" v-model.trim="tripData.name" id="tripName" @keyup="changeName">
       <div class="starEnd">{{startDay}} - {{endDay}}</div>
-      <div v-if="dayLength > 1" class="dayLength">{{dayLength}} 天 {{dayLength - 1}} 夜</div>
-      <div v-else-if="dayLength == 1" class="dayLength">{{dayLength}} 天</div>
+      <div v-if="tripData.length > 1" class="dayLength">{{tripData.length}} 天 {{tripData.length - 1}} 夜</div>
+      <div v-else-if="tripData.length == 1" class="dayLength">{{tripData.length}} 天</div>
     </div>
     
     <div id="dataBody" >
       <div class="dayBox">
         <div class="dayBack" @click="slideLeft">＜</div>
         <div ref="dayTitle" class="dayTitle">
-          <div v-for="(value,index) in totalPage" :key="index" id="dayBTN">
-            <div @click="changePage(index)">第 {{value}} 天</div>
+          <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
+            第 {{value}} 天
           </div>
         </div>
         <div class="dayNext" @click="slideRight">＞</div>
       </div>
       <div>
+        <a :href="'/mytrips/' + trip_id + '/' + spotData.order + '/search'" class="spotBTN">
+          新增景點
+        </a>
         <div class="spotBox">
-          <div class="spotStartTime">出發時間</div>
-          <draggable v-model="spotData.spots" @change="dragSpot">
-          <div v-if="spotData !== null || spotData.spots.length > 0 " v-for="s in spotData.spots.length" class="spotList">
-            <div>{{s}}</div>
-            <div ref="spotName" class="spotName">
-              {{spotData.spots[s-1].info[0].name}}
+          <div class="spotStartTime" v-if="spotsList.length > 0">出發時間</div>
+          <draggable v-model="spotsList" @start="start" @change="dragSpot">
+          <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotList">
+            <div ref="spotName" class="spotName" :data-spotOrder="s">
+              {{spotsList[s-1].name}}
             </div>
             <div class="address">
-              {{spotData.spots[s-1].info[0].address}}
+              {{spotsList[s-1].address}}
             </div>
             <div ref="position" class="position">
-              {{spotData.spots[s-1].info[0].lat}},{{spotData.spots[s-1].info[0].lng}}
+              {{spotsList[s-1].lat}},{{spotsList[s-1].lng}}
             </div>
           </div>
           </draggable>
         </div>
-        <div class="spotBTN">新增行程</div>
       </div>
     </div>
 
@@ -45,43 +46,57 @@
 
 <script>
 import dayjs from "dayjs";
-import {tripsData} from './api/tripdata.js';
+import fetchData from './packs/tripDataFetch.js';
 import draggable from 'vuedraggable';
-// 抓假資料陣列第一筆的行程資料，之後要再修改
-let tripData = tripsData[0];
-
-// 設定起始和結束日期以及顯示的格式
-let startDay = new Date(tripData.startDate);
-startDay = dayjs(startDay).format('YYYY/MM/DD');
-let endDay = dayjs(startDay).add(tripData.length - 1, "day").format('YYYY/MM/DD');
-
-// 天數分頁
-const totalPage = tripData.length;
-
-// 預設顯示第一天的景點資訊，之後要再修改抓法
-var spotData = tripData.schedules[0];
+const url = window.location.href
+const decomposedUrl = url.split("/")
+const trip_id = decomposedUrl[4]
+const responseData = fetchData(trip_id)
 
 export default {
   components: { draggable },
   data: function () {
     return {
-      // 帶入網頁資訊的內容，行程標題部分
-      tripName: tripData.name,
-      starEnd: tripData.startDate,
-      dayLength: tripData.length,
-      startDay: startDay,
-      endDay: endDay,
-      // 帶入網頁資訊的內容，天數選擇區的總頁數
-      totalPage: totalPage,
-      spotData: spotData,
+      // 點擊天數按鈕變色
+      isActive: 0,
+      // 帶入行程資訊的變數
+      tripData: {},
+      endDay: {},
+      startDay: {},
+      spotData: [],
+      spotsList: [],
+      schedulesOrder: [],
+      trip_id: trip_id,
     }
   },
+  mounted() {
+      responseData.then((data)=>{
+        this.tripData = data;
+
+        const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
+        const startDay = dayjs(this.tripData.startDate).format('YYYY/MM/DD');
+        this.startDay = startDay;
+        this.endDay = endDay;
+
+        var spotData = this.tripData.schedules[0];
+        this.spotData = spotData;
+
+        var spotsList = spotData.spots;
+        this.spotsList = spotsList;
+        
+        var schedulesOrder = spotData.day_order;
+        this.schedulesOrder = schedulesOrder;
+      })
+  },
   methods: {
-    setposition() {
-      
+    changeName(e){
+      console.log(e);
     },
+
     changePage(index) {
-      this.spotData = tripData.schedules[index];
+      this.isActive = index;
+      this.spotsList = this.tripData.schedules[index].spots;
+      this.spotData = this.tripData.schedules[index]
       
       // 因為點擊後會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行
       setTimeout(() => {
@@ -94,9 +109,9 @@ export default {
         });
         let positionList = [];
         position.forEach(el => {
-          const obj = {}
-          obj.lat = el.innerText.split(",")[0]
-          obj.lng = el.innerText.split(",")[1]
+          const obj = {};
+          obj.lat = el.innerText.split(",")[0];
+          obj.lng = el.innerText.split(",")[1];
           return positionList.push(obj);
         });
         sessionStorage.setItem('spotList', JSON.stringify(spotList));
@@ -112,7 +127,9 @@ export default {
       const dayTitle = this.$refs.dayTitle;
       dayTitle.scrollLeft -= 140;
     },
-
+    start() {
+      console.log(123);
+    },
     // 設定拖曳改變後執行的方法，用空陣列儲存需要傳給地圖的資料存到sessionStorage
     dragSpot() {
       const position = this.$refs.position;
@@ -124,9 +141,9 @@ export default {
       });
       let positionList = [];
       position.forEach(el => {
-        const obj = {}
-        obj.lat = el.innerText.split(",")[0]
-        obj.lng = el.innerText.split(",")[1]
+        const obj = {};
+        obj.lat = el.innerText.split(",")[0];
+        obj.lng = el.innerText.split(",")[1];
         return positionList.push(obj);
       });
       sessionStorage.setItem('spotList', JSON.stringify(spotList));
