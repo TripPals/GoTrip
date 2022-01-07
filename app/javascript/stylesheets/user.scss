@@ -3,17 +3,52 @@
   width: 100vw;
   height: calc(100vh - 20px);
   margin: 0, auto;
-  background-color: #EEBC38;
+  background: rgb(255,226,89);
+  background: linear-gradient(225deg, rgba(255,226,89,1) 15%, rgba(237,150,70,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.users-wrap{
+
+.register-page-image-box {
+  width: 40%;
+  background-color: grey;
+}
+
+.users-wrap {
+  width: 40%;
+  // position: absolute;
+  // top:30vh;
+  // left: 15vw;
+  // width: 330px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form {
+  width: 100%;
   border-radius: 20px;
-  position: absolute;
-  top:30vh;
-  left: 15vw;
-  width: 330px;
-  padding: 30px;
   background: white;
-  box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.register-title {
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  height: 50px;
+  font-size: 1.3rem;
+  border-bottom: 4px solid #EDBB46;
+}
+
+.register-form-content {
+  padding: 30px;
+}
+
+.register-field {
+  background-color: #DEDEDE;
+  margin-bottom: 15px;
+  color: #262D4B;
 }
 
 #app{
