@@ -51,7 +51,7 @@ export default class extends Controller {
         
       } else {
         console.log("Hello");
-        emailResultData.forEach(({name, email, id,}) => {
+        emailResultData.forEach(({name, email}) => {
 
           const emailBox = document.createElement("div")
           emailBox.classList.add("emailresultdiv")
@@ -101,6 +101,7 @@ export default class extends Controller {
      resultBox.innerHTML = ""
      
    }
+
   
  }
 

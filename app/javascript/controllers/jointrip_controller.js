@@ -22,7 +22,7 @@ export default class extends Controller {
         Rails.ajax({
           url: '/api/v1/tripinvites/join_trip',
           type: 'post',
-          data: `user_id=${userID}&trip_id=${tripID}`,
+          data: `user_id=${userID}&trip_id=${tripID}`, 
           success: (data) => {
             if (data.status === 'ok') {
                 
