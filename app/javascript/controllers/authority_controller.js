@@ -53,8 +53,8 @@ export default class extends Controller {
 					<div class="changerole" data-controller="editrole" >
 						<select class="selector"  data-role="${role}" data-id="${id}" 
 						data-editrole-target="selector" data-action="change->editrole#role" >
-							<option selected="selected" data-value="viewer">可檢視</option>
-							<option data-value="editor">可編輯</option>
+							<option selected="selected" data-value="1">可檢視</option>
+							<option data-value="2">可編輯</option>
 						</select>
 					</div>
 				</div>

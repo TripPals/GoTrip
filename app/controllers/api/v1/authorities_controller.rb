@@ -17,9 +17,9 @@ class Api::V1::AuthoritiesController < ApplicationController
   end
 
   def update
-      @user = UserTrip.where(id: params[:id])
-      @role = params[:role]
-      UserTrip.update(id: @user,role: @role)
+      @user = UserTrip.find(params[:id])
+      @role = UserTrip.find_by(role: params[:role]).to_i
+      UserTrip.find(@user.id).update(role: @role)
       
   end
 

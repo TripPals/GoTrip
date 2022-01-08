@@ -16,28 +16,22 @@ export default class extends Controller {
 		console.log(selector);
 			if (selector === "可編輯") {
 				console.log("hi");
-				const rightBox = document.querySelector(".rightinfo")
-				// rightBox.innerHTML.children
-				console.log(rightBox.childNodes[5]);
-				console.log(rightBox.children[2]);
-				rightBox.children[2].innerText.value == "2";
-				rightBox.childNodes[5].innerText.value == "2";
-				console.log(rightBox.childNodes[5]);
-		}else{
-			console.log("ya");
-			return "1"
-		};
+				var tripRole = "2"
+			}else{
+				console.log("ya");
+				var tripRole = "1"
+			};
 		//user_trip: :id
 		const tripUserID = this.selectorTarget.dataset.id
 		console.log(tripUserID);
-		const tripRole = document.querySelectorAll(".selector")
 		//user_trip: :role
-		// const tripRole = this.selectorTarget.dataset.role
 		console.log(tripRole);
+		// const tripRole = document.querySelectorAll(".selector")
+		// const tripRole = this.selectorTarget.dataset.role
 
 		Rails.ajax({
-			url: '/api/v1/authorities/update_role',
-			type: 'put',
+			url: '/api/v1/authorities/update',
+			type: 'patch',
 			data: `id=${tripUserID}&role=${tripRole}`, 
 			success: (data) => {
 		
