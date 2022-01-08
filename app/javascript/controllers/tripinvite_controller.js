@@ -4,8 +4,8 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
   static targets = ["emailinput"]
-   
-  connect(){
+
+  connect() {
     console.log("載入成功");
   }
   search(event) {
@@ -17,8 +17,8 @@ export default class extends Controller {
     resultBox.innerHTML = ""
 
     // call search friend e-mail API
-    async function fetchData(){
-      try{
+    async function fetchData() {
+      try {
         const response = await fetch(`http://127.0.0.1:3000/api/v1/tripinvites/search?search=${emailInput}`, {
           method: 'GET'
         })
@@ -34,27 +34,24 @@ export default class extends Controller {
     async function renderData() {
 
       const emailResultData = await fetchData()
-      // console.log(emailResultData);
+     
 
       // 如果搜尋結果是空的或不存在 
       if (emailResultData[0].status === "failed") {
-        console.log("Hey");
         const noResultMessage = document.createElement("div")
-
         noResultMessage.classList.add("noresultmessagediv")
         noResultMessage.innerHTML = `<p "noresultmessage">抱歉，您搜尋的用戶資料不存在，請重新輸入一次</p>`
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
-      
-      } else {
-      console.log("Hello");
-      emailResultData.forEach(({name, email, id, provider}) => {
 
-        if (provider === "register") {
-          const emailBox = document.createElement("div")
-          emailBox.classList.add("emailresultdiv")
-          emailBox.innerHTML =`
+      } else {
+        emailResultData.forEach(({ name, email, id, provider }) => {
+          
+          if (provider === "register") {
+            const emailBox = document.createElement("div")
+            emailBox.classList.add("emailresultdiv")
+            emailBox.innerHTML = `
             <div class="emailsection">
               <div class="emailinfo" >
                 <p>${name}</p>
@@ -66,11 +63,11 @@ export default class extends Controller {
               </div>
             </div>
           `
-          resultBox.appendChild(emailBox)
-        } else if (provider === "github"){
-          const emailBox = document.createElement("div")
-          emailBox.classList.add("emailresultdiv")
-          emailBox.innerHTML =`
+            resultBox.appendChild(emailBox)
+          } else if (provider === "github") {
+            const emailBox = document.createElement("div")
+            emailBox.classList.add("emailresultdiv")
+            emailBox.innerHTML = `
             <div class="emailsection">
               <div class="emailinfo" >
                 <p>${name}</p>
@@ -82,11 +79,11 @@ export default class extends Controller {
               </div>
             </div>
           `
-          resultBox.appendChild(emailBox)
-        } else {
-          const emailBox = document.createElement("div")
-          emailBox.classList.add("emailresultdiv")
-          emailBox.innerHTML =`
+            resultBox.appendChild(emailBox)
+          } else {
+            const emailBox = document.createElement("div")
+            emailBox.classList.add("emailresultdiv")
+            emailBox.innerHTML = `
             <div class="emailsection">
               <div class="emailinfo" >
                 <p>${name}</p>
@@ -98,16 +95,16 @@ export default class extends Controller {
               </div>
             </div>
           `
-          resultBox.appendChild(emailBox)
-        }
+            resultBox.appendChild(emailBox)
+          }
 
         })
       }
     };
-      //判斷emailInput有無輸入值
-     if (emailInput !== "") {
-      renderData() 
-     } else  {
+    //判斷emailInput有無輸入值
+    if (emailInput !== "") {
+      renderData()
+    } else {
 
       const noEmailInput = document.createElement("div")
 
@@ -119,22 +116,21 @@ export default class extends Controller {
 
     }
 
-   }
+  }
 
-   closeSearchCard() {
+  closeSearchCard() {
 
-     const hiddenTripID = document.querySelector(".invite-hide-trip-id")
-     const searchSection = document.querySelector("#searchsection")
-     const resultBox = document.querySelector(".searchresultbox")
-     
-     hiddenTripID.remove()
-     searchSection.classList.remove("show-search-section")
-     this.emailinputTarget.value = ""
-     resultBox.innerHTML = ""
-     
-   }
+    const hiddenTripID = document.querySelector(".invite-hide-trip-id")
+    const searchSection = document.querySelector("#searchsection")
+    const resultBox = document.querySelector(".searchresultbox")
 
-  
- }
+    hiddenTripID.remove()
+    searchSection.classList.remove("show-search-section")
+    this.emailinputTarget.value = ""
+    resultBox.innerHTML = ""
 
- 
+  }
+
+
+}
+

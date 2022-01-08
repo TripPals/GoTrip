@@ -1,23 +1,19 @@
-#rightresultcard{
-    display: flex;
-    justify-content: center;
-    border: #623AD6;
+.righttitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  h1 {
+    font-size: 25px;
   }
 
-
-.rightresultdiv {
-  width: 50%;
-  margin: auto;
-  height: 100%;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
+
 .rightresultbox {
-    padding-top: 10px;
+    padding-top: 30px;
     height: calc(100vh - 300px);
 
   p {
@@ -28,12 +24,23 @@
   }
 }
 
+.rightresultdiv {
+  width: 90%;
+  margin: auto;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .rightsection {
   display: flex;
   justify-content: center;
 }
 .rightinfo {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px;

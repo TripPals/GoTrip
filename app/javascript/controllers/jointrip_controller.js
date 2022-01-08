@@ -16,7 +16,7 @@ export default class extends Controller {
         // console.log(addBtn);
         const userID = this.data.get("id")
         // console.log(userID);
-        const tripID = document.querySelector(".hide-trip-id").textContent
+        const tripID = document.querySelector(".invite-hide-trip-id").textContent
         const resultBox = document.querySelector(".searchresultbox")
 
         Rails.ajax({

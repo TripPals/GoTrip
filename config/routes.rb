@@ -42,6 +42,7 @@ Rails.application.routes.draw do
         post "tripinvites/join_trip", to: "tripinvites#join_trip"
   # get all users in current_trip API
         get "authorities/alluser", to: "authorities#alluser"
+        put "authorities/update", to: "authorities#update"
     end
   end
 
