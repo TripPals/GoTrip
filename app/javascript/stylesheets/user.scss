@@ -273,8 +273,132 @@
 
 }
 
+// User info editing SCSS section ======================
 
-// Avatar SCSS section ==============
+.user-info-section {
+  width: 50%;
+  max-width: 700px;
+  min-width: 500px;
+  box-sizing: border-box;
+}
+
+.user-info-content-box {
+  width: 100%;
+  border-radius: 20px;
+  background: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  margin-top: 65px;
+  padding-bottom: 20px;
+  position: relative;
+
+  .user-edit-title {
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    height: 50px;
+    font-size: 1.3rem;
+    border-bottom: 4px solid #EDBB46;
+  }
+
+  form {
+    width: 75%;
+    margin: auto;
+    margin-top: 20px;
+
+    .user-edit-info {
+      display: flex;
+      background-color: #DEDEDE;
+      border-radius: 10px;
+
+      .user-edit-photoupload-section {
+        width: 35%;
+        min-width: 200px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.4) 0px 8px 16px -8px;
+
+        div.avatar-container {
+          width: 100%;
+          border: 2px solid #262D4B;
+          border-radius: 10px;
+        }
+
+        img {
+          border-radius: 10px;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        .avatar-uploader {
+          margin-top: 10px;
+          width: 100%;
+          text-align: center;
+          background-color: #262D4B;
+          color: white;
+          border-radius: 8px;
+          display: inline-block;
+          padding: 6px 12px;
+          cursor: pointer;
+
+          input {
+            display: none;
+          }
+        }
+      }
+
+      .recover-avatar {
+        font-size: 0.8rem;
+        margin-top: 5px;
+      }
+
+      .user-edit-name-section {
+        width: 65%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        label {
+          display: inline-block;
+          width: 100%;
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+        }
+
+        input {
+          border: none;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.user-edit-submit {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  
+  input {
+    display: inline-block;
+    position: absolute;
+    top: -60px;
+    right: 20px;
+    height: 40px;
+    width: 130px;
+    background: #FFE259;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  input:hover {
+    background: #D96A49;
+    color: white;
+  }
+
+}
 
 #app{
   position: relative;
@@ -294,4 +418,21 @@
 .avatar-original{
   width: 200px;
   height: 200px;
+}
+
+.user-delete {
+  width: 70%;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+
+  form {
+    input {
+      background-color: #fff;
+      font-size: 0.7rem;
+      color: grey;
+      border: none;
+    }
+  }
+
 }
