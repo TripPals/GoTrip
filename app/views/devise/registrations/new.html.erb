@@ -2,9 +2,9 @@
 <div class="users-container">
   <div class="users-wrap">
 
-      <div class="register-form">
-        <h2 class="register-title">註冊GoTrip</h2>
-        <div class="register-form-content">
+      <div class="register-login-form">
+        <h2 class="register-login-title">註冊GoTrip</h2>
+        <div class="register-login-form-content">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -27,13 +27,14 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '重新輸入密碼', class:'register-field' %>
           </div>
 
-          <div class="register-button-box">
+          <div class="register-login-button-box">
             <%= f.submit "立即加入" %>
           </div>
           <% end %>
           <%= render "devise/shared/links" %>
         </div>
       </div>
+
   </div>
 
   <div class="registeration-message-illustration-box">

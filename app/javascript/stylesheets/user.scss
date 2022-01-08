@@ -1,7 +1,7 @@
 .users-container{
   position: relative;
   width: 100vw;
-  height: calc(100vh - 20px);
+  height: calc(100% - 20px);
   margin: 0, auto;
   background: rgb(255,226,89);
   background: linear-gradient(225deg, rgba(255,226,89,1) 15%, rgba(237,150,70,1) 100%);
@@ -28,6 +28,18 @@
   }
   to {
     margin-left: 15px;
+    opacity: 1;
+  }
+}
+
+
+@keyframes showcaseRegisterLoginModal {
+  from {
+    margin-right: -180px;
+    opacity: 0.5;
+  }
+  to {
+    margin-right: 0px;
     opacity: 1;
   }
 }
@@ -74,21 +86,63 @@
 }
 
 
+.login-message-illustration-box {
+  
+  width: 30%;
+  min-width: 350px;
+  position: relative;
+  margin-top: 140px;
+  z-index: 0;
+
+  .login-page-title {
+    width: 120%;
+    text-align: left;
+    margin-left: 15px;
+    position: absolute;
+    left: 0;
+    top: 20px;
+    animation-name: showcaseMessage;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+
+    p {
+      font-size: 1.7rem;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 2.8rem;
+    }
+  }
+
+  .login-page-image-box {
+
+    img {
+      height: 500px;
+      margin-left: -100px;
+      margin-top: 20px;
+      animation-name: showcaseIllustration;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+}
+
+
 .users-wrap {
   width: 25%;
   min-width: 350px;
-  // position: absolute;
-  // top:30vh;
-  // left: 15vw;
-  // width: 330px;
   display: flex;
   flex-direction: column;
   position: relative;
   z-index: 1;
+  animation-name: showcaseRegisterLoginModal;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
 }
 
 
-.register-form {
+.register-login-form {
   width: 100%;
   border-radius: 20px;
   background: white;
@@ -96,7 +150,7 @@
   margin-top: 65px;
 }
 
-.register-title {
+.register-login-title {
   width: 100%;
   line-height: 50px;
   text-align: center;
@@ -105,7 +159,8 @@
   border-bottom: 4px solid #EDBB46;
 }
 
-.register-form-content {
+.register-login-form-content {
+
   padding: 15px 20px 15px 20px;
 }
 
@@ -121,7 +176,7 @@
   padding-left: 10px;
 }
 
-.register-button-box {
+.register-login-button-box {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -145,6 +200,7 @@
 
 .registerlogin-already-message {
   text-align: center;
+  font-size: 0.7rem;
 
   a {
     color: #D96A49;
@@ -217,6 +273,8 @@
 
 }
 
+
+// Avatar SCSS section ==============
 
 #app{
   position: relative;

@@ -1,13 +1,15 @@
 
 <div class="registerlogin-already-message">
-  <%- if controller_name != 'sessions' %>
-  <p>已有GoTrip帳號？請
-    <%= link_to "由此登入", new_session_path(resource_name) %></p>
+  <% if controller_name != 'sessions' %>
+    <p>已有GoTrip帳號？請
+      <%= link_to "由此登入", new_session_path(resource_name) %>
+    </p>
   <% end %>
 
-  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <p>尚未成為GoTrip會員？請
-    <%= link_to "由此註冊", new_registration_path(resource_name) %></p>
+  <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <p>尚未成為GoTrip會員？請
+        <%= link_to "由此註冊", new_registration_path(resource_name) %>
+      </p>
   <% end %>
 </div>
 
@@ -17,12 +19,25 @@
   <hr>
 </div>
 
-<div class="third-party-btn">
-  <i class="fab fa-google"></i>
-  <%= link_to "使用GOOGLE帳號登入", user_google_oauth2_omniauth_authorize_path, method: :post, class: 'google-login-btn' %>
-</div>
+<% if request.path_info.include?("sign_up")%>
+  <div class="third-party-btn">
+    <i class="fab fa-google"></i>
+    <%= link_to "使用GOOGLE帳號註冊", user_google_oauth2_omniauth_authorize_path, method: :post, class: 'google-login-btn' %>
+  </div>
 
-<div class="third-party-btn">
-  <i class="fab fa-github"></i>
-  <%= link_to "使用GITHUB帳號登入", user_github_omniauth_authorize_path, method: :post, class: 'github-login-btn' %>
-</div>
+  <div class="third-party-btn">
+    <i class="fab fa-github"></i>
+    <%= link_to "使用GITHUB帳號註冊", user_github_omniauth_authorize_path, method: :post, class: 'github-login-btn' %>
+  </div>
+<% else %>
+  <div class="third-party-btn">
+    <i class="fab fa-google"></i>
+    <%= link_to "使用GOOGLE帳號登入", user_google_oauth2_omniauth_authorize_path, method: :post, class: 'google-login-btn' %>
+  </div>
+
+  <div class="third-party-btn">
+    <i class="fab fa-github"></i>
+    <%= link_to "使用GITHUB帳號登入", user_github_omniauth_authorize_path, method: :post, class: 'github-login-btn' %>
+  </div>
+<% end %>
+
