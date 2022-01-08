@@ -9,5 +9,6 @@ export default async function fetchData(trip_id) {
     return await response.data;
   } catch {
     console.error("Something went wrong...");
+    location.href="/404";
   }
 };

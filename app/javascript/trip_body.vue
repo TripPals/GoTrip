@@ -126,10 +126,20 @@ export default {
       }
     },
     changePage(index) {
+      const responseData = fetchData(trip_id)
+
       this.isActive = index;
-      this.spotsList = this.tripData.schedules[index].spots;
-      this.spotData = this.tripData.schedules[index]
-      
+
+      responseData.then((data)=>{
+        this.tripData = data;
+
+        var spotData = this.tripData.schedules[index];
+        this.spotData = spotData;
+
+        var spotsList = spotData.spots;
+        this.spotsList = spotsList;
+      })
+
       // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行
       setTimeout(() => {
         const position = this.$refs.position;
