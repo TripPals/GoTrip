@@ -138,6 +138,21 @@ export default {
 
         var spotsList = spotData.spots;
         this.spotsList = spotsList;
+
+        let spotMapList = [];
+        let positionMapList = [];
+
+        this.spotsList.forEach(el => {
+          spotMapList.push(el.name);
+        });
+        this.spotsList.forEach(el => {
+          const obj = {};
+          obj.lat = el.lat;
+          obj.lng = el.lng;
+          positionMapList.push(obj);
+        });
+        sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
+        sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
 
       // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行
