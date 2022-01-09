@@ -3,10 +3,37 @@ function refreshMapIfInteracted() {
   const getPositionDataFromStorage = JSON.parse(sessionStorage.getItem("positionMapList"))
   const getSpotNameDataFromStorage = JSON.parse(sessionStorage.getItem("spotMapList"))
   const positiondatalength = getSpotNameDataFromStorage.length
-  const namedatalength = getSpotNameDataFromStorage.length
 
-  if (positiondatalength !== 0 && namedatalength.length !== 0 )  {
+  if (positiondatalength === 0) {
+    // 乾淨的初始地圖，沒有任何景點
+    const map = new google.maps.Map(document.querySelector("#googleMapSection"), {
+      center: {"lat": 23.888984, "lng": 121.089659 },
+      zoom: 9,
+      fullscreenControl: false,
+      streetViewControl: false,
+      mapTypeControl: false
+    });
 
+  } else if (positiondatalength === 1) {
+
+    const map = new google.maps.Map(document.querySelector("#googleMapSection"), {
+      center: getPositionDataFromStorage[0],
+      zoom: 16,
+      fullscreenControl: false,
+      streetViewControl: false,
+      mapTypeControl: false
+    });
+
+    const marker = new google.maps.Marker({
+      position: getPositionDataFromStorage[0],
+      map: map,
+      icon: {url:`https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/mapicon/number_1.png`, scaledSize: new google.maps.Size(70, 70)}
+    });
+
+    marker.setMap(map);
+
+  } else {
+    
     const map = new google.maps.Map(document.querySelector("#googleMapSection"), {
       center: getPositionDataFromStorage[Math.floor((positiondatalength + 1)/2)],
       zoom: 16,
@@ -82,9 +109,7 @@ function refreshMapIfInteracted() {
       calculateAndDisplayRoute(directionsService,directionsRenderer);
       directionsRenderer.setMap(map);
     }, 300);
-  
-  }
-
+  }  
 } 
 
 export default refreshMapIfInteracted
