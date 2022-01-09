@@ -19,11 +19,7 @@ class Api::V1::SpotfindersController < ApplicationController
       when @search_input_keyword == "" && search_input_city !="" # 只有城市關鍵字input存在
         @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
       end
-
-      puts "=============="
-      puts @spots
-      puts "=============="
-
+      
       # 如果我們自己的資料表有模糊比對的資料，把找到的資料丟回去給前端，用JSON的方式
       if !@spots.empty?
 
