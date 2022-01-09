@@ -50,8 +50,11 @@ export default class extends Controller {
 						<p>${email}</p>
 						<p>${role}</p>
 					</div>
+					<div>
+						<label for="role-select">變更權限</label>
+					</div>
 					<div class="changerole" data-controller="editrole" >
-						<select class="selector"  data-role="${role}" data-id="${id}" 
+						<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
 						data-editrole-target="selector" data-action="change->editrole#role" >
 							<option selected="selected" data-value="1">可檢視</option>
 							<option data-value="2">可編輯</option>
@@ -71,10 +74,13 @@ export default class extends Controller {
 						<p>${email}</p>
 						<p>${role}</p>
 					</div>
+					<div>
+						<label for="role-select">變更權限</label>
+					</div>
 					<div class="changerole" data-controller="editrole" data-id="${id}" data-role="${role}">
-						<select class="selector" data-editrole-target="selector" data-action="change->editrole#role" >
-							<option selected="selected" data-value="editor">可編輯</option>
-							<option data-value="viewer">可檢視</option>
+						<select name="role"id="role-select" data-editrole-target="selector" data-action="change->editrole#role" >
+							<option selected="selected" data-value="2">可編輯</option>
+							<option data-value="1">可檢視</option>
 						</select>
 					</div>
 				</div>
@@ -92,7 +98,7 @@ export default class extends Controller {
 
 		const hiddenTripID = document.querySelector(".authority-hide-trip-id")
 		const rightSection = document.querySelector("#rightresultcard")
-		// const resultBox = document.querySelector(".rightresultbox")
+		const resultBox = document.querySelector(".rightresultbox")
 
 		hiddenTripID.remove()
 		rightSection.classList.remove("show-right-section")
