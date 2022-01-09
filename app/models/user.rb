@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates_length_of     :password, in: 6..128, if: lambda {self.password.present?}
   validates_confirmation_of :password, if: lambda {self.password.present?}
   
-  has_many :user_trips
+  has_many :user_trips, dependent: :delete_all
   has_many :trips, through: :user_trips
 
   def self.from_omniauth(auth)
@@ -29,6 +29,10 @@ class User < ApplicationRecord
     name == "" ? email : name
   end
 
+  def current_trip_role(trip_id)
+    user_trips.find_by(trip_id: trip_id).role
+  end
+  
   def show_image
     if avatar.present?
       avatar
