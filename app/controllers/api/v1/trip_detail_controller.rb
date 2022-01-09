@@ -43,17 +43,23 @@ class Api::V1::TripDetailController < ApplicationController
   end
 
   def update_order
-    schedule_spots_ids = params[:schedule_spots_id].split(",")
-    orders = params[:order].split(",")
+    schedule_spots_ids = params[:schedule_spots_id].split(",").map{|i|i.to_i}
+    orders = params[:order].split(",").map{|i|i.to_i}
 
     length = schedule_spots_ids.length
-
-    x = 0
-    while x < (length) do
-      schedule_spot = ScheduleSpot.find(schedule_spots_ids[x])
-      schedule_spot.update(order: orders[x])
-      x += 1
+    schedule_content = [] 
+    length.times do |i|
+      schedule_content << ScheduleSpot.find(schedule_spots_ids)[i].schedule_id
     end
+    
+    if schedule_content.uniq.length == 1 && orders.uniq.length == length
+      length.times do |i|
+        schedule_spot = ScheduleSpot.find(schedule_spots_ids[i])
+        schedule_spot.update(order: orders[i])
+      end
       render status: 200, json: ["Order updated successfully"].to_json
+    else
+      render status: 200, json: ["Order updated failed"].to_json
+    end
   end 
 end
