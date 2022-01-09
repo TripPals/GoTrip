@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       get "spotfinders/search", to: "spotfinders#search"
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
+      put "trip_detail/update_date", to: "trip_detail#update_date"
     end
   end
   # /api/v1/spotfinders/search

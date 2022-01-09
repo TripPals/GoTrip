@@ -1,15 +1,16 @@
 <template>
   <div>
     <section id="dataTitle">
-      <input type="text" v-model.trim="tripData.name" id="tripName" @focusout="changeName">
+      <input type="text" v-model.trim="tripData.name" id="tripName" @focus="changeName" @change="" @mouseout="">
       <div class="nameError">{{nameError}}</div>
       <div class="tripDate">
         <div>
-          <div class="starEnd">{{startDay}} - {{endDay}}</div>
+          <div class="starEnd">{{startDay}}<date-picker v-model="startDay" input-class="hideInput" :clearable="false" valueType='format' @change="changeDate"></date-picker> ～ {{endDay}}</div>
           <div v-if="tripData.length > 1" class="dayLength">{{tripData.length}} 天 {{tripData.length - 1}} 夜</div>
           <div v-else-if="tripData.length == 1" class="dayLength">{{tripData.length}} 天</div>
         </div>
-        <div class="123">
+        <div class="calendar">
+          
         </div>
       </div>
       
@@ -54,6 +55,10 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import fetchData from './packs/tripDataFetch.js';
 import draggable from 'vuedraggable';
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
+import 'vue2-datepicker/locale/zh-cn';
 
 const url = window.location.href
 const decomposedUrl = url.split("/")
@@ -61,7 +66,10 @@ const trip_id = decomposedUrl[4]
 const responseData = fetchData(trip_id)
 
 export default {
-  components: { draggable },
+  components: {
+    draggable,
+    DatePicker,
+    },
   data: function () {
     return {
       // 點擊天數按鈕變色
@@ -81,8 +89,8 @@ export default {
     responseData.then((data)=>{
       this.tripData = data;
 
-      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
-      const startDay = dayjs(this.tripData.startDate).format('YYYY/MM/DD');
+      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
+      const startDay = dayjs(this.tripData.startDate).format('YYYY-MM-DD');
       this.startDay = startDay;
       this.endDay = endDay;
 
@@ -109,13 +117,12 @@ export default {
   },
   methods: {
     changeName(e){
-
       const update_name = e.target.value
 
       if (e.target.value !== "") {
         this.nameError = "";
-        const token = document.querySelector("meta[name=csrf-token]").content
-        axios.defaults.headers.common["X-CSRF-Token"] = token
+        const token = document.querySelector("meta[name=csrf-token]").content;
+        axios.defaults.headers.common["X-CSRF-Token"] = token;
         axios.put(`/api/v1/trip_detail/update_name?trip_id=${trip_id}&update_name=${update_name}`)
              .catch((err) => {
                console.log(err);
@@ -125,23 +132,30 @@ export default {
         this.nameError = "請輸入行程名稱";
       }
     },
+    changeDate(e) {
+      const update_date = e;
+      const token = document.querySelector("meta[name=csrf-token]").content;
+      axios.defaults.headers.common["X-CSRF-Token"] = token;
+      axios.put(`/api/v1/trip_detail/update_date?trip_id=${trip_id}&update_date=${update_date}`)
+             .catch((err) => {
+               console.log(err);
+              });
+      const endDay = dayjs(update_date).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
+      this.endDay = endDay;
+    },
     changePage(index) {
       const responseData = fetchData(trip_id)
-
       this.isActive = index;
 
       responseData.then((data)=>{
         this.tripData = data;
-
         var spotData = this.tripData.schedules[index];
         this.spotData = spotData;
-
         var spotsList = spotData.spots;
         this.spotsList = spotsList;
 
         let spotMapList = [];
         let positionMapList = [];
-
         this.spotsList.forEach(el => {
           spotMapList.push(el.name);
         });
@@ -154,26 +168,6 @@ export default {
         sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
         sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
-
-      // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行
-      setTimeout(() => {
-        const position = this.$refs.position;
-        const spotName = this.$refs.spotName;
-
-        let spotMapList = [];
-        spotName.forEach(el => {
-          spotMapList.push(el.innerText);
-        });
-        let positionMapList = [];
-        position.forEach(el => {
-          const obj = {};
-          obj.lat = el.innerText.split(",")[0];
-          obj.lng = el.innerText.split(",")[1];
-          return positionMapList.push(obj);
-        });
-        sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
-        sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
-        })
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
@@ -184,6 +178,7 @@ export default {
       dayTitle.scrollLeft -= 140;
     },
     start() {
+      // 拖曳開始發生的事件，之後補上控制拖曳動畫內容
     },
     dragSpot() {
       const position = this.$refs.position;
