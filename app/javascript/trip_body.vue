@@ -100,8 +100,8 @@ export default {
       });
       this.spotsList.forEach(el => {
         const obj = {};
-        obj.lat = el.lat;
-        obj.lng = el.lng;
+        obj.lat = parseFloat(el.lat);
+        obj.lng = parseFloat(el.lng);
         positionMapList.push(obj);
       });
       sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
@@ -148,37 +148,43 @@ export default {
         });
         this.spotsList.forEach(el => {
           const obj = {};
-          obj.lat = el.lat;
-          obj.lng = el.lng;
+          obj.lat = parseFloat(el.lat);
+          obj.lng = parseFloat(el.lng);
           positionMapList.push(obj);
         });
         sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
         sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
 
-      // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行
+      // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行!
       setTimeout(() => {
         const position = this.$refs.position;
         const spotName = this.$refs.spotName;
 
-        let spotMapList = [];
-        spotName.forEach(el => {
-          spotMapList.push(el.innerText);
-        });
-        let positionMapList = [];
-        position.forEach(el => {
-          const obj = {};
-          obj.lat = parseFloat(el.innerText.split(",")[0]);
-          obj.lng = parseFloat(el.innerText.split(",")[1]);
-          return positionMapList.push(obj);
-        });
-        sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
-        sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
-        })
+        if (position !== undefined && spotName !== undefined) {
+          
+          let spotMapList = [];
+          spotName.forEach(el => {
+            spotMapList.push(el.innerText);
+          });
+          let positionMapList = [];
+          position.forEach(el => {
+            const obj = {};
+            obj.lat = parseFloat(el.innerText.split(",")[0]);
+            obj.lng = parseFloat(el.innerText.split(",")[1]);
+            return positionMapList.push(obj);
+          });
+          sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
+          sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
+        }
+        }, 100)
+
+      // refreshMapIfInteracted()
 
         setTimeout(()=>{
           refreshMapIfInteracted()
-        }, 100)
+        }, 200)
+
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
