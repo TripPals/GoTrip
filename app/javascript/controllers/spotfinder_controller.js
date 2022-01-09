@@ -23,6 +23,7 @@ export default class extends Controller {
     
     const loader = document.querySelector(".loaderBox")
     loader.classList.add("loaderBoxShow")
+    console.log(loader);
 
     async function fetchData() {
       try {
