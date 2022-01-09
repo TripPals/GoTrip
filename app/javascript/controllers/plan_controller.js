@@ -1,18 +1,10 @@
-// Visit The Stimulus Handbook for more details 
-// https://stimulusjs.org/handbook/introduction
-// 
-// This example controller works with specially annotated HTML like:
-//
-// <div data-controller="hello">
-//   <h1 data-target="hello.output"></h1>
-// </div>
-
 import { Controller } from "stimulus"
-// 假的資料去測試，之後會直接寫一個打api的檔案然後把吐回來的資料import進來
-import { mockData } from '../lib/fakedata'
+import { mockData } from  '../lib/fakedata'
 
 export default class extends Controller {
-  static targets = [ "initialmap" ]
+
+
+  static targets = [ "initialmap", "spotItemVue" ]
 
   connect() {
 
@@ -184,4 +176,6 @@ export default class extends Controller {
     }
 
   }
-}
+
+
+ }
