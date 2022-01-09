@@ -33,7 +33,7 @@ export default class extends Controller {
         return result
       } catch {
         const result = "Empty Result"
-        console.error("Something went wrong...");
+        console.log("Something went wrong...");
         return result
       }
     };
@@ -73,6 +73,16 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
       
+        // 如果fetch失敗了
+      } else if (spotResultData === "Empty Result") {
+        
+        const noResultMessage = document.createElement("div")
+
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">哇!搜尋時發生了點小問題，請再嘗試搜尋一次，或者晚點再試</p>`
+
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+
         // 如果搜尋結果有>=1筆資料
       } else {
         spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
