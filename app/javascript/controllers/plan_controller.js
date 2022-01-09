@@ -15,8 +15,6 @@ export default class extends Controller {
 
   renderMap() {
 
-    // 如果回來的那一包資料有無景點的判斷
-    // 哪一天的怎麼辦？要想一下
     if (mockData.length > 1) {
 
       const map = new google.maps.Map(this.initialmapTarget, {
@@ -26,30 +24,6 @@ export default class extends Controller {
         streetViewControl: false,
         mapTypeControl: false
       });
-  
-      // 展開所有的景點marker
-      // mockData.forEach(function(element,index){
-      //   markers[index] = new google.maps.Marker(element);
-      //   markers[index].setMap(map);
-      // });  
-
-      // 加上點到點之間的連線
-      // const spotsCoordinates = []
-      // mockData.forEach((element) => {
-      //   spotsCoordinates.push(element.position)
-      // })
-
-      // const spotsPath = new google.maps.Polyline({
-      //   path: spotsCoordinates,
-      //   geodesic: true,
-      //   strokeColor: "#FF0000",
-      //   strokeOpacity: 1.0,
-      //   strokeWeight: 3,
-      // });
-    
-      // spotsPath.setMap(map);
-
-      // 把marker做成動畫（IFFE function)
 
       const markers = []
 
@@ -122,26 +96,6 @@ export default class extends Controller {
         calculateAndDisplayRoute(directionsService,directionsRenderer);
         directionsRenderer.setMap(map);
       }, 300);
-
-    //   drawRoute(firstSpotPosition, lastSpotPosition, middleSpotsPosition);
-
-    //   function drawRoute(firstSpotPosition, lastSpotPosition, middleSpotsPosition) {
-    //     var request = {
-    //       origin: firstSpotPosition,
-    //       destination: lastSpotPosition,
-    //       waypoints: middleSpotsPosition,
-    //       optimizeWaypoints: true,
-    //       travelMode: google.maps.TravelMode.DRIVING
-    //   }
-    // }
-
-
-    // directionsService.route(request, function(response, status) {
-    //   if (status == google.maps.DirectionsStatus.OK) {
-    //     directionsRenderer.setDirections(response);
-    //   }
-    // })
-
 
     } else if (mockData.length === 1) {
 
