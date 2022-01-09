@@ -27,7 +27,7 @@ function refreshMapIfInteracted() {
     const marker = new google.maps.Marker({
       position: getPositionDataFromStorage[0],
       map: map,
-      icon: {url:`https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/mapicon/number_1.png`, scaledSize: new google.maps.Size(70, 70)}
+      icon: {url:`https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/goytipmapicon/1.png`, scaledSize: new google.maps.Size(100, 100)}
     });
 
     marker.setMap(map);
@@ -58,7 +58,7 @@ function refreshMapIfInteracted() {
           new google.maps.Marker({
             position: position,
             map,
-            icon: {url:`https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/mapicon/number_${index+1}.png`, scaledSize: new google.maps.Size(70, 70)},
+            icon: {url:`https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/goytipmapicon/${index+1}.png`, scaledSize: new google.maps.Size(100, 100)},
             animation: google.maps.Animation.DROP,
           })
         );
@@ -76,7 +76,7 @@ function refreshMapIfInteracted() {
       // surporessed the A,B,C,D...marker
       suppressMarkers: true,
       // give customed route color
-      polylineOptions: { strokeColor: "#7f62f5", strokeWeight: 6, strokeOpacity: 0.8}
+      polylineOptions: { strokeColor: "#EC5362", strokeWeight: 6, strokeOpacity: 0.8}
   });
   
     const firstSpotPosition = getSpotNameDataFromStorage[0]
