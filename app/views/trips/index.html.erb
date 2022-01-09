@@ -146,14 +146,14 @@
   </div>
 
   <div id="rightresultcard" class="hide-right-section">
-      <div class="righttitle">
+    <div data-controller="authority" class="roleEditModal">
+      <div class="rightEditTitle">
         <h1>目前行程所有夥伴</h1>
+        <button class="au-closebtn" data-action="click->authority#closeRightCard"><p>✕</p>
+        </button>
       </div>
-      <div data-controller="authority" class="rightform">
-        <button class="au-closebtn" data-action="click->authority#closeRightCard">X</button>
-      </div>
-        <div>
-          <div class="rightresultbox">
-          </div>
-        </div>
+        <div class="rightresultbox"></div>
+    </div>
   </div>
+
+   

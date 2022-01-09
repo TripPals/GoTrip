@@ -44,50 +44,67 @@ export default class extends Controller {
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("rightresultdiv")
 					rightBox.innerHTML = `
-				<div class="rightsection">
+				<div class="rightsection" data-controller="editrole">
 					<div class="rightinfo" >
 						<p>${name}</p>
 						<p>${email}</p>
 						<p>${role}</p>
 					</div>
-					<div>
-						<label for="role-select">變更權限</label>
-					</div>
-					<div class="changerole" data-controller="editrole" >
+					<div class="changerole">
+						<label for="role-select">變更權限:</label>
 						<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
 						data-editrole-target="selector" data-action="change->editrole#role" >
 							<option selected="selected" data-value="1">可檢視</option>
 							<option data-value="2">可編輯</option>
 						</select>
 					</div>
+					<div class="deleterole" data-editrole-target="deletebtn">
+							<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+							</button>
+					</div>
 				</div>
 			`
 					rightResultBox.appendChild(rightBox)
-				} else {
+				} else if (role === 2){
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("rightresultdiv")
 					rightBox.innerHTML = `
-				<div class="rightsection">
+					<div class="rightsection" data-controller="editrole">
 					<div class="rightinfo" >
 						<p>${name}</p>
 						<p>${email}</p>
 						<p>${role}</p>
 					</div>
-					<div>
-						<label for="role-select">變更權限</label>
-					</div>
-					<div class="changerole" data-controller="editrole" data-id="${id}" data-role="${role}">
-						<select name="role"id="role-select" data-editrole-target="selector" data-action="change->editrole#role" >
+					<div class="changerole">
+						<label for="role-select">變更權限:</label>
+						<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
+						data-editrole-target="selector" data-action="change->editrole#role" >
 							<option selected="selected" data-value="2">可編輯</option>
 							<option data-value="1">可檢視</option>
 						</select>
 					</div>
+					<div class="deleterole" data-editrole-target="deletebtn">
+						<button class="deletebtn"><p>刪除成員</p></button>
+					</div>
 				</div>
 			`
 					rightResultBox.appendChild(rightBox)
+				}else{
+					const rightResultBox = document.querySelector(".rightresultbox")
+					const rightBox = document.createElement("div")
+					rightBox.classList.add("main-rightresultdiv")
+					rightBox.innerHTML = `
+					<div class="rightsection" data-controller="editrole">
+					<div class="rightinfo" >
+						<p>行程擁有者</p>
+						<p>${name}</p>
+						<p>${email}</p>
+						<p>${role}</p>
+					</div>
+					`
+					rightResultBox.insertAdjacentElement("afterbegin",rightBox)
 				}
-
 			})
 		}
 		renderData()

@@ -1,4 +1,5 @@
 class Api::V1::AuthoritiesController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def alluser
     # @users = UserTrip.find_by(trip_id: params[:trip_id]).user
@@ -17,10 +18,25 @@ class Api::V1::AuthoritiesController < ApplicationController
   end
 
   def update
-      @user = UserTrip.find(params[:id])
-      @role = UserTrip.find_by(role: params[:role]).to_i
-      UserTrip.find(@user.id).update(role: @role)
+
+    new_role = params[:role].to_i
+    UserTrip.find(params[:id]).update(role: new_role)
       
   end
+
+  def delete
+    @usertrip = UserTrip.find(params[:id])
+      if @usertrip.destroy
+        respond_to do |format|
+          format.json{render :json =>  [result: "ok", message:"您已將朋友成功退出此行程" , status => 200]}
+        end
+      else
+        respond_to do |format|
+          format.json{render :json =>  [result: "faild", message:"伺服器忙碌中，請稍後再試" , status => 500]}
+        end
+      end
+
+  end
+
 
 end

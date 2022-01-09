@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   # get all users in current_trip API
         get "authorities/alluser", to: "authorities#alluser"
         patch "authorities/update", to: "authorities#update"
+        delete "authorities/delete", to:
+        "authorities#delete"
     end
   end
 

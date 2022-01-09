@@ -1,4 +1,16 @@
-.righttitle {
+.hide-right-section{
+    visibility: hidden;
+  }
+  
+.show-right-section{
+    visibility: visible;
+  }
+
+.authority-hide-trip-id {
+    visibility: hidden;
+  }
+
+.rightEditTitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,7 +22,6 @@
   }
 
 }
-
 
 .rightresultbox {
     padding-top: 30px;
@@ -25,7 +36,7 @@
 }
 
 .rightresultdiv {
-  width: 90%;
+  width: 100%;
   margin: auto;
   height: 100px;
   border-radius: 10px;
@@ -35,10 +46,15 @@
   align-items: center;
 }
 
+.main-rightresultdiv{
+
+}
+
 .rightsection {
   display: flex;
   justify-content: center;
 }
+
 .rightinfo {
   width: 100%;
   display: flex;
@@ -61,31 +77,78 @@
 
 }
 
-
-
-
-
-
-
-
 .au-closebtn{
-    width: 40px;
-    height: 40px;
-    background-color: #623AD6;
-    color: white;
+  width: 40px;
+  height: 40px;
+  background-color: #623AD6;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  }
+
+.rightdetale{
+  width: 150px;
+}
+
+
+label {
+  width: 100%;
+  font-size: 1rem;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 100%;
+  font-size: .9rem;
+  padding: 2px 5px;
+  border-radius: 8px;
+}
+
+.deletebtn{
+  width: 100%;
+  height: 30px;
+  background-color: rgb(209, 209, 209);
+  color: black;
+  // font-size: 1px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+
+  p {
+    width: 100%;
     font-size: 1rem;
-    border: none;
-    border-radius: 8px;
+    text-align: center;
+
   }
 
-.hide-right-section{
-    visibility: hidden;
-  }
-  
-.show-right-section{
-    visibility: visible;
-  }
+}
 
-.authority-hide-trip-id {
-    visibility: hidden;
-  }
+.deletebtn:hover {
+  cursor: pointer;
+}
+
+.deletefriendmessagediv{
+  width: 90%;
+  margin: auto;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deletefaildmessagediv{
+  width: 90%;
+  margin: auto;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
