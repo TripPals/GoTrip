@@ -12,9 +12,7 @@ class Api::V1::TripDetailController < ApplicationController
     max_order = Schedule.where(trip_id: @trip.id).maximum(:day_order).to_i
     Schedule.create(trip_id: @trip.id, day_order: max_order + 1)
 
-    respond_to do |format|
-      format.json{render :json => [message:"增加天數成功！"],status => 200}
-    end
+    render status: 200, json: ["Add schedule successfully"].to_json
   end
 
   def destroy
@@ -24,17 +22,15 @@ class Api::V1::TripDetailController < ApplicationController
     if @trip.length > 1
       @trip.update(length: @trip.length.to_i-1, end_date: @trip.start_date.to_date + @trip.length.to_i.days - 2.days)
       @schedule.destroy
-      respond_to do |format|
-        format.json{render :json => [message:"Schedule deleted successfully"],status => 200}
-      end
 
+      render status: 200, json: ["Schedule deleted successfully"].to_json
     else
       respond_to do |format|
-        format.json{render :json => [message:"第一天無法刪除，請增加天數或刪除整個行程"],status => 200}
+        format.json { render :json => ["第一天無法刪除，請增加天數或刪除整個行程"], status => 200 }
       end
     end
   end
-  
+
   def update_name
     @trip = Trip.find_by(id: params[:trip_id])
     
@@ -45,4 +41,19 @@ class Api::V1::TripDetailController < ApplicationController
       render status: 404, json: ["update error"].to_json
     end
   end
+
+  def update_order
+    schedule_spots_ids = params[:schedule_spots_id].split(",")
+    orders = params[:order].split(",")
+
+    length = schedule_spots_ids.length
+
+    x = 0
+    while x < (length) do
+      schedule_spot = ScheduleSpot.find(schedule_spots_ids[x])
+      schedule_spot.update(order: orders[x])
+      x += 1
+    end
+      render status: 200, json: ["Order updated successfully"].to_json
+  end 
 end

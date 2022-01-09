@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       patch "add_schedule", to:"trip_detail#add"
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
+      patch "trip_detail/update_order", to: "trip_detail#update_order"
     end
   end
   # /api/v1/spotfinders/search
