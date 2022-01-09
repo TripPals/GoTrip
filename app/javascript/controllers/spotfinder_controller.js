@@ -36,8 +36,7 @@ export default class extends Controller {
     async function renderData() {
       
       const spotResultData = await fetchData()
-      console.log(spotResultData);
-      
+
       // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
 
@@ -60,7 +59,6 @@ export default class extends Controller {
 
         // 如果搜尋結果有>=1筆資料
       } else {
-        console.log("Hello");
         spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
           
           const spot_name_char_limit = 25
