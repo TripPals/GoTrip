@@ -2,11 +2,13 @@ function refreshMapIfInteracted() {
   
   const getPositionDataFromStorage = JSON.parse(sessionStorage.getItem("positionMapList"))
   const getSpotNameDataFromStorage = JSON.parse(sessionStorage.getItem("spotMapList"))
+  const positiondatalength = getSpotNameDataFromStorage.length
+  const namedatalength = getSpotNameDataFromStorage.length
 
-  if (getPositionDataFromStorage.length !== 0 && getSpotNameDataFromStorage.length !== 0 )  {
+  if (positiondatalength !== 0 && namedatalength.length !== 0 )  {
 
     const map = new google.maps.Map(document.querySelector("#googleMapSection"), {
-      center: getPositionDataFromStorage[1],
+      center: getPositionDataFromStorage[Math.floor((positiondatalength + 1)/2)],
       zoom: 16,
       fullscreenControl: false,
       streetViewControl: false,
