@@ -64,6 +64,15 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
+        // 如果使用者什麼都沒輸入
+      } else if (spotResultData[0] === 'Invalid call! Need to have input') {
+        const noResultMessage = document.createElement("div")
+
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">咦？您是否忘記輸入關鍵字了呢？</p>`
+
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+      
         // 如果搜尋結果有>=1筆資料
       } else {
         spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {

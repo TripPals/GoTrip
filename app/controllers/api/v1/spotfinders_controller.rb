@@ -60,7 +60,7 @@ class Api::V1::SpotfindersController < ApplicationController
     # 使用者城市＆關鍵字都沒有給，丟回錯誤
     else
       respond_to do |format|
-        format.json { render :json => { status: "failed", message: "Invalid call! Need to have input"}, status => 406 }
+        format.json { render :json => ["Invalid call! Need to have input"], status => 406 }
       end
     end  
 
