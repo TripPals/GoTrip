@@ -47,11 +47,29 @@ class Api::V1::TripDetailController < ApplicationController
     schedule_spots_ids = params[:schedule_spots_id]
     orders = params[:order_list]
     schedule_id = JSON.load(params[:schedule_id])
-    length = schedule_spots_ids.length
+    
+    # 依序一個個值檢查
+    schedule_spots_ids.length.times do |i|
+      # 如果是整數（單純的單個景點，在trip裡沒有重複）
+      if schedule_spots_ids[i].is_a? Integer
+        schedule_spot = ScheduleSpot.find(schedule_spots_ids[0])
+        schedule_spot.update(order: orders[0])
+      # 不是整數，但只有一個（同個景點在其他schedule也有，但在此schedule沒有）  
+      else schedule_spots_ids.count(schedule_spots_ids[i]) == 1
+        schedule_spot_array = JSON.load(schedule_spots_ids[i])
+        schedule_spot_array.length.times do |x|
+          # 從 ScheduleSpot找，如果schedule_id是我們要的schedule_id才去做更新
+          schedule_spot = ScheduleSpot.find(schedule_spot_array[x])
+          if schedule_spot.schedule_id == schedule_id
+            schedule_spot.update(order: orders[i])
+          end
+        end
+      end
+    end
 
-    # 找出重複的值們(=在此schedule內重複出現的景點)
+    # 找出重複的值(=在此schedule內重複出現的景點)
     repeat_sspots = schedule_spots_ids.select{ |e| schedule_spots_ids.count(e) > 1 ? e : nil }.uniq
-
+    
     if repeat_sspots !=[]
     
       repeat_sspots.length.times do |x|
@@ -71,34 +89,6 @@ class Api::V1::TripDetailController < ApplicationController
         end
       end
     end
-
-      
-    # repeat_length.times do |x|
-    #   repeat_sspot = JSON.load(repeat_sspots[x])
-    #   repeat_sspot_index =  schedule_spots_ids.map.with_index {|item, i| item == repeat_sspots[x] ? i : nil}.compact
-    # end
-    # schedule_spot_array = JSON.load(schedule_spots_ids[1])
-
-    # if schedule_spots_ids[0].is_a? Integer
-    #   schedule_spot = ScheduleSpot.find(schedule_spots_ids[0])
-    #   schedule_spot.update(order: orders[0])
-
-    # else schedule_spots_ids.count(schedule_spots_ids[2]) == 1
-    #   schedule_spot_array = JSON.load(schedule_spots_ids[2])
-    #   sspot_length = schedule_spot_array.length
-    #   sspot_length.times do |x|
-    #     schedule_spot = ScheduleSpot.find(schedule_spot_array[x])
-    #     if schedule_spot.schedule_id == schedule_id
-    #       schedule_spot.update(order: orders[2])
-    #     end
-    #   end
-    # end
-    
-    # else 
-    #   schedule_spots_ids[3]
-    #   repeat_array = schedule_spots_ids.map.with_index {|item, i| item == repeat ? i : nil}.compact
-
-    # end
 
     # length.times do |i|
     #   if 
