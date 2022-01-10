@@ -59,19 +59,23 @@ module GooglePlacesApi
         second_batch_data = JSON.parse(response.body)
         @address_component = second_batch_data["result"]["address_components"]
       
-        level_1 = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}
-        level_2 = @address_component.select{ |item| item["types"].include?("administrative_area_level_2")}
-        # @city = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}[0]["short_name"]
-        case
-        when level_1 !=[] && level_2 !=[]
-          @city = level_1[0]["long_name"]
-        when level_1 !=[] && level_2 =[]
-          @city = level_1[0]["long_name"]
-        when level_1 =[] && level_2 !=[] 
-          @city = level_2[0]["long_name"]
-        when level_1 =[] && level_2 =[]
+        if @address_component
+          level_1 = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}
+          level_2 = @address_component.select{ |item| item["types"].include?("administrative_area_level_2")}
+          # @city = @address_component.select{ |item| item["types"].include?("administrative_area_level_1")}[0]["short_name"]
+          case
+          when level_1 !=[] && level_2 !=[]
+            @city = level_1[0]["long_name"]
+          when level_1 !=[] && level_2 =[]
+            @city = level_1[0]["long_name"]
+          when level_1 =[] && level_2 !=[] 
+            @city = level_2[0]["long_name"]
+          when level_1 =[] && level_2 =[]
+            @city = "暫無資訊"
+          end
+        else
           @city = "暫無資訊"
-        end
+        end  
 
         if second_batch_data["result"]["formatted_phone_number"]
           @phone = second_batch_data["result"]["formatted_phone_number"]
