@@ -1,5 +1,6 @@
 class Api::V1::TripDetailController < ApplicationController
   skip_before_action :verify_authenticity_token
+  require 'json'
 
   def show
     @trip = Trip.find(params[:trip_id])
@@ -43,23 +44,12 @@ class Api::V1::TripDetailController < ApplicationController
   end
 
   def update_order
-    schedule_spots_ids = params[:schedule_spots_id].split(",").map{|i|i.to_i}
-    orders = params[:order].split(",").map{|i|i.to_i}
+    schedule_spots_ids = JSON.load(params[:schedule_spots_id])
+    orders = JSON.load(params[:order])
 
-    length = schedule_spots_ids.length
-    schedule_content = [] 
-    length.times do |i|
-      schedule_content << ScheduleSpot.find(schedule_spots_ids)[i].schedule_id
+    a = schedule_spots_ids.map{|i|i.to_i}
+    respond_to do |format|
+      format.json { render :json => a}
     end
-    
-    if schedule_content.uniq.length == 1 && orders.uniq.length == length
-      length.times do |i|
-        schedule_spot = ScheduleSpot.find(schedule_spots_ids[i])
-        schedule_spot.update(order: orders[i])
-      end
-      render status: 200, json: ["Order updated successfully"].to_json
-    else
-      render status: 200, json: ["Order updated failed"].to_json
-    end
-  end 
+  end
 end
