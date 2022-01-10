@@ -1,22 +1,22 @@
-<h1>建立行程</h1>
+<h1 class="create-title">建立行程</h1>
 
-
+<div class="trip-create-container">
 <%= form_for(@trip, url: trips_create_path) do |t| %>
-  <div class="fields">
+  <div class="trip-create-name-fields">
     <%= t.label :name, "行程名稱" %>
     <%= t.text_field :name %>
   </div>
-  <div class="fields">
+  <div class="trip-create-days-fields">
     <%= t.label :length, "天數" %>
     <%= t.number_field :length, min: 1 %>
   </div>
-  <div>
+  <div class="trip-create-start_date-fields">
   <%= t.label :start_date, "開始日期" %>
   <%= t.date_field :start_date, start_year: 1800, end_year: Time.now.year %>
   </div>
   
 
-  <%= t.submit  %>
+  <%= t.submit "建立" %>
   <%= link_to "行程總覽", trips_path %>
 
 <% end %>

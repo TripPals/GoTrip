@@ -37,34 +37,83 @@ export default class extends Controller {
 		async function renderData() {
 
 			const allUserData = await fetchData()
-			allUserData.forEach(({ name, email, role, id }) => {
+			allUserData.forEach(({ name, email, role, id, image, avatar }) => {
 				// console.log(user);
 				if (role === 1) {
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("rightresultdiv")
-					rightBox.innerHTML = `
-				<div class="rightsection" data-controller="editrole">
-					<div class="rightinfo" >
-						<p>${name}</p>
-						<p>${email}</p>
-						<p>${role}</p>
-					</div>
-					<div class="changerole">
-						<label for="role-select">變更權限:</label>
-						<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
-						data-editrole-target="selector" data-action="change->editrole#role" >
-							<option selected="selected" data-value="1">可檢視</option>
-							<option data-value="2">可編輯</option>
-						</select>
-					</div>
-					<div class="deleterole" data-editrole-target="deletebtn">
-							<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-							</button>
-					</div>
-				</div>
-			`
-					rightResultBox.appendChild(rightBox)
+					if (avatar!== null){
+						rightBox.innerHTML = `
+							<div class="rightsection" data-controller="editrole">
+								<div class="rightinfo" >
+									<img>src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${id}/${avatar}"</img>
+									<p>${name}</p>
+									<p>${email}</p>
+									<p>${role}</p>
+								</div>
+								<div class="changerole">
+									<label for="role-select">變更權限:</label>
+									<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
+									data-editrole-target="selector" data-action="change->editrole#role" >
+										<option selected="selected" data-value="1">可檢視</option>
+										<option data-value="2">可編輯</option>
+									</select>
+								</div>
+								<div class="deleterole" data-editrole-target="deletebtn">
+										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+										</button>
+								</div>
+							</div>
+						`
+						rightResultBox.appendChild(rightBox)}
+						else if(avatar== null && image !== null){
+							rightBox.innerHTML = `
+							<div class="rightsection" data-controller="editrole">
+								<div class="rightinfo" >
+									<img>src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${id}/${avatar}"</img>
+									<p>${name}</p>
+									<p>${email}</p>
+									<p>${role}</p>
+								</div>
+								<div class="changerole">
+									<label for="role-select">變更權限:</label>
+									<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
+									data-editrole-target="selector" data-action="change->editrole#role" >
+										<option selected="selected" data-value="1">可檢視</option>
+										<option data-value="2">可編輯</option>
+									</select>
+								</div>
+								<div class="deleterole" data-editrole-target="deletebtn">
+										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+										</button>
+								</div>
+							</div>
+						`
+						}else{
+							rightBox.innerHTML = `
+							<div class="rightsection" data-controller="editrole">
+								<div class="rightinfo" >
+									<img>src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${id}/${avatar}"</img>
+									<p>${name}</p>
+									<p>${email}</p>
+									<p>${role}</p>
+								</div>
+								<div class="changerole">
+									<label for="role-select">變更權限:</label>
+									<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
+									data-editrole-target="selector" data-action="change->editrole#role" >
+										<option selected="selected" data-value="1">可檢視</option>
+										<option data-value="2">可編輯</option>
+									</select>
+								</div>
+								<div class="deleterole" data-editrole-target="deletebtn">
+										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+										</button>
+								</div>
+							</div>
+						`
+						}
 				} else if (role === 2){
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
