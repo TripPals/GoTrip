@@ -44,12 +44,21 @@ class Api::V1::TripDetailController < ApplicationController
   end
 
   def update_order
-    schedule_spots_ids = JSON.load(params[:schedule_spots_id])
-    orders = JSON.load(params[:order])
-
-    a = schedule_spots_ids.map{|i|i.to_i}
+    schedule_spots_ids = params[:schedule_spots_id]
+    orders = params[:order_list]
+    length = schedule_spots_ids.length
+    
+    if schedule_spots_ids[0].is_a? Integer
+      schedule_spot = ScheduleSpot.find(schedule_spots_ids[0])
+      schedule_spot.update(order: orders[0])
+    end
+    # length.times do |i|
+    #   if 
+    #   end  
+    # end
+    
     respond_to do |format|
-      format.json { render :json => a}
+      format.json { render :json => length }
     end
   end
 end
