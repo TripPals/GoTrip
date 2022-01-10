@@ -4,11 +4,12 @@ export default class extends Controller {
 	static targets = ["rightbtn"]
 
 	connect() {
-		console.log("hhhhh");
+	
 	}
 
 	showRightCard(e) {
 		e.preventDefault()
+		console.log(1111);
 		// click rightbtn to get tripID
 		const tripID = this.rightbtnTarget.dataset.autripid
 		const editRightBox = document.querySelector("#rightresultcard")
@@ -37,35 +38,81 @@ export default class extends Controller {
 		async function renderData() {
 
 			const allUserData = await fetchData()
-			allUserData.forEach(({ name, email, role, id }) => {
-				// console.log(user);
+			allUserData.forEach(({ name, email, role, user_id, ut_id, image, avatar }) => {
+				console.log(role);
 				if (role === 1) {
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("rightresultdiv")
-					rightBox.innerHTML = `
-				<div class="rightsection" data-controller="editrole">
-					<div class="rightinfo" >
-						<p>${name}</p>
-						<p>${email}</p>
-						<p>${role}</p>
-					</div>
-					<div class="changerole">
-						<label for="role-select">變更權限:</label>
-						<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
-						data-editrole-target="selector" data-action="change->editrole#role" >
-							<option selected="selected" data-value="1">可檢視</option>
-							<option data-value="2">可編輯</option>
-						</select>
-					</div>
-					<div class="deleterole" data-editrole-target="deletebtn">
-							<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-							</button>
-					</div>
-				</div>
-			`
-					rightResultBox.appendChild(rightBox)
+					if (avatar!= null){
+						rightBox.innerHTML = `
+							<div class="rightsection" data-controller="editrole">
+								<div class="rightinfo" >
+									<p>${name}</p>
+									<p>${email}</p>
+								</div>
+								<div class="changerole">
+									<label for="role-select">變更權限:</label>
+									<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
+									data-editrole-target="selector" data-action="change->editrole#role" >
+										<option selected="selected" data-value="1">可檢視</option>
+										<option data-value="2">可編輯</option>
+									</select>
+								</div>
+								<div class="deleterole" data-editrole-target="deletebtn">
+										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+										</button>
+								</div>
+							</div>
+						`
+						rightResultBox.appendChild(rightBox)}
+						else if(avatar== null && image !== null){
+							console.log("aaaaa");
+							rightBox.innerHTML = `
+							<div class="rightsection" data-controller="editrole">
+								<div class="rightinfo" >
+									<p>${name}</p>
+									<p>${email}</p>
+								</div>
+								<div class="changerole">
+									<label for="role-select">變更權限:</label>
+									<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
+									data-editrole-target="selector" data-action="change->editrole#role" >
+										<option selected="selected" data-value="1">可檢視</option>
+										<option data-value="2">可編輯</option>
+									</select>
+								</div>
+								<div class="deleterole" data-editrole-target="deletebtn">
+										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+										</button>
+								</div>
+							</div>
+						`
+						}else{
+							console.log("123");
+							rightBox.innerHTML = `
+							<div class="rightsection" data-controller="editrole">
+								<div class="rightinfo" >
+									<p>${name}</p>
+									<p>${email}</p>
+								</div>
+								<div class="changerole">
+									<label for="role-select">變更權限:</label>
+									<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
+									data-editrole-target="selector" data-action="change->editrole#role" >
+										<option selected="selected" data-value="1">可檢視</option>
+										<option data-value="2">可編輯</option>
+									</select>
+								</div>
+								<div class="deleterole" data-editrole-target="deletebtn">
+										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+										</button>
+								</div>
+							</div>
+						`
+						}
 				} else if (role === 2){
+					// console.log(role);
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("rightresultdiv")
@@ -74,18 +121,17 @@ export default class extends Controller {
 					<div class="rightinfo" >
 						<p>${name}</p>
 						<p>${email}</p>
-						<p>${role}</p>
 					</div>
 					<div class="changerole">
 						<label for="role-select">變更權限:</label>
-						<select name="role"id="role-select"  data-role="${role}" data-id="${id}" 
+						<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
 						data-editrole-target="selector" data-action="change->editrole#role" >
 							<option selected="selected" data-value="2">可編輯</option>
 							<option data-value="1">可檢視</option>
 						</select>
 					</div>
 					<div class="deleterole" data-editrole-target="deletebtn">
-						<button class="deletebtn"><p>刪除成員</p></button>
+						<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p></button>
 					</div>
 				</div>
 			`
@@ -100,7 +146,6 @@ export default class extends Controller {
 						<p>行程擁有者</p>
 						<p>${name}</p>
 						<p>${email}</p>
-						<p>${role}</p>
 					</div>
 					`
 					rightResultBox.insertAdjacentElement("afterbegin",rightBox)
