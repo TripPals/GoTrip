@@ -1,8 +1,12 @@
 <%= render 'layouts/header_index' %>
 
-<div class="users-container">
+<div data-controller="userupdate" class="users-container">
   <div class="user-info-section">
     <div class="user-info-content-box">
+      <div data-userupdate-target="loaderdiv" class="user-info-edit-loader-hidden">
+        <img src="/images/user-info-update.gif" alt="">
+        <p>個人資料更新中</p>
+      </div>
       <h2 class="user-edit-title">GoTrip個人資訊</h2>
       <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -25,14 +29,20 @@
               回復預設圖像
             </label>
           </div>
-
-          <div class="user-edit-name-section">
-            <label><i class="fas fa-passport"></i> 旅行者</label>
-            <%= f.text_field :name, placeholder: '請輸入姓名', class:'form-control form-control-sm' %>
-            <%= f.text_field :email, placeholder: '請輸入姓名', class:'form-control form-control-sm' %>
-          </div>
+          <% if current_user.provider == "register" %>
+            <div class="user-edit-name-section">
+              <label><i class="fas fa-passport"></i> 旅行者</label>
+              <%= f.text_field :name, placeholder: '請輸入新的姓名', class:'form-control form-control-sm' %>
+              <%= f.text_field :email, placeholder: '請輸入新的email', class:'form-control form-control-sm' %>
+            </div>
+          <% else %>
+            <div class="user-edit-name-section">
+              <label><i class="fas fa-passport"></i> 旅行者</label>
+              <%= f.text_field :name, placeholder: '請輸入新的姓名', class:'form-control form-control-sm' %>
+            </div>
+          <% end %>  
         </div>  
-        <div class="user-edit-submit">
+        <div data-action="click->userupdate#showLoader" class="user-edit-submit">
           <%= f.submit "更新個人資料" %>
         </div>
       <% end %>
