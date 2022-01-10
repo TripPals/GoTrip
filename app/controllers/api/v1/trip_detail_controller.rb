@@ -46,19 +46,36 @@ class Api::V1::TripDetailController < ApplicationController
   def update_order
     schedule_spots_ids = params[:schedule_spots_id]
     orders = params[:order_list]
+    schedule_id = JSON.load(params[:schedule_id])
     length = schedule_spots_ids.length
-    
+
     if schedule_spots_ids[0].is_a? Integer
       schedule_spot = ScheduleSpot.find(schedule_spots_ids[0])
       schedule_spot.update(order: orders[0])
+
+    else schedule_spots_ids.count(schedule_spots_ids[2]) == 1
+      schedule_spot_array = JSON.load(schedule_spots_ids[2])
+      sspot_length = schedule_spot_array.length
+      sspot_length.times do |x|
+        schedule_spot = ScheduleSpot.find(schedule_spot_array[x])
+        if schedule_spot.schedule_id == schedule_id
+          schedule_spot.update(order: orders[2])
+        end
+      end
     end
+    
+    # else 
+    #   schedule_spots_ids[3]
+    #   repeat_array = schedule_spots_ids.map.with_index {|item, i| item == repeat ? i : nil}.compact
+
+    # end
+
     # length.times do |i|
     #   if 
     #   end  
-    # end
     
-    respond_to do |format|
-      format.json { render :json => length }
-    end
+    # respond_to do |format|
+    #   format.json { render :json => repeat }
+    # end
   end
 end
