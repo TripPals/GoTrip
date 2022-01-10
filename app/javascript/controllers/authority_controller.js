@@ -3,22 +3,14 @@ import { Controller } from "stimulus"
 export default class extends Controller {
 	static targets = ["rightbtn"]
 
-	connect() {
-	
-	}
-
 	showRightCard(e) {
 		e.preventDefault()
-		console.log(1111);
-		// click rightbtn to get tripID
 		const tripID = this.rightbtnTarget.dataset.autripid
 		const editRightBox = document.querySelector("#rightresultcard")
 		const hiddenTripId = document.createElement("div")
-		//hide tripID with CSS visibility: hidden
 		hiddenTripId.innerText = tripID
 		hiddenTripId.classList.add("authority-hide-trip-id")
 		editRightBox.appendChild(hiddenTripId)
-		//show right field  with CSS visibility: visible
 		editRightBox.classList.add("show-right-section")
 
 		async function fetchData() {
@@ -51,17 +43,19 @@ export default class extends Controller {
 									<p>${name}</p>
 									<p>${email}</p>
 								</div>
-								<div class="changerole">
-									<label for="role-select">變更權限:</label>
-									<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
-									data-editrole-target="selector" data-action="change->editrole#role" >
-										<option selected="selected" data-value="1">可檢視</option>
-										<option data-value="2">可編輯</option>
-									</select>
-								</div>
-								<div class="deleterole" data-editrole-target="deletebtn">
+								<div class="rightdetail">
+									<div class="changerole">
+										<label for="role-select">變更權限:</label>
+										<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
+										data-editrole-target="selector" data-action="change->editrole#role" >
+											<option selected="selected" data-value="1">可檢視</option>
+											<option data-value="2">可編輯</option>
+										</select>
+									</div>
+									<div class="deleterole" data-editrole-target="deletebtn">
 										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
 										</button>
+									</div>
 								</div>
 							</div>
 						`
@@ -74,17 +68,19 @@ export default class extends Controller {
 									<p>${name}</p>
 									<p>${email}</p>
 								</div>
-								<div class="changerole">
-									<label for="role-select">變更權限:</label>
-									<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
-									data-editrole-target="selector" data-action="change->editrole#role" >
-										<option selected="selected" data-value="1">可檢視</option>
-										<option data-value="2">可編輯</option>
-									</select>
-								</div>
-								<div class="deleterole" data-editrole-target="deletebtn">
+								<div class="rightdetail">
+									<div class="changerole">
+										<label for="role-select">變更權限:</label>
+										<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
+										data-editrole-target="selector" data-action="change->editrole#role" >
+											<option selected="selected" data-value="1">可檢視</option>
+											<option data-value="2">可編輯</option>
+										</select>
+									</div>
+									<div class="deleterole" data-editrole-target="deletebtn">
 										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
 										</button>
+									</div>
 								</div>
 							</div>
 						`
@@ -96,23 +92,24 @@ export default class extends Controller {
 									<p>${name}</p>
 									<p>${email}</p>
 								</div>
-								<div class="changerole">
-									<label for="role-select">變更權限:</label>
-									<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
-									data-editrole-target="selector" data-action="change->editrole#role" >
-										<option selected="selected" data-value="1">可檢視</option>
-										<option data-value="2">可編輯</option>
-									</select>
-								</div>
-								<div class="deleterole" data-editrole-target="deletebtn">
-										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-										</button>
+								<div class=""rightdetail"">
+									<div class="changerole">
+										<label for="role-select">變更權限:</label>
+										<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
+										data-editrole-target="selector" data-action="change->editrole#role" >
+											<option selected="selected" data-value="1">可檢視</option>
+											<option data-value="2">可編輯</option>
+										</select>
+									</div>
+									<div class="deleterole" data-editrole-target="deletebtn">
+											<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
+											</button>
+									</div>
 								</div>
 							</div>
 						`
 						}
 				} else if (role === 2){
-					// console.log(role);
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("rightresultdiv")
@@ -122,16 +119,18 @@ export default class extends Controller {
 						<p>${name}</p>
 						<p>${email}</p>
 					</div>
-					<div class="changerole">
-						<label for="role-select">變更權限:</label>
-						<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
-						data-editrole-target="selector" data-action="change->editrole#role" >
-							<option selected="selected" data-value="2">可編輯</option>
-							<option data-value="1">可檢視</option>
-						</select>
-					</div>
-					<div class="deleterole" data-editrole-target="deletebtn">
-						<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p></button>
+					<div class="rightdetail">
+						<div class="changerole">
+							<label for="role-select">變更權限:</label>
+							<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
+							data-editrole-target="selector" data-action="change->editrole#role" >
+								<option selected="selected" data-value="2">可編輯</option>
+								<option data-value="1">可檢視</option>
+							</select>
+						</div>
+						<div class="deleterole" data-editrole-target="deletebtn">
+							<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p></button>
+						</div>
 					</div>
 				</div>
 			`
@@ -164,7 +163,6 @@ export default class extends Controller {
 
 		hiddenTripID.remove()
 		rightSection.classList.remove("show-right-section")
-		// this.emailinputTarget.value = ""
 		resultBox.innerHTML = ""
 
 	}

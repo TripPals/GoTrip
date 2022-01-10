@@ -5,9 +5,6 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = ["emailinput"]
 
-  connect() {
-    console.log("載入成功");
-  }
   search(event) {
     event.preventDefault()
     const emailInput = this.emailinputTarget.value.trim()

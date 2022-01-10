@@ -4,10 +4,6 @@ import Rails from "@rails/ujs";
 export default class extends Controller {
 	static targets = ["selector","deletebtn"]
 
-	connect(){
-
-	}
-
 	role(){
 		const selector = this.selectorTarget.value
 		const tripUserID = this.selectorTarget.dataset.id
@@ -49,7 +45,7 @@ export default class extends Controller {
 					resultBox.insertAdjacentElement("beforeend", deleteFaildMessage)
 				}
 				const deletebtn = this.deletebtnTarget
-				deletebtn.parentNode.parentNode.remove()
+				deletebtn.parentNode.parentNode.parentNode.remove()
 			}
 		})
 		

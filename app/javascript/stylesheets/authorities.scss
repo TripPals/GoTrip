@@ -26,6 +26,7 @@
 .rightresultbox {
     padding-top: 30px;
     height: calc(100vh - 300px);
+    position: relative;
 
   p {
       width: 80%;
@@ -44,6 +45,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  // position: relative;
+}
+
+
+.deletebtn{
+  width: 100px;
+  margin-top: 0px;
+  margin-right: 0px;
 }
 
 .main-rightresultdiv{
