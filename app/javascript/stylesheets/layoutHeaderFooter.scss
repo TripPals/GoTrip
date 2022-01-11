@@ -2,7 +2,8 @@
 #gotrip-header{
   width: 100%;
   margin-top: 0px;
-  position: absolute;
+  position: fixed;
+  top: 0;
   z-index: 3;
 }
 //按鈕 hover 的搖擺動畫
@@ -20,6 +21,7 @@
   margin: 40px 60px 0;
   justify-content: space-between;
   align-items: center;
+  
   .header-in-logo{
     width: 200px;
     img{
@@ -143,18 +145,127 @@
 }
 
 //header-trip 檔案內的設定 -------
-.header-trip-wrap{
+
+.trip-header-outter-box {
+  width: 100%;
   height: 60px;
-  color: #262C4C;
-  box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
-  .user-show{
-    display: flex;
+  margin:auto;
+  // border-bottom: 4px solid #EEBC38;
+  padding: 0 5% 0 5%;
+  background: linear-gradient(225deg, rgba(255,226,89,1) 0%, rgba(237,150,70,1) 100%);
+  // background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.461) 0px 8px 15px;
+  position: relative;
+  
+}
+
+.trip-header-outter-box:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(225deg, rgba(237,150,70,1) 0%, rgba(255,226,89,1) 100%);
+
+}
+
+.header-trip-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .trip-header-logo {
+    width: 100px;
   }
-  .user-show-image{
-    margin: 1px 10px 1px 2px;
-    width: 40px;
+
+  .header-in-nav-after {
+    max-width: 300px;
+    min-width: 118px;
     height: 40px;
-    border-radius: 50%;
+    width: auto; 
+    padding: 5px 8px;
+    border-radius: 7px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    background:linear-gradient(to top,#EEBC38,#f5da78 );
+    background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.438) 0px 8px 16px -8px, rgba(0, 0, 0, 0.438) 0px -5px 16px -8px;
+    
+    .header-in-user-show{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      
+      .header-in-user-info{
+        line-height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        display : inline-block;
+        overflow : hidden;
+        text-overflow : ellipsis;
+        white-space : nowrap;
+        max-width: 240px;
+        min-width: 60px;
+      }
+      img{
+        margin: 1px 10px 1px 2px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .header-in-nav-after:hover {
+    cursor: pointer;
+  }
+
+  label:hover .header-in-after-login{
+    color: #DB6A43;
+    cursor: pointer;
+  }
+  #list-checked:checked ~ .header-in-after-list{
+    display: block;
+  }
+  #list-checked{
+    display: none;
+  }
+
+  .header-in-after-list{
+    display: none;
+    position: absolute;
+    right: 5%;
+    bottom: -140px;
+    
+    div{
+      padding: 5px 8px;
+      border-radius: 7px;
+      border: 1px solid #262C4C;
+      letter-spacing: 2px;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    }
+    div:hover{
+      background-color:rgb(255, 255, 255);
+      animation: swing 1s;
+      background-color:rgb(255, 255, 255);
+      color: #DB6A43;
+    }
+    .gotrip-mytrip{
+      padding: 17px 0;
+      background-color: #262C4C;
+      color: #EEBC38;
+    }
+    .gotrip-myinfo{
+      background-color: #EEBC38;
+      color: #262C4C;
+    }
   }
 }
 
