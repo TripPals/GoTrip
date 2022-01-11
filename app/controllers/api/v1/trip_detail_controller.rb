@@ -52,8 +52,8 @@ class Api::V1::TripDetailController < ApplicationController
     schedule_spots_ids.length.times do |i|
       # 如果是整數（單純的單個景點，在trip裡沒有重複）
       if schedule_spots_ids[i].is_a? Integer
-        schedule_spot = ScheduleSpot.find(schedule_spots_ids[0])
-        schedule_spot.update(order: orders[0])
+        schedule_spot = ScheduleSpot.find(schedule_spots_ids[i])
+        schedule_spot.update(order: orders[i])
       # 不是整數，但只有一個（同個景點在其他schedule也有，但在此schedule沒有）  
       else schedule_spots_ids.count(schedule_spots_ids[i]) == 1
         schedule_spot_array = JSON.load(schedule_spots_ids[i])
@@ -90,12 +90,6 @@ class Api::V1::TripDetailController < ApplicationController
       end
     end
 
-    # length.times do |i|
-    #   if 
-    #   end  
-    
-    # respond_to do |format|
-    #   format.json { render :json => repeat_sspot_index  }
-    # end
+    render status: 200, json: ["Order updated successfully"].to_json
   end
 end
