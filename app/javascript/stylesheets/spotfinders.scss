@@ -3,18 +3,19 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 #searchPageBox {
+  height: 100%;
   display: flex;
   margin: none;
-  padding-top: 65px;
 }
 
 #searchSection {
   width: 30%;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: 8px 0px 10px rgba(130, 130, 130, 0.619);
   position: relative;
   z-index: 10;
+  padding-top: 85px;
 }
 
 .mapInSearchSection {
@@ -41,6 +42,10 @@
   justify-content: space-between;
   padding-left: 30px;
   padding-right: 30px;
+
+  h2 {
+    font-size: 1.3rem;
+  }
 
   i {
     font-size: 1.6rem;
@@ -220,6 +225,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
+  padding-top: 65px;
 }
 
 .spotDetailsTitle {
@@ -382,7 +388,7 @@
 
 @keyframes hideConfirmModal {
   from {
-    opacity: 1;
+    opacity: 0;
     z-index: 100;
   }
   to {

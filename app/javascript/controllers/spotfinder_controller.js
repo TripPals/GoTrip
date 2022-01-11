@@ -41,11 +41,8 @@ export default class extends Controller {
     async function renderData() {
       
       const spotResultData = await fetchData()
-<<<<<<< HEAD
-=======
 
       loader.classList.remove("loaderBoxShow")
->>>>>>> headersInOtherPages-forDemo
       
       // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
