@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root "welcome#index"
   get '/about' => 'welcome#about'
+  
 
   devise_for :users, controllers: 
   { omniauth_callbacks: "users/omniauth_callbacks",
@@ -60,6 +61,8 @@ Rails.application.routes.draw do
   end
   # /api/v1/spotfinders/search
   # /api/v1/trip_detail/:trip_id
+  match '*path', :to => "errors#not_found", :via => :all
+  
 end
 
 
