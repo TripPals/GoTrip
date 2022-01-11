@@ -22,6 +22,8 @@
           <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
             第 {{value}} 天
           </div>
+          <div id="dayBTN" @click="addSchedule"> +
+          </div>
         </div>
         <div class="dayNext" @click="slideRight">＞</div>
       </div>
@@ -202,6 +204,25 @@ export default {
       });
       sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
       sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
+    },
+    addSchedule(){
+      // const update_name = e.target.value
+      const token = document.querySelector("meta[name=csrf-token]").content
+      axios.defaults.headers.common["X-CSRF-Token"] = token
+      axios.patch(`/api/v1/trip_detail/add_schedule?trip_id=${trip_id}`)
+        .catch((err) => {
+          console.log(err);
+        })
+      const newLength = this.tripData.length + 1;
+      this.tripData.length = newLength;
+      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
+      this.endDay = endDay
+    },
+
+
+
+
+    deleteSchedule(){
     },
   }
 }

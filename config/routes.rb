@@ -49,8 +49,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
-      delete "delete_schedule",to: "trip_detail#destroy"
-      patch "add_schedule", to:"trip_detail#add"
+      delete "trip_detail/delete_schedule",to: "trip_detail#destroy"
+      patch "trip_detail/add_schedule", to:"trip_detail#add"
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
       patch "trip_detail/update_order", to: "trip_detail#update_order"
