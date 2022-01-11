@@ -1,7 +1,7 @@
 <template>
   <div>
     <section id="dataTitle">
-      <input type="text" v-model.trim="tripData.name" id="tripName" @focus="changeName" @change="" @mouseout="">
+      <input type="text" v-model.trim="tripData.name" id="tripName" @focusout="changeName">
       <div class="nameError">{{nameError}}</div>
       <div class="tripDate">
         <div>
@@ -20,7 +20,7 @@
       <div class="dayBox">
         <div class="dayBack" @click="slideLeft">＜</div>
         <div ref="dayTitle" class="dayTitle">
-          <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
+          <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
             第 {{value}} 天
           </div>
         </div>
@@ -34,13 +34,20 @@
           <div class="spotStartTime" v-if="spotsList.length > 0">出發時間</div>
           <draggable v-model="spotsList" @start="start" @change="dragSpot">
           <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList">
-            <div ref="spotName" class="spotName" :data-spotOrder="s">
-              {{spotsList[s-1].name}}
+            <div>
+              <div ref="spotName" class="spotName">
+                {{spotsList[s-1].name}}
+              </div>
+              <div class="address">
+                {{spotsList[s-1].address}}
+              </div>
+              <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
+              <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
+              <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
             </div>
-            <div class="address">
-              {{spotsList[s-1].address}}
+            <div class="moveIcon">
+              <i class="fas fa-arrows-alt"></i>
             </div>
-            <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
           </div>
           </draggable>
         </div>
@@ -57,13 +64,12 @@ import fetchData from './packs/tripDataFetch.js';
 import draggable from 'vuedraggable';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
-
 import 'vue2-datepicker/locale/zh-cn';
 
-const url = window.location.href
-const decomposedUrl = url.split("/")
-const trip_id = decomposedUrl[4]
-const responseData = fetchData(trip_id)
+const url = window.location.href;
+const decomposedUrl = url.split("/");
+const trip_id = decomposedUrl[4];
+const responseData = fetchData(trip_id);
 
 export default {
   components: {
@@ -81,7 +87,6 @@ export default {
       spotData: [],
       spotsList: [],
       trip_id: trip_id,
-
       nameError: "",
     }
   },
@@ -140,6 +145,7 @@ export default {
              .catch((err) => {
                console.log(err);
               });
+      
       const endDay = dayjs(update_date).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
       this.endDay = endDay;
     },
@@ -178,9 +184,32 @@ export default {
       dayTitle.scrollLeft -= 140;
     },
     start() {
-      // 拖曳開始發生的事件，之後補上控制拖曳動畫內容
     },
     dragSpot() {
+      const scheduleSpotsId = this.$refs.scheduleSpotsId;
+      let ssiList = [];
+      let orderList = [];
+      let scheduleId = Number(this.spotData.id)
+      console.log(scheduleId);
+      scheduleSpotsId.forEach(el => {
+        orderList.push(Number(el.dataset.spotorder))
+        if (isNaN(el.innerText)) {
+          ssiList.push(el.innerText.replace(/\s|[\r\n]/g, ""));
+        }
+        else {
+          ssiList.push(Number(el.innerText));
+        };
+      });
+      const token = document.querySelector("meta[name=csrf-token]").content;
+      axios.defaults.headers.common["X-CSRF-Token"] = token;
+      axios.put(`/api/v1/trip_detail/update_order?schedule_id=${scheduleId}`,{
+        schedule_spots_id: ssiList,
+        order_list: orderList,
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
       const position = this.$refs.position;
       const spotName = this.$refs.spotName;
 
