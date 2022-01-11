@@ -19,10 +19,12 @@
       <div class="dayBox">
         <div class="dayBack" @click="slideLeft">＜</div>
         <div ref="dayTitle" class="dayTitle">
-          <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
-            第 {{value}} 天
+          <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
+            <p>第 {{value}} 天</p><br>
+            <i v-if="tripData.length > 1" class="far fa-window-close" @click="deleteSchedule(index)"></i>
           </div>
-          <div id="dayBTN" @click="addSchedule"> +
+          <div class="dayAddBTN" @click="addSchedule"> 
+            <i class="far fa-plus-square"></i>
           </div>
         </div>
         <div class="dayNext" @click="slideRight">＞</div>
@@ -206,7 +208,6 @@ export default {
       sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
     },
     addSchedule(){
-      // const update_name = e.target.value
       const token = document.querySelector("meta[name=csrf-token]").content
       axios.defaults.headers.common["X-CSRF-Token"] = token
       axios.patch(`/api/v1/trip_detail/add_schedule?trip_id=${trip_id}`)
@@ -218,11 +219,25 @@ export default {
       const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
       this.endDay = endDay
     },
+    deleteSchedule(index){
 
+      const responseData = fetchData(trip_id)
 
-
-
-    deleteSchedule(){
+      responseData.then((data)=>{
+        this.tripData = data;
+        var schedule = this.tripData.schedules[index]
+        this.schedule = schedule;
+        const schedule_id = this.schedule.id
+    
+        const token = document.querySelector("meta[name=csrf-token]").content
+        axios.defaults.headers.common["X-CSRF-Token"] = token
+        axios.delete(`/api/v1/trip_detail/delete_schedule?schedule_id=${schedule_id}`)
+          .catch((err) => {
+            console.log(err);
+          })
+        location.reload();
+      });
+      
     },
   }
 }
