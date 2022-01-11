@@ -7,9 +7,11 @@ export default class extends Controller {
 
   connect() {
 
+    // This is how we can get the params from url by JS
+    const urlString = window.location.search;
+
     if (typeof google != "undefined") {
       this.renderMap();
-
     }
   }
 

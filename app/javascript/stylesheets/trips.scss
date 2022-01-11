@@ -1,3 +1,313 @@
 // Place all the styles related to the trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+// 行程管理頁CSS ================================================================================================
+
+#MyTripPage {
+  padding-top: 65px;
+}
+
+.headingContainer {
+  width: 90%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    background-color: #EDBB46;
+    background-image: radial-gradient(100% 100% at 100% 0, #D96A49 0, #EDBB46 100%);
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 46px;
+    border-radius: 10px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    transition: box-shadow .15s,transform .15s;
+  }
+
+  a:focus {
+    box-shadow: #D96A49 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #D96A49 0 -3px 0 inset;
+  }
+
+  a:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #D96A49 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+
+  a:active {
+    box-shadow: #D96A49 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+  }
+
+}
+
+// Tab Element
+
+.mytriptab {
+  background-color: white;
+  border: none;
+}
+
+.nav .nav-item.show .nav-link, .nav .nav-link.active {
+  border-bottom: 4px solid #D96A49;
+  color: #D96A49;
+}
+
+.nav-link:hover {
+  color: #EDBB46;
+}
+
+.tab1 button, .tab2 button {
+  width: 100%;
+  text-align: left;
+  font-size: 1.3rem;
+  color: black;
+}
+
+.divider {
+  margin-top: 0;
+}
+
+// Content Section
+
+.tripOverviewContainer {
+  width: 90%;
+  max-width: 1400px;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.tripListBox {
+  margin-top: 40px;
+}
+
+.tripdata {
+
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 40px 100px -20px, rgba(0, 0, 0, 0.3) 0px 20px 60px -30px;
+  padding: 15px;
+  padding-bottom: 15px;
+  position: relative;
+  transform: none;
+  transition: all 0.3s ease;
+
+  
+  .tripdataPic {
+    overflow: hidden;
+    height: 150px;
+  }
+
+  .tripdataPic img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 20px 0px 10px 0px;
+  }
+
+  p {
+    margin: 10px 0px 10px 0px;
+    color: rgb(128, 128, 128);
+  }
+
+  a.planPageLink {
+    width: 100%;
+    height: calc(100% - 50px);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .tripControlBox {
+
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    border-radius: 0 0 10px 10px;
+    border-top: 1px solid rgb(219, 219, 219);
+    opacity: 0;
+    transition: all 0.3s ease;
+
+    div {
+      width: 33.333333%;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+      }
+
+    }
+
+    div:nth-child(1) {
+      border-radius: 0 0 0 10px
+    }
+
+    div:nth-child(3) {
+      border-radius: 0 0 10px 0    
+    }
+
+    div:nth-child(1) a,
+    div:nth-child(2) a {
+      color: #257F8B;
+    }
+
+    div:nth-child(1):hover,
+    div:nth-child(2):hover {
+      border-bottom: 4px solid #257F8B;
+    }
+
+    div:nth-child(3) a,
+    div:nth-child(3) i {
+      color: #EC5362;
+    }
+
+    div:nth-child(3):hover {
+      border-bottom: 4px solid #EC5362;
+    }
+
+  }
+
+}
+
+.tripdata:hover {
+
+  // padding-bottom: 50px;
+  transform: translateY(-25px);
+  border-radius: 10px 10px 0 0;
+  transition: all 0.3s ease;
+
+
+  .tripControlBox {
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+}
+
+// 當完全沒有任何行程
+.tripdataEmpty {
+
+  height: 280px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 40px 100px -20px, rgba(0, 0, 0, 0.3) 0px 20px 60px -30px;
+  position: relative;
+  overflow: hidden;
+  background-color: #257F8B;
+
+  a {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: translateY(0px);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    z-index: 3;
+  }
+
+  p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0);
+    position: absolute;
+    bottom: 5px;
+    left: calc( 50% - 60px );
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+
+}
+
+.tripdataEmpty:hover {
+  img {
+    // width: 110%;
+    // height: 110%;
+    // object-fit: cover;
+    // object-position: center;
+    transform: translateY(-30px);
+  }
+
+  p {
+    color: rgb(255, 255, 255);
+  }
+
+}
+
+.followedTripdataEmpty {
+  
+  height: 280px;
+  border-radius: 10px;
+  border: 2px dashed rgb(167, 167, 167);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 2rem;
+    color: rgb(167, 167, 167);
+  }
+  
+}
+
+// 時間標籤
+.timetag_past, .timetag_now, .timetag_future {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  right: -5px;
+  top: 30px;
+  line-height: 29px;
+  text-align: center;
+}
+
+.timetag_past {
+  background-color: #262D4B;
+  color: white;
+}
+
+.timetag_future {
+  background-color: #EDBB46;
+  color: white;
+}
+
+.timetag_now {
+  background-color: rgb(67, 196, 164);
+  color: white;
+}
+
+

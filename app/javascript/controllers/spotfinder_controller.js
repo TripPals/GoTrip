@@ -15,9 +15,14 @@ export default class extends Controller {
     const cityinput = this.cityinputTarget.value.trim()
     const keywordinput = this.keywordinputTarget.value.trim()
     const resultBox = document.querySelector(".searchResultBox")
+    
+
 
     // 每次按下搜尋先清空搜尋結果列表
     resultBox.innerHTML = ""
+    
+    const loader = document.querySelector(".loaderBox")
+    loader.classList.add("loaderBoxShow")
 
     async function fetchData() {
       try {
@@ -28,7 +33,7 @@ export default class extends Controller {
         return result
       } catch {
         const result = "Empty Result"
-        console.error("Something went wrong...");
+        console.log("Something went wrong...");
         return result
       }
     };
@@ -36,6 +41,11 @@ export default class extends Controller {
     async function renderData() {
       
       const spotResultData = await fetchData()
+<<<<<<< HEAD
+=======
+
+      loader.classList.remove("loaderBoxShow")
+>>>>>>> headersInOtherPages-forDemo
       
       // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
@@ -54,6 +64,25 @@ export default class extends Controller {
 
         noResultMessage.classList.add("noResultMessageDiv")
         noResultMessage.innerHTML = `<p class="noResultMessage">抱歉，目前沒有${cityinput}的資料，或許可以使用關鍵字讓搜尋更精準!</p>`
+
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+
+        // 如果使用者什麼都沒輸入
+      } else if (spotResultData[0] === 'Invalid call! Need to have input') {
+        const noResultMessage = document.createElement("div")
+
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">咦？您是否忘記輸入關鍵字了呢？</p>`
+
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+      
+        // 如果fetch失敗了
+      } else if (spotResultData === "Empty Result") {
+        
+        const noResultMessage = document.createElement("div")
+
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">哇!搜尋時發生了點小問題，請再嘗試搜尋一次，或者晚點再試</p>`
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 

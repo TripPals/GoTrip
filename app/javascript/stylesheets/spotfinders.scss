@@ -5,6 +5,7 @@
 #searchPageBox {
   display: flex;
   margin: none;
+  padding-top: 65px;
 }
 
 #searchSection {
@@ -45,6 +46,10 @@
     font-size: 1.6rem;
   }
 
+}
+
+.searchForm {
+  position: relative;
 }
 
 .searchForm form {
@@ -101,7 +106,7 @@
 
   .cleanInput2 {
     right: 30px;
-    top: 73px;
+    top: 71px;
   }
 
   .cleanInput1:hover, .cleanInput2:hover {
@@ -116,6 +121,7 @@
   height: calc(100vh - 330px);
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 }
 
 .noResultMessageDiv {
@@ -521,4 +527,34 @@
   top: 0px;
   animation-name: showSearchMessage;
   animation-duration: 0.3s;
+}
+
+// Loading gif
+
+.loaderBox {
+
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: -250px; 
+  // margin-top: -100px;
+  left: 50%;
+  margin-left: -100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  visibility: hidden;
+
+}
+
+.loadingGif {
+  width: 70%;
+  border-radius: 20px;
+}
+
+.loaderBoxShow {
+  visibility: visible;
 }

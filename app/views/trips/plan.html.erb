@@ -1,5 +1,4 @@
-<%# <h1>For Map</h1> %>
-
+<%= render 'layouts/header_trip' %>
 
 <div id="planView">
   <div id="spotPlanningSection">
@@ -10,3 +9,4 @@
        data-mapInit-target="initialmap"
   ></div>
 </div>
+<%= javascript_pack_tag 'trip_body_vue' %>
