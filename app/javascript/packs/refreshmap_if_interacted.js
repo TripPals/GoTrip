@@ -64,6 +64,16 @@ function refreshMapIfInteracted() {
         );
       }, timeout);
     }
+
+    // Set boundaries for map
+    const newBoundary = new google.maps.LatLngBounds();
+
+    getPositionDataFromStorage.forEach((item) => {
+      const position = item;
+      newBoundary.extend(position);
+    })
+
+    map.fitBounds(newBoundary);
   
     setTimeout(() => {
       dropMarker();
@@ -102,7 +112,7 @@ function refreshMapIfInteracted() {
         .then((response) => {
           directionsRenderer.setDirections(response);
         })
-        .catch((e) => window.alert("Directions request failed"+ status));
+        .catch((e) => window.alert("您似乎在這天行程安排了跨陸地的景點，GoTrip針對跨陸地的路線功能還在開發中，請耐心等待!"+ status));
     }
   
     setTimeout(() => {
