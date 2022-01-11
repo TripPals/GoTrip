@@ -25,7 +25,7 @@ export default class extends Controller {
                 resultBox.innerHTML = ""
                 const addFriendMessage = document.createElement("div")
                 addFriendMessage.classList.add("addfriendmessagediv") 
-                addFriendMessage.innerHTML = `<p class="addfriendmessage">您的朋友已成功加入此行程</p>`
+                addFriendMessage.innerHTML = `<p class="addfriendmessage">加入成功，祝您與朋友們有個完美的旅程</p>`
 
                 resultBox.insertAdjacentElement("beforeend", addFriendMessage)
             }
@@ -34,7 +34,7 @@ export default class extends Controller {
                 resultBox.innerHTML = ""
                 const addTwiceMessage = document.createElement("div")
                 addTwiceMessage.classList.add("addtwicemessagediv") 
-                addTwiceMessage.innerHTML = `<p class="addtwicemessage">您的朋友已在此行程中</p>`
+                addTwiceMessage.innerHTML = `<p class="addtwicemessage">您的朋友已經在此行程中</p>`
                 
                 resultBox.insertAdjacentElement("beforeend", addTwiceMessage)
 

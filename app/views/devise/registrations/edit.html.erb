@@ -1,40 +1,56 @@
 <%= render 'layouts/header_index' %>
 
-<div class="users-container">
-  <div class="users-wrap">
+<div data-controller="userupdate" class="users-container">
+  <div class="user-info-section">
+    <div class="user-info-content-box">
+      <div data-userupdate-target="loaderdiv" class="user-info-edit-loader-hidden">
+        <img src="/images/user-info-update.gif" alt="">
+        <p>個人資料更新中</p>
+      </div>
+      <h2 class="user-edit-title">GoTrip個人資訊</h2>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <div id='app' data-turbolinks-track = "reload"> 
-          <div class="avatar-container">
-            <img  v-if="avatar !== ''" :src="avatar" />
+        <div class="user-edit-info">
+          <div class="user-edit-photoupload-section">
+            <div id='app' data-turbolinks-track = "reload"> 
+              <div class="avatar-container">
+                <img  v-if="avatar !== ''" :src="avatar" />
+              </div>
+            
+              <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
+              <label class="avatar-uploader">
+                <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected", class:"form-control form-control-sm", id:"formFileSm" %>
+                <i class="far fa-image"></i> 選擇檔案
+              </label>
+            </div>
+            <label class="recover-avatar">
+              <%= f.check_box :remove_avatar %>
+              回復預設圖像
+            </label>
           </div>
-        
-          <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
-          <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected", class:"form-control form-control-sm", id:"formFileSm" %>
-        </div>
-
-        <label>
-          <%= f.check_box :remove_avatar %>
-          回復預設圖像
-        </label>
-        
-        <div class="field">
-          <%= f.label :編輯顯示名稱 %><br />
-          <%= f.text_field :name, placeholder: '請輸入姓名', class:'form-control form-control-sm' %>
+          <% if current_user.provider == "register" %>
+            <div class="user-edit-name-section">
+              <label><i class="fas fa-passport"></i> 旅行者</label>
+              <%= f.text_field :name, placeholder: '請輸入新的姓名', class:'form-control form-control-sm' %>
+              <%= f.text_field :email, placeholder: '請輸入新的email', class:'form-control form-control-sm' %>
+            </div>
+          <% else %>
+            <div class="user-edit-name-section">
+              <label><i class="fas fa-passport"></i> 旅行者</label>
+              <%= f.text_field :name, placeholder: '請輸入新的姓名', class:'form-control form-control-sm' %>
+            </div>
+          <% end %>  
         </div>  
-        <div class="actions">
+        <div data-action="click->userupdate#showLoader" class="user-edit-submit">
           <%= f.submit "更新個人資料" %>
         </div>
       <% end %>
       
       <div class="user-delete">
-        <h3>刪除帳號</h3>
-
-        <p>不想再出去走走了嗎？ <%= button_to "刪除我的帳號", registration_path(resource_name), data: { confirm: "您的帳號將被從此消失，確定嗎？" }, method: :delete %></p>
+        <p>不想再出去走走了嗎？ <%= button_to "刪除我的帳號", registration_path(resource_name), data: { confirm: "您的帳號將被永久刪除，確定嗎？" }, method: :delete %></p>
       </div>
-    
-    <%= link_to "Back", :back %>
+    </div>
   </div>
 </div>
 

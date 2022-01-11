@@ -5,6 +5,12 @@
 
 // 行程管理頁CSS ================================================================================================
 
+#MyTripPage {
+  // height: 100%;
+  // margin-top: 0;
+  // background: linear-gradient(90deg, #c3ced6 32%, #f0f1f1 100%);
+}
+
 .headingContainer {
   width: 90%;
   max-width: 1400px;
@@ -20,8 +26,8 @@
     display: inline-block;
     width: 200px;
     height: 50px;
-    background-color: rgb(101, 67, 196);
-    background-image: radial-gradient(100% 100% at 100% 0, rgb(186, 141, 228)0, rgb(101, 67, 196) 100%);
+    background-color: #EDBB46;
+    background-image: radial-gradient(100% 100% at 100% 0, #D96A49 0, #EDBB46 100%);
     color: white;
     text-align: center;
     font-size: 1.3rem;
@@ -32,16 +38,16 @@
   }
 
   a:focus {
-    box-shadow: #603ce0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #603ce0 0 -3px 0 inset;
+    box-shadow: #D96A49 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #D96A49 0 -3px 0 inset;
   }
 
   a:hover {
-    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #603ce0 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #D96A49 0 -3px 0 inset;
     transform: translateY(-2px);
   }
 
   a:active {
-    box-shadow: #603ce0 0 3px 7px inset;
+    box-shadow: #D96A49 0 3px 7px inset;
     transform: translateY(2px);
   }
 
@@ -61,8 +67,8 @@
 }
 
 .nav .nav-item.show .nav-link, .nav .nav-link.active {
-  border-bottom: 4px solid rgb(101, 67, 196);
-  color: rgb(101, 67, 196);
+  border-bottom: 4px solid #257F8B;
+  color: #257F8B;
 }
 
 .tab1 button, .tab2 button {
@@ -91,6 +97,7 @@
 
 .tripdata {
 
+  background-color: white;
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 40px 100px -20px, rgba(0, 0, 0, 0.3) 0px 20px 60px -30px;
   padding: 15px;
@@ -166,21 +173,21 @@
 
     div:nth-child(1) a,
     div:nth-child(2) a {
-      color: rgb(101, 67, 196);
+      color: #257F8B;
     }
 
     div:nth-child(1):hover,
     div:nth-child(2):hover {
-      border-bottom: 4px solid rgb(101, 67, 196);
+      border-bottom: 4px solid #257F8B;
     }
 
     div:nth-child(3) a,
     div:nth-child(3) i {
-      color: rgb(216, 71, 71);
+      color: #EC5362;
     }
 
     div:nth-child(3):hover {
-      border-bottom: 4px solid rgb(216, 71, 71);
+      border-bottom: 4px solid #EC5362;
     }
 
   }
@@ -210,7 +217,7 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 40px 100px -20px, rgba(0, 0, 0, 0.3) 0px 20px 60px -30px;
   position: relative;
   overflow: hidden;
-  background-color: rgb(101, 67, 196);
+  background-color: #257F8B;
 
   a {
     width: 100%;
@@ -287,12 +294,12 @@
 }
 
 .timetag_past {
-  background-color: black;
+  background-color: #262D4B;
   color: white;
 }
 
 .timetag_future {
-  background-color: rgb(101, 67, 196);
+  background-color: #EDBB46;
   color: white;
 }
 

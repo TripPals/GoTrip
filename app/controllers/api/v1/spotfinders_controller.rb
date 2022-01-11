@@ -12,11 +12,11 @@ class Api::V1::SpotfindersController < ApplicationController
 
       # 先判斷前端傳回來的input組合
       case 
-      when  @search_input_keyword && search_input_city # 兩個input都存在
+      when  @search_input_keyword != "" && search_input_city != "" # 兩個input都存在
         @spots = Spot.where("name LIKE ? AND city LIKE ?", "%#{@search_input_keyword}%", "%#{search_input_city}%")
-      when @search_input_keyword && search_input_city == "" # 只有景點關鍵字input存在
+      when @search_input_keyword != "" && search_input_city == "" # 只有景點關鍵字input存在
         @spots = Spot.where("name LIKE ?", "%#{@search_input_keyword}%")
-      when @search_input_keyword == "" && search_input_city # 只有城市關鍵字input存在
+      when @search_input_keyword == "" && search_input_city !="" # 只有城市關鍵字input存在
         @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
       end
 
@@ -36,6 +36,10 @@ class Api::V1::SpotfindersController < ApplicationController
 
           @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_query_for_google).call
 
+          puts "===================="
+          puts @new_spots
+          puts "===================="
+
           respond_to do |format|
             format.json { render :json => @new_spots, status => 200 }
           end
@@ -52,7 +56,7 @@ class Api::V1::SpotfindersController < ApplicationController
     # 使用者城市＆關鍵字都沒有給，丟回錯誤
     else
       respond_to do |format|
-        format.json { render :json => { status: "failed", message: "Invalid call! Need to have input"}, status => 406 }
+        format.json { render :json => ["Invalid call! Need to have input"], status => 418 }
       end
     end  
 

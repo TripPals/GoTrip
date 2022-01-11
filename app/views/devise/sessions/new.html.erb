@@ -2,23 +2,37 @@
 
 <div class="users-container">
   <div class="users-wrap">
-    <h2>登入</h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '郵件Email', class:'form-control form-control-sm' %>
-    </div>
+    <div class="register-login-form">
+      <h2 class="register-login-title">登入GoTrip</h2>
+      <div class="register-login-form-content">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '郵件Email', class:'register-field' %>
+        </div>
 
-    <div class="field">
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: '密碼', class:'form-control form-control-sm' %>
-    </div>
-    <% f.text_field :provider, default:'register', class:'form-control form-control-sm' %>
+        <div>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: '密碼', class:'register-field' %>
+        </div>
+        <% f.text_field :provider, default:'register', class:'register-field' %>
 
-    <div class="actions">
-      <%= f.submit "立即登入" %>
+        <div class="register-login-button-box">
+          <%= f.submit "立即登入" %>
+        </div>
+        <% end %>
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
   </div>
+
+  <div class="login-message-illustration-box">
+    <div class="login-page-title">
+      <p>Good to see you again!</p>
+      <h1>祝你旅程精彩無比</h1>
+    </div>
+    <div class="login-page-image-box">
+      <img src="/images/login_illustration.png" alt="">
+    </div>
+  </div>
+
 </div>
 <%= render 'layouts/footer' %>
