@@ -10,7 +10,7 @@
       flex-wrap: wrap; */
   /* 以上直接給row來設定了 */
   margin: auto;
-  padding: 0;
+  /* padding: 0 var(--grid-gap); */
   box-sizing: border-box;
 }
 

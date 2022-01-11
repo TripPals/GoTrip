@@ -3,6 +3,7 @@
   <head>
     <title>Trips</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbolinks-visit-control" content="reload">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -22,8 +23,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <div>
+    <div id="gotrip-header">
+      <%= yield :header %>
+    </div>
+    
+    <div class="gotrip-all-container">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
