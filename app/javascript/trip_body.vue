@@ -33,9 +33,9 @@
         <div class="spotBox">
           <div class="spotStartTime" v-if="spotsList.length > 0">出發時間</div>
           <draggable v-model="spotsList" @start="start" @change="dragSpot">
-          <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList">
+          <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
             <div>
-              <div ref="spotName" class="spotName">
+              <div ref="spotName" class="spotName" :data-spotOrder="s">
                 {{spotsList[s-1].name}}
               </div>
               <div class="address">
@@ -65,6 +65,7 @@ import draggable from 'vuedraggable';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import 'vue2-datepicker/locale/zh-cn';
+import refreshMapIfInteracted from "./packs/refreshmap_if_interacted.js";
 
 const url = window.location.href;
 const decomposedUrl = url.split("/");
@@ -112,8 +113,8 @@ export default {
       });
       this.spotsList.forEach(el => {
         const obj = {};
-        obj.lat = el.lat;
-        obj.lng = el.lng;
+        obj.lat = parseFloat(el.lat);
+        obj.lng = parseFloat(el.lng);
         positionMapList.push(obj);
       });
       sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
@@ -167,13 +168,37 @@ export default {
         });
         this.spotsList.forEach(el => {
           const obj = {};
-          obj.lat = el.lat;
-          obj.lng = el.lng;
+          obj.lat = parseFloat(el.lat);
+          obj.lng = parseFloat(el.lng);
           positionMapList.push(obj);
         });
         sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
         sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
+      setTimeout(() => {
+        const position = this.$refs.position;
+        const spotName = this.$refs.spotName;
+
+        if (position !== undefined && spotName !== undefined) {
+          
+          let spotMapList = [];
+          spotName.forEach(el => {
+            spotMapList.push(el.innerText);
+          });
+          let positionMapList = [];
+          position.forEach(el => {
+            const obj = {};
+            obj.lat = parseFloat(el.innerText.split(",")[0]);
+            obj.lng = parseFloat(el.innerText.split(",")[1]);
+            return positionMapList.push(obj);
+          });
+          sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
+          sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
+        }
+        }, 100)
+        setTimeout(()=>{
+          refreshMapIfInteracted()
+        }, 200)
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
@@ -220,12 +245,15 @@ export default {
       let positionMapList = [];
       position.forEach(el => {
         const obj = {};
-        obj.lat = el.innerText.split(",")[0];
-        obj.lng = el.innerText.split(",")[1];
+        obj.lat = parseFloat(el.innerText.split(",")[0]);
+        obj.lng = parseFloat(el.innerText.split(",")[1]);
         return positionMapList.push(obj);
       });
       sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
       sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
+
+      refreshMapIfInteracted();
+
     },
   }
 }
