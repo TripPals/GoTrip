@@ -31,17 +31,19 @@ export default class extends Controller {
 
 			const allUserData = await fetchData()
 			allUserData.forEach(({ name, email, role, user_id, ut_id, image, avatar }) => {
-				console.log(role);
 				if (role === 1) {
+					// console.log(avatar);
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("rightresultdiv")
-					if (avatar!= null){
+					if (avatar.url === "/images/fallback/default-avatar.jpg"){
+						console.log(456);
 						rightBox.innerHTML = `
 							<div class="rightsection" data-controller="editrole">
 								<div class="rightinfo" >
 									<p>${name}</p>
 									<p>${email}</p>
+									<img src="/images/fallback/default-avatar.jpg"></img>
 								</div>
 								<div class="rightdetail">
 									<div class="changerole">
@@ -60,13 +62,14 @@ export default class extends Controller {
 							</div>
 						`
 						rightResultBox.appendChild(rightBox)}
-						else if(avatar== null && image !== null){
-							console.log("aaaaa");
+						else if(image !== null){
+							console.log("2");
 							rightBox.innerHTML = `
 							<div class="rightsection" data-controller="editrole">
 								<div class="rightinfo" >
 									<p>${name}</p>
 									<p>${email}</p>
+									<img src="${image}"></img>
 								</div>
 								<div class="rightdetail">
 									<div class="changerole">
@@ -85,12 +88,15 @@ export default class extends Controller {
 							</div>
 						`
 						}else{
+							const avatarImg = avatar.url
+            	const fileName = avatarImg.replace("https://gogotrip.s3.amazonaws.com/uploads/user/avatar/", "")
 							console.log("123");
 							rightBox.innerHTML = `
 							<div class="rightsection" data-controller="editrole">
 								<div class="rightinfo" >
 									<p>${name}</p>
 									<p>${email}</p>
+									<img src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${user_id}/${fileName}"></img>
 								</div>
 								<div class=""rightdetail"">
 									<div class="changerole">
