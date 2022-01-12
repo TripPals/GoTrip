@@ -12,7 +12,7 @@
 #spotPlanningSection {
   width: 30%;
   min-width: 350px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 65px);
   background-color: rgb(206, 206, 206);
 }
 
@@ -20,7 +20,8 @@
 #dataTitle {
   position: relative;
   background-color: #fff;
-  height: 120px;
+  height: 140px;
+  
   #tripName {
     font-weight: bold;
     font-size: 24px;
@@ -99,10 +100,15 @@
     text-align: center;
     padding: 10px;
     border-right: 1px solid #ccc;
+    position: relative;
+    
     i{
       font-size: small;
       color: #aaa;
       cursor: pointer;
+      position: absolute;
+      bottom: 10px;
+      left: 30px; 
     }
     i:hover{
       color: #EEBC38;
@@ -116,11 +122,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
     i{
       font-size: large;
       color: #aaa;
       cursor: pointer;
     }
+    
     i:hover{
       color: #EEBC38;
     }
@@ -135,8 +143,8 @@
     cursor: pointer;
   }
   .spotBox {
-    height: calc(100vh - 290px);
-    max-height: calc(100vh - 290px);
+    height: calc(100vh - 310px);
+    max-height: calc(100vh - 310px);
     background-color: #ddd;
     overflow: scroll;
     .spotStartTime {
