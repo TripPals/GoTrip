@@ -59,6 +59,23 @@ export default class extends mapInSearch  {
             </div>
           </div>
         </div>
+
+        <div class="detailBoxHeading">基本資料</div>
+        <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
+        <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
+        <div class="openingHourBox">
+          <i class="fas fa-clock"></i>
+          <div class="hourlist">
+            <p>${spotDetails.saturday_hr}</p>
+            <p>${spotDetails.sunday_hr}</p>
+            <p>${spotDetails.monday_hr}</p>
+            <p>${spotDetails.tuesday_hr}</p>
+            <p>${spotDetails.wednesday_hr}</p>
+            <p>${spotDetails.thursday_hr}</p>
+            <p>${spotDetails.friday_hr}</p>
+          </div>
+        </div>
+
         <div class="detailBoxHeading">使與者評論</div>
         <div class="reviewBox">
           <div class="reviewItem">
@@ -77,21 +94,7 @@ export default class extends mapInSearch  {
             <p>${spotDetails.ugc3_comment}</p>
           </div>
         </div>
-        <div class="detailBoxHeading">基本資料</div>
-        <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
-        <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
-        <div class="openingHourBox">
-          <i class="fas fa-clock"></i>
-          <div class="hourlist">
-            <p>${spotDetails.saturday_hr}</p>
-            <p>${spotDetails.sunday_hr}</p>
-            <p>${spotDetails.monday_hr}</p>
-            <p>${spotDetails.tuesday_hr}</p>
-            <p>${spotDetails.wednesday_hr}</p>
-            <p>${spotDetails.thursday_hr}</p>
-            <p>${spotDetails.friday_hr}</p>
-          </div>
-        </div>
+
         <div class="addToScheduleBtn" data-controller="addSpot">
           <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
         </div>
@@ -118,6 +121,23 @@ export default class extends mapInSearch  {
             </div>
           </div>
         </div>
+
+        <div class="detailBoxHeading">基本資料</div>
+        <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
+        <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
+        <div class="openingHourBox">
+          <i class="fas fa-clock"></i>
+          <div class="hourlist">
+            <p>${spotDetails.saturday_hr}</p>
+            <p>${spotDetails.sunday_hr}</p>
+            <p>${spotDetails.monday_hr}</p>
+            <p>${spotDetails.tuesday_hr}</p>
+            <p>${spotDetails.wednesday_hr}</p>
+            <p>${spotDetails.thursday_hr}</p>
+            <p>${spotDetails.friday_hr}</p>
+          </div>
+        </div>
+
         <div class="detailBoxHeading">使與者評論</div>
         <div class="reviewBox">
           <div class="reviewItem">
@@ -136,21 +156,7 @@ export default class extends mapInSearch  {
             <p>${spotDetails.ugc3_comment}</p>
           </div>
         </div>
-        <div class="detailBoxHeading">基本資料</div>
-        <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
-        <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
-        <div class="openingHourBox">
-          <i class="fas fa-clock"></i>
-          <div class="hourlist">
-            <p>${spotDetails.saturday_hr}</p>
-            <p>${spotDetails.sunday_hr}</p>
-            <p>${spotDetails.monday_hr}</p>
-            <p>${spotDetails.tuesday_hr}</p>
-            <p>${spotDetails.wednesday_hr}</p>
-            <p>${spotDetails.thursday_hr}</p>
-            <p>${spotDetails.friday_hr}</p>
-          </div>
-        </div>
+        
         <div class="addToScheduleBtn" data-controller="addSpot">
           <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
         </div>
