@@ -27,24 +27,6 @@ Rails.application.routes.draw do
   
   get '/mytrips/:trip_id/plan', to: "trips#plan", as: "trip_plan"
 
-  # search friend
-  get "/mytrips/:trip_id/search", to: "rights#search", as: "rights_search"
-
-  # post "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
-
-
-  # search friend e-mail API
-  namespace :api do
-    namespace :v1 do
-        get "tripinvites/search", to: "tripinvites#search"
-        post "tripinvites/join_trip", to: "tripinvites#join_trip"
-  # get all users in current_trip API
-        get "authorities/alluser", to: "authorities#alluser"
-        patch "authorities/update", to: "authorities#update"
-        delete "authorities/delete", to:
-        "authorities#delete"
-    end
-  end
 
   # 景點搜尋route
 
@@ -55,18 +37,22 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
-<<<<<<< HEAD
       delete "trip_detail/delete_schedule",to: "trip_detail#destroy"
       patch "trip_detail/add_schedule", to:"trip_detail#add"
-=======
       get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
       post "schedulespots/add", to: "schedulespots#addSpot"
       post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
->>>>>>> addSpotAndHeaders-forDemo
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
       put "trip_detail/update_order", to: "trip_detail#update_order"
       put "trip_detail/update_date", to: "trip_detail#update_date"
+      get "tripinvites/search", to: "tripinvites#search"
+      post "tripinvites/join_trip", to: "tripinvites#join_trip"
+      # get all users in current_trip API 
+      get "authorities/alluser", to: "authorities#alluser"
+      patch "authorities/update", to: "authorities#update"
+      delete "authorities/delete", to:
+      "authorities#delete"
     end
   end
   # /api/v1/spotfinders/search
