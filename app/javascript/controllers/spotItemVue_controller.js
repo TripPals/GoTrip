@@ -24,6 +24,7 @@ export default class extends Plan {
     const marker = new google.maps.Marker({
       position: dataForMap,
       map: map,
+      icon: {url:`https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/goytipmapicon/0.png`, scaledSize: new google.maps.Size(100, 100)}
     });
 
     marker.setMap(map);
