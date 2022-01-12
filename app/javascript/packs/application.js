@@ -24,5 +24,5 @@ window.mapInitialization = function () {
   document.dispatchEvent(evt)
 }
 
-import "./trip_body_vue"
 import "./avatar"
+import "./refreshmap_if_interacted"

@@ -12,3 +12,5 @@ vendor/* linguist-vendored
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text eol=lf
 *.png binary
+*.jpg binary
+*.gif binary
