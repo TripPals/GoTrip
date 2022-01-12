@@ -2,9 +2,17 @@ class TripsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @trips_all = current_user.trips.all
+    time_today = DateTime.now().to_date
+    
     @trips_yours = Trip.own_trip(current_user.id)
+    @trips_yours_past = @trips_yours.where("? > end_date", time_today)
+    @trips_yours_future = @trips_yours.where("start_date > ?", time_today)
+    @trips_yours_now = @trips_yours.where("? >= start_date AND ? <= end_date", time_today, time_today)
+    
     @trips_followed = Trip.followed_trip(current_user.id)
+    @trips_followed_past = @trips_followed.where("? > end_date", time_today)
+    @trips_followed_future = @trips_followed.where("start_date > ?", time_today)
+    @trips_followed_now = @trips_followed.where("? >= start_date AND ? <= end_date", time_today, time_today)
   end
 
   def new

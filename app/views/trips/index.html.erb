@@ -21,10 +21,10 @@
     <div class="tab-content" id="myTabContent">
 
       <div class="tab-pane fade show active" id="ownedtrips" role="tabpanel" aria-labelledby="ownedtrips-tab">
-        <div class="gridContainer tripListBox">
-          <div class="row">
-            <% if @trips_yours.length == 0 %>
+        <% if @trips_yours.length == 0 %>
             
+          <div class="gridContainer tripListBox">
+            <div class="row">
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="tripdataEmpty">
                   <a href="<%= trips_new_path %>">
@@ -33,54 +33,129 @@
                   <p>Bon Voyage!</p>
                 </div>
               </div>
-
-            <% else %>
-
-              <% @trips_yours.each do |trip| %>
-                <div class="col-12 col-md-6 col-lg-4">
-                  <div class="tripdata">
-                    <% if DateTime.now().to_date > trip.end_date.to_date  %>
-                      <div class="timetag_past">過去式</div>
-                    <% elsif DateTime.now().to_date >= trip.start_date.to_date && DateTime.now().to_date <= trip.end_date.to_date %>
-                      <div class="timetag_now">進行式</div>
-                    <% else %>
-                      <div class="timetag_future">未來式</div>
-                    <% end %>  
-                    <div class="tripdataPic">
-                      <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
-                    </div>
-                    <div class="tripdataText">
-                      <h2><%= trip.name %></h2>
-                      <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
-                      <% if trip.length > 1 %>
-                      <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
-                      <% else %>
-                      <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
-                      <% end %>
-                    </div>
-                    <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
-                    <div class="tripControlBox">
-                      <div>
-                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
-
-                      </div>
-                      <div>
-                        <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
-                      </div>
-                      <div>
-                        <i class="fas fa-trash-alt"></i>
-                        <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-                      </div>
-                    </div>
-                    <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
-                  </div>
-                </div>
-              <% end %>
-
-            <% end %>
-            
+            </div>
           </div>
-        </div>
+
+        <% else %>
+   
+          <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 進行中的行程</h2>
+          <div class="gridContainer tripListBox">
+              <div class="row">
+                <% @trips_yours_now.each do |trip| %>
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="tripdata">
+                      <div class="timetag_now">進行式</div>
+                      <div class="tripdataPic">
+                        <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
+                      </div>
+                      <div class="tripdataText">
+                        <h2><%= trip.name %></h2>
+                        <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
+                        <% if trip.length > 1 %>
+                        <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+                        <% else %>
+                        <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                        <% end %>
+                      </div>
+                      <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
+                      <div class="tripControlBox">
+                        <div>
+                          <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
+
+                        </div>
+                        <div>
+                          <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
+                        </div>
+                        <div>
+                          <i class="fas fa-trash-alt"></i>
+                          <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+                        </div>
+                      </div>
+                      <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                    </div>
+                  </div>
+                <% end %>
+              </div> 
+              <hr class="trips-time-divider"> 
+              <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 即將到來的行程</h2>
+              <div class="row">
+                <% @trips_yours_future.each do |trip| %>
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="tripdata">
+                      <div class="timetag_future">未來式</div>
+                      <div class="tripdataPic">
+                        <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
+                      </div>
+                      <div class="tripdataText">
+                        <h2><%= trip.name %></h2>
+                        <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
+                        <% if trip.length > 1 %>
+                        <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+                        <% else %>
+                        <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                        <% end %>
+                      </div>
+                      <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
+                      <div class="tripControlBox">
+                        <div>
+                          <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
+
+                        </div>
+                        <div>
+                          <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
+                        </div>
+                        <div>
+                          <i class="fas fa-trash-alt"></i>
+                          <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+                        </div>
+                      </div>
+                      <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <hr class="trips-time-divider">
+              <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 已結束的行程</h2> 
+              <div class="row">
+                <% @trips_yours_past.each do |trip| %>
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="tripdata">
+                      <div class="timetag_past">過去式</div>
+                      <div class="tripdataPic">
+                        <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
+                      </div>
+                      <div class="tripdataText">
+                        <h2><%= trip.name %></h2>
+                        <p><i class="far fa-calendar-alt"></i> <%= trip.start_date.to_date.strftime('%Y / %b / %d') %>～<%= trip.end_date.to_date.strftime('%Y / %b / %d')%></p>
+                        <% if trip.length > 1 %>
+                        <p><i class="far fa-clock"></i> <%= trip.length %>天<%= trip.length - 1%>夜</p>
+                        <% else %>
+                        <p><i class="far fa-clock"></i> <%= trip.length %>天</p>
+                        <% end %>
+                      </div>
+                      <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
+                      <div class="tripControlBox">
+                        <div>
+                          <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
+
+                        </div>
+                        <div>
+                          <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
+                        </div>
+                        <div>
+                          <i class="fas fa-trash-alt"></i>
+                          <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
+                        </div>
+                      </div>
+                      <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>    
+          </div>
+        
+        <% end %>
+            
       </div>  
 
       <div class="tab-pane fade" id="followedtrips" role="tabpanel" aria-labelledby="followedtrips-tab">
