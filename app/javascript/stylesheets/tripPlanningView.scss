@@ -25,7 +25,8 @@
     font-weight: bold;
     font-size: 24px;
     border: none;
-    padding: 5px 20px;
+    margin: 5px 20px;
+    border-bottom: 1px solid rgb(206, 206, 206);
   }
   .tripDate {
     display: flex;
@@ -43,6 +44,16 @@
   .dayLength {
     padding: 5px 20px;
     color: #666;
+  }
+  .hideInput {
+    display: none;
+  }
+  .mx-datepicker {
+    width: 30px;
+    padding-bottom: 6px;
+  }
+  .mx-icon-calendar {
+    display: block;
   }
 }
 
@@ -83,13 +94,36 @@
     height: 0px;
     width: 0px;
   }
-  #dayBTN {
+  .dayBTN {
     flex-shrink: 0;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    i{
+      font-size: small;
+      color: #aaa;
+      cursor: pointer;
+    }
+    i:hover{
+      color: #EEBC38;
+    }
+  }
+  .dayAddBTN{
+    flex-shrink: 0;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    border-right: 1px solid #ccc;
+    i{
+      font-size: large;
+      color: #aaa;
+      cursor: pointer;
+    }
+    i:hover{
+      color: #EEBC38;
+    }
   }
   .active {
     background-image: linear-gradient(to top, #eebc39 0%, #eebc39 8%, transparent 8%, transparent 100%);
@@ -113,6 +147,8 @@
       height: 30px;
     }
     .spotMapList {
+      display: flex;
+      justify-content: space-between;
       background-color: #fff;
       box-shadow: 0px 3px 3px 0px #ccc;
       padding: 30px 40px;
@@ -127,6 +163,15 @@
     }
     .position {
       display: none;
+    }
+    .schedule_spots_id {
+      display: none;
+    }
+    .moveIcon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ddd;
     }
   }
   .spotBox::-webkit-scrollbar {

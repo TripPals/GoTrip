@@ -51,18 +51,25 @@ Rails.application.routes.draw do
   get "/mytrips/:trip_id/:day_number/search", to: "trips#search"
 
   # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
-  # TripDetail API : 行程規劃頁給前端的整大包該 Trip 資料
+  # TripDetail API 
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
+      delete "trip_detail/delete_schedule",to: "trip_detail#destroy"
+      patch "trip_detail/add_schedule", to:"trip_detail#add"
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
+      put "trip_detail/update_order", to: "trip_detail#update_order"
+      put "trip_detail/update_date", to: "trip_detail#update_date"
     end
   end
   # /api/v1/spotfinders/search
   # /api/v1/trip_detail/:trip_id
   match '*path', :to => "errors#not_found", :via => :all
-  
+  # /api/v1/trip_detail/   key:trip_id    該trip的整包資訊
+  # /api/v1/delete_schedule   key:schedule_id   刪除schedule
+  # /api/v1/add_schedule  key:trip_id  增加schedule
+
 end
 
 
