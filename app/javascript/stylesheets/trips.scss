@@ -311,3 +311,18 @@
 }
 
 
+// 新增行程頁
+
+.new-trip-form-body {
+  height: calc(100% - 65px);
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  form div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
