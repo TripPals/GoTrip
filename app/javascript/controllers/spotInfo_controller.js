@@ -40,7 +40,6 @@ export default class extends mapInSearch  {
         detailsBox.id = "spotDetailsBox"
         mapBox.classList.remove("mapInSearchSection")
         mapBox.classList.add("mapInSearchSectionWithDetails")
-        outterBox.insertBefore(detailsBox, mapBox)
 
         detailsBox.innerHTML = 
         `
@@ -72,23 +71,9 @@ export default class extends mapInSearch  {
           </div>
         </div>
 
-        <div class="detailBoxHeading">使與者評論</div>
+        <div class="detailBoxHeading reviewHeading">使與者評論</div>
         <div class="reviewBox">
-          <div class="reviewItem">
-            <p>${spotDetails.ugc1_name}</p>
-            <p>Rating: ${spotDetails.ugc1_stars}</p>
-            <p>${spotDetails.ugc1_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc2_name}</p>
-            <p>Rating: ${spotDetails.ugc2_stars}</p>
-            <p>${spotDetails.ugc2_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc3_name}</p>
-            <p>Rating: ${spotDetails.ugc3_stars}</p>
-            <p>${spotDetails.ugc3_comment}</p>
-          </div>
+
         </div>
 
         <div class="addToScheduleBtn" data-controller="addSpot">
@@ -96,7 +81,9 @@ export default class extends mapInSearch  {
         </div>
         
         `
+        outterBox.insertBefore(detailsBox, mapBox)
         processingPhotos(spotDetails)
+        processReviewData(spotDetails)
 
       } else {
 
@@ -132,23 +119,9 @@ export default class extends mapInSearch  {
           </div>
         </div>
 
-        <div class="detailBoxHeading">使與者評論</div>
+        <div class="detailBoxHeading reviewHeading">使與者評論</div>
         <div class="reviewBox">
-          <div class="reviewItem">
-            <p>${spotDetails.ugc1_name}</p>
-            <p>Rating: ${spotDetails.ugc1_stars}</p>
-            <p>${spotDetails.ugc1_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc2_name}</p>
-            <p>Rating: ${spotDetails.ugc2_stars}</p>
-            <p>${spotDetails.ugc2_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc3_name}</p>
-            <p>Rating: ${spotDetails.ugc3_stars}</p>
-            <p>${spotDetails.ugc3_comment}</p>
-          </div>
+
         </div>
         
         <div class="addToScheduleBtn" data-controller="addSpot">
@@ -157,7 +130,7 @@ export default class extends mapInSearch  {
   
         `
         processingPhotos(spotDetails)
-
+        processReviewData(spotDetails)
       }
   
     }
@@ -200,6 +173,41 @@ export default class extends mapInSearch  {
         }
         
       })
+
+    }
+
+    function processReviewData(spotDetails) {
+      const { ugc1_comment, ugc2_comment, ugc3_comment, ugc1_name, ugc2_name, ugc3_name, ugc1_stars, ugc2_stars, ugc3_stars } = spotDetails
+
+      const reviewDataContent = [ 
+        {name: ugc1_name, star: ugc1_stars, comment: ugc1_comment}, 
+        {name: ugc2_name, star: ugc2_stars, comment: ugc2_comment},
+        {name: ugc3_name, star: ugc3_stars, comment: ugc3_comment}
+      ]
+
+      const reviewHeading = document.querySelector(".reviewHeading")
+      const reviewBox = document.querySelector(".reviewBox")
+      
+      if ( reviewDataContent.filter( review => review.comment === null).length === 3 ) {
+        reviewHeading.remove()
+        reviewBox.remove()
+      } else {
+        reviewDataContent.forEach((review) => {
+          if (review.comment !== null) {
+            const reviewItem = document.createElement("div")
+            reviewItem.classList.add("reviewItem")
+            reviewItem.innerHTML =
+            `
+            <p>${review.name}</p>
+            <p>Rating: ${review.star}</p>
+            <p>${review.comment}</p>
+            `
+            reviewBox.appendChild(reviewItem)
+          }
+        })
+      }
+
+      
 
     }
 

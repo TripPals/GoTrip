@@ -15,11 +15,18 @@ export default class extends Controller {
     const cityinput = this.cityinputTarget.value.trim()
     const keywordinput = this.keywordinputTarget.value.trim()
     const resultBox = document.querySelector(".searchResultBox")
+    const spotDetailsBox = document.querySelector("#spotDetailsBox")
+    const mapBox = document.querySelector("#mapInSearchSection")
     
 
 
     // 每次按下搜尋先清空搜尋結果列表
     resultBox.innerHTML = ""
+    if (spotDetailsBox) {
+      spotDetailsBox.remove()
+      mapBox.classList.remove("mapInSearchSectionWithDetails")
+      mapBox.classList.add("mapInSearchSection")
+    }
     
     const loader = document.querySelector(".loaderBox")
     loader.classList.add("loaderBoxShow")
