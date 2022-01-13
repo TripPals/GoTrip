@@ -228,7 +228,9 @@ export default {
       const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
       this.endDay = endDay
     },
-    hideConfirmMessage(){  
+    hideConfirmMessage(){
+      const messageModal = this.$refs['hide-confirmed-message']
+      messageModal.classList.remove('show-confirmed-message')
     },
     confirmMessage(index){
       const messageModal = this.$refs['hide-confirmed-message']
