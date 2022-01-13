@@ -155,11 +155,11 @@ export default class extends Controller {
   }
 
   clearCityInput() {
-    this.cityinputTarget.value.clear()
+    this.cityinputTarget.value = ""
   }
 
   clearKeywordInput() {
-    this.keywordinputTarget.value.clear()
+    this.keywordinputTarget.value = ""
   }
 
 
