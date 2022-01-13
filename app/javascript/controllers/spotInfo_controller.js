@@ -47,15 +47,11 @@ export default class extends mapInSearch  {
         <div class="spotDetailsTitle">${spotDetails.name}</div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
-            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}">
+
           </div>
           <div class="spotDetailsPhotoListBox">
             <div class="photoLists">
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_2}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_3}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_4}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_5}"></div>
+
             </div>
           </div>
         </div>
@@ -100,6 +96,8 @@ export default class extends mapInSearch  {
         </div>
         
         `
+        processingPhotos(spotDetails)
+
       } else {
 
         const detailsBox = document.querySelector("#spotDetailsBox")
@@ -109,15 +107,11 @@ export default class extends mapInSearch  {
         <div class="spotDetailsTitle">${spotDetails.name}</div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
-            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}">
+
           </div>
           <div class="spotDetailsPhotoListBox">
             <div class="photoLists">
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_2}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_3}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_4}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_5}"></div>
+
             </div>
           </div>
         </div>
@@ -162,6 +156,7 @@ export default class extends mapInSearch  {
         </div>
   
         `
+        processingPhotos(spotDetails)
 
       }
   
@@ -169,6 +164,45 @@ export default class extends mapInSearch  {
 
     // 呼叫長資料方法
     renderData()
+  
+    function processingPhotos(spotDetails) {
+      const { photo_reference_1: p1, photo_reference_2: p2, photo_reference_3: p3, photo_reference_4: p4, photo_reference_5: p5 } = spotDetails
+      const photoData = [ p1, p2, p3, p4, p5 ]
+      const photoLists = document.querySelector(".photoLists")
+      const spotDetailsPhotoBox = document.querySelector(".spotDetailsPhotoBox")
+      const spotDetailsMainPhoto = document.querySelector(".spotDetailsMainPhoto")
+      
+      if ( photoData.filter( item => item === null ).length === 5 ) {
+        spotDetailsPhotoBox.remove()
+      }
+
+      if ( p1 !== null ) {
+        const photodiv = document.createElement("div")
+        photodiv.innerHTML = 
+          `
+          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${p1}">
+          
+          `
+        spotDetailsMainPhoto.appendChild(photodiv)  
+      } else {
+        spotDetailsMainPhoto.remove()
+      }
+
+      photoData.forEach((photo) => {
+        if ( photo !== null ) {
+          const photodiv = document.createElement("div")
+          photodiv.innerHTML = 
+          `
+          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo}">
+          
+          `
+          photoLists.appendChild(photodiv)
+        }
+        
+      })
+
+    }
+
   }
 
   prepareSpotId() {
