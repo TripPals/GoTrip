@@ -187,11 +187,12 @@ export default class extends mapInSearch  {
         reviewDataContent.forEach((review) => {
           if (review.comment !== null) {
             const reviewItem = document.createElement("div")
+            const star = "⭐ "
             reviewItem.classList.add("reviewItem")
             reviewItem.innerHTML =
             `
             <p>${review.name}</p>
-            <p>Rating: ${review.star}</p>
+            <p>${star.repeat(review.star)}</p>
             <p>${review.comment}</p>
             `
             reviewBox.appendChild(reviewItem)
