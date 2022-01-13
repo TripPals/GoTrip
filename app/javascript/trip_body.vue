@@ -12,7 +12,6 @@
         <div class="123">
         </div>
       </div>
-      
     </section>
     
     <section id="dataBody" >
@@ -49,7 +48,16 @@
         </div>
       </div>
     </section>
-
+    <div class="hide-confirmed-message">
+      <div class="confirmed-message-content">
+        <i class="fas fa-bell confirmed-message-reminder-icon"></i>
+        <p>確定要刪除此天行程嗎？</p>
+        <div>
+          <button><i class="far fa-check-circle"></i> 確定</button>
+          <button><i class="far fa-times-circle"></i> 取消</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
