@@ -48,12 +48,13 @@
         </div>
       </div>
     </section>
-    <div class="hide-confirmed-message">
+
+    <div class="hide-confirmed-message" ref="hide-confirmed-message">
       <div class="confirmed-message-content">
         <i class="fas fa-bell confirmed-message-reminder-icon"></i>
         <p>確定要刪除此天行程嗎？</p>
         <div>
-          <button @click="deleteSchedule(index)"><i class="far fa-check-circle"></i> 確定</button>
+          <button @click="deleteSchedule"><i class="far fa-check-circle"></i> 確定</button>
           <button @click="hideConfirmMessage"><i class="far fa-times-circle"></i> 取消</button>
         </div>
       </div>
@@ -230,11 +231,13 @@ export default {
     hideConfirmMessage(){  
     },
     confirmMessage(index){
-      
+      const messageModal = this.$refs['hide-confirmed-message']
+      messageModal.classList.add('show-confirmed-message')
+      messageModal.dataset.index = index
     },
-    deleteSchedule(index){
-
+    deleteSchedule(){
       const responseData = fetchData(trip_id)
+      const index = this.$refs['hide-confirmed-message'].dataset.index
 
       responseData.then((data)=>{
         this.tripData = data;
@@ -250,7 +253,6 @@ export default {
           })
         location.reload();
       });
-      
     },
   }
 }
