@@ -49,9 +49,7 @@ export default class extends mapInSearch  {
 
           </div>
           <div class="spotDetailsPhotoListBox">
-            <div class="photoLists">
-
-            </div>
+            <div class="photoLists"></div>
           </div>
         </div>
 
@@ -72,9 +70,7 @@ export default class extends mapInSearch  {
         </div>
 
         <div class="detailBoxHeading reviewHeading">使與者評論</div>
-        <div class="reviewBox">
-
-        </div>
+        <div class="reviewBox"></div>
 
         <div class="addToScheduleBtn" data-controller="addSpot">
           <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
@@ -97,9 +93,7 @@ export default class extends mapInSearch  {
 
           </div>
           <div class="spotDetailsPhotoListBox">
-            <div class="photoLists">
-
-            </div>
+            <div class="photoLists"></div>
           </div>
         </div>
 
@@ -120,9 +114,7 @@ export default class extends mapInSearch  {
         </div>
 
         <div class="detailBoxHeading reviewHeading">使與者評論</div>
-        <div class="reviewBox">
-
-        </div>
+        <div class="reviewBox"></div>
         
         <div class="addToScheduleBtn" data-controller="addSpot">
           <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
