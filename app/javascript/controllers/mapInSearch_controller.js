@@ -108,4 +108,10 @@ export default class extends Controller {
 
   }
 
+  backToPlanPage() {
+    const urlString = window.location.href;
+    const trip_id = urlString.split("/")[4]
+    window.location.replace(`/mytrips/${trip_id}/plan`)
+  }
+
 }
