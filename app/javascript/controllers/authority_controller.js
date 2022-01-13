@@ -51,6 +51,7 @@ export default class extends Controller {
 											<option selected="selected" data-value="1">可檢視</option>
 											<option data-value="2">可編輯</option>
 										</select>
+										<i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
 									</div>
 									<div class="deleterole" data-editrole-target="deletebtn">
 										<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
@@ -62,7 +63,6 @@ export default class extends Controller {
 						rightResultBox.appendChild(rightBox)
 					
 				} else if (role === 2){
-							if (avatar.url === "/images/fallback/default-avatar.jpg"){
 								const rightResultBox = document.querySelector(".rightresultbox")
 								const rightBox = document.createElement("div")
 								rightBox.classList.add("rightresultdiv")
@@ -80,6 +80,7 @@ export default class extends Controller {
 												<option selected="selected" data-value="2">可編輯</option>
 												<option data-value="1">可檢視</option>
 											</select>
+											<i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
 										</div>
 										<div class="deleterole" data-editrole-target="deletebtn">
 											<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p></button>
@@ -88,62 +89,7 @@ export default class extends Controller {
 								</div>
 							`
 							rightResultBox.appendChild(rightBox)
-							} else if(image !== null){
-								const rightResultBox = document.querySelector(".rightresultbox")
-								const rightBox = document.createElement("div")
-								rightBox.classList.add("rightresultdiv")
-								rightBox.innerHTML = `
-									<div class="rightsection" data-controller="editrole">
-										<div class="rightinfo" >
-											<p>${name}</p>
-											<p>${email}</p>
-										</div>
-										<div class="rightdetail">
-											<div class="changerole">
-												<label class="rightlabel" for="role-select">變更權限:</label>
-												<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
-												data-editrole-target="selector" data-action="change->editrole#role" >
-													<option selected="selected" data-value="2">可編輯</option>
-													<option data-value="1">可檢視</option>
-												</select>
-											</div>
-											<div class="deleterole" data-editrole-target="deletebtn">
-												<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p></button>
-											</div>
-										</div>
-									</div>
-								`
-								rightResultBox.appendChild(rightBox)
-							} else{
-								const rightResultBox = document.querySelector(".rightresultbox")
-								const rightBox = document.createElement("div")
-								rightBox.classList.add("rightresultdiv")
-								const avatarImg = avatar.url
-								const fileName = avatarImg.replace("https://gogotrip.s3.amazonaws.com/uploads/user/avatar/", "")
-								rightBox.innerHTML = `
-								<div class="rightsection" data-controller="editrole">
-									<div class="rightinfo" >
-										<p>${name}</p>
-										<p>${email}</p>
-									</div>
-									<div class="rightdetail">
-										<div class="changerole">
-											<label class="rightlabel" for="role-select">變更權限:</label>
-											<select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
-											data-editrole-target="selector" data-action="change->editrole#role" >
-												<option selected="selected" data-value="2">可編輯</option>
-												<option data-value="1">可檢視</option>
-											</select>
-										</div>
-										<div class="deleterole" data-editrole-target="deletebtn">
-												<button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-												</button>
-										</div>
-									</div>
-								</div>
-							`
-								rightResultBox.appendChild(rightBox)
-							}
+							
 				} else{
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")

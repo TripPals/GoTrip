@@ -22,17 +22,14 @@ class Api::V1::AuthoritiesController < ApplicationController
     UserTrip.find(params[:ut_id]).update(role: new_role)
 
     respond_to do |format|
-      format.json{render :json =>  [result: "ok", message:"您已將朋友成功退出此行程" , status: 200]}
-  end
+      format.json{render :json =>  [result: "ok", message:"權限變更成功" , status: 200]}
+    end
       
   end
 
   def delete
 
     @usertrip = UserTrip.find(params[:ut_id])
-    puts "================="
-    puts params[:ut_id]
-    puts "================="
 
       if @usertrip.destroy
         respond_to do |format|

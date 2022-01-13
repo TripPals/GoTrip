@@ -17,7 +17,30 @@ export default class extends Controller {
 		Rails.ajax({
 			url: '/api/v1/authorities/update',
 			type: 'patch',
-			data: `ut_id=${tripUserID}&role=${tripRole}`, 
+			data: `ut_id=${tripUserID}&role=${tripRole}`,
+			success:()=>{
+				
+        const roleChecks = document.querySelectorAll(".hide-edit-role-checked")
+				// console.log(roleChecks);
+				roleChecks.forEach((roleCheck)=>{
+					// console.log(roleCheck);
+					// console.log(roleCheck.dataset.id);
+					if (tripUserID === roleCheck.dataset.id){
+						roleCheck.classList.add("show-edit-role-checked")
+					}
+				})
+
+				function removeRoleCheck(){
+					const roleCheck = document.querySelector(".show-edit-role-checked")
+					roleCheck.classList.remove("show-edit-role-checked")
+				}
+
+				setTimeout(()=>{
+					removeRoleCheck()
+				},2000);
+
+				
+      } 
 			
 		})
 	}
@@ -38,12 +61,23 @@ export default class extends Controller {
 					deleteFriendMessage.classList.add("deletefriendmessagediv") 
 					deleteFriendMessage.innerHTML = `<p class="deletefriendmessage">您已將朋友成功退出此行程</p>`
 					resultBox.insertAdjacentElement("beforeend", deleteFriendMessage)
+
 				} else {
 					const deleteFaildMessage = document.createElement("div")
 					deleteFaildMessage.classList.add("deletefaildmessagediv") 
 					deleteFaildMessage.innerHTML = `<p class="deletefaildmessage">伺服器忙碌中，請稍後再試</p>`
 					resultBox.insertAdjacentElement("beforeend", deleteFaildMessage)
 				}
+
+				// function removeMessage(){
+				// 	const deleteFriendMessage = document.querySelector("deletefriendmessagediv")
+				// 	deleteFriendMessage.classList.remove("deletefriendmessagediv")
+				// }
+
+				// setTimeout(()=>{
+				// 	removeMessage()
+				// },2000);
+
 				const deletebtn = this.deletebtnTarget
 				deletebtn.parentNode.parentNode.parentNode.remove()
 			}
