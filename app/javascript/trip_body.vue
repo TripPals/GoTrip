@@ -20,7 +20,7 @@
         <div ref="dayTitle" class="dayTitle">
           <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
             <p>第 {{value}} 天</p><br>
-            <i v-if="tripData.length > 1" class="far fa-window-close" @click="deleteSchedule(index)"></i>
+            <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
           </div>
           <div class="dayAddBTN" @click="addSchedule"> 
             <i class="far fa-plus-square"></i>
@@ -53,8 +53,8 @@
         <i class="fas fa-bell confirmed-message-reminder-icon"></i>
         <p>確定要刪除此天行程嗎？</p>
         <div>
-          <button><i class="far fa-check-circle"></i> 確定</button>
-          <button><i class="far fa-times-circle"></i> 取消</button>
+          <button @click="deleteSchedule(index)"><i class="far fa-check-circle"></i> 確定</button>
+          <button @click="hideConfirmMessage"><i class="far fa-times-circle"></i> 取消</button>
         </div>
       </div>
     </div>
@@ -226,6 +226,11 @@ export default {
       this.tripData.length = newLength;
       const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
       this.endDay = endDay
+    },
+    hideConfirmMessage(){  
+    },
+    confirmMessage(index){
+      
     },
     deleteSchedule(index){
 
