@@ -147,3 +147,25 @@
 .spotBTN:hover {
   font-weight: bold;
 }
+
+.tripNameDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+
+  button {
+    width: 80px;
+    border: 1px solid #262D4B;
+    border-radius: 8px;
+    color: #262D4B;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #EDBB46;
+    border: none;
+  }
+
+}

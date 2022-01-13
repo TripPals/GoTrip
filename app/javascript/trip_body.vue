@@ -1,7 +1,10 @@
 <template>
   <div>
     <section id="dataTitle">
-      <input type="text" v-model.trim="tripData.name" id="tripName" @focusout="changeName">
+      <div class="tripNameDiv">
+        <input type="text" v-model.trim="tripData.name" id="tripName" @focusout="changeName">
+        <button @click="backToMyTrips" >返回</button>
+      </div>
       <div class="nameError">{{nameError}}</div>
       <div class="tripDate">
         <div>
@@ -79,6 +82,13 @@ export default {
     }
   },
   mounted() {
+
+    const editingDay = JSON.parse(sessionStorage.getItem('editingDay'))
+    let index;
+
+    editingDay ? index = editingDay : index = 0; 
+    this.isActive = index;
+
     responseData.then((data)=>{
       this.tripData = data;
 
@@ -87,7 +97,7 @@ export default {
       this.startDay = startDay;
       this.endDay = endDay;
 
-      var spotData = this.tripData.schedules[0];
+      var spotData = this.tripData.schedules[index];
       this.spotData = spotData;
 
       var spotsList = spotData.spots;
@@ -156,6 +166,8 @@ export default {
         sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
 
+      sessionStorage.setItem('editingDay', JSON.stringify(index))      
+
       // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行!
       setTimeout(() => {
         const position = this.$refs.position;
@@ -185,6 +197,10 @@ export default {
           refreshMapIfInteracted()
         }, 200)
 
+    },
+    backToMyTrips(){
+      sessionStorage.removeItem('editingDay');
+      window.location.replace(`/mytrips`)
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
