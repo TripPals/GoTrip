@@ -6,6 +6,8 @@
 }
 .alert{
   color: rgb(33, 91, 216);
+  position: absolute;
+  z-index: 3;
 }
 .field_with_errors{
   display:inline;

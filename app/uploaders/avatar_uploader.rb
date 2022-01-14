@@ -17,9 +17,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def default_url(*args)
   # 'https://gogotrip.s3.ap-northeast-1.amazonaws.com/demo-default-avatar.png'
   #   # For Rails 3.1+ asset pipeline compatibility:
-    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "demo-default-avatar"].compact.join('_'))
+    # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "demo-default-avatar"].compact.join('_'))
   #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    "/images/fallback/" + [version_name, "default-avatar.jpg"].compact.join('_')
   end
   process :resize_to_fill => [200, 200]
   # Process files as they are uploaded:

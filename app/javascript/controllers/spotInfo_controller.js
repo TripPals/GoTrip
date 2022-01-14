@@ -15,7 +15,7 @@ export default class extends mapInSearch  {
     // 先定義呼叫我們api的方法
     async function fetchData() {
       try {
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/spotfinders/spotinfo?spot_id=${targetedSpotId}`, {
+        const response = await fetch(`/api/v1/spotfinders/spotinfo?spot_id=${targetedSpotId}`, {
           method: 'GET'
         })
         const result = await response.json()
@@ -40,43 +40,19 @@ export default class extends mapInSearch  {
         detailsBox.id = "spotDetailsBox"
         mapBox.classList.remove("mapInSearchSection")
         mapBox.classList.add("mapInSearchSectionWithDetails")
-        outterBox.insertBefore(detailsBox, mapBox)
 
         detailsBox.innerHTML = 
         `
-        <div class="spotDetailsTitle">${spotDetails.name}</div>
+        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
-            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}">
+
           </div>
           <div class="spotDetailsPhotoListBox">
-            <div class="photoLists">
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_2}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_3}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_4}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_5}"></div>
-            </div>
+            <div class="photoLists"></div>
           </div>
         </div>
-        <div class="detailBoxHeading">使與者評論</div>
-        <div class="reviewBox">
-          <div class="reviewItem">
-            <p>${spotDetails.ugc1_name}</p>
-            <p>Rating: ${spotDetails.ugc1_stars}</p>
-            <p>${spotDetails.ugc1_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc2_name}</p>
-            <p>Rating: ${spotDetails.ugc2_stars}</p>
-            <p>${spotDetails.ugc2_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc3_name}</p>
-            <p>Rating: ${spotDetails.ugc3_stars}</p>
-            <p>${spotDetails.ugc3_comment}</p>
-          </div>
-        </div>
+
         <div class="detailBoxHeading">基本資料</div>
         <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
         <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
@@ -92,50 +68,35 @@ export default class extends mapInSearch  {
             <p>${spotDetails.friday_hr}</p>
           </div>
         </div>
+
+        <div class="detailBoxHeading reviewHeading">使與者評論</div>
+        <div class="reviewBox"></div>
+
         <div class="addToScheduleBtn" data-controller="addSpot">
           <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
         </div>
         
         `
+        outterBox.insertBefore(detailsBox, mapBox)
+        processingPhotos(spotDetails)
+        processReviewData(spotDetails)
+
       } else {
 
         const detailsBox = document.querySelector("#spotDetailsBox")
         
         detailsBox.innerHTML = 
         `
-        <div class="spotDetailsTitle">${spotDetails.name}</div>
+        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
-            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}">
+
           </div>
           <div class="spotDetailsPhotoListBox">
-            <div class="photoLists">
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_1}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_2}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_3}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_4}"></div>
-              <div><img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${spotDetails.photo_reference_5}"></div>
-            </div>
+            <div class="photoLists"></div>
           </div>
         </div>
-        <div class="detailBoxHeading">使與者評論</div>
-        <div class="reviewBox">
-          <div class="reviewItem">
-            <p>${spotDetails.ugc1_name}</p>
-            <p>Rating: ${spotDetails.ugc1_stars}</p>
-            <p>${spotDetails.ugc1_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc2_name}</p>
-            <p>Rating: ${spotDetails.ugc2_stars}</p>
-            <p>${spotDetails.ugc2_comment}</p>
-          </div>
-          <div class="reviewItem">
-            <p>${spotDetails.ugc3_name}</p>
-            <p>Rating: ${spotDetails.ugc3_stars}</p>
-            <p>${spotDetails.ugc3_comment}</p>
-          </div>
-        </div>
+
         <div class="detailBoxHeading">基本資料</div>
         <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
         <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
@@ -151,18 +112,98 @@ export default class extends mapInSearch  {
             <p>${spotDetails.friday_hr}</p>
           </div>
         </div>
+
+        <div class="detailBoxHeading reviewHeading">使與者評論</div>
+        <div class="reviewBox"></div>
+        
         <div class="addToScheduleBtn" data-controller="addSpot">
           <button data-addSpot-target="button" data-action="click->addSpot#addSpot">加入行程</button>
         </div>
   
         `
-
+        processingPhotos(spotDetails)
+        processReviewData(spotDetails)
       }
   
     }
 
     // 呼叫長資料方法
     renderData()
+  
+    function processingPhotos(spotDetails) {
+      const { photo_reference_1: p1, photo_reference_2: p2, photo_reference_3: p3, photo_reference_4: p4, photo_reference_5: p5 } = spotDetails
+      const photoData = [ p1, p2, p3, p4, p5 ]
+      const photoLists = document.querySelector(".photoLists")
+      const spotDetailsPhotoBox = document.querySelector(".spotDetailsPhotoBox")
+      const spotDetailsMainPhoto = document.querySelector(".spotDetailsMainPhoto")
+      
+      if ( photoData.filter( item => item === null ).length === 5 ) {
+        spotDetailsPhotoBox.remove()
+      }
+
+      if ( p1 !== null ) {
+        const photodiv = document.createElement("div")
+        photodiv.innerHTML = 
+          `
+          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${p1}">
+          
+          `
+        spotDetailsMainPhoto.appendChild(photodiv)  
+      } else {
+        spotDetailsMainPhoto.remove()
+      }
+
+      photoData.forEach((photo) => {
+        if ( photo !== null ) {
+          const photodiv = document.createElement("div")
+          photodiv.innerHTML = 
+          `
+          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo}">
+          
+          `
+          photoLists.appendChild(photodiv)
+        }
+        
+      })
+
+    }
+
+    function processReviewData(spotDetails) {
+      const { ugc1_comment, ugc2_comment, ugc3_comment, ugc1_name, ugc2_name, ugc3_name, ugc1_stars, ugc2_stars, ugc3_stars } = spotDetails
+
+      const reviewDataContent = [ 
+        {name: ugc1_name, star: ugc1_stars, comment: ugc1_comment}, 
+        {name: ugc2_name, star: ugc2_stars, comment: ugc2_comment},
+        {name: ugc3_name, star: ugc3_stars, comment: ugc3_comment}
+      ]
+
+      const reviewHeading = document.querySelector(".reviewHeading")
+      const reviewBox = document.querySelector(".reviewBox")
+      
+      if ( reviewDataContent.filter( review => review.comment === null).length === 3 ) {
+        reviewHeading.remove()
+        reviewBox.remove()
+      } else {
+        reviewDataContent.forEach((review) => {
+          if (review.comment !== null) {
+            const reviewItem = document.createElement("div")
+            const star = "⭐ "
+            reviewItem.classList.add("reviewItem")
+            reviewItem.innerHTML =
+            `
+            <p>${review.name}</p>
+            <p>${star.repeat(review.star)}</p>
+            <p>${review.comment}</p>
+            `
+            reviewBox.appendChild(reviewItem)
+          }
+        })
+      }
+
+      
+
+    }
+
   }
 
   prepareSpotId() {

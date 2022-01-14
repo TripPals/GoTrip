@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root "welcome#index"
+  get '/about' => 'welcome#about'
 
   devise_for :users, controllers: 
   { omniauth_callbacks: "users/omniauth_callbacks",
@@ -20,18 +21,19 @@ Rails.application.routes.draw do
   # edit
   get "/mytrips/:trip_id/edit", to: "trips#edit", as: "trips_edit"
   patch "/mytrips/:trip_id/edit/update", to: "trips#update", as: "trips_update"
-  get "/mytrips/:trip_id/invite", to: "trips#invite", as: "trips_invite"
   # delete
   delete "/mytrips/:trip_id/delete", to: "trips#destroy", as: "trips_delete"
   
-  get '/mytrips/:trip_id/plan', to: "trips#plan"
+  get '/mytrips/:trip_id/plan', to: "trips#plan", as: "trip_plan"
 
+  # search friend
+  get "/mytrips/:trip_id/search", to: "rights#search", as: "rights_search"
+
+  # post "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
 
   # 景點搜尋route
-
   get "/mytrips/:trip_id/:day_order/search", to: "trips#search"
 
-  # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
@@ -39,14 +41,13 @@ Rails.application.routes.draw do
       post "schedulespots/add", to: "schedulespots#addSpot"
       post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
       delete "schedulespots/delete", to: "schedulespots#deleteSpot"
+      get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
+      put "trip_detail/update_name", to: "trip_detail#update_name"
+      get "tripinvites/search", to: "tripinvites#search"
+      post "tripinvites/join_trip", to: "tripinvites#join_trip"
     end
   end
-  
-  # /api/v1/spotfinders/search
-  # /api/v1/spotfinders/spotinfo
-  # /api/v1/schedulespots/add
-  
-  
+
 end
 
 

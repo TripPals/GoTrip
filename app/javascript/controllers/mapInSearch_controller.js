@@ -7,9 +7,11 @@ export default class extends Controller {
 
   connect() {
 
+    // This is how we can get the params from url by JS
+    const urlString = window.location.search;
+
     if (typeof google != "undefined") {
       this.renderMap();
-
     }
   }
 
@@ -44,7 +46,7 @@ export default class extends Controller {
     async function fetchData() {
       try {
 
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/schedulespots/confirm_to_add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`, {
+        const response = await fetch(`/api/v1/schedulespots/confirm_to_add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`, {
           method: 'POST'
         })  
 
@@ -97,7 +99,7 @@ export default class extends Controller {
       }
 
       function redirectBackToPlanPage(trip_id) {
-        window.location.replace(`http://localhost:3000/mytrips/${trip_id}/plan`);
+        window.location.replace(`/mytrips/${trip_id}/plan`);
       }
 
 

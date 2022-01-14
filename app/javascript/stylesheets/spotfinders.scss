@@ -27,6 +27,7 @@
   width: 25%;
   height: 100vh;
   background-color: rgb(255, 255, 255);
+  position: relative;
 }
 
 .mapInSearchSectionWithDetails {
@@ -45,6 +46,10 @@
     font-size: 1.6rem;
   }
 
+}
+
+.searchForm {
+  position: relative;
 }
 
 .searchForm form {
@@ -76,15 +81,18 @@
   button {
     width: 100%;
     height: 100%;
-    background-color: #623AD6;
-    color: white;
+    background-color: #EDBB46;
+    color: #262D4B;
     font-size: 1.3rem;
     border: none;
     border-radius: 8px;
+    transition: all 0.3s ease;
   }
 
   button:hover {
     cursor: pointer;
+    color: white;
+    background-color: #262D4B;
   }
 
   .cleanInput1, .cleanInput2 {
@@ -101,12 +109,12 @@
 
   .cleanInput2 {
     right: 30px;
-    top: 73px;
+    top: 71px;
   }
 
   .cleanInput1:hover, .cleanInput2:hover {
     cursor: pointer;
-    color: #623AD6;
+    color: white;
   }
 
 }
@@ -116,6 +124,7 @@
   height: calc(100vh - 330px);
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 }
 
 .noResultMessageDiv {
@@ -144,7 +153,8 @@
   margin: auto;
   margin-bottom: 20px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,7 +194,7 @@
   div.nophoto {
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(98,58,214,1) 35%, rgba(158,108,255,1) 100%);
+    background: linear-gradient(90deg, #EDBB46 35%, #D96A49 100%);
     position:relative;
     display:flex;
     justify-content: center;
@@ -229,6 +239,12 @@
   align-items: center;
   font-size: 1.3rem;
   white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  i {
+    margin-right: 10px;
+  }
 
 }
 
@@ -262,12 +278,14 @@
   overflow-y: hidden;
   white-space: nowrap;
   margin-top: 10px;
+  background-color: #fff;
 }
 
 .photoLists div {
   display: inline-block;
   width: 100px;
   height: 100%;
+  margin: 2.5px;
 }
 
 .spotDetailsPhotoListBox img {
@@ -287,7 +305,7 @@
 }
 
 .reviewBox {
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 90px 20px;
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -344,10 +362,11 @@
 }
 
 .addToScheduleBtn {
-  width: 100%;
+  width: 25%;
   height: 70px;
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  left: 30%;
   background-color: white;
   box-shadow: 10px 0px 10px rgba(77, 77, 77, 0.591);
   display: flex;
@@ -360,9 +379,16 @@
   height: 40px;
   border-radius: 5px;
   border: none;
-  background-color: #623AD6;
-  color: white;
+  background-color: #EDBB46;
+  color: #262D4B;
   font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.addToScheduleBtn button:hover {
+  background-color: #262D4B;
+  color: white;
+  cursor: pointer;
 }
 
 .detailBoxHeading {
@@ -376,7 +402,7 @@
 
 @keyframes hideConfirmModal {
   from {
-    opacity: 1;
+    opacity: 0;
     z-index: 100;
   }
   to {
@@ -452,7 +478,7 @@
         border-radius: 0 0 10px 0;
         border: none;  
         background-color: #fff; 
-        color: rgb(101, 67, 196); 
+        color: #257F8B; 
       }
 
       button:first-child:hover {
@@ -463,7 +489,7 @@
 
       button:last-child:hover {
         cursor: pointer;
-        border-bottom: 4px solid rgb(101, 67, 196);
+        border-bottom: 4px solid #257F8B;
       }
 
     }
@@ -521,4 +547,34 @@
   top: 0px;
   animation-name: showSearchMessage;
   animation-duration: 0.3s;
+}
+
+// Loading gif
+
+.loaderBox {
+
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: -250px; 
+  // margin-top: -100px;
+  left: 50%;
+  margin-left: -100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  visibility: hidden;
+
+}
+
+.loadingGif {
+  width: 70%;
+  border-radius: 20px;
+}
+
+.loaderBoxShow {
+  visibility: visible;
 }
