@@ -32,8 +32,8 @@
         <div class="spotBox">
           <div class="spotStartTime" v-if="spotsList.length > 0">出發時間</div>
           <draggable v-model="spotsList" @start="start" @change="dragSpot">
-          <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
-            <div>
+          <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
+            <div class="spotContentDetailsControl" data-action="click->spotItemVue#refreshMapOnClick">
               <div ref="spotName" class="spotName" :data-spotOrder="s">
                 {{spotsList[s-1].name}}
               </div>
@@ -44,8 +44,13 @@
               <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
               <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
             </div>
-            <div class="moveIcon">
-              <i class="fas fa-arrows-alt"></i>
+            <div class="spotIconControl">
+              <div class="spotDeleteIcon" >
+                <i class="fas fa-trash-alt" :data-spotorder="s" @click="deleteSpot($event)"></i>
+              </div>
+              <div class="moveIcon">
+                <i class="fas fa-arrows-alt"></i>
+              </div>
             </div>
           </div>
           </draggable>
@@ -62,6 +67,7 @@ import dayjs from 'dayjs';
 import fetchData from './packs/tripDataFetch.js';
 import draggable from 'vuedraggable';
 import refreshMapIfInteracted from "./packs/refreshmap_if_interacted.js";
+import processDeleteSpot from "./packs/deleteSpot";
 
 const url = window.location.href
 const decomposedUrl = url.split("/")
@@ -224,6 +230,13 @@ export default {
       refreshMapIfInteracted();
 
     },
+    deleteSpot(event){
+
+      const spotOrder = event.target.dataset.spotorder
+      const scheduleId = this.spotData.id
+      processDeleteSpot(scheduleId,spotOrder)  
+
+    }
   }
 }
 </script>

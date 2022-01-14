@@ -26,3 +26,4 @@ window.mapInitialization = function () {
 
 import "./avatar"
 import "./refreshmap_if_interacted"
+import "./deleteSpot.js"

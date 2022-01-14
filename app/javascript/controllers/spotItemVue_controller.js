@@ -29,8 +29,6 @@ export default class extends Plan {
 
     marker.setMap(map);
 
-
-
   }
 
  }
