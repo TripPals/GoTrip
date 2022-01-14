@@ -114,7 +114,7 @@ export default class extends Controller {
       for ( var i = 1; i < getSpotNameDataFromStorage.length -1; i++) {
         middleSpotsPosition.push({
           location: getSpotNameDataFromStorage[i],
-          stopover: true
+          stopover: false
         })
       }
     
@@ -133,7 +133,7 @@ export default class extends Controller {
           })
           .catch((e) => {
 
-            window.alert("您似乎在這天行程安排了跨陸地的景點，GoTrip針對跨陸地的路線功能還在開發中，請耐心等待!"+ status);
+            window.alert("您似乎在這天行程安排了跨陸地的景點，或者針對您新加的景點我們暫時無法取得路線，GoTrip正在開發優化中，請耐心等待!"+ status);
 
           });
       }

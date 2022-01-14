@@ -15,18 +15,25 @@ export default class extends Controller {
     const cityinput = this.cityinputTarget.value.trim()
     const keywordinput = this.keywordinputTarget.value.trim()
     const resultBox = document.querySelector(".searchResultBox")
+    const spotDetailsBox = document.querySelector("#spotDetailsBox")
+    const mapBox = document.querySelector("#mapInSearchSection")
     
 
 
     // 每次按下搜尋先清空搜尋結果列表
     resultBox.innerHTML = ""
+    if (spotDetailsBox) {
+      spotDetailsBox.remove()
+      mapBox.classList.remove("mapInSearchSectionWithDetails")
+      mapBox.classList.add("mapInSearchSection")
+    }
     
     const loader = document.querySelector(".loaderBox")
     loader.classList.add("loaderBoxShow")
 
     async function fetchData() {
       try {
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`, {
+        const response = await fetch(`/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`, {
           method: 'GET'
         })
         const result = await response.json()
@@ -85,7 +92,8 @@ export default class extends Controller {
 
         // 如果搜尋結果有>=1筆資料
       } else {
-        spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
+
+        spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude, id}) => {
           
           const spot_name_char_limit = 25
           const spot_name_adjusted = name.length > spot_name_char_limit ?
@@ -100,7 +108,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo click->spotInfo#prepareSpotId" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
@@ -121,7 +129,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo click->spotInfo#prepareSpotId" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
@@ -147,11 +155,11 @@ export default class extends Controller {
   }
 
   clearCityInput() {
-    this.cityinputTarget.value.clear()
+    this.cityinputTarget.value = ""
   }
 
   clearKeywordInput() {
-    this.keywordinputTarget.value.clear()
+    this.keywordinputTarget.value = ""
   }
 
 

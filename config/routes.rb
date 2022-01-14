@@ -31,30 +31,22 @@ Rails.application.routes.draw do
 
   # post "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
 
-
-  # search friend e-mail API
-  namespace :api do
-    namespace :v1 do
-        get "tripinvites/search", to: "tripinvites#search"
-        post "tripinvites/join_trip", to: "tripinvites#join_trip"
-    end
-  end
-
   # 景點搜尋route
+  get "/mytrips/:trip_id/:day_order/search", to: "trips#search"
 
-  get "/mytrips/:trip_id/:day_number/search", to: "trips#search"
-
-  # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
-  # TripDetail API : 行程規劃頁給前端的整大包該 Trip 資料
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
+      get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
+      post "schedulespots/add", to: "schedulespots#addSpot"
+      post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
+      get "tripinvites/search", to: "tripinvites#search"
+      post "tripinvites/join_trip", to: "tripinvites#join_trip"
     end
   end
-  # /api/v1/spotfinders/search
-  # /api/v1/trip_detail/:trip_id
+
 end
 
 
