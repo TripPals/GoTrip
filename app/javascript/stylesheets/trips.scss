@@ -303,8 +303,23 @@
 
 // 建立行程頁CSS 
 
-.create-title{
+.new-trip-title{
   font-size: 1.8rem;
   font-weight: 600;
   letter-spacing: 0.2em;
+}
+
+.new-trip-form-body {
+  width: 100vw;
+  height: calc(100% - 65px);
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  form div {
+    display: flex;
+    justify-content: space-between;
+  }
 }
