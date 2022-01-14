@@ -18,7 +18,7 @@ export default class extends Controller {
       // call search friend e-mail API
       async function fetchData(){
         try{
-          const response = await fetch(`http://127.0.0.1:3000/api/v1/tripinvites/search?search=${emailInput}`, {
+          const response = await fetch(`/api/v1/tripinvites/search?search=${emailInput}`, {
             method: 'GET'
           })
           const result = await response.json()
