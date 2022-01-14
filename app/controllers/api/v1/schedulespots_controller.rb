@@ -76,31 +76,27 @@ class Api::V1::SchedulespotsController < ApplicationController
 
   def deleteSpot
     
-    schedule_spot_id = params[:schedule_spot_id]
-    schedule_spot_targeted_record = ScheduleSpot.find(schedule_spot_id)
-    schedule_id = schedule_spot_targeted_record.schedule_id
-    target_spot_order = schedule_spot_targeted_record.order
+    schedule_id = params[:schedule_id]
+    spot_order = params[:spot_order].to_i
+    schedule_spot_targeted_record = ScheduleSpot.find_by(schedule_id: schedule_id, order: spot_order)
 
     if schedule_spot_targeted_record
 
       schedule_spot_targeted_record.destroy
 
-      schedule_spot_all_records = ScheduleSpot.where(schedule_id: schedule_id).order(:order)
+      schedule_spot_all_records = ScheduleSpot.where(schedule_id: schedule_id, order: (spot_order + 1)...)
 
       schedule_spot_all_records.each do |record|
-        ScheduleSpot.find(record.id).update(order: record.order - 1) if record.order > target_spot_order
+        record.update(order: record.order - 1) 
       end
-
+      
       respond_to do |format|
         format.json { render :json => { status: "success", message: "Spot deleted successfully"}, status => 200 }
       end
-
     else
-
       respond_to do |format|
         format.json { render :json => { status: "failed", message: "No such spot record found in this schedule!"}, status => 418 }
-      end
-    
+      end   
     end
 
   end
