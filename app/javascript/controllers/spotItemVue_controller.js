@@ -1,17 +1,19 @@
-import mapInSearch from "./mapInSearch_controller"
+import Plan from "./plan_controller"
 
-export default class extends mapInSearch {
+export default class extends Plan {
 
-  static targets = ["searchmap","spotitem"]
+  static targets = ["spotItemVue", "initialmap"]
 
-  // 點選搜尋結果任何一個景點會來呼叫這個方法
-  refreshMap() {
-    const latitude = parseFloat(this.spotitemTarget.dataset.lat)
-    const longitude = parseFloat(this.spotitemTarget.dataset.lng)
+  connect() {
+  }
+
+  refreshMapOnClick() {
+    const latitude = parseFloat(this.spotItemVueTarget.dataset.lat)
+    const longitude = parseFloat(this.spotItemVueTarget.dataset.lng)
 
     const dataForMap = {"lat": latitude,"lng": longitude }
 
-    const map = new google.maps.Map(document.querySelector("#mapInSearchSection"), {
+    const map = new google.maps.Map(document.querySelector("#googleMapSection"), {
       center: dataForMap,
       zoom: 16,
       fullscreenControl: false,
@@ -27,6 +29,9 @@ export default class extends mapInSearch {
 
     marker.setMap(map);
 
+
+
   }
 
-}
+ }
+

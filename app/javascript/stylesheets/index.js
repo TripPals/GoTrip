@@ -11,5 +11,4 @@ import "./user.scss"
 import "./spotfinders.scss"
 import "./tripPlanningView.scss"
 import "./trips.scss"
-
 import "./application.scss"

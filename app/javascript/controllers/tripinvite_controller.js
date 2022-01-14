@@ -16,7 +16,7 @@ export default class extends Controller {
       resultBox.innerHTML = ""
       async function fetchData(){
         try{
-          const response = await fetch(`http://127.0.0.1:3000/api/v1/tripinvites/search?search=${emailInput}`, {
+          const response = await fetch(`/api/v1/tripinvites/search?search=${emailInput}`, {
             method: 'GET'
           })
           const result = await response.json()

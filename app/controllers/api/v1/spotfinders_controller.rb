@@ -36,10 +36,6 @@ class Api::V1::SpotfindersController < ApplicationController
 
           @new_spots = GooglePlacesApi::InitiatingGoogleSearch.new(@search_query_for_google).call
 
-          puts "===================="
-          puts @new_spots
-          puts "===================="
-
           respond_to do |format|
             format.json { render :json => @new_spots, status => 200 }
           end
@@ -59,6 +55,27 @@ class Api::V1::SpotfindersController < ApplicationController
         format.json { render :json => ["Invalid call! Need to have input"], status => 418 }
       end
     end  
+
+  end
+
+  def getSpotInfo
+
+    # 第一步：把FE call帶入的spot_id抓取出來
+    spot_id = params[:spot_id]
+
+    # 第二步：去Spot資料表找吻合的景點資料
+    spot_details = Spot.find_by(id: spot_id)
+
+    # 第三步：判斷，如果找到，就render json回去，找不到(nil)就回傳“No such spot found”
+    if spot_details.present?
+      respond_to do |format|
+        format.json { render :json => spot_details, status => 200}
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => { status: "ok", message: "No such spot found"}, status => 200 }
+      end
+    end
 
   end
 
