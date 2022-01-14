@@ -3,19 +3,18 @@ Rails.application.routes.draw do
   root "welcome#index"
   get '/about' => 'welcome#about'
 
-  devise_for :users, controllers: 
+  devise_for :users, controllers:
   { omniauth_callbacks: "users/omniauth_callbacks",
-    registrations: 'users/registrations' }
+    registrations: 'users/registrations',
+    sessions: 'users/sessions' }
   
-  devise_scope :user do  
-    get '/users/sign_out' => 'devise/sessions#destroy'     
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
     get "/auth/:provider/callback" => "authentications#create"
   end
-  # get "/auth/github/callback" => "authentications#github"
-  # get "/auth/google/callback"  => "authentications#google"
 
   get "/mytrips", to: "trips#index", as: "trips"
-  # new, create 
+  # new, create
   get "/mytrips/new", to: "trips#new", as: "trips_new"
   post "/mytrips/new/create", to: "trips#create", as: "trips_create"
   # edit
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
   patch "/mytrips/:trip_id/edit/update", to: "trips#update", as: "trips_update"
   # delete
   delete "/mytrips/:trip_id/delete", to: "trips#destroy", as: "trips_delete"
-  
+
   get '/mytrips/:trip_id/plan', to: "trips#plan", as: "trip_plan"
 
   # search friend
@@ -61,5 +60,3 @@ Rails.application.routes.draw do
   # /api/v1/delete_schedule   key:schedule_id   刪除schedule
   # /api/v1/add_schedule  key:trip_id  增加schedule
 end
-
-
