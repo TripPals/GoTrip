@@ -32,8 +32,6 @@ export default class extends Controller {
 			const allUserData = await fetchData()
 			allUserData.forEach(({ name, email, role, user_id, ut_id, image, avatar }) => {
 				if (role === 1) {
-					console.log(name);
-					console.log(avatar);
 						const rightResultBox = document.querySelector(".rightresultbox")
 						const rightBox = document.createElement("div")
 						rightBox.classList.add("rightresultdiv")
@@ -94,7 +92,6 @@ export default class extends Controller {
 					const rightResultBox = document.querySelector(".rightresultbox")
 					const rightBox = document.createElement("div")
 					rightBox.classList.add("main-rightresultdiv")
-						if(avatar.url === "/images/fallback/default-avatar.jpg"){
 							rightBox.innerHTML = `
 								<div class="main-rightsection" data-controller="editrole">
 									<div class="main-rightinfo" >
@@ -105,33 +102,10 @@ export default class extends Controller {
 								</div>
 								`
 							rightResultBox.insertAdjacentElement("afterbegin",rightBox)
-						} else if(image !== null){
-							rightBox.innerHTML = `
-								<div class="main-rightsection" data-controller="editrole">
-									<div class="main-rightinfo" >
-										<p class="main-rightresultdiv-owner">行程擁有者</p>
-										<p>${name}</p>
-										<p>${email}</p>
-									</div>
-								</div>
-								`
-								rightResultBox.insertAdjacentElement("afterbegin",rightBox)
-						} else{
-								const avatarImg = avatar.url
-								const fileName = avatarImg.replace("https://gogotrip.s3.amazonaws.com/uploads/user/avatar/","")
-								rightBox.innerHTML = `
-									<div class="main-rightsection" data-controller="editrole">
-										<div class="main-rightinfo" >
-											<p class="main-rightresultdiv-owner">行程擁有者</p>
-											<p>${name}</p>
-											<p>${email}</p>
-										</div>
-									</div>
-									`
-									rightResultBox.insertAdjacentElement("afterbegin",rightBox)
+						
 						}
 				}
-			})
+			)
 		}
 		renderData()
 	}

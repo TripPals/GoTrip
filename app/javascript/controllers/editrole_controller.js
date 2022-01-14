@@ -21,10 +21,7 @@ export default class extends Controller {
 			success:()=>{
 				
         const roleChecks = document.querySelectorAll(".hide-edit-role-checked")
-				// console.log(roleChecks);
 				roleChecks.forEach((roleCheck)=>{
-					// console.log(roleCheck);
-					// console.log(roleCheck.dataset.id);
 					if (tripUserID === roleCheck.dataset.id){
 						roleCheck.classList.add("show-edit-role-checked")
 					}
