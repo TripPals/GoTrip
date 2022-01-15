@@ -54,42 +54,24 @@ class Api::V1::TripDetailController < ApplicationController
       if schedule_spots_ids[i].is_a? Integer
         schedule_spot = ScheduleSpot.find(schedule_spots_ids[i])
         schedule_spot.update(order: orders[i])
-      # 不是整數，但只有一個（同個景點在其他schedule也有，但在此schedule沒有）  
-      else schedule_spots_ids.count(schedule_spots_ids[i]) == 1
-        schedule_spot_array = JSON.load(schedule_spots_ids[i])
-        schedule_spot_array.length.times do |x|
-          # 從 ScheduleSpot找，如果schedule_id是我們要的schedule_id才去做更新
-          schedule_spot = ScheduleSpot.find(schedule_spot_array[x])
-          if schedule_spot.schedule_id == schedule_id
-            schedule_spot.update(order: orders[i])
-          end
-        end
-      end
+      # 不是整數，但只有一個（同個景點在其他schedule也有，但在此schedule沒有）
+      end 
     end
 
     # 找出重複的值(=在此schedule內重複出現的景點)
     repeat_sspots = schedule_spots_ids.select{ |e| schedule_spots_ids.count(e) > 1 ? e : nil }.uniq
     
     if repeat_sspots !=[]
-    
       repeat_sspots.length.times do |x|
         repeat_sspot = JSON.load(repeat_sspots[x])
         repeat_sspot_index =  schedule_spots_ids.map.with_index {|item, i| item == repeat_sspots[x] ? i : nil}.compact
-        
-        # 僅留下屬於這個 schedule 的 skedule_spots_id, 
-        repeat_sspot_array=[]
-        repeat_sspot.length.times do |x|
-          if ScheduleSpot.find(repeat_sspot[x]).schedule_id == schedule_id
-            repeat_sspot_array << repeat_sspot[x]
-          end
-        end
         # 再依據index找對應到的order進行更新
-        repeat_sspot_array.length.times do |x|
-          ScheduleSpot.find(repeat_sspot_array[x]).update(order:orders[repeat_sspot_index[x]])
+        repeat_sspot.length.times do |i|
+          ScheduleSpot.find(repeat_sspot[i]).update(order:orders[repeat_sspot_index[i]])
         end
       end
-    end
 
+    end
     render status: 200, json: ["Order updated successfully"].to_json
   end
 end
