@@ -48,24 +48,20 @@ class Api::V1::TripDetailController < ApplicationController
     orders = params[:order_list]
     schedule_id = JSON.load(params[:schedule_id])
     
-    # 依序一個個值檢查
     schedule_spots_ids.length.times do |i|
-      # 如果是整數（單純的單個景點，在trip裡沒有重複）
+
       if schedule_spots_ids[i].is_a? Integer
         schedule_spot = ScheduleSpot.find(schedule_spots_ids[i])
         schedule_spot.update(order: orders[i])
-      # 不是整數，但只有一個（同個景點在其他schedule也有，但在此schedule沒有）
       end 
     end
 
-    # 找出重複的值(=在此schedule內重複出現的景點)
     repeat_sspots = schedule_spots_ids.select{ |e| schedule_spots_ids.count(e) > 1 ? e : nil }.uniq
     
     if repeat_sspots !=[]
       repeat_sspots.length.times do |x|
         repeat_sspot = JSON.load(repeat_sspots[x])
         repeat_sspot_index =  schedule_spots_ids.map.with_index {|item, i| item == repeat_sspots[x] ? i : nil}.compact
-        # 再依據index找對應到的order進行更新
         repeat_sspot.length.times do |i|
           ScheduleSpot.find(repeat_sspot[i]).update(order:orders[repeat_sspot_index[i]])
         end
