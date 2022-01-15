@@ -31,6 +31,7 @@ class User < ApplicationRecord
 
   def current_trip_role(trip_id)
     user_trips.find_by(trip_id: trip_id).role
+    # byebug
   end
 
   def show_image

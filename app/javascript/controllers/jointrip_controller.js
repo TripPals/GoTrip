@@ -12,13 +12,14 @@ export default class extends Controller {
         event.preventDefault()
 
         const userID = this.data.get("id")
-        const tripID = document.querySelector(".hide-trip-id").textContent
+        // console.log(userID);
+        const tripID = document.querySelector(".invite-hide-trip-id").textContent
         const resultBox = document.querySelector(".searchresultbox")
 
         Rails.ajax({
           url: '/api/v1/tripinvites/join_trip',
           type: 'post',
-          data: `user_id=${userID}&trip_id=${tripID}`,
+          data: `user_id=${userID}&trip_id=${tripID}`, 
           success: (data) => {
             if (data.status === 'ok') {
                 

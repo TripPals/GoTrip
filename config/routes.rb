@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root "welcome#index"
   get '/about' => 'welcome#about'
+  
 
   devise_for :users, controllers:
   { omniauth_callbacks: "users/omniauth_callbacks",
@@ -30,33 +31,29 @@ Rails.application.routes.draw do
 
   # post "/mytrips/:trip_id/invite", to: "rights#invite", as: "rights_invite"
 
-
-  # search friend e-mail API
-  namespace :api do
-    namespace :v1 do
-        get "tripinvites/search", to: "tripinvites#search"
-        post "tripinvites/join_trip", to: "tripinvites#join_trip"
-    end
-  end
-
   # 景點搜尋route
+  get "/mytrips/:trip_id/:day_order/search", to: "trips#search"
 
-  get "/mytrips/:trip_id/:day_number/search", to: "trips#search"
 
-  # SpotFinder API : 當使用者在景點搜尋頁按下搜尋後會打的api路徑
-  # TripDetail API 
   namespace :api do
     namespace :v1 do 
       get "spotfinders/search", to: "spotfinders#search"
-      delete "trip_detail/delete_schedule",to: "trip_detail#destroy"
-      patch "trip_detail/add_schedule", to:"trip_detail#add"
+      get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
+      post "schedulespots/add", to: "schedulespots#addSpot"
+      post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
       put "trip_detail/update_order", to: "trip_detail#update_order"
+      delete "trip_detail/delete_schedule",to: "trip_detail#destroy"
+      patch "trip_detail/add_schedule", to:"trip_detail#add"
+      get "tripinvites/search", to: "tripinvites#search"
+      post "tripinvites/join_trip", to: "tripinvites#join_trip"
+      get "authorities/alluser", to: "authorities#alluser"
+      patch "authorities/update", to: "authorities#update"
+      delete "authorities/delete", to: "authorities#delete"
     end
   end
-  # /api/v1/spotfinders/search
-  # /api/v1/trip_detail/   key:trip_id    該trip的整包資訊
-  # /api/v1/delete_schedule   key:schedule_id   刪除schedule
-  # /api/v1/add_schedule  key:trip_id  增加schedule
+  
+  match '*path', :to => "errors#not_found", :via => :all
+  
 end

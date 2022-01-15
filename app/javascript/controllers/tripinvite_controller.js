@@ -2,6 +2,7 @@ import { Controller } from "stimulus"
 
 
 export default class extends Controller {
+
     static targets = ["emailinput"]
    
     connect(){
@@ -11,14 +12,11 @@ export default class extends Controller {
       event.preventDefault()
       const emailInput = this.emailinputTarget.value.trim()
       const resultBox = document.querySelector(".searchresultbox")
-  
-      // 清除搜尋結果資料
-      resultBox.innerHTML = ""
 
-      // call search friend e-mail API
+      resultBox.innerHTML = ""
       async function fetchData(){
         try{
-          const response = await fetch(`http://127.0.0.1:3000/api/v1/tripinvites/search?search=${emailInput}`, {
+          const response = await fetch(`/api/v1/tripinvites/search?search=${emailInput}`, {
             method: 'GET'
           })
           const result = await response.json()
@@ -33,21 +31,14 @@ export default class extends Controller {
       async function renderData() {
 
         const emailResultData = await fetchData()
-      
-
-      // 如果搜尋結果是空的或不存在 
        if (emailResultData[0].status === "failed") {
-
          const noResultMessage = document.createElement("div")
-
          noResultMessage.classList.add("noresultmessagediv")
          noResultMessage.innerHTML = `<p "noresultmessage">抱歉，您搜尋的用戶資料不存在，請重新輸入一次</p>`
-
          resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
-        
-      } else {
 
+      } else {
         emailResultData.forEach(({name, email, id, provider}) => {
 
           if (provider === "register") {
@@ -66,6 +57,7 @@ export default class extends Controller {
               </div>
             `
             resultBox.appendChild(emailBox)
+
           } else if (provider === "github"){
             const emailBox = document.createElement("div")
             emailBox.classList.add("emailresultdiv")
@@ -109,20 +101,18 @@ export default class extends Controller {
      } else  {
 
       const noEmailInput = document.createElement("div")
-
       noEmailInput.classList.add("noemailinputdiv")
       noEmailInput.innerHTML = `<p>請輸入使用者的e-mail</p>`
-
       resultBox.insertAdjacentElement("afterbegin", noEmailInput)
 
-    
+
     }
-          
-   }
 
-   closeSearchCard() {
+  }
 
-     const hiddenTripID = document.querySelector(".hide-trip-id")
+
+  closeSearchCard() {
+     const hiddenTripID = document.querySelector(".invite-hide-trip-id")
      const searchSection = document.querySelector("#inviteSearchSection")
      const resultBox = document.querySelector(".searchresultbox")
      
@@ -135,4 +125,3 @@ export default class extends Controller {
   
  }
 
- 

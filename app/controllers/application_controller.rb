@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     # before_action :configure_permitted_parameters, if: :devise_controller?
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    # rescue_from ActionController::RoutingError,with: :not_found
 
 	private
 	# def configure_permitted_parameters
@@ -26,4 +27,9 @@ class ApplicationController < ActionController::Base
     def record_not_found
         render file: 'public/404.html', layout: false, status: 404
     end
+
+    # def not_found
+    #     render file: 'public/404.html', layout: false, status: 404
+    # end
+
 end
