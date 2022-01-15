@@ -1,4 +1,5 @@
 import "./tripinvites.scss"
+import "./authorities.scss"
 import "./errorMessages.scss"
 import "./user.scss"
 import "./cssReset.css"

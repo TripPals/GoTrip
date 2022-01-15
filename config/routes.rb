@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root "welcome#index"
   get '/about' => 'welcome#about'
+  
 
   devise_for :users, controllers: 
   { omniauth_callbacks: "users/omniauth_callbacks",
@@ -44,8 +45,14 @@ Rails.application.routes.draw do
       put "trip_detail/update_name", to: "trip_detail#update_name"
       get "tripinvites/search", to: "tripinvites#search"
       post "tripinvites/join_trip", to: "tripinvites#join_trip"
+      get "authorities/alluser", to: "authorities#alluser"
+      patch "authorities/update", to: "authorities#update"
+      delete "authorities/delete", to: "authorities#delete"
     end
   end
+  
+  match '*path', :to => "errors#not_found", :via => :all
+  
 
 end
 
