@@ -33,6 +33,15 @@
           <div class="spotStartTime" v-if="spotsList.length > 0">出發時間</div>
           <draggable v-model="spotsList" @start="start" @change="dragSpot">
           <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
+            <div class="poitype">
+              <div v-if="spotsList[s-1].type === 'metro'"><i class="fas fa-subway"></i></div>
+              <div v-else-if="spotsList[s-1].type === 'bus'"><i class="fas fa-bus"></i></div>
+              <div v-else-if="spotsList[s-1].type === 'airport'"><i class="fas fa-plane-departure"></i></div>
+              <div v-else-if="spotsList[s-1].type === 'food'"><i class="fas fa-utensils"></i></div>
+              <div v-else-if="spotsList[s-1].type === 'lodging'"><i class="fas fa-bed"></i></div>
+              <div v-else-if="spotsList[s-1].type === 'train'"><i class="fas fa-train"></i></div>
+              <div v-else><i class="fas fa-map-marker-alt"></i></div>
+            </div>
             <div class="spotContentDetailsControl" data-action="click->spotItemVue#refreshMapOnClick">
               <div ref="spotName" class="spotName" :data-spotOrder="s">
                 {{spotsList[s-1].name}}

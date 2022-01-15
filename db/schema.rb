@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_065203) do
+ActiveRecord::Schema.define(version: 2022_01_15_015547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_065203) do
     t.string "ugc3_name"
     t.integer "ugc3_stars"
     t.text "ugc3_comment"
+    t.string "poi_type"
   end
 
   create_table "trips", force: :cascade do |t|

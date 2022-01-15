@@ -41,12 +41,36 @@ module GooglePlacesApi
       end
 
       while i < @datalength do
+
+        data = first_batch_data["results"][i]
+        @address = data["formatted_address"]
+        @place_id = data["place_id"]
+        @latitude = data["geometry"]["location"]["lat"]
+        @longitude = data["geometry"]["location"]["lng"]
+        @name = data["name"]
         
-        @address = first_batch_data["results"][i]["formatted_address"]
-        @place_id = first_batch_data["results"][i]["place_id"]
-        @latitude = first_batch_data["results"][i]["geometry"]["location"]["lat"]
-        @longitude = first_batch_data["results"][i]["geometry"]["location"]["lng"]
-        @name = first_batch_data["results"][i]["name"]
+        type_data = data["types"]
+
+        if type_data
+          case 
+          when type_data.include?("restaurant") || type_data.include?("food")
+            @type = "food"
+          when type_data.include?("airport")  
+            @type = "airport"
+          when type_data.include?("lodging")
+            @type = "lodging"
+          when type_data.include?("train_station")
+            @type = "train"
+          when type_data.include?("bus_station")
+            @type = "bus"
+          when type_data.include?("subway_station")
+            @type = "metro"
+          else
+            @type = "poi"
+          end  
+        else
+          @type = nil
+        end
 
         # step 2: 拿place_id 打 Place Details Api
         
@@ -254,7 +278,8 @@ module GooglePlacesApi
                             ugc2_comment: @ugc2_comment,
                             ugc3_name: @ugc3_name,
                             ugc3_stars: @ugc3_stars,
-                            ugc3_comment: @ugc3_comment
+                            ugc3_comment: @ugc3_comment,
+                            poi_type: @type
                           )
       end                    
     end
