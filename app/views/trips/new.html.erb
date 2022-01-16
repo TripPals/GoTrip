@@ -1,40 +1,48 @@
 <%#= render 'layouts/header_trip' %>
 <div class="new-trip-container">
+  <h1 class="new-trip-page-title">新增行程</h1>
   <div class="new-trip-wrap">
-    <h1 class="new-trip-page-title">建立行程</h1>
-    <div class="new-trip-form-body">
-      <h2 class="new-trip-form-title">行程資訊</h2>
-      <%= form_for(@trip, url: trips_create_path) do |t| %>
-      <div class="new-trip-form-content">
-        <div class="new-trip-fieldname">
-          <%= t.label :name, "行程名稱" %>
+    <h2 class="new-trip-form-title">行程資訊</h2>
+    <%= form_for(@trip, url: trips_create_path) do |t| %>
+    <div class="new-trip-form-content">
+      <div class="new-trip-fieldname-top">
+        <div class="new-trip-field-label">
+        <%= t.label :name, "行程名稱" %> 
         </div>
         <div>
-          <%= t.text_field :name ,class:'new-trip-field'%>
+        <%= t.text_field :name ,class:'new-trip-field', placeholder:'新的行程'%>
         </div>
-        <div class="new-trip-fieldname">
+      </div>
+      <div class="new-trip-fieldname-left" >
+        <div class="new-trip-field-label">
           <%= t.label :length, "天數" %>
         </div>
         <div>
-          <%= t.number_field :length, min: 1 ,class:'new-trip-field'%>
+          <%= t.number_field :length, min: 1 ,class:'new-trip-field', placeholder:'請選擇'%>
         </div>
-        <div class="new-trip-fieldname">
+      </div>
+      <div class="new-trip-fieldname-right">
+        <div class="new-trip-field-label">
           <%= t.label :start_date, "開始日期"%>
         </div>
         <div>
           <%= t.date_field :start_date, start_year: 1800, end_year: Time.now.year ,class:'new-trip-field'%>
         </div>
-        <div class="new-trip-button-box">
-          <%= t.submit "建立行程" %>
-        </div>
-          <% end %>
       </div>
+      <div class="new-trip-button-box">
+        <%= t.submit "建立行程" %>
+      </div>
+          <% end %>
     </div>
   </div>
-
-  <div class="new-trip-message">
-    <p>全新旅程即將展開!</p>
-    <h1>祝你旅程精彩無比</h1>
+  <div class="new-trip-illustration-box">
+    <div class="new-trip-text">
+      <p>創建你獨一無二的旅程!</p>
+      <h1>全新旅程即將展開</h1>
+    </div>
+    <div class="new-trip-image-box">
+      <img src="/images/new_trip_illustration.png" alt="">
+    </div>
   </div>
 </div>
 
