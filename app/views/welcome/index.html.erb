@@ -41,7 +41,11 @@
       <h1>出去走走吧！</h1>
       <p>3分鐘上手最酷的行程規劃網站。<br/>有了GoTrip，讓規劃旅行更有趣。<br/>
         還在猶豫什麼？快點開始吧！</p>
-      <%= link_to "<div class='gotrip-start-btn'>開始規劃</div>".html_safe, trips_path, class: "header-in-btn btn-border gotrip-start-btn" %>
+      <% if user_signed_in? %>
+        <%= link_to "<div class='gotrip-start-btn'><i class='far fa-calendar-alt'></i> 我的行程</div>".html_safe, trips_path, class: "header-in-btn btn-border gotrip-start-btn" %>
+      <% else %>
+        <%= link_to "<div class='gotrip-start-btn'><i class='far fa-calendar-alt'></i> 開始規劃</div>".html_safe, trips_path, class: "header-in-btn btn-border gotrip-start-btn" %>
+      <% end %>
     </div>
   </section>
 </section>

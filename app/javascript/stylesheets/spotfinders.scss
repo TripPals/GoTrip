@@ -578,3 +578,116 @@
 .loaderBoxShow {
   visibility: visible;
 }
+
+@keyframes hideConfirmModal {
+  from {
+    opacity: 0;
+    z-index: 100;
+  }
+  to {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+.hide-confirmed-message {
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  opacity: 0;
+  animation-name: hideConfirmModal;
+  animation-duration: 0.5s;
+
+  div.confirmed-message-content {
+    width: 500px;
+    height: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    i.confirmed-message-reminder-icon {
+      font-size: 3rem;
+      margin: -15px 0 15px;
+      color: rgb(148, 148, 148);
+    }
+
+    p {
+      font-size: 1.3rem;
+      width: 70%;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    div {
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      border-top: 1px solid rgb(187, 187, 187);
+
+      button:first-child {
+        font-size: 1.3rem;
+        width: 50%;
+        height: 100%;
+        border-radius: 0 0 0 10px;
+        border: none;
+        border-right: 1px solid rgb(187, 187, 187);
+        background-color: #fff; 
+        color: #ed515f;
+      }
+
+      button:last-child {
+        font-size: 1.3rem;
+        width: 50%;
+        height: 100%;
+        border-radius: 0 0 10px 0;
+        border: none;  
+        background-color: #fff; 
+        color: rgb(148, 148, 148); 
+      }
+
+      button:first-child:hover {
+        cursor: pointer;
+        border-bottom: 4px solid #ed515f;
+      }
+
+
+      button:last-child:hover {
+        cursor: pointer;
+        border-bottom: 4px solid #262C4C;
+      }
+
+    }
+
+
+  }
+}
+
+@keyframes showConfirmModal {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.show-confirmed-message {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+  animation-name: showConfirmModal;
+  animation-duration: 0.5s;
+}

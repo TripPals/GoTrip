@@ -12,15 +12,18 @@
         <div class="123">
         </div>
       </div>
-      
     </section>
     
     <section id="dataBody" >
       <div class="dayBox">
         <div class="dayBack" @click="slideLeft">＜</div>
         <div ref="dayTitle" class="dayTitle">
-          <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
-            第 {{value}} 天
+          <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
+            <p>第 {{value}} 天</p>
+            <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
+          </div>
+          <div class="dayAddBTN" @click="addSchedule"> 
+            <i class="far fa-plus-square"></i>
           </div>
         </div>
         <div class="dayNext" @click="slideRight">＞</div>
@@ -46,6 +49,16 @@
       </div>
     </section>
 
+    <div class="hide-confirmed-message" ref="hide-confirmed-message">
+      <div class="confirmed-message-content">
+        <i class="fas fa-bell confirmed-message-reminder-icon"></i>
+        <p>確定要刪除此天行程嗎？</p>
+        <div>
+          <button @click="deleteSchedule"><i class="far fa-check-circle"></i> 確定</button>
+          <button @click="hideConfirmMessage"><i class="far fa-times-circle"></i> 取消</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -216,6 +229,46 @@ export default {
 
       refreshMapIfInteracted();
 
+    },
+    addSchedule(){
+      const token = document.querySelector("meta[name=csrf-token]").content
+      axios.defaults.headers.common["X-CSRF-Token"] = token
+      axios.patch(`/api/v1/trip_detail/add_schedule?trip_id=${trip_id}`)
+        .catch((err) => {
+          console.log(err);
+        })
+      const newLength = this.tripData.length + 1;
+      this.tripData.length = newLength;
+      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
+      this.endDay = endDay
+    },
+    hideConfirmMessage(){
+      const messageModal = this.$refs['hide-confirmed-message']
+      messageModal.classList.remove('show-confirmed-message')
+    },
+    confirmMessage(index){
+      const messageModal = this.$refs['hide-confirmed-message']
+      messageModal.classList.add('show-confirmed-message')
+      messageModal.dataset.index = index
+    },
+    deleteSchedule(){
+      const responseData = fetchData(trip_id)
+      const index = this.$refs['hide-confirmed-message'].dataset.index
+
+      responseData.then((data)=>{
+        this.tripData = data;
+        var schedule = this.tripData.schedules[index]
+        this.schedule = schedule;
+        const schedule_id = this.schedule.id
+    
+        const token = document.querySelector("meta[name=csrf-token]").content
+        axios.defaults.headers.common["X-CSRF-Token"] = token
+        axios.delete(`/api/v1/trip_detail/delete_schedule?schedule_id=${schedule_id}`)
+          .catch((err) => {
+            console.log(err);
+          })
+        location.reload();
+      });
     },
   }
 }

@@ -75,10 +75,15 @@
     background:linear-gradient(to top,#EEBC38,#f5da78 );
     background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
     box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    cursor: pointer;
     .header-in-user-show{
       display: flex;
       align-items: center;
       justify-content: center; 
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
+        }
       .header-in-user-info{
         line-height: 42px;
         font-size: 18px;
@@ -89,7 +94,7 @@
         white-space : nowrap;
         max-width: 240px;
         min-width: 60px;
-      }
+        }
       img{
         margin: 1px 10px 1px 2px;
         width: 40px;
@@ -99,10 +104,6 @@
     }
   }
 
-  label:hover .header-in-after-login{
-    color: #DB6A43;
-    cursor: pointer;
-  }
   #list-checked:checked ~ .header-in-after-list{
     display: block;
   }
@@ -113,7 +114,7 @@
     display: none;
     position: absolute;
     right: 60px;
-    bottom: -140px;
+    bottom: -160px;
     div{
       padding: 5px 8px;
       border-radius: 7px;
@@ -129,6 +130,7 @@
       animation: swing 1s;
       background-color:rgba(255,255,255,0.5);
       color: #DB6A43;
+      backdrop-filter: blur(5px);
     }
     .gotrip-mytrip{
       padding: 17px 0;
@@ -174,6 +176,7 @@
   a{
     padding: 3px;
     border-radius: 4px;
+    color: #262C4C;
   }
   a:hover{
     background-color: #207F8C;
