@@ -1,4 +1,5 @@
 import { Controller } from "stimulus"
+import refreshmap_if_interacted from "../packs/refreshmap_if_interacted";
 export default class extends Controller {
 
 
@@ -146,6 +147,15 @@ export default class extends Controller {
 
   }
 
+  }
+
+  closeSpotDetails() {
+    const detailsBox = document.querySelector(".spotDetailsBoxinPlan")
+    const mapBox = document.querySelector("#googleMapSection")
+    detailsBox.remove()
+    mapBox.classList.remove("mapInPlanPageWithDetails")
+    mapBox.classList.add("mapInPlanPage")
+    refreshmap_if_interacted()
   }
 
  }

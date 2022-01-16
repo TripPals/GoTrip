@@ -67,7 +67,7 @@ export default class extends Plan {
         `    
         <div class="spotDetailsTitleBox">
           <div class="spotDetailsTitleinPlan"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
-          <div class="detailsCloseBtn"><i class="fas fa-times"></i></div>
+          <div class="detailsCloseBtn" data-action="click->plan#closeSpotDetails"><i class="fas fa-times"></i></div>
         </div>
         <div class="spotDetailsContentBox" data-controller="spotComment">
           <div class="spotDetailsPhotoBox">
@@ -117,7 +117,7 @@ export default class extends Plan {
         `
         <div class="spotDetailsTitleBox">
           <div class="spotDetailsTitleinPlan"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
-          <div class="detailsCloseBtn"><i class="fas fa-times"></i></div>
+          <div class="detailsCloseBtn" data-action="click->plan#closeSpotDetails"><i class="fas fa-times"></i></div>
         </div>
         <div class="spotDetailsContentBox" data-controller="spotComment">
           <div class="spotDetailsPhotoBox">
