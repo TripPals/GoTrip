@@ -69,7 +69,7 @@ export default class extends Plan {
           <div class="spotDetailsTitleinPlan"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
           <div class="detailsCloseBtn"><i class="fas fa-times"></i></div>
         </div>
-        <div class="spotDetailsContentBox">
+        <div class="spotDetailsContentBox" data-controller="spotComment">
           <div class="spotDetailsPhotoBox">
             <div class="spotDetailsMainPhoto">
 
@@ -98,8 +98,8 @@ export default class extends Plan {
           <div class="detailBoxHeading reviewHeading">使與者評論</div>
           <div class="reviewBox"></div>
 
-          <div class="addToScheduleBtn" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}">
-            <button><i class="fas fa-edit"></i> 景點筆記</button>
+          <div class="addToScheduleBtn">
+            <button data-action="click->spotComment#showSpotComment" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}" data-spotComment-target="editbutton"><i class="fas fa-edit"></i> 景點筆記</button>
           </div>
         </div>
         `
@@ -119,7 +119,7 @@ export default class extends Plan {
           <div class="spotDetailsTitleinPlan"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
           <div class="detailsCloseBtn"><i class="fas fa-times"></i></div>
         </div>
-        <div class="spotDetailsContentBox">
+        <div class="spotDetailsContentBox" data-controller="spotComment">
           <div class="spotDetailsPhotoBox">
             <div class="spotDetailsMainPhoto">
 
@@ -147,8 +147,8 @@ export default class extends Plan {
 
           <div class="detailBoxHeading reviewHeading">使與者評論</div>
           <div class="reviewBox"></div>
-          <div class="addToScheduleBtn" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}">
-            <button><i class="fas fa-edit"></i> 景點筆記</button>
+          <div class="addToScheduleBtn">
+            <button data-action="click->spotComment#showSpotComment" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}" data-spotComment-target="editbutton"><i class="fas fa-edit"></i> 景點筆記</button>
           </div>
         </div>
         `
@@ -230,6 +230,10 @@ export default class extends Plan {
         })
       } 
     }
+  }
+
+  showSpotComment() {
+    console.log("SHowing");
   }
 
  }

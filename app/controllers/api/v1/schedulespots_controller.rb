@@ -102,14 +102,40 @@ class Api::V1::SchedulespotsController < ApplicationController
   end
 
   def getComment
-    respond_to do |format|
-      format.json { render :json => ["hahah"], status => 200}
+
+    schedule_id = params[:schedule_id]
+    spot_order = params[:spot_order]
+    target_record = ScheduleSpot.find_by(schedule_id: schedule_id, order: spot_order)
+
+    if target_record
+      spot_comment = target_record.spot_comment
+      schedulespot_id = target_record.id
+      respond_to do |format|
+        format.json { render :json => [status: "success", schedulespot_id: schedulespot_id,  spot_comment: spot_comment], status => 200}
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => [status: "failed", message: "No such record found in the database"], status => 200}
+      end
     end
+
   end
 
   def updateComment
-    respond_to do |format|
-      format.json { render :json => ["hehehe"], status => 200}
+
+    schedulespot_id = params[:schedulespot_id]
+    updated_comment = params[:comment]
+    target_record = ScheduleSpot.find(schedulespot_id)
+
+    if target_record
+      target_record.update(spot_comment: updated_comment)
+      respond_to do |format|
+        format.json { render :json => [status: "success", message: "updated successfully"], status => 200}
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => [status: "failed", message: "No such record found in the database"], status => 200}
+      end
     end
   end
 
