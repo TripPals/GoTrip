@@ -43,7 +43,7 @@
               <div v-else><i class="fas fa-map-marker-alt"></i></div>
             </div>
             <div class="spotContentDetailsControl" data-spotItemVue-target="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick click->spotItemVue#showSpotDetails" :data-spotid="spotsList[s-1].id" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
-              <div ref="spotName" class="spotName" :data-spotOrder="s">
+              <div data-spotItemVue-target="spotName" ref="spotName" class="spotName" :data-spotOrder="s" :data-scheduleid="spotData.id">
                 {{spotsList[s-1].name}}
               </div>
               <div class="address">

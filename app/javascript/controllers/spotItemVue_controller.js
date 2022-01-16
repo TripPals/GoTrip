@@ -2,7 +2,7 @@ import Plan from "./plan_controller"
 
 export default class extends Plan {
 
-  static targets = ["spotItemVue", "initialmap"]
+  static targets = ["spotItemVue", "initialmap", "spotName"]
 
   refreshMapOnClick() {
     const latitude = parseFloat(this.spotItemVueTarget.dataset.lat)
@@ -31,6 +31,7 @@ export default class extends Plan {
   showSpotDetails() {
 
     const targetedSpotId = this.spotItemVueTarget.dataset.spotid
+    const eventTarget = this.spotNameTarget
     
     // 先定義呼叫我們api的方法
     async function fetchData() {
@@ -56,41 +57,51 @@ export default class extends Plan {
       
       if (!document.querySelector(".spotDetailsBoxinPlan")) {
         const detailsBox = document.createElement("div")
+        const spotorder = eventTarget.dataset.spotorder
+        const scheduleid = eventTarget.dataset.scheduleid
         detailsBox.classList.add("spotDetailsBoxinPlan")
         mapBox.classList.remove("mapInPlanPage")
         mapBox.classList.add("mapInPlanPageWithDetails")
 
         detailsBox.innerHTML = 
-        `
-        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
-        <div class="spotDetailsPhotoBox">
-          <div class="spotDetailsMainPhoto">
+        `    
+        <div class="spotDetailsTitleBox">
+          <div class="spotDetailsTitleinPlan"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+          <div class="detailsCloseBtn"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="spotDetailsContentBox">
+          <div class="spotDetailsPhotoBox">
+            <div class="spotDetailsMainPhoto">
 
+            </div>
+            <div class="spotDetailsPhotoListBox">
+              <div class="photoLists"></div>
+            </div>
           </div>
-          <div class="spotDetailsPhotoListBox">
-            <div class="photoLists"></div>
+
+          <div class="detailBoxHeading">基本資料</div>
+          <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
+          <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
+          <div class="openingHourBox">
+            <i class="fas fa-clock"></i>
+            <div class="hourlist">
+              <p>${spotDetails.saturday_hr}</p>
+              <p>${spotDetails.sunday_hr}</p>
+              <p>${spotDetails.monday_hr}</p>
+              <p>${spotDetails.tuesday_hr}</p>
+              <p>${spotDetails.wednesday_hr}</p>
+              <p>${spotDetails.thursday_hr}</p>
+              <p>${spotDetails.friday_hr}</p>
+            </div>
+          </div>
+
+          <div class="detailBoxHeading reviewHeading">使與者評論</div>
+          <div class="reviewBox"></div>
+
+          <div class="addToScheduleBtn" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}">
+            <button><i class="fas fa-edit"></i> 景點筆記</button>
           </div>
         </div>
-
-        <div class="detailBoxHeading">基本資料</div>
-        <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
-        <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
-        <div class="openingHourBox">
-          <i class="fas fa-clock"></i>
-          <div class="hourlist">
-            <p>${spotDetails.saturday_hr}</p>
-            <p>${spotDetails.sunday_hr}</p>
-            <p>${spotDetails.monday_hr}</p>
-            <p>${spotDetails.tuesday_hr}</p>
-            <p>${spotDetails.wednesday_hr}</p>
-            <p>${spotDetails.thursday_hr}</p>
-            <p>${spotDetails.friday_hr}</p>
-          </div>
-        </div>
-
-        <div class="detailBoxHeading reviewHeading">使與者評論</div>
-        <div class="reviewBox"></div>
-        
         `
         outterBox.insertBefore(detailsBox, mapBox)
         processingPhotos(spotDetails)
@@ -99,38 +110,47 @@ export default class extends Plan {
       } else {
 
         const detailsBox = document.querySelector(".spotDetailsBoxinPlan")
+        const spotorder = eventTarget.dataset.spotorder
+        const scheduleid = eventTarget.dataset.scheduleid
         
         detailsBox.innerHTML = 
         `
-        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
-        <div class="spotDetailsPhotoBox">
-          <div class="spotDetailsMainPhoto">
+        <div class="spotDetailsTitleBox">
+          <div class="spotDetailsTitleinPlan"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+          <div class="detailsCloseBtn"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="spotDetailsContentBox">
+          <div class="spotDetailsPhotoBox">
+            <div class="spotDetailsMainPhoto">
 
+            </div>
+            <div class="spotDetailsPhotoListBox">
+              <div class="photoLists"></div>
+            </div>
           </div>
-          <div class="spotDetailsPhotoListBox">
-            <div class="photoLists"></div>
+
+          <div class="detailBoxHeading">基本資料</div>
+          <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
+          <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
+          <div class="openingHourBox">
+            <i class="fas fa-clock"></i>
+            <div class="hourlist">
+              <p>${spotDetails.saturday_hr}</p>
+              <p>${spotDetails.sunday_hr}</p>
+              <p>${spotDetails.monday_hr}</p>
+              <p>${spotDetails.tuesday_hr}</p>
+              <p>${spotDetails.wednesday_hr}</p>
+              <p>${spotDetails.thursday_hr}</p>
+              <p>${spotDetails.friday_hr}</p>
+            </div>
+          </div>
+
+          <div class="detailBoxHeading reviewHeading">使與者評論</div>
+          <div class="reviewBox"></div>
+          <div class="addToScheduleBtn" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}">
+            <button><i class="fas fa-edit"></i> 景點筆記</button>
           </div>
         </div>
-
-        <div class="detailBoxHeading">基本資料</div>
-        <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
-        <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
-        <div class="openingHourBox">
-          <i class="fas fa-clock"></i>
-          <div class="hourlist">
-            <p>${spotDetails.saturday_hr}</p>
-            <p>${spotDetails.sunday_hr}</p>
-            <p>${spotDetails.monday_hr}</p>
-            <p>${spotDetails.tuesday_hr}</p>
-            <p>${spotDetails.wednesday_hr}</p>
-            <p>${spotDetails.thursday_hr}</p>
-            <p>${spotDetails.friday_hr}</p>
-          </div>
-        </div>
-
-        <div class="detailBoxHeading reviewHeading">使與者評論</div>
-        <div class="reviewBox"></div>
-  
         `
         processingPhotos(spotDetails)
         processReviewData(spotDetails)

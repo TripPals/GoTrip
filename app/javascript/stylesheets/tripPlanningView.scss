@@ -258,3 +258,41 @@
   animation-name: showPlanMessage;
   animation-duration: 0.3s;
 }
+
+
+// SpotDetails section in Plan page
+
+.spotDetailsTitleBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .spotDetailsTitleinPlan {
+    width: 90%;
+    height: 60px;
+    background-color: white;
+    position:relative;
+    z-index: 10;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  
+    i {
+      margin-right: 10px;
+    }
+  
+  }
+
+  .detailsCloseBtn {
+    width: 10%;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+}

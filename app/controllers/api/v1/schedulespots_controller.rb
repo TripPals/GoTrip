@@ -101,6 +101,18 @@ class Api::V1::SchedulespotsController < ApplicationController
 
   end
 
+  def getComment
+    respond_to do |format|
+      format.json { render :json => ["hahah"], status => 200}
+    end
+  end
+
+  def updateComment
+    respond_to do |format|
+      format.json { render :json => ["hehehe"], status => 200}
+    end
+  end
+
 
   private
 
