@@ -1,41 +1,116 @@
-
 #planView {
   padding-top: 60px;
   display: flex;
 }
-
-#googleMapSection {
-  width: 70%;
-  height: calc(100vh - 60px);
-}
-
-#spotPlanningSection {
-  width: 30%;
-  min-width: 350px;
+#spotPlanningSection,#PlanPageView {
   height: calc(100vh - 60px);
   background-color: rgb(206, 206, 206);
 }
+@media screen and (max-width: 767px) {
+  #googleMapSection {
+    height: calc(95vh - 60px);
+    width: 100%;
+    z-index: 0;
+  }
+  #spotPlanningSection,#PlanPageView {
+    height: calc(95vh - 60px);
+  }
+  .planPageUp {
+    height: calc(95vh - 60px);
+    width: 100%;
+    min-width: 280px;
+    position: absolute;
+    z-index: 1;
+  }
+  .spotBox {
+    height: calc(95vh - 290px);
+    max-height: calc(95vh - 290px);
+  }
+  .spotBoxView {
+    height: calc(100vh - 289px);
+    max-height: calc(100vh - 289px);
+  }
+  .planPageDown {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+  .planFooter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #eebc39;
+    width: 100%;
+    height: 5vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+  }
+  .changeIndex {
+    text-align: center;
+    letter-spacing: 2px;
+    background-color: #262C4C;
+    color: #EEBC38;
+    padding: 5px 10px;
+    margin-right: 20px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+}
 
+@media screen and (min-width: 768px) {
+  #googleMapSection {
+    height: calc(100vh - 60px);
+  }
+  #spotPlanningSection,#PlanPageView {
+    width: 400px;
+  }
+  #googleMapSection {
+    width: calc(100% - 400px);
+  }
+  #dataBody {
+    height: calc(100vh - 230px);
+  }
+  .spotBox {
+    height: calc(100vh - 290px);
+    max-height: calc(100vh - 290px);
+  }
+  .spotBoxView {
+    height: calc(100vh - 255px);
+    max-height: calc(100vh - 255px);
+  }
+}
 // spotPlanningSection
 #dataTitle {
+  height: 120px;
+  width: 100%;
   position: relative;
   background-color: #fff;
-  height: 120px;
   #tripName {
+    width: 70%;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 22px;
     border: none;
-    margin: 5px 20px;
+    margin: 5px 0px 0px 20px;
     border-bottom: 1px solid rgb(206, 206, 206);
   }
-  .tripDate {
-    display: flex;
+  #tripNameView {
+    width: 70%;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 0px 0px 0px 20px;
   }
   .nameError {
     height: 16px;
     color: #f00;
     font-size: 14px;
-    padding: 5px 20px 0px 20px;
+    padding: 5px 20px 5px 20px;
+    padding-bottom: 0px;
+  }
+  .loading {
+    float: right;
+    color: #666;
   }
   .starEnd {
     padding: 5px 20px;
@@ -56,14 +131,13 @@
     display: block;
   }
 }
-
 #dataBody {
+  width: 100%;
   background-color: #fff;
-  height: calc(100vh - 230px);
   .dayBox {
+    height: 70px;
     display: flex;
     justify-content: space-between;
-    height: calc(70px - 1px);
     border-top: 1px solid #ccc;
   }
   .dayBack, .dayNext{
@@ -111,9 +185,14 @@
     font-weight: bold;
     cursor: pointer;
   }
+  .demarcation {
+    height: 5px;
+    background-color: #eebc39;
+  }
+  .chosenClass {
+    display: none !important;
+  }
   .spotBox {
-    height: calc(100vh - 290px);
-    max-height: calc(100vh - 290px);
     background-color: #ddd;
     overflow: scroll;
     .spotStartTime {
@@ -131,6 +210,9 @@
       padding: 30px 40px;
       margin-bottom: 10px;
       cursor: move;
+    }
+    .spotMapListView {
+      cursor: default;
     }
     .address {
       width: 14em;
@@ -168,4 +250,48 @@
 }
 .spotBTN:hover {
   font-weight: bold;
+}
+
+// Here is where the magic happens
+
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+  // visibility: hidden;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite, 
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+	0% { stroke: #4285F4; }
+	25% { stroke: #DE3E35; }
+	50% { stroke: #F7C223; }
+	75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
 }

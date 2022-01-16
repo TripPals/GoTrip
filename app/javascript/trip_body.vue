@@ -1,58 +1,57 @@
 <template>
   <div>
-    <section id="dataTitle">
-      <input type="text" v-model.trim="tripData.name" id="tripName" @focusout="changeName">
-      <div class="nameError">{{nameError}}</div>
-      <div class="tripDate">
-        <div>
+    <div class="planPageUp" :class="{planPageDown: isA}">
+      <section id="dataTitle">
+        <input type="text" v-model.trim="tripData.name" id="tripName" @change="changeName">
+        <div class="nameError">{{nameError}}<div class="loading"><svg v-if="loading" class="spinner" width="14px" height="14px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>{{loadingMessenge}}</div></div>
+        <div class="tripDate">
           <div class="starEnd">{{startDay}}<date-picker v-model="startDay" input-class="hideInput" :clearable="false" valueType='format' @change="changeDate"></date-picker> ～ {{endDay}}</div>
           <div v-if="tripData.length > 1" class="dayLength">{{tripData.length}} 天 {{tripData.length - 1}} 夜</div>
           <div v-else-if="tripData.length == 1" class="dayLength">{{tripData.length}} 天</div>
         </div>
-        <div class="calendar">
-          
-        </div>
-      </div>
+        
+      </section>
       
-    </section>
-    
-    <section id="dataBody" >
-      <div class="dayBox">
-        <div class="dayBack" @click="slideLeft">＜</div>
-        <div ref="dayTitle" class="dayTitle">
-          <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
-            第 {{value}} 天
-          </div>
-        </div>
-        <div class="dayNext" @click="slideRight">＞</div>
-      </div>
-      <div>
-        <a :href="'/mytrips/' + trip_id + '/' + spotData.order + '/search'" class="spotBTN">
-          新增景點
-        </a>
-        <div class="spotBox">
-          <div class="spotStartTime" v-if="spotsList.length > 0">出發時間</div>
-          <draggable v-model="spotsList" @start="start" @change="dragSpot">
-          <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
-            <div>
-              <div ref="spotName" class="spotName" :data-spotOrder="s">
-                {{spotsList[s-1].name}}
-              </div>
-              <div class="address">
-                {{spotsList[s-1].address}}
-              </div>
-              <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
-              <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
-              <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
-            </div>
-            <div class="moveIcon">
-              <i class="fas fa-arrows-alt"></i>
+      <section id="dataBody">
+        <div class="dayBox">
+          <div class="dayBack" @click="slideLeft">＜</div>
+          <div ref="dayTitle" class="dayTitle">
+            <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
+              第 {{value}} 天
             </div>
           </div>
-          </draggable>
+          <div class="dayNext" @click="slideRight">＞</div>
         </div>
-      </div>
-    </section>
+        <div>
+          <a :href="'/mytrips/' + trip_id + '/' + spotData.order + '/search'" class="spotBTN">
+            新增景點
+          </a>
+          <div class="spotBox">
+            <draggable :snap="true" v-model="spotsList" @start="start" @change="dragSpot" animation="300">
+              <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
+                <div>
+                  <div ref="spotName" class="spotName" :data-spotOrder="s">
+                    {{spotsList[s-1].name}}
+                  </div>
+                  <div class="address">
+                    {{spotsList[s-1].address}}
+                  </div>
+                  <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
+                  <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
+                  <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
+                </div>
+                <div class="moveIcon">
+                  <i class="fas fa-arrows-alt"></i>
+                </div>
+              </div>
+            </draggable>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div v-if="fullWidth < 768" class="planFooter">
+      <div class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
+    </div>
 
   </div>
 </template>
@@ -63,7 +62,6 @@ import dayjs from 'dayjs';
 import fetchData from './packs/tripDataFetch.js';
 import draggable from 'vuedraggable';
 import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
 import 'vue2-datepicker/locale/zh-cn';
 import refreshMapIfInteracted from "./packs/refreshmap_if_interacted.js";
 
@@ -79,6 +77,8 @@ export default {
     },
   data: function () {
     return {
+      loading: false,
+      loadingMessenge: "",
       // 點擊天數按鈕變色
       isActive: 0,
       // 帶入行程資訊的變數
@@ -89,19 +89,32 @@ export default {
       spotsList: [],
       trip_id: trip_id,
       nameError: "",
+      fullWidth: 0,
+      changeBTN: "",
+      isA: false,
     }
   },
   mounted() {
+   const vm = this;
+    vm.fullWidth = window.innerWidth;
+    window.onresize = () => {
+      if (vm.fullWidth < 768) {
+        this.changeBTN = "MAP";
+      }
+    };
+    if (vm.fullWidth < 768) {
+      this.changeBTN = "MAP";
+    };
     responseData.then((data)=>{
       this.tripData = data;
+
+      var spotData = this.tripData.schedules[0];
+      this.spotData = spotData;
 
       const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
       const startDay = dayjs(this.tripData.startDate).format('YYYY-MM-DD');
       this.startDay = startDay;
       this.endDay = endDay;
-
-      var spotData = this.tripData.schedules[0];
-      this.spotData = spotData;
 
       var spotsList = spotData.spots;
       this.spotsList = spotsList;
@@ -123,7 +136,8 @@ export default {
   },
   methods: {
     changeName(e){
-      const update_name = e.target.value
+      const update_name = e.target.value;
+      
 
       if (e.target.value !== "") {
         this.nameError = "";
@@ -133,8 +147,14 @@ export default {
              .catch((err) => {
                console.log(err);
               })
+        this.loadingMessenge = " 儲存中";
+        this.loading = true;
+        setTimeout(() =>{
+          this.loadingMessenge = "";
+          this.loading = false;
+        },800)
       }
-      else {
+      else if (e.target.value == "") {
         this.nameError = "請輸入行程名稱";
       }
     },
@@ -146,11 +166,17 @@ export default {
              .catch((err) => {
                console.log(err);
               });
-      
+      this.loadingMessenge = " 儲存中";
+      this.loading = true;
+      setTimeout(() =>{
+        this.loadingMessenge = "";
+        this.loading = false;
+      },800)
       const endDay = dayjs(update_date).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
       this.endDay = endDay;
     },
     changePage(index) {
+      console.log(this.tripData.name);
       const responseData = fetchData(trip_id)
       this.isActive = index;
 
@@ -253,7 +279,16 @@ export default {
       sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
 
       refreshMapIfInteracted();
-
+    },
+    changeIndex() {
+      if (this.isA == false){
+        this.isA = true;
+        this.changeBTN = "返回";
+      }
+      else {
+        this.isA = false;
+        this.changeBTN = "MAP";
+      }
     },
   }
 }
