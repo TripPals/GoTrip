@@ -311,11 +311,12 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: rgb(250, 240, 228)
+  background-color: rgb(250, 240, 228);
+  padding: 0 100px; 
 }
 
 .new-trip-wrap {
-  width: 700px;
+  width: 70%;
   // height: calc(100% - 100px);
   background-color:white;
   padding-top: 30px;
@@ -401,12 +402,12 @@
 
 
 .new-trip-button-box {
-  width: 40%;
+  width: 100%;
   display: flex;
   justify-content:end;
-  position: absolute;
-  left: 400px;
-  top: 200px;
+  // position: absolute;
+  // left: 400px;
+  // top: 200px;
 
   input {
     display: inline-block;
