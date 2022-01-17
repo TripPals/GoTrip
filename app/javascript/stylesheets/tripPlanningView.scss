@@ -66,15 +66,10 @@
   #googleMapSection {
     height: calc(100vh - 60px);
   }
-  #spotPlanningSection,#PlanPageView {
+  #spotPlanningSection, #PlanPageView {
     width: 400px;
     height: calc(100vh - 60px);
     background-color: rgb(206, 206, 206);
-  }
-  #googleMapSection {
-    width: calc(100% - 400px);
-    position: relative;
-    z-index: 1;
   }
   .mapInPlanPage {
     width: calc(100% - 400px);
@@ -82,7 +77,6 @@
   }
   .mapInPlanPageWithDetails {
     width: calc(100% - 800px);
-    height: calc(100vh - 60px);
   }
   .spotDetailsBoxinPlan {
     width: 400px;
@@ -90,9 +84,9 @@
     background-color: rgb(255, 255, 255);
     position: relative;
     overflow-y: auto;
-    position: relative;
     z-index: 2;
   }
+
   #dataBody {
     height: calc(100vh - 230px);
   }
@@ -197,7 +191,15 @@
     height: 0px;
     width: 0px;
   }
+
   .dayBTN {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+  }
+
+  #dayBTN {
     flex-shrink: 0;
     text-align: center;
     padding: 10px;
@@ -452,6 +454,10 @@
     cursor: pointer;
   }
 
+  .detailsCloseBtn:hover {
+    color: #D96A49;
+  }  
+
 }
 
 
@@ -503,6 +509,17 @@
   .spotCommentInput:focus {
     outline-color: #DB6A43;
   }
+
+  .spotCommentBox {
+    width: 100%;
+    padding: 20px;
+    color: #262D4B;
+    margin-top: 20px;
+    word-wrap: break-word;
+    background-color: white;
+    border-top: 1px solid grey;
+  }
+  
 
 }
 

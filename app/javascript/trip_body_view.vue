@@ -24,18 +24,31 @@
         <div>
           <div class="demarcation"></div>
           <div class="spotBox spotBoxView">
-              <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList spotMapListView" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
-              <div>
-                <div ref="spotName" class="spotName" :data-spotOrder="s">
-                  {{spotsList[s-1].name}}
+              <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVueViewOnly">
+              <div class="poitypeAndNumberBox">
+                  <div class="poiNumber">{{s}}</div>
+                  <div class="poitype">
+                    <div v-if="spotsList[s-1].type === 'metro'"><i class="fas fa-subway"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'bus'"><i class="fas fa-bus"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'airport'"><i class="fas fa-plane-departure"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'food'"><i class="fas fa-utensils"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'lodging'"><i class="fas fa-bed"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'train'"><i class="fas fa-train"></i></div>
+                    <div v-else><i class="fas fa-map-marker-alt"></i></div>
+                  </div>
                 </div>
-                <div class="address">
-                  {{spotsList[s-1].address}}
+              <div class="spotContentDetailsControl spotInfo" data-spotItemVueViewOnly-target="spotItemVue" data-action="click->spotItemVueViewOnly#refreshMapOnClick click->spotItemVueViewOnly#showSpotDetails" :data-spotid="spotsList[s-1].id" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
+                  <div data-spotItemVueViewOnly-target="spotName" ref="spotName" class="spotName" :data-spotOrder="s" :data-scheduleid="spotData.id">
+                    {{spotsList[s-1].name}}
+                  </div>
+                  <div class="address">
+                    {{spotsList[s-1].address}}
+                  </div>
+                  <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
+                  <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
+                  <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
                 </div>
-                <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
-                <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
-                <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
-              </div>
+                <div class="spotIconControl"></div>
             </div>
           </div>
         </div>
