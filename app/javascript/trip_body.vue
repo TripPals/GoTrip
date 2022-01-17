@@ -9,15 +9,18 @@
           <div v-if="tripData.length > 1" class="dayLength">{{tripData.length}} 天 {{tripData.length - 1}} 夜</div>
           <div v-else-if="tripData.length == 1" class="dayLength">{{tripData.length}} 天</div>
         </div>
-        
       </section>
-      
+    
       <section id="dataBody">
         <div class="dayBox">
           <div class="dayBack" @click="slideLeft">＜</div>
           <div ref="dayTitle" class="dayTitle">
             <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
-              第 {{value}} 天
+              <p>第 {{value}} 天</p>
+              <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
+            </div>
+            <div class="dayAddBTN" @click="addSchedule"> 
+              <i class="far fa-plus-square"></i>
             </div>
           </div>
           <div class="dayNext" @click="slideRight">＞</div>
@@ -27,9 +30,9 @@
             新增景點
           </a>
           <div class="spotBox">
-            <draggable :snap="true" v-model="spotsList" @start="start" @change="dragSpot" animation="300">
+            <draggable :snap="true" v-model="spotsList" @start="start" @change="dragSpot" ghostClass="ghost" chosenClass="chosen" animation="300">
               <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
-                <div>
+                <div class="spotInfo">
                   <div ref="spotName" class="spotName" :data-spotOrder="s">
                     {{spotsList[s-1].name}}
                   </div>
@@ -49,10 +52,20 @@
         </div>
       </section>
     </div>
-    <div v-if="fullWidth < 768" class="planFooter">
-      <div class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
+    <div class="planFooter">
+      <div ref="changeIndex" class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
     </div>
 
+    <div class="hide-confirmed-message" ref="hide-confirmed-message">
+      <div class="confirmed-message-content">
+        <i class="fas fa-bell confirmed-message-reminder-icon"></i>
+        <p>確定要刪除此天行程嗎？</p>
+        <div>
+          <button @click="deleteSchedule"><i class="far fa-check-circle"></i> 確定</button>
+          <button @click="hideConfirmMessage"><i class="far fa-times-circle"></i> 取消</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -90,7 +103,7 @@ export default {
       trip_id: trip_id,
       nameError: "",
       fullWidth: 0,
-      changeBTN: "",
+      changeBTN: "MAP",
       isA: false,
     }
   },
@@ -138,7 +151,6 @@ export default {
     changeName(e){
       const update_name = e.target.value;
       
-
       if (e.target.value !== "") {
         this.nameError = "";
         const token = document.querySelector("meta[name=csrf-token]").content;
@@ -176,7 +188,6 @@ export default {
       this.endDay = endDay;
     },
     changePage(index) {
-      console.log(this.tripData.name);
       const responseData = fetchData(trip_id)
       this.isActive = index;
 
@@ -241,7 +252,6 @@ export default {
       let ssiList = [];
       let orderList = [];
       let scheduleId = Number(this.spotData.id)
-      console.log(scheduleId);
       scheduleSpotsId.forEach(el => {
         orderList.push(Number(el.dataset.spotorder))
         if (isNaN(el.innerText)) {
@@ -289,6 +299,46 @@ export default {
         this.isA = false;
         this.changeBTN = "MAP";
       }
+    },
+    addSchedule(){
+      const token = document.querySelector("meta[name=csrf-token]").content
+      axios.defaults.headers.common["X-CSRF-Token"] = token
+      axios.patch(`/api/v1/trip_detail/add_schedule?trip_id=${trip_id}`)
+        .catch((err) => {
+          console.log(err);
+        })
+      const newLength = this.tripData.length + 1;
+      this.tripData.length = newLength;
+      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
+      this.endDay = endDay
+    },
+    hideConfirmMessage(){
+      const messageModal = this.$refs['hide-confirmed-message']
+      messageModal.classList.remove('show-confirmed-message')
+    },
+    confirmMessage(index){
+      const messageModal = this.$refs['hide-confirmed-message']
+      messageModal.classList.add('show-confirmed-message')
+      messageModal.dataset.index = index
+    },
+    deleteSchedule(){
+      const responseData = fetchData(trip_id)
+      const index = this.$refs['hide-confirmed-message'].dataset.index
+
+      responseData.then((data)=>{
+        this.tripData = data;
+        var schedule = this.tripData.schedules[index]
+        this.schedule = schedule;
+        const schedule_id = this.schedule.id
+    
+        const token = document.querySelector("meta[name=csrf-token]").content
+        axios.defaults.headers.common["X-CSRF-Token"] = token
+        axios.delete(`/api/v1/trip_detail/delete_schedule?schedule_id=${schedule_id}`)
+          .catch((err) => {
+            console.log(err);
+          })
+        location.reload();
+      });
     },
   }
 }

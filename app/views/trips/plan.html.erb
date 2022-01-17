@@ -1,7 +1,10 @@
 <div id="planView" data-controller="plan">
 
+<% if current_user.current_trip_role(params[:trip_id]) == "viewer" %>
   <div id="PlanPageView"></div>
-  <%# <div id="spotPlanningSection"></div> %>
+<% else %>  
+  <div id="spotPlanningSection"></div>
+<% end%>
   <div id="googleMapSection" 
        data-action="mapsLoaded@document->plan#renderMap"
        data-plan-target="initialmap"

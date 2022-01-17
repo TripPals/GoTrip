@@ -42,7 +42,7 @@
       </section>
     </div>
     <div v-if="fullWidth < 768" class="planFooter">
-      <div v-if="fullWidth < 768" class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
+      <div class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
     </div>
 
   </div>
