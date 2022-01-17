@@ -17,21 +17,24 @@
 }
 
 #mapInSearchSection {
-  width: calc(100% - 400px);
+  // width: calc(100% - 400px);
   height: 100vh;
   background-color: rgb(231, 255, 187);
 }
 
+.mapInSearchSection {
+  width: calc(100% - 400px);
+}
 
 #spotDetailsBox {
-  width: 25%;
+  width: 400px;
   height: 100vh;
   background-color: rgb(255, 255, 255);
   position: relative;
 }
 
 .mapInSearchSectionWithDetails {
-  width: 45%;
+  width: calc(100% - 800px);
   height: 100vh;
 }
 
@@ -362,11 +365,11 @@
 }
 
 .addToScheduleBtn {
-  width: 25%;
+  width: 400px;
   height: 70px;
   position: fixed;
   bottom: 0;
-  left: 30%;
+  left: 400px;
   background-color: white;
   box-shadow: 10px 0px 10px rgba(77, 77, 77, 0.591);
   display: flex;
