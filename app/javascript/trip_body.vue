@@ -1,53 +1,60 @@
 <template>
   <div>
-    <section id="dataTitle">
-      <input type="text" v-model.trim="tripData.name" id="tripName" @focusout="changeName">
-      <div class="nameError">{{nameError}}</div>
-      <div class="tripDate">
-        <div>
-          <div class="starEnd">{{startDay}} - {{endDay}}</div>
+    <div class="planPageUp" :class="{planPageDown: isA}">
+      <section id="dataTitle">
+        <input type="text" v-model.trim="tripData.name" id="tripName" @change="changeName">
+        <div class="nameError">{{nameError}}<div class="loading"><svg v-if="loading" class="spinner" width="14px" height="14px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>{{loadingMessenge}}</div></div>
+        <div class="tripDate">
+          <div class="starEnd">{{startDay}}<date-picker v-model="startDay" input-class="hideInput" :clearable="false" valueType='format' @change="changeDate"></date-picker> ～ {{endDay}}</div>
           <div v-if="tripData.length > 1" class="dayLength">{{tripData.length}} 天 {{tripData.length - 1}} 夜</div>
           <div v-else-if="tripData.length == 1" class="dayLength">{{tripData.length}} 天</div>
         </div>
-        <div class="123">
-        </div>
-      </div>
-    </section>
+      </section>
     
-    <section id="dataBody" >
-      <div class="dayBox">
-        <div class="dayBack" @click="slideLeft">＜</div>
-        <div ref="dayTitle" class="dayTitle">
-          <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
-            <p>第 {{value}} 天</p>
-            <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
+      <section id="dataBody">
+        <div class="dayBox">
+          <div class="dayBack" @click="slideLeft">＜</div>
+          <div ref="dayTitle" class="dayTitle">
+            <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
+              <p>第 {{value}} 天</p>
+              <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
+            </div>
+            <div class="dayAddBTN" @click="addSchedule"> 
+              <i class="far fa-plus-square"></i>
+            </div>
           </div>
-          <div class="dayAddBTN" @click="addSchedule"> 
-            <i class="far fa-plus-square"></i>
+          <div class="dayNext" @click="slideRight">＞</div>
+        </div>
+        <div>
+          <a :href="'/mytrips/' + trip_id + '/' + spotData.order + '/search'" class="spotBTN">
+            新增景點
+          </a>
+          <div class="spotBox">
+            <draggable :snap="true" v-model="spotsList" @start="start" @change="dragSpot" ghostClass="ghost" chosenClass="chosen" animation="300">
+              <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
+                <div class="spotInfo">
+                  <div ref="spotName" class="spotName" :data-spotOrder="s">
+                    {{spotsList[s-1].name}}
+                  </div>
+                  <div class="address">
+                    {{spotsList[s-1].address}}
+                  </div>
+                  <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
+                  <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
+                  <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
+                </div>
+                <div class="moveIcon">
+                  <i class="fas fa-arrows-alt"></i>
+                </div>
+              </div>
+            </draggable>
           </div>
         </div>
-        <div class="dayNext" @click="slideRight">＞</div>
-      </div>
-      <div>
-        <a :href="'/mytrips/' + trip_id + '/' + spotData.order + '/search'" class="spotBTN">
-          新增景點
-        </a>
-        <div class="spotBox">
-          <div class="spotStartTime" v-if="spotsList.length > 0">出發時間</div>
-          <draggable v-model="spotsList" @start="start" @change="dragSpot">
-          <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
-            <div ref="spotName" class="spotName" :data-spotOrder="s">
-              {{spotsList[s-1].name}}
-            </div>
-            <div class="address">
-              {{spotsList[s-1].address}}
-            </div>
-            <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
-          </div>
-          </draggable>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
+    <div class="planFooter">
+      <div ref="changeIndex" class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
+    </div>
 
     <div class="hide-confirmed-message" ref="hide-confirmed-message">
       <div class="confirmed-message-content">
@@ -67,17 +74,24 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import fetchData from './packs/tripDataFetch.js';
 import draggable from 'vuedraggable';
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/locale/zh-cn';
 import refreshMapIfInteracted from "./packs/refreshmap_if_interacted.js";
 
-const url = window.location.href
-const decomposedUrl = url.split("/")
-const trip_id = decomposedUrl[4]
-const responseData = fetchData(trip_id)
+const url = window.location.href;
+const decomposedUrl = url.split("/");
+const trip_id = decomposedUrl[4];
+const responseData = fetchData(trip_id);
 
 export default {
-  components: { draggable },
+  components: {
+    draggable,
+    DatePicker,
+    },
   data: function () {
     return {
+      loading: false,
+      loadingMessenge: "",
       // 點擊天數按鈕變色
       isActive: 0,
       // 帶入行程資訊的變數
@@ -87,21 +101,33 @@ export default {
       spotData: [],
       spotsList: [],
       trip_id: trip_id,
-
       nameError: "",
+      fullWidth: 0,
+      changeBTN: "MAP",
+      isA: false,
     }
   },
   mounted() {
+   const vm = this;
+    vm.fullWidth = window.innerWidth;
+    window.onresize = () => {
+      if (vm.fullWidth < 768) {
+        this.changeBTN = "MAP";
+      }
+    };
+    if (vm.fullWidth < 768) {
+      this.changeBTN = "MAP";
+    };
     responseData.then((data)=>{
       this.tripData = data;
 
-      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
-      const startDay = dayjs(this.tripData.startDate).format('YYYY/MM/DD');
-      this.startDay = startDay;
-      this.endDay = endDay;
-
       var spotData = this.tripData.schedules[0];
       this.spotData = spotData;
+
+      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
+      const startDay = dayjs(this.tripData.startDate).format('YYYY-MM-DD');
+      this.startDay = startDay;
+      this.endDay = endDay;
 
       var spotsList = spotData.spots;
       this.spotsList = spotsList;
@@ -123,39 +149,57 @@ export default {
   },
   methods: {
     changeName(e){
-
-      const update_name = e.target.value
-
+      const update_name = e.target.value;
+      
       if (e.target.value !== "") {
         this.nameError = "";
-        const token = document.querySelector("meta[name=csrf-token]").content
-        axios.defaults.headers.common["X-CSRF-Token"] = token
+        const token = document.querySelector("meta[name=csrf-token]").content;
+        axios.defaults.headers.common["X-CSRF-Token"] = token;
         axios.put(`/api/v1/trip_detail/update_name?trip_id=${trip_id}&update_name=${update_name}`)
              .catch((err) => {
                console.log(err);
               })
+        this.loadingMessenge = " 儲存中";
+        this.loading = true;
+        setTimeout(() =>{
+          this.loadingMessenge = "";
+          this.loading = false;
+        },800)
       }
-      else {
+      else if (e.target.value == "") {
         this.nameError = "請輸入行程名稱";
       }
     },
+    changeDate(e) {
+      const update_date = e;
+      const token = document.querySelector("meta[name=csrf-token]").content;
+      axios.defaults.headers.common["X-CSRF-Token"] = token;
+      axios.put(`/api/v1/trip_detail/update_date?trip_id=${trip_id}&update_date=${update_date}`)
+             .catch((err) => {
+               console.log(err);
+              });
+      this.loadingMessenge = " 儲存中";
+      this.loading = true;
+      setTimeout(() =>{
+        this.loadingMessenge = "";
+        this.loading = false;
+      },800)
+      const endDay = dayjs(update_date).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
+      this.endDay = endDay;
+    },
     changePage(index) {
       const responseData = fetchData(trip_id)
-
       this.isActive = index;
 
       responseData.then((data)=>{
         this.tripData = data;
-
         var spotData = this.tripData.schedules[index];
         this.spotData = spotData;
-
         var spotsList = spotData.spots;
         this.spotsList = spotsList;
 
         let spotMapList = [];
         let positionMapList = [];
-
         this.spotsList.forEach(el => {
           spotMapList.push(el.name);
         });
@@ -168,8 +212,6 @@ export default {
         sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
         sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
-
-      // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行!
       setTimeout(() => {
         const position = this.$refs.position;
         const spotName = this.$refs.spotName;
@@ -191,13 +233,9 @@ export default {
           sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
         }
         }, 100)
-
-      // refreshMapIfInteracted()
-
         setTimeout(()=>{
           refreshMapIfInteracted()
         }, 200)
-
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
@@ -210,6 +248,29 @@ export default {
     start() {
     },
     dragSpot() {
+      const scheduleSpotsId = this.$refs.scheduleSpotsId;
+      let ssiList = [];
+      let orderList = [];
+      let scheduleId = Number(this.spotData.id)
+      scheduleSpotsId.forEach(el => {
+        orderList.push(Number(el.dataset.spotorder))
+        if (isNaN(el.innerText)) {
+          ssiList.push(el.innerText.replace(/\s|[\r\n]/g, ""));
+        }
+        else {
+          ssiList.push(Number(el.innerText));
+        };
+      });
+      const token = document.querySelector("meta[name=csrf-token]").content;
+      axios.defaults.headers.common["X-CSRF-Token"] = token;
+      axios.put(`/api/v1/trip_detail/update_order?schedule_id=${scheduleId}`,{
+        schedule_spots_id: ssiList,
+        order_list: orderList,
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
       const position = this.$refs.position;
       const spotName = this.$refs.spotName;
 
@@ -228,7 +289,16 @@ export default {
       sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
 
       refreshMapIfInteracted();
-
+    },
+    changeIndex() {
+      if (this.isA == false){
+        this.isA = true;
+        this.changeBTN = "返回";
+      }
+      else {
+        this.isA = false;
+        this.changeBTN = "MAP";
+      }
     },
     addSchedule(){
       const token = document.querySelector("meta[name=csrf-token]").content
