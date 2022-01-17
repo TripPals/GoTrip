@@ -1,83 +1,171 @@
-
 #planView {
   padding-top: 60px;
   display: flex;
   position: relative;
 }
 
-#googleMapSection {
-  // width: 70%;
-  height: calc(100vh - 60px);
-  position: relative;
-  z-index: 1;
-}
-
-.mapInPlanPage {
-  width: calc(100% - 400px);
-  background-color: rgb(231, 255, 187);
-}
-
-.mapInPlanPageWithDetails {
-  width: calc(100% - 800px);
-  height: calc(100vh - 60px);
-}
-
-#spotPlanningSection {
-  width: 400px;
+#spotPlanningSection,#PlanPageView {
   height: calc(100vh - 60px);
   background-color: rgb(206, 206, 206);
-  box-shadow: 8px 0px 10px rgba(130, 130, 130, 0.619);
-  position: relative;
-  z-index: 3;
 }
 
-.spotDetailsBoxinPlan {
-  width: 400px;
-  height: calc(100vh - 60px);
-  background-color: rgb(255, 255, 255);
-  position: relative;
-  overflow-y: auto;
-  position: relative;
-  z-index: 2;
+@media screen and (max-width: 767px) {
+  #googleMapSection {
+    height: calc(100vh - 98px);
+    width: 100%;
+    z-index: 0;
+  }
+  #spotPlanningSection,#PlanPageView {
+    height: calc(100vh - 98px);
+  }
+  .planPageUp {
+    height: calc(100vh - 98px);
+    width: 100%;
+    min-width: 280px;
+    position: absolute;
+    z-index: 1;
+  }
+  .spotBox {
+    height: calc(95vh - 290px);
+    max-height: calc(95vh - 290px);
+  }
+  .spotBoxView {
+    height: calc(100vh - 289px);
+    max-height: calc(100vh - 289px);
+  }
+  .planPageDown {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+  .planFooter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #eebc39;
+    width: 100%;
+    height: 38px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+  }
+  .changeIndex {
+    text-align: center;
+    letter-spacing: 2px;
+    background-color: #262C4C;
+    color: #EEBC38;
+    padding: 3px 10px;
+    margin-right: 20px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
 }
 
+@media screen and (min-width: 768px) {
+  #googleMapSection {
+    height: calc(100vh - 60px);
+  }
+  #spotPlanningSection,#PlanPageView {
+    width: 400px;
+    height: calc(100vh - 60px);
+    background-color: rgb(206, 206, 206);
+  }
+  #googleMapSection {
+    width: calc(100% - 400px);
+    position: relative;
+    z-index: 1;
+  }
+  .mapInPlanPage {
+    width: calc(100% - 400px);
+    background-color: rgb(231, 255, 187);
+  }
+  .mapInPlanPageWithDetails {
+    width: calc(100% - 800px);
+    height: calc(100vh - 60px);
+  }
+  .spotDetailsBoxinPlan {
+    width: 400px;
+    height: calc(100vh - 60px);
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+  }
+  #dataBody {
+    height: calc(100vh - 230px);
+  }
+  .spotBox {
+    height: calc(100vh - 290px);
+    max-height: calc(100vh - 290px);
+  }
+  .spotBoxView {
+    height: calc(100vh - 255px);
+    max-height: calc(100vh - 255px);
+  }
+  .changeIndex {
+    display: none;
+  }
+}
 // spotPlanningSection
 #dataTitle {
+  height: 120px;
+  width: 100%;
   position: relative;
   background-color: #fff;
-  height: 120px;
   #tripName {
+    width: 70%;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 22px;
     border: none;
-    padding: 5px 20px;
+    margin: 5px 0px 0px 20px;
+    border-bottom: 1px solid rgb(206, 206, 206);
   }
-  .tripDate {
-    display: flex;
+  #tripNameView {
+    width: 70%;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 0px 0px 0px 20px;
   }
   .nameError {
     height: 16px;
     color: #f00;
     font-size: 14px;
-    padding: 5px 20px 0px 20px;
+    padding: 5px 20px 5px 20px;
+    padding-bottom: 0px;
+  }
+  .loading {
+    float: right;
+    color: #666;
   }
   .starEnd {
-    padding: 5px 20px;
+    padding: 2px 20px;
     color: #666;
   }
   .dayLength {
-    padding: 5px 20px;
+    padding: 0px 20px;
     color: #666;
+  }
+  .hideInput {
+    display: none;
+  }
+  .mx-datepicker {
+    width: 30px;
+    padding-bottom: 6px;
+  }
+  .mx-icon-calendar {
+    display: block;
   }
 }
 
 #dataBody {
+  width: 100%;
   background-color: #fff;
-  height: calc(100vh - 230px);
   .dayBox {
+    height: 70px;
     display: flex;
     justify-content: space-between;
-    height: calc(70px - 1px);
     border-top: 1px solid #ccc;
   }
   .dayBack, .dayNext{
@@ -96,6 +184,7 @@
   }
   .dayBack:hover, .dayNext:hover {
     font-weight: bold;
+    color: #EEBC38;
     cursor: pointer;
   }
   .dayTitle {
@@ -108,13 +197,39 @@
     height: 0px;
     width: 0px;
   }
-  #dayBTN {
+  .dayBTN {
     flex-shrink: 0;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+
+    p{
+      margin: 0 0 3px;
+    }
+    i{
+      font-size: small;
+      color: #aaa;
+      cursor: pointer;
+    }
+    i:hover{
+      color: #EEBC38;
+    }
+  }
+  .dayAddBTN{
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    border-right: 1px solid #ccc;
+    i{
+      font-size: large;
+      color: #aaa;
+      cursor: pointer;
+    }
+    i:hover{
+      color: #EEBC38;
+    }
   }
   .active {
     background-image: linear-gradient(to top, #eebc39 0%, #eebc39 8%, transparent 8%, transparent 100%);
@@ -125,9 +240,11 @@
     font-weight: bold;
     cursor: pointer;
   }
+  .demarcation {
+    height: 5px;
+    background-color: #eebc39;
+  }
   .spotBox {
-    height: calc(100vh - 290px);
-    max-height: calc(100vh - 290px);
     background-color: #ddd;
     overflow: scroll;
 
@@ -139,6 +256,9 @@
       height: 30px;
     }
     .spotMapList {
+      min-height: 120px;
+      display: flex;
+      justify-content: space-between;
       background-color: #fff;
       box-shadow: 0px 3px 3px 0px #ccc;
       padding: 20px 20px 20px 5px;
@@ -179,8 +299,22 @@
       width: 70%;
       cursor: pointer;
     }
+    .spotMapListView {
+      cursor: default;
+    }
+    .spotInfo {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .spotName {
+      width: 15em;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
     .address {
-      width: 14em;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -218,14 +352,17 @@
         color: #D96A49;
       }
     }
-
-
-  }
-  .spotBox::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+    .schedule_spots_id {
+      display: none;
+    }
   }
 }
+
+.spotBox::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
 .spotBTN {
   background-color: #eebc39;
   text-decoration: none;
@@ -436,4 +573,49 @@
   animation-name: showCommentSaveStatus;
   animation-duration: 0.2s;
   animation-timing-function: ease;
+
+}  
+
+// Loading animation on clanedar & name change
+
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+  // visibility: hidden;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite, 
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+	0% { stroke: #4285F4; }
+	25% { stroke: #DE3E35; }
+	50% { stroke: #F7C223; }
+	75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
 }
