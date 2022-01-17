@@ -141,7 +141,7 @@
     .spotMapList {
       background-color: #fff;
       box-shadow: 0px 3px 3px 0px #ccc;
-      padding: 20px 20px;
+      padding: 20px 20px 20px 5px;
       margin-bottom: 10px;
       cursor: move;
       display: flex;
@@ -156,8 +156,23 @@
 
     }
 
-    .poitype {
+    .poitypeAndNumberBox {
       width: 10%;
+      height: 100%;
+      text-align: center;
+      margin-right: 5px;
+
+      .poiNumber {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color:#EDBB46;
+      }
+
+      .poitype {
+        color:#D96A49;
+      }
+
+
     }
 
     .spotContentDetailsControl {
@@ -169,6 +184,7 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      color: rgb(171, 171, 171);
     }
     .position {
       display: none;
@@ -185,7 +201,7 @@
         justify-content: center;
         align-items: center;
         color: #ddd;
-        margin: 0 20px 0 20px;
+        margin: 0 15px 0 15px;
       } 
 
       .spotDeleteIcon {
@@ -193,14 +209,13 @@
         justify-content: center;
         align-items: center;
         color: #ddd;
-        margin: 0 20px 0 20px;
+        margin: 0 15px 0 15px;
         transition: all 0.3s ease;
       } 
 
       .spotDeleteIcon:hover {
         cursor: pointer;
         color: #D96A49;
-        font-size: 1.2rem;
       }
     }
 
