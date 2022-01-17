@@ -43,6 +43,17 @@ class Api::V1::TripDetailController < ApplicationController
     end
   end
 
+  def update_date
+    @trip = Trip.find_by(id: params[:trip_id])
+    if params[:update_date].present?
+      @trip.update(start_date: params[:update_date].to_date)
+      @trip.update(end_date: params[:update_date].to_date + @trip.length.to_i.days - 1.days)
+      render status: 200, json: ["start date updated successfully"].to_json
+    else
+      render status: 404, json: ["update error"].to_json
+    end
+  end
+
   def update_order
     schedule_spots_ids = params[:schedule_spots_id]
     orders = params[:order_list]
@@ -53,7 +64,7 @@ class Api::V1::TripDetailController < ApplicationController
       if schedule_spots_ids[i].is_a? Integer
         schedule_spot = ScheduleSpot.find(schedule_spots_ids[i])
         schedule_spot.update(order: orders[i])
-      end 
+      end
     end
 
     repeat_sspots = schedule_spots_ids.select{ |e| schedule_spots_ids.count(e) > 1 ? e : nil }.uniq
@@ -66,8 +77,8 @@ class Api::V1::TripDetailController < ApplicationController
           ScheduleSpot.find(repeat_sspot[i]).update(order:orders[repeat_sspot_index[i]])
         end
       end
-
     end
     render status: 200, json: ["Order updated successfully"].to_json
   end
+
 end
