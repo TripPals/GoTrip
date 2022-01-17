@@ -311,33 +311,41 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: rgb(250, 240, 228);
+  background-color: rgb(248, 235, 219);
   padding: 0 100px; 
 }
 
-.new-trip-wrap {
+.new-trip-box{
   width: 70%;
-  // height: calc(100% - 100px);
-  background-color:white;
-  padding-top: 30px;
-  padding-bottom: 150px;
-  display: flex;
-  flex-direction: column;
-  // align-items: center;
-  position: relative;
-  z-index: 3;
-  border-radius: 8px;
+
 }
 
 .new-trip-page-title{
-  position: absolute;
-  left: 100px;
-  top: 100px;
+  // position: absolute;
+  // left: 100px;
+  // top: 100px;
   font-size: 2rem;
   font-weight: 600;
   color: #262D4B;
   letter-spacing: 0.2em;
+  padding-bottom: 40px;
 }
+
+.new-trip-wrap {
+  width: 100%;
+  // height: calc(100% - 100px);
+  background-color:white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  position: relative;
+  z-index: 3;
+  border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
 
 .new-trip-form-title{
   width: 100%;
@@ -354,30 +362,25 @@
 .new-trip-form-content{
   width: 100%;
   padding: 15px 20px 15px 20px;
-  display: flex;
-  position: relative;
   // background-color: rgb(67, 196, 164);
 }
 
 .new-trip-fieldname-top{
   width: 100%;
-  
-  
+}
+
+.new-trip-fieldname-down{
+  width: 100%;
+  display: flex;
 }
 
 .new-trip-fieldname-left{
   width: 50%;
-  position: absolute;
-  top: 100px;
-  padding-right: 30px;
 }
 
 .new-trip-fieldname-right{
   width: 50%;
-  position: absolute;
-  top: 100px;
-  padding-left: 30px;
-  left: 330px;
+  padding-left: 20px;
 }
 
 .new-trip-field-label{
@@ -385,6 +388,7 @@
   font-size: 1.2rem;
   letter-spacing: 0.1em;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .new-trip-field{
@@ -396,28 +400,22 @@
   color: #262D4B;
   border: none;
   border-radius: 8px;
-  padding-left: 10px;
+  padding: 0 10px;
 }
-
-
 
 .new-trip-button-box {
   width: 100%;
   display: flex;
   justify-content:end;
-  // position: absolute;
-  // left: 400px;
-  // top: 200px;
+  margin-top: 30px;
 
   input {
-    display: inline-block;
     height: 40px;
-    width: 50%;
+    width: 20%;
     background-color: #262D4B;
     color: white;
     border: none;
     border-radius: 8px;
-    margin-bottom: 10px;
     transition: all 0.3s ease;
   }
   input:hover {
@@ -443,11 +441,8 @@
     top: 20px;
 
     p {
-      font-size: 1.7rem;
+      font-size: 2.3rem;
       margin-bottom: 10px;
-    }
-    h1 {
-      font-size: 2.8rem;
     }
   }
 
@@ -456,7 +451,6 @@
     img {
       height: 500px;
       margin-left: -100px;
-      margin-top: 20px;
     }
   }
 
