@@ -24,6 +24,4 @@ window.mapInitialization = function () {
   document.dispatchEvent(evt)
 }
 
-import "./avatar"
 import "./refreshmap_if_interacted"
-import "./fourofour"

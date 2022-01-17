@@ -14,7 +14,8 @@
   <div class="error">
     <div class="error__title">404</div>
     <div class="error__subtitle">Hmmm...</div>
-    <div class="error__description">你迷路到外太空了，快點返回GoTrip吧!</div>
+    <div class="error__description">你迷路到外太空了，快點返回 GoTrip 吧!</div>
+
     <%= link_to "返回上頁", :back, class: "error__button error__button--active" %>
     <%= link_to "GoTrip首頁", root_path , class: "error__button" %>
   </div>
@@ -48,3 +49,4 @@
   </div>
 
 </div>
+<%= javascript_pack_tag 'four_o_four' %>
