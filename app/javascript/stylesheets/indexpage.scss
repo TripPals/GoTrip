@@ -15,55 +15,69 @@
     height: 100vh;
     object-fit: cover;
   }
-  .gotrip-index-content{
-    border-radius: 20px;
-    position: absolute;
-    top:30vh;
-    left: 15vw;
-    width: 360px;
-    padding: 30px;
-    overflow: hidden;
-    background:linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
-    box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
-    background:-webkit-linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
-    box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
-    backdrop-filter: blur(10px);
-    z-index: 2;
-    .gotrip-index-wrap{
+}
+.gotrip-index-content{
+  width: 80%;
+  border-radius: 20px;
+  position: absolute;
+  top:30vh;
+  left: 10vw;
+  padding: 30px;
+  overflow: hidden;
+  background:linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
+  box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
+  background:-webkit-linear-gradient(top,rgba(#eedfa4,.7) 0%,rgba(#EEBC38,.8),rgba(#daa20a,.7) 85%,rgba(#ecb51d,.7) 100%);
+  box-shadow:6px 6px 4px rgba(38, 44, 76, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 2;
+  .gotrip-index-wrap{
+    width: 100%;
+    h1{
+      font-weight: 600;
+      font-size: xx-large;
+    }
+    p{
+      line-height: 26px;
+      margin: 20px 0;
+    }
+    .gotrip-start-btn{
       width: 100%;
-      h1{
-        font-weight: 800;
-        font-size: xx-large;
-      }
-      p{
-        line-height: 26px;
-        margin: 20px 0;
-      }
-      .gotrip-start-btn{
-        width: 100%;
-        text-align: center;
-        letter-spacing: 2px;
-        background-color: #262C4C;
-        color: #EEBC38;
-        padding: 10px 0;
-        margin-top: 50px;
-        border-radius: 7px;
-        box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
-      }
-      .gotrip-start-btn:hover{
-        animation: swing 1s;
-        background-color:rgba(255,255,255,0.5);
-        color: #DB6A43;
-      }  
+      text-align: center;
+      letter-spacing: 2px;
+      background-color: #262C4C;
+      color: #EEBC38;
+      padding: 10px 0;
+      margin-top: 50px;
+      border-radius: 7px;
+      box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
     }
-    .gotrip-index-wrap::after{
-      content: "";
-      width: calc(100% - 60px);
-      height: 1px;
-      background: #207F8C;
-      position: absolute;
-      left: 30px;
-      top: 190px;
-    }
+    .gotrip-start-btn:hover{
+      animation: swing 1s;
+      background-color:rgba(255,255,255,0.5);
+      color: #DB6A43;
+    }  
+  }
+  .gotrip-index-wrap::after{
+    content: "";
+    width: calc(100% - 60px);
+    height: 1px;
+    background: #207F8C;
+    position: absolute;
+    left: 30px;
+    top: calc(100% - 100px);
+  }
+}
+
+
+@media screen and (min-width: 768px){
+  .gotrip-index-content{
+    width: 40%;
+    left: 15vw;
+  }
+}
+@media screen and (min-width: 1024px){
+  .gotrip-index-content{
+    width: 33%;
+    left: 15vw;
   }
 }
