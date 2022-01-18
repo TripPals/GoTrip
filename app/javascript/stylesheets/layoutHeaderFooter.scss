@@ -17,11 +17,11 @@
 //header-index 檔案內的設定 -------
 .header-in-wrap{
   display: flex;
-  margin: 40px 60px 0;
+  margin: 40px 20px 0;
   justify-content: space-between;
   align-items: center;
   .header-in-logo{
-    width: 200px;
+    width: 150px;
     img{
       width: 100%;
       -webkit-filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8));
@@ -51,7 +51,7 @@
     }
     .gotrip-about{
       color:#262C4C;
-      margin-right: 30px;
+      margin-right: 0px;
     }
     .gotrip-signin{
       color:#262C4C;
@@ -142,10 +142,28 @@
     }
   }
 }
+@media screen and (min-width: 768px){
+  .header-in-wrap{
+    margin: 40px 60px 0;
+  }
+  .header-in-logo{
+    width: 200px;
+  }
+  // .header-in-nav-befor{
+  // }
 
+  .gotrip-about{
+    color: #DB6A43;
+    margin-right: 30px;
+  }
 
+  // .header-in-nav-after{
 
+  // }
+}
+@media screen and (min-width: 1024px){
 
+}
 //header-trip 檔案內的設定 -------
 .header-trip-wrap{
   height: 60px;
