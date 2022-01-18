@@ -383,6 +383,28 @@
   animation-duration: 0.3s;
 }
 
+@keyframes showRouteError {
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0
+  }
+}
+
+#routeErrorMessage {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(211, 102, 102);
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation-duration: 0.3s;
+  animation-name: showRouteError;
+  animation-timing-function: ease;
+}
+
 
 // SpotDetails section in Plan page
 
