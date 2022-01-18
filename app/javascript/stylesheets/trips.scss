@@ -5,7 +5,9 @@
 
 // 行程管理頁CSS ================================================================================================
 
-
+#MyTripPage {
+  padding-top: 65px;
+}
 
 .headingContainer {
   width: 90%;
@@ -63,8 +65,12 @@
 }
 
 .nav .nav-item.show .nav-link, .nav .nav-link.active {
-  border-bottom: 4px solid #257F8B;
-  color: #257F8B;
+  border-bottom: 4px solid #D96A49;
+  color: #D96A49;
+}
+
+.nav-link:hover {
+  color: #EDBB46;
 }
 
 .tab1 button, .tab2 button {
