@@ -149,11 +149,6 @@ export default {
     responseData.then((data)=>{
       this.tripData = data;
 
-      const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY/MM/DD');
-      const startDay = dayjs(this.tripData.startDate).format('YYYY/MM/DD');
-      this.startDay = startDay;
-      this.endDay = endDay;
-
       var spotData = this.tripData.schedules[index];
       this.spotData = spotData;
 
