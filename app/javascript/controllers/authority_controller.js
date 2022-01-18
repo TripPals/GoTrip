@@ -53,11 +53,13 @@ export default class extends Controller {
                       <option selected="selected" data-value="1">可檢視</option>
                       <option data-value="2">可編輯</option>
                     </select>
-                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                    <div class="deleterole" data-editrole-target="deletebtn">
+                      <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                    </div>
                   </div>
-                  <div class="deleterole" data-editrole-target="deletebtn">
-                    <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                    </button>
+                  
+                  <div>
+                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                   </div>
                 </div>
               </div>
@@ -87,11 +89,12 @@ export default class extends Controller {
                           <option selected="selected" data-value="1">可檢視</option>
                           <option data-value="2">可編輯</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div> 
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                       </div>
                     </div>
                   </div>
@@ -118,11 +121,12 @@ export default class extends Controller {
                           <option selected="selected" data-value="1">可檢視</option>
                           <option data-value="2">可編輯</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div>
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                       </div>
                     </div>
                   </div>
@@ -152,11 +156,12 @@ export default class extends Controller {
                       <option selected="selected" data-value="2">可編輯</option>
                       <option data-value="1">可檢視</option>
                     </select>
-                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                    <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                    </div>
                   </div>
-                  <div class="deleterole" data-editrole-target="deletebtn">
-                    <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                    </button>
+                  <div>
+                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                   </div>
                 </div>
               </div>
@@ -186,11 +191,12 @@ export default class extends Controller {
                           <option selected="selected" data-value="2">可編輯</option>
                           <option data-value="１">可檢視</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div>
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i> 
                       </div>
                     </div>
                   </div>
@@ -217,11 +223,12 @@ export default class extends Controller {
                           <option selected="selected" data-value="2">可編輯</option>
                           <option data-value="1">可檢視</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div>
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i> 
                       </div>
                     </div>
                   </div>
