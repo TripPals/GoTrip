@@ -62,11 +62,11 @@
                     <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
                     <div class="tripControlBox">
                       <div>
-                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
+                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-intripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
 
                       </div>
                       <div>
-                        <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
+                        <a href=""data-controller="authority" data-authority-target="rightbtn" data-action="click->authority#showRightCard" data-autripid="<%= trip.id %>"><i class="fas fa-unlock-alt"></i> 權限設定</a>
                       </div>
                       <div>
                         <i class="fas fa-trash-alt"></i>
@@ -137,11 +137,11 @@
                     <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
                     <div class="tripControlBox">
                       <div>
-                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
+                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-intripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
 
                       </div>
                       <div>
-                        <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
+                        <a href=""data-controller="authority" data-authority-target="rightbtn" data-action="click->authority#showRightCard" data-autripid="<%= trip.id %>"><i class="fas fa-unlock-alt"></i> 權限設定</a>
                       </div>
                       <div>
                         <i class="fas fa-trash-alt"></i>
@@ -194,19 +194,6 @@
                       <% end %>
                     </div>
                     <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
-                    <div class="tripControlBox">
-                      <div>
-                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
-
-                      </div>
-                      <div>
-                        <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
-                      </div>
-                      <div>
-                        <i class="fas fa-trash-alt"></i>
-                        <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-                      </div>
-                    </div>
                     <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
                   </div>
                 </div>
@@ -232,19 +219,6 @@
                       <% end %>
                     </div>
                     <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
-                    <div class="tripControlBox">
-                      <div>
-                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
-
-                      </div>
-                      <div>
-                        <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
-                      </div>
-                      <div>
-                        <i class="fas fa-trash-alt"></i>
-                        <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-                      </div>
-                    </div>
                     <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
                   </div>
                 </div>
@@ -270,19 +244,6 @@
                       <% end %>
                     </div>
                     <!-- <#%= link_to "edit", trips_edit_path(trip) %> -->
-                    <div class="tripControlBox">
-                      <div>
-                        <a href=""data-controller="getinvitecard" data-getinvitecard-target="button" data-action="click->getinvitecard#showInviteCard" data-tripid="<%= trip.id %>"><i class="fas fa-users"></i> 邀請旅伴</a>
-
-                      </div>
-                      <div>
-                        <a href=""><i class="fas fa-unlock-alt"></i> 權限設定</a>
-                      </div>
-                      <div>
-                        <i class="fas fa-trash-alt"></i>
-                        <%= link_to "刪除行程", trips_delete_path(trip.id), method: "delete", data: { confirm: "確認刪除" } %>
-                      </div>
-                    </div>
                     <%= link_to '', trip_plan_path(trip.id), data:{ turbolinks: "false" }, class: "planPageLink"  %>
                   </div>
                 </div>
