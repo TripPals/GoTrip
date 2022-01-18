@@ -24,7 +24,7 @@
         <div>
           <div class="demarcation"></div>
           <div class="spotBox spotBoxView">
-              <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVueViewOnly">
+              <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapListViewOnly" data-controller="spotItemVueViewOnly">
               <div class="poitypeAndNumberBox">
                   <div class="poiNumber">{{s}}</div>
                   <div class="poitype">
@@ -54,7 +54,7 @@
         </div>
       </section>
     </div>
-    <div v-if="fullWidth < 768" class="planFooter">
+    <div class="planFooter">
       <div class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
     </div>
 
@@ -84,7 +84,7 @@ export default {
       spotsList: [],
       trip_id: trip_id,
       fullWidth: 0,
-      changeBTN: "",
+      changeBTN: "地圖",
       isA: false,
     }
   },
@@ -93,11 +93,11 @@ export default {
     vm.fullWidth = window.innerWidth;
     window.onresize = () => {
       if (vm.fullWidth < 768) {
-        this.changeBTN = "MAP";
+        this.changeBTN = "地圖";
       }
     };
     if (vm.fullWidth < 768) {
-      this.changeBTN = "MAP";
+      this.changeBTN = "地圖";
     };
     responseData.then((data)=>{
       this.tripData = data;
@@ -194,7 +194,7 @@ export default {
       }
       else {
         this.isA = false;
-        this.changeBTN = "MAP";
+        this.changeBTN = "地圖";
       }
     },
   }

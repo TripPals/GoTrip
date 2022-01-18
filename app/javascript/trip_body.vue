@@ -30,7 +30,7 @@
             新增景點
           </a>
           <div class="spotBox">
-            <draggable :snap="true" v-model="spotsList" @start="start" @change="dragSpot" ghostClass="ghost" chosenClass="chosen" animation="300">
+            <draggable v-model="spotsList" @change="dragSpot" animation="300">
               <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue">
                 <div class="poitypeAndNumberBox">
                   <div class="poiNumber">{{s}}</div>
@@ -121,7 +121,7 @@ export default {
       trip_id: trip_id,
       nameError: "",
       fullWidth: 0,
-      changeBTN: "MAP",
+      changeBTN: "地圖",
       isA: false,
     }
   },
@@ -130,11 +130,11 @@ export default {
     vm.fullWidth = window.innerWidth;
     window.onresize = () => {
       if (vm.fullWidth < 768) {
-        this.changeBTN = "MAP";
+        this.changeBTN = "地圖";
       }
     };
     if (vm.fullWidth < 768) {
-      this.changeBTN = "MAP";
+      this.changeBTN = "地圖";
     };
     responseData.then((data)=>{
       this.tripData = data;
@@ -315,7 +315,7 @@ export default {
       }
       else {
         this.isA = false;
-        this.changeBTN = "MAP";
+        this.changeBTN = "地圖";
       }
     },
     addSchedule(){

@@ -158,4 +158,10 @@ export default class extends Controller {
     refreshmap_if_interacted()
   }
 
+  closeSpotDetailsMobile() {
+    const detailsBox = document.querySelector(".spotDetailsBoxinPlanMobile")
+    detailsBox.remove()
+    refreshmap_if_interacted()
+  }
+
  }

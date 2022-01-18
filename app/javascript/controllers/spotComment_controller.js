@@ -53,6 +53,55 @@ export default class extends Controller {
 
   }
 
+  showSpotCommentMobile() {
+
+    const schedule_id = this.editbuttonTarget.dataset.scheduleid
+    const spot_order = this.editbuttonTarget.dataset.spotorder
+    async function fetchData() {
+      try {
+        const response = await fetch(`/api/v1/schedulespots/comment?schedule_id=${schedule_id}&spot_order=${spot_order}`,
+        {
+          method: 'GET'
+        })
+        const result = await response.json()
+        return result
+      } 
+      catch {
+        const result = "Error"
+        console.log("Something went wrong...");
+        return result
+      }
+    }
+
+    async function renderData() {
+      const returnData = await fetchData()
+      const spotComment = returnData[0].spot_comment
+      const schedulespotid = returnData[0].schedulespot_id
+      const spotDetailsContentBox = document.querySelector(".spotDetailsContentBox")
+      const commentForm = document.createElement("form")
+      const commentInput = document.createElement("textarea")     
+
+      commentInput.value = spotComment
+      commentInput.classList.add("spotCommentInput")
+      commentForm.classList.add("spotCommentForm")
+
+      spotDetailsContentBox.innerHTML = ""
+      commentForm.innerHTML = 
+      `
+      <div>
+        <label class="spotCommentTitle">景點排程註記</label>
+        <div data-action="click->spotComment#updateComment" class="commentSaveBTN" data-schedulespotid="${schedulespotid}"><i class="far fa-save"></i> 儲存</div>
+      </div>
+      `
+      spotDetailsContentBox.appendChild(commentForm)
+      commentForm.insertAdjacentElement('beforeend', commentInput)
+
+    }
+
+    renderData()
+
+  }
+
   showSpotCommentViewOnly() {
     
     const schedule_id = this.editbuttonTarget.dataset.scheduleid
