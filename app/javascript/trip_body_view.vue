@@ -89,16 +89,7 @@ export default {
     }
   },
   mounted() {
-    const vm = this;
-    vm.fullWidth = window.innerWidth;
-    window.onresize = () => {
-      if (vm.fullWidth < 768) {
-        this.changeBTN = "地圖";
-      }
-    };
-    if (vm.fullWidth < 768) {
-      this.changeBTN = "地圖";
-    };
+
     responseData.then((data)=>{
       this.tripData = data;
 
