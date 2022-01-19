@@ -1,4 +1,5 @@
 import "./tripinvites.scss"
+import "./authorities.scss"
 import "./errorMessages.scss"
 import "./user.scss"
 import "./cssReset.css"
@@ -9,6 +10,6 @@ import "./indexpage.scss"
 import "./user.scss"
 import "./spotfinders.scss"
 import "./tripPlanningView.scss"
+import "vue2-datepicker/index.css"
 import "./trips.scss"
-
 import "./application.scss"

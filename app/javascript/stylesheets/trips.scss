@@ -5,11 +5,7 @@
 
 // 行程管理頁CSS ================================================================================================
 
-#MyTripPage {
-  // height: 100%;
-  // margin-top: 0;
-  // background: linear-gradient(90deg, #c3ced6 32%, #f0f1f1 100%);
-}
+
 
 .headingContainer {
   width: 90%;
@@ -287,25 +283,59 @@
   position: absolute;
   width: 80px;
   height: 30px;
-  right: -5px;
+  right: -8px;
   top: 30px;
   line-height: 29px;
   text-align: center;
+  box-shadow: 2px 2px 3px rgba(38, 44, 76, 0.5);
 }
 
 .timetag_past {
   background-color: #262D4B;
   color: white;
 }
+.timetag_past::after {
+  content:"";
+  position: absolute; 
+  top: 100%; 
+  right: 0px;
+  width: 8px;
+  height: 6px;
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+  background-color:#151929;
+  z-index: -1;
+}
 
 .timetag_future {
-  background-color: #EDBB46;
+  background-color: #eebc37;
   color: white;
+}
+.timetag_future::after {
+  content:"";
+  position: absolute; 
+  top: 100%; 
+  right: 0px;
+  width: 8px;
+  height: 7px;
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+  background-color:#db6a43;
+  z-index: -1;
 }
 
 .timetag_now {
-  background-color: rgb(67, 196, 164);
+  background-color: #1ca9c3;
   color: white;
+}
+.timetag_now::after {
+  content:"";
+  position: absolute; 
+  top: 100%; 
+  right: 0px;
+  width: 8px;
+  height: 6px;
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+  background-color:#1f7f8c;
+  z-index: -1;
 }
 
 .trip-time-section-title {

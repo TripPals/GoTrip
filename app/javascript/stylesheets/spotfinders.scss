@@ -4,18 +4,38 @@
 
 #searchPageBox {
   display: flex;
+  margin: none;
 }
 
 #searchSection {
-  width: 30%;
+  width: 400px;
   height: 100vh;
   background-color: rgb(255, 255, 255);
+  box-shadow: 8px 0px 10px rgba(130, 130, 130, 0.619);
+  position: relative;
+  z-index: 10;
 }
 
 #mapInSearchSection {
-  width: 70%;
+  // width: calc(100% - 400px);
   height: 100vh;
   background-color: rgb(231, 255, 187);
+}
+
+.mapInSearchSection {
+  width: calc(100% - 400px);
+}
+
+#spotDetailsBox {
+  width: 400px;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+}
+
+.mapInSearchSectionWithDetails {
+  width: calc(100% - 800px);
+  height: 100vh;
 }
 
 .searchtitle {
@@ -64,15 +84,18 @@
   button {
     width: 100%;
     height: 100%;
-    background-color: #623AD6;
-    color: white;
+    background-color: #EDBB46;
+    color: #262D4B;
     font-size: 1.3rem;
     border: none;
     border-radius: 8px;
+    transition: all 0.3s ease;
   }
 
   button:hover {
     cursor: pointer;
+    color: white;
+    background-color: #262D4B;
   }
 
   .cleanInput1, .cleanInput2 {
@@ -94,14 +117,14 @@
 
   .cleanInput1:hover, .cleanInput2:hover {
     cursor: pointer;
-    color: #623AD6;
+    color: white;
   }
 
 }
 
 .searchResultBox {
   padding-top: 30px;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 330px);
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
@@ -133,7 +156,8 @@
   margin: auto;
   margin-bottom: 20px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,8 +179,6 @@
       font-size: 1rem;
     }
 
-
-
   }
 
   div.spotitemphotodiv {
@@ -175,7 +197,7 @@
   div.nophoto {
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(98,58,214,1) 35%, rgba(158,108,255,1) 100%);
+    background: linear-gradient(90deg, #EDBB46 35%, #D96A49 100%);
     position:relative;
     display:flex;
     justify-content: center;
@@ -189,8 +211,352 @@
     font-size: 1.5rem;
   }
 
+  :hover {
+    cursor: pointer;
+  }
+
 }
 
+.hide-spotid-in-search {
+  visibility: hidden;
+}
+
+// SpotDetails Section CSS
+
+#spotDetailsBox {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+.spotDetailsTitle {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 10px 10px rgba(77, 77, 77, 0.591);
+  position:relative;
+  z-index: 10;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  i {
+    margin-right: 10px;
+  }
+
+}
+
+.spotDetailsPhotoBox {
+  overflow: hidden;
+}
+
+.spotDetailsMainPhoto {
+  height: 250px;
+
+  div {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  }
+}
+
+.spotDetailsPhotoListBox {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photoLists {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-top: 5px;
+  background-color: #fff;
+}
+
+.photoLists div {
+  display: inline-block;
+  width: 100px;
+  height: 100%;
+  margin: 2.5px;
+}
+
+.spotDetailsPhotoListBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spotDetailsPhotoListBox img:hover {
+  cursor: pointer;
+}
+
+.photo-left-btn, .photo-right-btn {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.reviewBox {
+  padding: 20px 20px 90px 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.reviewItem {
+  display:inline-block;
+  width: 200px;
+  height: 250px;
+  padding-right:20px;
+  padding-left: 20px;
+  margin-right: 10px;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+}
+
+.reviewItem p {
+  white-space: normal;
+}
+
+.reviewItem p:first-child {
+  font-size: 1.3rem;
+}
+
+.reviewItem p:last-child {
+  width: 100%;
+}
+
+.addressBox, .phoneBox {
+  padding: 10px 20px 10px 20px;
+  margin-top: 10px;
+}
+
+.addressBox i, .phoneBox i {
+  margin-right: 10px;
+}
+
+.openingHourBox {
+  display: flex;
+  padding: 10px 20px 10px 20px;
+  margin-top: 10px;
+}
+
+.openingHourBox i {
+  margin-right: 10px;
+}
+
+.hourlist p {
+  margin-top: 0;
+}
+
+.addToScheduleBtn {
+  width: 400px;
+  height: 70px;
+  position: fixed;
+  bottom: 0;
+  left: 400px;
+  background-color: white;
+  box-shadow: 10px 0px 10px rgba(77, 77, 77, 0.591);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addToScheduleBtn button {
+  width: 80%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: #EDBB46;
+  color: #262D4B;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.addToScheduleBtn button:hover {
+  background-color: #262D4B;
+  color: white;
+  cursor: pointer;
+}
+
+.detailBoxHeading {
+
+  font-size: 1.3rem;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+// SpotDetails confirmation modal
+
+@keyframes hideConfirmModal {
+  from {
+    opacity: 0;
+    z-index: 100;
+  }
+  to {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+.hide-confirmed-message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  opacity: 0;
+  animation-name: hideConfirmModal;
+  animation-duration: 0.5s;
+
+  div.confirmed-message-content {
+    width: 500px;
+    height: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    i.confirmed-message-reminder-icon {
+      font-size: 3rem;
+      color: rgb(148, 148, 148);
+    }
+
+    p {
+      font-size: 1.3rem;
+      width: 70%;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    div {
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      border-top: 1px solid rgb(187, 187, 187);
+
+      button:first-child {
+        font-size: 1.3rem;
+        width: 50%;
+        height: 100%;
+        border-radius: 0 0 0 10px;
+        border: none;
+        border-right: 1px solid rgb(187, 187, 187);
+        background-color: #fff; 
+        color: rgb(216, 71, 71);
+      }
+
+      button:last-child {
+        font-size: 1.3rem;
+        width: 50%;
+        height: 100%;
+        border-radius: 0 0 10px 0;
+        border: none;  
+        background-color: #fff; 
+        color: #257F8B; 
+      }
+
+      button:first-child:hover {
+        cursor: pointer;
+        border-bottom: 4px solid rgb(216, 71, 71);
+      }
+
+
+      button:last-child:hover {
+        cursor: pointer;
+        border-bottom: 4px solid #257F8B;
+      }
+
+    }
+
+
+  }
+}
+
+@keyframes showConfirmModal {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.show-confirmed-message {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+  animation-name: showConfirmModal;
+  animation-duration: 0.5s;
+}
+
+// Search Message ( for server error OR adding spot response )
+
+@keyframes showSearchMessage {
+  from {
+    top: -30px;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+.searchMessage {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  top: -30px;
+  left: 0px;
+  z-index: 100;
+  line-height: 30px;
+}
+
+.searchMessageSuccess {
+  background-color: rgb(96, 180, 96);
+  color: white;
+  top: 0px;
+  animation-name: showSearchMessage;
+  animation-duration: 0.3s;
+}
+
+.searchMessageFailed {
+  background-color: rgb(211, 102, 102);
+  color: white;
+  top: 0px;
+  animation-name: showSearchMessage;
+  animation-duration: 0.3s;
+}
 
 // Loading gif
 
@@ -220,4 +586,117 @@
 
 .loaderBoxShow {
   visibility: visible;
+}
+
+@keyframes hideConfirmModal {
+  from {
+    opacity: 0;
+    z-index: 100;
+  }
+  to {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+.hide-confirmed-message {
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  opacity: 0;
+  animation-name: hideConfirmModal;
+  animation-duration: 0.5s;
+
+  div.confirmed-message-content {
+    width: 500px;
+    height: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    i.confirmed-message-reminder-icon {
+      font-size: 3rem;
+      margin: -15px 0 15px;
+      color: rgb(148, 148, 148);
+    }
+
+    p {
+      font-size: 1.3rem;
+      width: 70%;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    div {
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      border-top: 1px solid rgb(187, 187, 187);
+
+      button:first-child {
+        font-size: 1.3rem;
+        width: 50%;
+        height: 100%;
+        border-radius: 0 0 0 10px;
+        border: none;
+        border-right: 1px solid rgb(187, 187, 187);
+        background-color: #fff; 
+        color: #ed515f;
+      }
+
+      button:last-child {
+        font-size: 1.3rem;
+        width: 50%;
+        height: 100%;
+        border-radius: 0 0 10px 0;
+        border: none;  
+        background-color: #fff; 
+        color: rgb(148, 148, 148); 
+      }
+
+      button:first-child:hover {
+        cursor: pointer;
+        border-bottom: 4px solid #ed515f;
+      }
+
+
+      button:last-child:hover {
+        cursor: pointer;
+        border-bottom: 4px solid #262C4C;
+      }
+
+    }
+
+
+  }
+}
+
+@keyframes showConfirmModal {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.show-confirmed-message {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+  animation-name: showConfirmModal;
+  animation-duration: 0.5s;
 }

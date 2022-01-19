@@ -58,7 +58,7 @@
     }
     .gotrip-index-wrap::after{
       content: "";
-      width: 290px;
+      width: calc(100% - 60px);
       height: 1px;
       background: #207F8C;
       position: absolute;
