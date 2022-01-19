@@ -127,6 +127,7 @@ export default {
   },
   mounted() {
 
+    console.log("Hihihi")
     responseData.then((data)=>{
       this.tripData = data;
 
@@ -144,7 +145,7 @@ export default {
       let spotMapList = [];
       let positionMapList = [];
       this.spotsList.forEach(el => {
-        spotMapList.push(el.name);
+        spotMapList.push(el.full_address);
       });
       this.spotsList.forEach(el => {
         const obj = {};
@@ -210,7 +211,7 @@ export default {
         let spotMapList = [];
         let positionMapList = [];
         this.spotsList.forEach(el => {
-          spotMapList.push(el.name);
+          spotMapList.push(el.full_address);
         });
         this.spotsList.forEach(el => {
           const obj = {};
@@ -228,8 +229,8 @@ export default {
         if (position !== undefined && spotName !== undefined) {
           
           let spotMapList = [];
-          spotName.forEach(el => {
-            spotMapList.push(el.innerText);
+          this.spotsList.forEach(el => {
+            spotMapList.push(el.full_address);
           });
           let positionMapList = [];
           position.forEach(el => {
@@ -284,8 +285,8 @@ export default {
       const spotName = this.$refs.spotName;
 
       let spotMapList = [];
-      spotName.forEach(el => {
-        spotMapList.push(el.innerText);
+      this.spotsList.forEach(el => {
+        spotMapList.push(el.full_address);
       });
       let positionMapList = [];
       position.forEach(el => {
