@@ -244,8 +244,9 @@ export default class extends Controller {
             rightBox.innerHTML = `
               <div class="main-rightsection" data-controller="editrole">
                 <div class="main-rightinfo" >
-                  <div class="user-pic" ><img src="/images/fallback/default-avatar.jpg"></div>
-                  <div class="text">
+                  <div class="user-pic" ><img src="/images/fallback/default-avatar.jpg">
+                  </div>
+                  <div class="main-text">
                     <p>${name}</p>
                     <p>${email}</p>
                   </div>
@@ -266,8 +267,9 @@ export default class extends Controller {
               rightBox.innerHTML = `
                 <div class="main-rightsection" data-controller="editrole">
                   <div class="main-rightinfo" >
-                    <div class="user-pic" ><img src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${user_id}/${fileName}"></div>
-                    <div class="text">
+                    <div class="user-pic" ><img src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${user_id}/${fileName}">
+                    </div>
+                    <div class="main-text">
                       <p>${name}</p>
                       <p>${email}</p>
                     </div>
@@ -286,7 +288,7 @@ export default class extends Controller {
                 <div class="main-rightsection" data-controller="editrole">
                   <div class="main-rightinfo" >
                     <div class="user-pic" ><img src="${image}"></div>
-                    <div class="text">
+                    <div class="main-text">
                       <p>${name}</p>
                       <p>${email}</p>
                     </div>
