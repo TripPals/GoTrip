@@ -1,6 +1,6 @@
-import Plan from "./plan_controller"
+import { Controller } from "stimulus"
 
-export default class extends Plan {
+export default class extends Controller {
 
   static targets = ["spotItemVue", "initialmap", "spotName"]
 
