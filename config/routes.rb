@@ -41,6 +41,9 @@ Rails.application.routes.draw do
       get "spotfinders/spotinfo", to: "spotfinders#getSpotInfo"
       post "schedulespots/add", to: "schedulespots#addSpot"
       post "schedulespots/confirm_to_add", to: "schedulespots#confirmToAdd"
+      get "schedulespots/comment", to: "schedulespots#getComment"
+      put "schedulespots/commentupdate", to: "schedulespots#updateComment"
+      delete "schedulespots/delete", to: "schedulespots#deleteSpot"
       get "trip_detail", to: "trip_detail#show", defaults: { format: :json }
       put "trip_detail/update_name", to: "trip_detail#update_name"
       put "trip_detail/update_date", to: "trip_detail#update_date"

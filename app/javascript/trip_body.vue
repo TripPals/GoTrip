@@ -11,15 +11,15 @@
         </div>
       </section>
     
-      <section id="dataBody">
+      <section id="dataBody" >
         <div class="dayBox">
           <div class="dayBack" @click="slideLeft">＜</div>
           <div ref="dayTitle" class="dayTitle">
-            <div v-for="(value,index) in tripData.length" :key="index" class="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
+            <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
               <p>第 {{value}} 天</p>
               <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
             </div>
-            <div class="dayAddBTN" @click="addSchedule"> 
+            <div class="dayAddBTN" @click="addSchedule">
               <i class="far fa-plus-square"></i>
             </div>
           </div>
@@ -30,10 +30,22 @@
             新增景點
           </a>
           <div class="spotBox">
-            <draggable :snap="true" v-model="spotsList" @start="start" @change="dragSpot" ghostClass="ghost" chosenClass="chosen" animation="300">
-              <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick" data-spotItemVue-target="spotItemVue" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
-                <div class="spotInfo">
-                  <div ref="spotName" class="spotName" :data-spotOrder="s">
+            <draggable v-model="spotsList" @change="dragSpot" animation="300">
+              <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue">
+                <div class="poitypeAndNumberBox">
+                  <div class="poiNumber">{{s}}</div>
+                  <div class="poitype">
+                    <div v-if="spotsList[s-1].type === 'metro'"><i class="fas fa-subway"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'bus'"><i class="fas fa-bus"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'airport'"><i class="fas fa-plane-departure"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'food'"><i class="fas fa-utensils"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'lodging'"><i class="fas fa-bed"></i></div>
+                    <div v-else-if="spotsList[s-1].type === 'train'"><i class="fas fa-train"></i></div>
+                    <div v-else><i class="fas fa-map-marker-alt"></i></div>
+                  </div>
+                </div>
+                <div class="spotContentDetailsControl spotInfo" data-spotItemVue-target="spotItemVue" data-action="click->spotItemVue#refreshMapOnClick click->spotItemVue#showSpotDetails" :data-spotid="spotsList[s-1].id" :data-lat="spotsList[s-1].lat" :data-lng="spotsList[s-1].lng">
+                  <div data-spotItemVue-target="spotName" ref="spotName" class="spotName" :data-spotOrder="s" :data-scheduleid="spotData.id">
                     {{spotsList[s-1].name}}
                   </div>
                   <div class="address">
@@ -43,15 +55,20 @@
                   <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
                   <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
                 </div>
-                <div class="moveIcon">
-                  <i class="fas fa-arrows-alt"></i>
+                <div class="spotIconControl">
+                  <div class="spotDeleteIcon" >
+                    <i class="fas fa-trash-alt" :data-spotorder="s" @click="deleteSpot($event)"></i>
+                  </div>
+                  <div class="moveIcon">
+                    <i class="fas fa-arrows-alt"></i>
+                  </div>
                 </div>
               </div>
             </draggable>
           </div>
         </div>
       </section>
-    </div>
+    </div>   
     <div class="planFooter">
       <div ref="changeIndex" class="changeIndex" @click="changeIndex">{{changeBTN}}</div>
     </div>
@@ -77,6 +94,7 @@ import draggable from 'vuedraggable';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/locale/zh-cn';
 import refreshMapIfInteracted from "./packs/refreshmap_if_interacted.js";
+import processDeleteSpot from "./packs/deleteSpot";
 
 const url = window.location.href;
 const decomposedUrl = url.split("/");
@@ -103,21 +121,12 @@ export default {
       trip_id: trip_id,
       nameError: "",
       fullWidth: 0,
-      changeBTN: "MAP",
+      changeBTN: "地圖",
       isA: false,
     }
   },
   mounted() {
-   const vm = this;
-    vm.fullWidth = window.innerWidth;
-    window.onresize = () => {
-      if (vm.fullWidth < 768) {
-        this.changeBTN = "MAP";
-      }
-    };
-    if (vm.fullWidth < 768) {
-      this.changeBTN = "MAP";
-    };
+
     responseData.then((data)=>{
       this.tripData = data;
 
@@ -297,7 +306,7 @@ export default {
       }
       else {
         this.isA = false;
-        this.changeBTN = "MAP";
+        this.changeBTN = "地圖";
       }
     },
     addSchedule(){
@@ -340,6 +349,13 @@ export default {
         location.reload();
       });
     },
+    deleteSpot(event){
+
+      const spotOrder = event.target.dataset.spotorder
+      const scheduleId = this.spotData.id
+      processDeleteSpot(scheduleId,spotOrder)  
+
+    }
   }
 }
 </script>

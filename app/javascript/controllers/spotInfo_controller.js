@@ -145,7 +145,7 @@ export default class extends mapInSearch  {
         const photodiv = document.createElement("div")
         photodiv.innerHTML = 
           `
-          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${p1}">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${p1}">
           
           `
         spotDetailsMainPhoto.appendChild(photodiv)  
@@ -158,7 +158,7 @@ export default class extends mapInSearch  {
           const photodiv = document.createElement("div")
           photodiv.innerHTML = 
           `
-          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo}">
+          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo}">
           
           `
           photoLists.appendChild(photodiv)
@@ -198,10 +198,7 @@ export default class extends mapInSearch  {
             reviewBox.appendChild(reviewItem)
           }
         })
-      }
-
-      
-
+      } 
     }
 
   }
