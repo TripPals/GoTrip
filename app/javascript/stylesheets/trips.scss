@@ -6,7 +6,6 @@
 // 行程管理頁CSS ================================================================================================
 
 
-
 .headingContainer {
   width: 90%;
   max-width: 1400px;
@@ -160,11 +159,11 @@
     }
 
     div:nth-child(1) {
-      border-radius: 0 0 0 10px
+      border-radius: 0 0 0 10px;
     }
 
     div:nth-child(3) {
-      border-radius: 0 0 10px 0    
+      border-radius: 0 0 10px 0;    
     }
 
     div:nth-child(1) a,
@@ -348,3 +347,32 @@
   margin: 0px;
 }
 
+@media screen and (max-width: 768px) {
+  .tripdata {
+    padding-bottom: 0px;
+
+    .tripControlBox {
+      opacity: 1;
+      position: static;
+      height: 65px;
+      
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      div:nth-child(1) {
+        border-radius: 0px 0px 0px 0px;
+      }
+  
+      div:nth-child(3) {
+        border-radius: 0px 0px 0px 0px;    
+      }
+    }
+  }
+
+  .tripdata:hover {
+    border-radius: 10px;
+  }
+}

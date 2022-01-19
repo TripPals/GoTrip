@@ -40,7 +40,11 @@
    
           <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 進行中的行程</h2>
           <div class="gridContainer tripListBox">
+            <% if @trips_yours_now.length != 0 %>
+            <div class="row rowWithIllustrationNow">
+            <% else %>
             <div class="row">
+            <% end %>
               <% @trips_yours_now.each do |trip| %>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
@@ -77,7 +81,11 @@
             </div> 
             <hr class="trips-time-divider"> 
             <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 即將到來的行程</h2>
+            <% if @trips_yours_future.length != 0 %>
+            <div class="row rowWithIllustrationFuture">
+            <% else %>
             <div class="row">
+            <% end %>
               <% @trips_yours_future.each do |trip| %>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
@@ -114,7 +122,11 @@
             </div>
             <hr class="trips-time-divider">
             <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 已結束的行程</h2> 
+            <% if @trips_yours_past.length != 0 %>
+            <div class="row rowWithIllustrationPast">
+            <% else %>
             <div class="row">
+            <% end %>
               <% @trips_yours_past.each do |trip| %>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
@@ -172,7 +184,11 @@
 
           <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 進行中的行程</h2>
           <div class="gridContainer tripListBox">
+            <% if @trips_followed_now.length != 0 %>
+            <div class="row rowWithIllustrationNow">
+            <% else %>
             <div class="row">
+            <% end %>
               <% @trips_followed_now.each do |trip| %>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
@@ -196,7 +212,11 @@
             </div> 
             <hr class="trips-time-divider"> 
             <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 即將到來的行程</h2>
+            <% if @trips_followed_now.length != 0 %>
+            <div class="row rowWithIllustrationFuture">
+            <% else %>
             <div class="row">
+            <% end %>
               <% @trips_followed_future.each do |trip| %>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
@@ -220,7 +240,11 @@
             </div>
             <hr class="trips-time-divider">
             <h2 class="trip-time-section-title"><i class="fas fa-map-marked-alt"></i> 已結束的行程</h2> 
+            <% if @trips_followed_now.length != 0 %>
+            <div class="row rowWithIllustrationPast">
+            <% else %>
             <div class="row">
+            <% end %>
               <% @trips_followed_past.each do |trip| %>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">

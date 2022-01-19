@@ -12,6 +12,7 @@
   margin: auto;
   /* padding: 0 var(--grid-gap); */
   box-sizing: border-box;
+  background-color: white;
 }
 
 .row {
@@ -20,6 +21,29 @@
   flex-wrap: wrap;
   margin-left: calc(var(--grid-gap) * -1);
   margin-right: calc(var(--grid-gap) * -1);
+  background-color: white;
+}
+
+.rowWithIllustrationNow {
+  background-image: url('/images/relax.png');
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: 100% 60px;
+
+}
+
+.rowWithIllustrationFuture {
+  background-image: url('/images/login_illustration.png');
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: 100% 60px;
+}
+
+.rowWithIllustrationPast {
+  background-image: url('/images/discussion.png');
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: 100% 60px;
 }
 
 [class*="col-"] {
