@@ -29,9 +29,9 @@
           <a :href="'/mytrips/' + trip_id + '/' + spotData.order + '/search'" class="spotBTN">
             新增景點
           </a>
-          <div class="spotBox">
+          <div data-controller="spotItemVue" class="spotBox">
             <draggable v-model="spotsList" @change="dragSpot" animation="300">
-              <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue">
+              <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList">
                 <div class="poitypeAndNumberBox">
                   <div class="poiNumber">{{s}}</div>
                   <div class="poitype">

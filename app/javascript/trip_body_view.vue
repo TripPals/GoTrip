@@ -23,8 +23,8 @@
         </div>
         <div>
           <div class="demarcation"></div>
-          <div class="spotBox spotBoxView">
-              <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapListViewOnly" data-controller="spotItemVueViewOnly">
+          <div data-controller="spotItemVueViewOnly" class="spotBox spotBoxView">
+              <div v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapListViewOnly">
               <div class="poitypeAndNumberBox">
                   <div class="poiNumber">{{s}}</div>
                   <div class="poitype">

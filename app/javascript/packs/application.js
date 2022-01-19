@@ -13,10 +13,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import "controllers"
-
-import "stylesheets"
-
 // import "google_maps"
 
 window.mapInitialization = function () {
@@ -24,6 +20,8 @@ window.mapInitialization = function () {
   document.dispatchEvent(evt)
 }
 
+import "controllers"
+import "stylesheets"
 import "./avatar"
 import "./refreshmap_if_interacted"
 import "./deleteSpot.js"

@@ -101,7 +101,7 @@ export default class extends Plan {
             <div class="reviewBox"></div>
   
             <div class="addCommenttoSpot">
-              <button data-action="click->spotComment#showSpotComment" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}" data-spotComment-target="editbutton"><i class="fas fa-edit"></i> 景點筆記</button>
+              <button data-action="click->spotComment#showSpotComment" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}" data-spotComment-target="editbutton"><i class="fas fa-edit"></i> 註記</button>
             </div>
           </div>
           `
@@ -150,7 +150,7 @@ export default class extends Plan {
             <div class="detailBoxHeading reviewHeading">使與者評論</div>
             <div class="reviewBox"></div>
             <div class="addCommenttoSpot">
-              <button data-action="click->spotComment#showSpotComment" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}" data-spotComment-target="editbutton"><i class="fas fa-edit"></i> 景點筆記</button>
+              <button data-action="click->spotComment#showSpotComment" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}" data-spotComment-target="editbutton"><i class="fas fa-edit"></i> 註記</button>
             </div>
           </div>
           `
