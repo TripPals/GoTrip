@@ -112,7 +112,21 @@ function refreshMapIfInteracted() {
         .then((response) => {
           directionsRenderer.setDirections(response);
         })
-        .catch((e) => window.alert("您似乎在這天行程安排了跨陸地的景點，或者針對您新加的景點我們暫時無法取得路線，GoTrip正在開發優化中，請耐心等待!"+ status));
+        .catch((e) => {
+          
+          if (!document.querySelector("#routeErrorMessage")) {
+            const message = document.createElement("p")
+            const outterDiv = document.querySelector("#planView")
+            message.id = "routeErrorMessage"
+            message.textContent = "您似乎在這天行程安排了跨陸地的景點，或者針對您新加的景點我們暫時無法取得路線，GoTrip正在開發優化中，請耐心等待!"
+            outterDiv.insertAdjacentElement("afterbegin", message)
+
+            setTimeout(() => {
+              const message = document.querySelector("#routeErrorMessage")
+              message.remove()
+            }, 5000)
+          }
+        });
     }
   
     setTimeout(() => {

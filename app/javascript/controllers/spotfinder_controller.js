@@ -33,7 +33,7 @@ export default class extends Controller {
 
     async function fetchData() {
       try {
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`, {
+        const response = await fetch(`/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`, {
           method: 'GET'
         })
         const result = await response.json()

@@ -6,13 +6,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,
          :omniauthable, omniauth_providers: [:google_oauth2, :github]
-  #validation
-  validates_presence_of   :email, presence: true
-  validates_uniqueness_of :email, { scope: :provider }
-  validates_presence_of   :password, { on: :create }
-  validates_length_of     :password, in: 6..128, if: lambda {self.password.present?}
-  validates_confirmation_of :password, if: lambda {self.password.present?}
   
+  # validation
+  validates :email, presence: true
+  validates :email, uniqueness: {:scope => :provider}
+  validates :password, presence: true, confirmation: true, length: { in: 6..128 }, on: :create, if: lambda {self.password.present?}
+  validates :password_confirmation, presence: true, if: lambda {self.password.present?}
+
   has_many :user_trips, dependent: :delete_all
   has_many :trips, through: :user_trips
 
@@ -31,8 +31,9 @@ class User < ApplicationRecord
 
   def current_trip_role(trip_id)
     user_trips.find_by(trip_id: trip_id).role
+    # byebug
   end
-  
+
   def show_image
     if avatar.present?
       avatar

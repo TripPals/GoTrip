@@ -1,0 +1,11 @@
+<h1>修改權限</h1>
+<section class="editrole">
+<% @users.each do |user| %>
+<ul>
+    <li>角色：<%= user.current_trip_role(params[:trip_id]) %></li>
+    <li>姓名：<%= user.name %></li>
+    <li>e-mail：<%= user.email %></li>
+</ul>
+<% end %>
+</section>
+

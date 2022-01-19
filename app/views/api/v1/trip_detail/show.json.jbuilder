@@ -5,13 +5,14 @@ json.length @trip.length
     json.id schedule.id
     json.order schedule.day_order
     json.spots schedule.spots.order(:order) do |spot|
-      json.schedule_spots_id spot.schedule_spots.pluck(:id)
-      json.order spot.schedule_spots.pluck(:order)
+      json.schedule_spots_id spot.schedule_spots.where(schedule_id: schedule.id).pluck(:id)
+      json.order spot.schedule_spots.where(schedule_id: schedule.id).pluck(:order)
       json.id spot.id
       json.name spot.name
-      json.address spot.address
+      json.address spot.city
       json.lat spot.latitude
       json.lng spot.longitude
+      json.type spot.poi_type
     end
   end
 
