@@ -46,6 +46,12 @@
   background-position: 100% 60px;
 }
 
+@media screen and (max-width: 768px) {
+  .rowWithIllustrationNow, .rowWithIllustrationFuture, .rowWithIllustrationPast {
+    background-image: none;
+  }
+}
+
 [class*="col-"] {
   box-sizing: border-box;
   padding: 0 var(--grid-gap);

@@ -349,11 +349,12 @@
 
 @media screen and (max-width: 768px) {
   .tripdata {
-    padding-bottom: 0px;
+    // padding-bottom: 0px;
 
     .tripControlBox {
       opacity: 1;
-      position: static;
+      position: relative;
+      top: 15px;
       height: 65px;
       
       div {
@@ -375,4 +376,23 @@
   .tripdata:hover {
     border-radius: 10px;
   }
+
+  .headingContainer {
+    display: block;
+    margin-bottom: 0px;
+
+    a {
+      display: inline-block;
+      position: fixed;
+      left: 10%;
+      bottom: 15px;
+      width: 80%;
+      height: 50px;
+      z-index: 10;
+      margin: auto;
+      border-radius: 25px;
+    }
+
+  }
+
 }
