@@ -4,7 +4,7 @@
       <section id="dataTitle">
         <div class="tripNameDiv">
           <div id="tripNameView">{{tripData.name}}</div>
-          <button @click="backToMyTrips" >我的行程</button>
+          <button @click="backToMyTrips" >行程縱覽</button>
         </div>
         <div class="nameError"></div>
         <div class="tripDate">

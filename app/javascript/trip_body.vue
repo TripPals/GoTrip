@@ -4,7 +4,7 @@
       <section id="dataTitle">
         <div class="tripNameDiv">
           <input type="text" v-model.trim="tripData.name" id="tripName" @change="changeName">
-          <button @click="backToMyTrips" >我的行程</button>
+          <button @click="backToMyTrips" >行程縱覽</button>
         </div>
         <div class="nameError">{{nameError}}<div class="loading"><svg v-if="loading" class="spinner" width="14px" height="14px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>{{loadingMessenge}}</div></div>
         <div class="tripDate">
