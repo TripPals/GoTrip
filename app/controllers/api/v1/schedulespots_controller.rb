@@ -1,7 +1,5 @@
 class Api::V1::SchedulespotsController < ApplicationController
 
-  # skip_before_action :verify_authenticity_token
-
   def addSpot
   
     trip_id = params[:trip_id]
@@ -17,7 +15,6 @@ class Api::V1::SchedulespotsController < ApplicationController
       schedule_spot_record = ScheduleSpot.find_by(spot_id: spot_id, schedule_id: schedule.id)
       schedule_spot_all_records = ScheduleSpot.where(schedule_id: schedule.id)  
 
-      # 如果Schedule_spots資料表裡面沒有使用者想加入該天的景點關聯 ＆＆ Schedule_spots 資料表內從未有景點關聯資料（使用者正要在那天加入第一筆景點）
       if schedule_spot_record.nil? && schedule_spot_all_records.empty?
 
         schedule.spots << [ spot ]
@@ -27,7 +24,6 @@ class Api::V1::SchedulespotsController < ApplicationController
           format.json { render :json => { status: "success", message: "Spot added successfully"}, status => 200 }
         end
 
-      # 如果Schedule_spots資料表裡面沒有使用者想加入該天的景點關聯 ＆＆ Schedule_spots 資料表內已經有該天行程的其他景點
       elsif schedule_spot_record.nil? && !schedule_spot_all_records.empty?
 
         schedule.spots << [ spot ]
@@ -37,7 +33,6 @@ class Api::V1::SchedulespotsController < ApplicationController
           format.json { render :json => { status: "success", message: "Spot added successfully"}, status => 200 }
         end
 
-      # 如果Schedule_spots資料表裡面已經有這筆景點關連
       else  
 
         respond_to do |format|
