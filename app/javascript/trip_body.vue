@@ -2,7 +2,10 @@
   <div>
     <div class="planPageUp" :class="{planPageDown: isA}">
       <section id="dataTitle">
-        <input type="text" v-model.trim="tripData.name" id="tripName" @change="changeName">
+        <div class="tripNameDiv">
+          <input type="text" v-model.trim="tripData.name" id="tripName" @change="changeName">
+          <button @click="backToMyTrips" >行程縱覽</button>
+        </div>
         <div class="nameError">{{nameError}}<div class="loading"><svg v-if="loading" class="spinner" width="14px" height="14px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>{{loadingMessenge}}</div></div>
         <div class="tripDate">
           <div class="starEnd">{{startDay}}<date-picker v-model="startDay" input-class="hideInput" :clearable="false" valueType='format' @change="changeDate"></date-picker> ～ {{endDay}}</div>
@@ -127,10 +130,16 @@ export default {
   },
   mounted() {
 
+    const editingDay = JSON.parse(sessionStorage.getItem('editingDay'))
+    let index;
+
+    editingDay ? index = editingDay : index = 0; 
+    this.isActive = index;
+
     responseData.then((data)=>{
       this.tripData = data;
 
-      var spotData = this.tripData.schedules[0];
+      var spotData = this.tripData.schedules[index];
       this.spotData = spotData;
 
       const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
@@ -221,6 +230,10 @@ export default {
         sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
         sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
+
+      sessionStorage.setItem('editingDay', JSON.stringify(index))      
+
+      // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行!
       setTimeout(() => {
         const position = this.$refs.position;
         const spotName = this.$refs.spotName;
@@ -245,6 +258,10 @@ export default {
         setTimeout(()=>{
           refreshMapIfInteracted()
         }, 200)
+    },
+    backToMyTrips(){
+      sessionStorage.removeItem('editingDay');
+      window.location.replace(`/mytrips`)
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
@@ -331,6 +348,8 @@ export default {
       messageModal.dataset.index = index
     },
     deleteSchedule(){
+      
+      sessionStorage.removeItem('editingDay') 
       const responseData = fetchData(trip_id)
       const index = this.$refs['hide-confirmed-message'].dataset.index
 
