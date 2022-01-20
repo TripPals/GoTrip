@@ -12,6 +12,7 @@ json.length @trip.length
       json.address spot.city
       json.lat spot.latitude
       json.lng spot.longitude
+      json.type spot.poi_type
     end
   end
 

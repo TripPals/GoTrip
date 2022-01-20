@@ -1,3 +1,5 @@
+<%= render 'layouts/header_trip' %>
+<div class="planMessage"></div>
 <div id="planView" data-controller="plan">
 
 <% if current_user.current_trip_role(params[:trip_id]) == "viewer" %>
@@ -6,6 +8,7 @@
   <div id="spotPlanningSection"></div>
 <% end%>
   <div id="googleMapSection" 
+       class="mapInPlanPage"
        data-action="mapsLoaded@document->plan#renderMap"
        data-plan-target="initialmap"
   ></div>

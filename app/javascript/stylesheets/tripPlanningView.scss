@@ -1,79 +1,46 @@
 #planView {
   padding-top: 60px;
   display: flex;
+  position: relative;
 }
+
 #spotPlanningSection,#PlanPageView {
   height: calc(100vh - 60px);
   background-color: rgb(206, 206, 206);
 }
-@media screen and (max-width: 767px) {
-  #googleMapSection {
-    height: calc(100vh - 98px);
-    width: 100%;
-    z-index: 0;
-  }
-  #spotPlanningSection,#PlanPageView {
-    height: calc(100vh - 98px);
-  }
-  .planPageUp {
-    height: calc(100vh - 98px);
-    width: 100%;
-    min-width: 280px;
-    position: absolute;
-    z-index: 1;
-  }
-  .spotBox {
-    height: calc(95vh - 290px);
-    max-height: calc(95vh - 290px);
-  }
-  .spotBoxView {
-    height: calc(100vh - 289px);
-    max-height: calc(100vh - 289px);
-  }
-  .planPageDown {
-    width: 100%;
-    position: absolute;
-    z-index: -1;
-  }
-  .planFooter {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    background-color: #eebc39;
-    width: 100%;
-    height: 38px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-  }
-  .changeIndex {
-    text-align: center;
-    letter-spacing: 2px;
-    background-color: #262C4C;
-    color: #EEBC38;
-    padding: 3px 10px;
-    margin-right: 20px;
-    border-radius: 7px;
-    cursor: pointer;
-  }
-}
+
 
 @media screen and (min-width: 768px) {
   #googleMapSection {
     height: calc(100vh - 60px);
   }
-  #spotPlanningSection,#PlanPageView {
+  #spotPlanningSection, #PlanPageView {
     width: 400px;
+    height: calc(100vh - 60px);
+    background-color: rgb(206, 206, 206);
   }
-  #googleMapSection {
+  .mapInPlanPage {
     width: calc(100% - 400px);
+    background-color: rgb(231, 255, 187);
   }
+  .mapInPlanPageWithDetails {
+    width: calc(100% - 800px);
+  }
+  .spotDetailsBoxinPlan {
+    width: 400px;
+    height: calc(100vh - 60px);
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    overflow-y: auto;
+    z-index: 2;
+  }
+
   #dataBody {
     height: calc(100vh - 230px);
+    padding-top: 20px;
   }
   .spotBox {
-    height: calc(100vh - 290px);
+    height: calc(100vh - 310px);
     max-height: calc(100vh - 290px);
   }
   .spotBoxView {
@@ -90,6 +57,7 @@
   width: 100%;
   position: relative;
   background-color: #fff;
+  padding-top: 20px;
   #tripName {
     width: 70%;
     font-weight: bold;
@@ -134,9 +102,12 @@
     display: block;
   }
 }
+
 #dataBody {
   width: 100%;
   background-color: #fff;
+  padding-top: 20px;
+
   .dayBox {
     height: 70px;
     display: flex;
@@ -172,7 +143,15 @@
     height: 0px;
     width: 0px;
   }
+
   .dayBTN {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+  }
+
+  #dayBTN {
     flex-shrink: 0;
     text-align: center;
     padding: 10px;
@@ -222,6 +201,7 @@
   .spotBox {
     background-color: #ddd;
     overflow: scroll;
+
     .spotStartTime {
       display: flex;
       justify-content: center;
@@ -234,10 +214,62 @@
       display: flex;
       justify-content: space-between;
       background-color: #fff;
-      box-shadow: 0px 5px 5px 0px #ccc;
-      padding: 30px 40px;
+      box-shadow: 0px 3px 3px 0px #ccc;
+      padding: 20px 20px 20px 5px;
       margin-bottom: 10px;
       cursor: move;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      .spotName {
+        padding-right: 10px;
+      }
+
+    }
+
+    .spotMapListViewOnly {
+      min-height: 120px;
+      display: flex;
+      justify-content: space-between;
+      background-color: #fff;
+      box-shadow: 0px 3px 3px 0px #ccc;
+      padding: 20px 20px 20px 5px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      .spotName {
+        padding-right: 10px;
+      }
+
+    }
+
+    .poitypeAndNumberBox {
+      width: 10%;
+      height: 100%;
+      text-align: center;
+      margin-right: 5px;
+
+      .poiNumber {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color:#EDBB46;
+      }
+
+      .poitype {
+        color:#D96A49;
+      }
+
+
+    }
+
+    .spotContentDetailsControl {
+      width: 70%;
+      cursor: pointer;
     }
     .spotMapListView {
       cursor: default;
@@ -258,25 +290,51 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      color: rgb(171, 171, 171);
     }
     .position {
       display: none;
     }
+
+    .spotIconControl {
+      width: 20%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .moveIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ddd;
+        margin: 0 15px 0 15px;
+      } 
+
+      .spotDeleteIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ddd;
+        margin: 0 15px 0 15px;
+        transition: all 0.3s ease;
+      } 
+
+      .spotDeleteIcon:hover {
+        cursor: pointer;
+        color: #D96A49;
+      }
+    }
     .schedule_spots_id {
       display: none;
     }
-    .moveIcon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #ddd;
-    }
-  }
-  .spotBox::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
   }
 }
+
+.spotBox::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
 .spotBTN {
   background-color: #eebc39;
   text-decoration: none;
@@ -286,10 +344,269 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
 }
 .spotBTN:hover {
   font-weight: bold;
+  color: white;
+  background-color: #D96A49;
 }
+
+.tripNameDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+
+  button {
+    width: 80px;
+    border: 1px solid #262D4B;
+    border-radius: 8px;
+    color: #262D4B;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #EDBB46;
+    border: none;
+  }
+}
+
+// planMessage CSS
+
+@keyframes showPlanMessage {
+  from {
+    top: -30px;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+.planMessage {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  top: -30px;
+  left: 0px;
+  z-index: 100;
+  line-height: 30px;
+}
+
+.planMessageSuccess {
+  background-color: rgb(96, 180, 96);
+  color: white;
+  top: 0px;
+  animation-name: showPlanMessage;
+  animation-duration: 0.3s;
+}
+
+.planMessageFailed {
+  background-color: rgb(211, 102, 102);
+  color: white;
+  top: 0px;
+  animation-name: showPlanMessage;
+  animation-duration: 0.3s;
+}
+
+@keyframes showRouteError {
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0
+  }
+}
+
+#routeErrorMessage {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(211, 102, 102);
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation-duration: 0.3s;
+  animation-name: showRouteError;
+  animation-timing-function: ease;
+}
+
+
+// SpotDetails section in Plan page
+
+.spotDetailsTitleBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .spotDetailsTitleinPlan {
+    width: 90%;
+    height: 60px;
+    background-color: white;
+    position:relative;
+    z-index: 10;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  
+    i {
+      margin-right: 10px;
+    }
+  
+  }
+
+  .detailsCloseBtn {
+    width: 10%;
+    text-align: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .detailsCloseBtn:hover {
+    color: #D96A49;
+  }  
+
+}
+
+
+// SpotComment section
+
+.spotCommentForm {
+  padding: 40px 20px 20px 20px;
+  border-top: 4px solid #eebc39;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .spotCommentTitle {
+      display: block;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+
+    .commentSaveBTN {
+      display: inline-block;
+      text-align: center;
+      width: 75px;
+      color: #262D4B;
+      border: none;
+      background-color: #eebc39;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .commentSaveBTN:hover {
+      background-color: #262D4B;
+      color: white;
+      cursor: pointer;
+    }
+
+  }
+
+  .spotCommentInput {
+    width: 100%;
+    height: 60vh;
+    border-radius: 10px;
+    padding: 10px;
+    color: #262D4B;
+    margin-top: 20px;
+  }
+
+  .spotCommentInput:focus {
+    outline-color: #DB6A43;
+  }
+
+  .spotCommentBox {
+    width: 100%;
+    padding: 20px;
+    color: #262D4B;
+    margin-top: 20px;
+    word-wrap: break-word;
+    background-color: white;
+    border-top: 1px solid grey;
+  }
+  
+}
+
+.spotDetailsContentBox {
+  position: relative;
+
+  .addCommenttoSpot {
+    width: 400px;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    left: 400px;
+    background-color: white;
+    box-shadow: 0px -5px 10px rgba(77, 77, 77, 0.386);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 80%;
+      height: 40px;
+      border-radius: 5px;
+      border: none;
+      background-color: #EDBB46;
+      color: #262D4B;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #262D4B;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+@keyframes showCommentSaveStatus {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.commentSaveSuccess {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  background-color: rgb(96, 180, 96);
+  width: 100%;
+  color: white;
+  text-align: center;
+  animation-name: showCommentSaveStatus;
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+}
+
+.commentSaveFailed {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  background-color: rgb(211, 102, 102);
+  width: 100%;
+  color: white;
+  text-align: center;
+  animation-name: showCommentSaveStatus;
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+
+}  
 
 // Loading animation on clanedar & name change
 
@@ -333,4 +650,138 @@ $duration: 1.4s;
    stroke-dashoffset: $offset;
    transform:rotate(450deg);
  }
+}
+
+
+@media screen and (max-width: 767px) {
+  #googleMapSection {
+    height: calc(100vh - 98px);
+    width: 100%;
+    z-index: 0;
+  }
+  #spotPlanningSection,#PlanPageView {
+    height: calc(100vh - 98px);
+  }
+  .planPageUp {
+    height: calc(100vh - 98px);
+    width: 100%;
+    min-width: 280px;
+    position: absolute;
+    z-index: 1;
+  }
+  .spotBox {
+    height: calc(95vh - 290px);
+    max-height: calc(95vh - 290px);
+  }
+  .spotBoxView {
+    height: calc(100vh - 289px);
+    max-height: calc(100vh - 289px);
+  }
+  .planPageDown {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+  .planFooter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #eebc39;
+    width: 100%;
+    height: 46px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+  }
+  .changeIndex {
+    text-align: center;
+    letter-spacing: 2px;
+    background-color: #262C4C;
+    color: #EEBC38;
+    padding: 3px 10px;
+    margin-right: 20px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .spotDetailsBoxinPlan {
+    width: 100%;
+    height: calc(100vh - 60px);
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+  }
+
+  .spotDetailsContentBox {
+    position: relative;
+
+    .addCommenttoSpot {
+      width: 100%;
+      height: 70px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: white;
+      box-shadow: 0px -5px 10px rgba(77, 77, 77, 0.386);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      button {
+        width: 80%;
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+        background-color: #EDBB46;
+        color: #262D4B;
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+      }
+  
+      button:hover {
+        background-color: #262D4B;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+
+  .spotDetailsTitleBox {
+
+    .spotDetailsTitleinPlan {
+      width: 768px;
+      height: 60px;
+      background-color: white;
+      position:relative;
+      z-index: 10;
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+    
+      i {
+        margin-right: 10px;
+      }
+    
+    }
+  
+    .detailsCloseBtn {
+      width: 10%;
+      padding-right: 15px;
+      text-align: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+  
+    .detailsCloseBtn:hover {
+      color: #D96A49;
+    }
+  }
 }

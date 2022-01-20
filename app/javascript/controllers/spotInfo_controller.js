@@ -43,7 +43,10 @@ export default class extends mapInSearch  {
 
         detailsBox.innerHTML = 
         `
-        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+        <div class="spotDetailsTitleBox">
+          <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+          <div class="detailsCloseBtn" data-action="click->mapInSearch#closeSpotDetails"><i class="fas fa-times"></i></div>
+        </div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
 
@@ -87,7 +90,10 @@ export default class extends mapInSearch  {
         
         detailsBox.innerHTML = 
         `
-        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+        <div class="spotDetailsTitleBox">
+          <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+          <div class="detailsCloseBtn" data-action="click->mapInSearch#closeSpotDetails"><i class="fas fa-times"></i></div>
+        </div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
 
@@ -145,7 +151,7 @@ export default class extends mapInSearch  {
         const photodiv = document.createElement("div")
         photodiv.innerHTML = 
           `
-          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${p1}">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${p1}">
           
           `
         spotDetailsMainPhoto.appendChild(photodiv)  
@@ -158,7 +164,7 @@ export default class extends mapInSearch  {
           const photodiv = document.createElement("div")
           photodiv.innerHTML = 
           `
-          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo}">
+          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo}">
           
           `
           photoLists.appendChild(photodiv)
@@ -198,10 +204,7 @@ export default class extends mapInSearch  {
             reviewBox.appendChild(reviewItem)
           }
         })
-      }
-
-      
-
+      } 
     }
 
   }
