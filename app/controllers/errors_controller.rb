@@ -1,5 +1,4 @@
 class ErrorsController < ApplicationController
-  # layout 'error'
     rescue_from ActionController::RoutingError, with: :not_found
 
 
