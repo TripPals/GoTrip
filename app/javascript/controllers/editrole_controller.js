@@ -30,7 +30,6 @@ export default class extends Controller {
 				function removeRoleCheck(){
 					const roleCheck = document.querySelector(".show-edit-role-checked")
 					roleCheck.classList.remove("show-edit-role-checked")
-					// roleCheck.remove()
 				}
 
 				setTimeout(()=>{

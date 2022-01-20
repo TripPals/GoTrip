@@ -12,7 +12,7 @@ export default class extends mapInSearch  {
 
     const targetedSpotId = this.spotitemTarget.dataset.id
     
-    // 先定義呼叫我們api的方法
+ 
     async function fetchData() {
       try {
         const response = await fetch(`/api/v1/spotfinders/spotinfo?spot_id=${targetedSpotId}`, {
@@ -27,7 +27,7 @@ export default class extends mapInSearch  {
       }
     }
 
-    //長資料的方法
+  
     async function renderData() {
     
       const spotDetails = await fetchData()
@@ -127,7 +127,7 @@ export default class extends mapInSearch  {
   
     }
 
-    // 呼叫長資料方法
+
     renderData()
   
     function processingPhotos(spotDetails) {

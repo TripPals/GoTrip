@@ -33,7 +33,6 @@ export default class extends Controller {
     const targetedSpotId = this.spotItemVueTarget.dataset.spotid
     const eventTarget = this.spotNameTarget
     
-    // 先定義呼叫我們api的方法
     async function fetchData() {
       try {
         const response = await fetch(`/api/v1/spotfinders/spotinfo?spot_id=${targetedSpotId}`, {
@@ -158,7 +157,7 @@ export default class extends Controller {
   
     }
 
-    // 呼叫長資料方法
+  
     renderData()
 
     function processingPhotos(spotDetails) {

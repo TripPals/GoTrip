@@ -18,9 +18,6 @@ export default class extends Controller {
     const spotDetailsBox = document.querySelector("#spotDetailsBox")
     const mapBox = document.querySelector("#mapInSearchSection")
     
-
-
-    // 每次按下搜尋先清空搜尋結果列表
     resultBox.innerHTML = ""
     if (spotDetailsBox) {
       spotDetailsBox.remove()
@@ -50,8 +47,7 @@ export default class extends Controller {
       const spotResultData = await fetchData()
 
       loader.classList.remove("loaderBoxShow")
-      
-      // 如果搜尋結果是空的
+ 
       if (spotResultData.length === 0) {
 
         const noResultMessage = document.createElement("div")
@@ -61,7 +57,7 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
-        // 如果搜尋只用了城市＆我們的資料表沒有該城市的任何資料
+       
       } else if (spotResultData[0] === 'Database has no record of such city') {
         
         const noResultMessage = document.createElement("div")
@@ -71,7 +67,7 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
-        // 如果使用者什麼都沒輸入
+        
       } else if (spotResultData[0] === 'Invalid call! Need to have input') {
         const noResultMessage = document.createElement("div")
 
@@ -80,7 +76,7 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
       
-        // 如果fetch失敗了
+       
       } else if (spotResultData === "Empty Result") {
         
         const noResultMessage = document.createElement("div")
@@ -90,7 +86,7 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
-        // 如果搜尋結果有>=1筆資料
+        
       } else {
 
         spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude, id}) => {
@@ -100,7 +96,7 @@ export default class extends Controller {
                                      name.substring(0, spot_name_char_limit - 3) + "..." :
                                      name
           
-          // 如果搜尋結果的第一張照片是空的
+          
           if (photo_reference_1 === null) {
 
             const spotbox = document.createElement("div")
@@ -121,7 +117,7 @@ export default class extends Controller {
             
             resultBox.insertAdjacentElement("afterbegin", spotbox)
           
-            // 如果搜尋結果的第一張照片不是空的
+            
           } else {
 
             const spotbox = document.createElement("div")
@@ -149,7 +145,7 @@ export default class extends Controller {
 
     }
 
-    // 呼叫renderData方法（上頭定義的）傳回來的資料長出來
+    
     renderData()
 
   }

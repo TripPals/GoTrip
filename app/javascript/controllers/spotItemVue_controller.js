@@ -33,7 +33,7 @@ export default class extends Controller {
     const targetedSpotId = this.spotItemVueTarget.dataset.spotid
     const eventTarget = this.spotNameTarget
     
-    // 先定義呼叫我們api的方法
+  
     async function fetchData() {
       try {
         const response = await fetch(`/api/v1/spotfinders/spotinfo?spot_id=${targetedSpotId}`, {
@@ -158,61 +158,8 @@ export default class extends Controller {
           processReviewData(spotDetails)
         }
 
-      // } else {
-
-      //   const outterBox = document.querySelector("#planView")
-      //   const detailsBox = document.createElement("div")
-      //   const spotorder = eventTarget.dataset.spotorder
-      //   const scheduleid = eventTarget.dataset.scheduleid
-      //   detailsBox.classList.add("spotDetailsBoxinPlanMobile")
-
-      //   detailsBox.innerHTML = 
-      //   `    
-      //   <div class="spotDetailsTitleBox">
-      //     <div class="spotDetailsTitleinPlan"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
-      //     <div class="detailsCloseBtn" data-action="click->plan#closeSpotDetailsMobile"><i class="fas fa-times"></i></div>
-      //   </div>
-      //   <div class="spotDetailsContentBox" data-controller="spotComment">
-      //     <div class="spotDetailsPhotoBox">
-      //       <div class="spotDetailsMainPhoto">
-
-      //       </div>
-      //       <div class="spotDetailsPhotoListBox">
-      //         <div class="photoLists"></div>
-      //       </div>
-      //     </div>
-
-      //     <div class="detailBoxHeading">基本資料</div>
-      //     <div class="addressBox"><i class="fas fa-map-marker-alt"></i>${spotDetails.address}</div>
-      //     <div class="phoneBox"><i class="fas fa-phone"></i>${spotDetails.phone}</div>
-      //     <div class="openingHourBox">
-      //       <i class="fas fa-clock"></i>
-      //       <div class="hourlist">
-      //         <p>${spotDetails.saturday_hr}</p>
-      //         <p>${spotDetails.sunday_hr}</p>
-      //         <p>${spotDetails.monday_hr}</p>
-      //         <p>${spotDetails.tuesday_hr}</p>
-      //         <p>${spotDetails.wednesday_hr}</p>
-      //         <p>${spotDetails.thursday_hr}</p>
-      //         <p>${spotDetails.friday_hr}</p>
-      //       </div>
-      //     </div>
-
-      //     <div class="detailBoxHeading reviewHeading">使與者評論</div>
-      //     <div class="reviewBox"></div>
-
-      //     <div class="addCommenttoSpotMobile">
-      //       <button data-action="click->spotComment#showSpotCommentMobile" data-spotorder="${spotorder}", data-scheduleid="${scheduleid}" data-spotComment-target="editbutton"><i class="fas fa-edit"></i> 景點筆記</button>
-      //     </div>
-      //   </div>
-      //   `
-      //   outterBox.appendChild(detailsBox)
-      //   processingPhotos(spotDetails)
-      //   processReviewData(spotDetails)
-
     }
 
-    // 呼叫長資料方法
     renderData()
 
     function processingPhotos(spotDetails) {
