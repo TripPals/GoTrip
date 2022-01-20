@@ -199,6 +199,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 
@@ -304,7 +305,14 @@
 
 .hide-edit-role-checked{
   visibility: hidden;
-  color:#257F8B;
+  color: white;
+  position: absolute;
+  top: -15px;
+  left: 0px;
+  background-color: #257F8B;
+  border-radius: 10px 10px 0px 0px;
+  padding-bottom: 15px;
+
 }
 
 .show-edit-role-checked{
@@ -498,7 +506,7 @@
 
 
   .main-rightinfo{
-    width: 50%;
+    width: 60%;
     display:flex;
     justify-content: center;
     padding-bottom: 10px;
@@ -535,7 +543,7 @@
   }
 
   .main-rightresultdiv-owner{
-    width: 50%;
+    width: 40%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -551,6 +559,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
   }
 
 
@@ -562,7 +571,7 @@
 
   //left section
   .rightinfo {
-    width: 50%;
+    width: 60%;
     display: flex;
     padding: 10px;
     justify-content: center;
@@ -604,26 +613,28 @@
 
 
   .rightdetail{
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     margin: auto;
-    padding: 30px 20px 10px 0;
+    padding: 10px 20px 10px 0;
   }
 
   .changerole{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 
     .rightlabel {
-      width: 40%;
-      font-size: 1.2rem;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 5px;
     }
 
     select {
-      width: 30%;
+      width: 60%;
       font-size: 1rem;
       border-radius: 8px;
       background-color: white;
@@ -633,7 +644,7 @@
       width: 30%;
       display: flex;
       align-items: center;
-      justify-content: end;
+      justify-content: center;
 
       .deletebtn{
         font-size: 20px;
@@ -656,7 +667,14 @@
 
   .hide-edit-role-checked{
     visibility: hidden;
-    color:#257F8B;
+    color:white;
+    display: none;
+    position: absolute;
+    top: -15px;
+    left: 0px;
+    background-color: #257F8B;
+    border-radius: 10px 10px 0px 0px;
+    padding-bottom: 10px;
   }
 
   .show-edit-role-checked{
@@ -664,6 +682,7 @@
     visibility: visible;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding-left: 10px;
     padding-top: 10px;
   }
