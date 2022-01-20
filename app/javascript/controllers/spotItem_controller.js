@@ -8,11 +8,8 @@ export default class extends mapInSearch {
   refreshMap() {
     const latitude = parseFloat(this.spotitemTarget.dataset.lat)
     const longitude = parseFloat(this.spotitemTarget.dataset.lng)
-    console.log(latitude);
-    console.log(longitude);
 
     const dataForMap = {"lat": latitude,"lng": longitude }
-    console.log(dataForMap);
 
     const map = new google.maps.Map(document.querySelector("#mapInSearchSection"), {
       center: dataForMap,
@@ -25,6 +22,7 @@ export default class extends mapInSearch {
     const marker = new google.maps.Marker({
       position: dataForMap,
       map: map,
+      icon: {url:`https://gotripmapicons.s3.ap-southeast-1.amazonaws.com/goytipmapicon/0.png`, scaledSize: new google.maps.Size(100, 100)}
     });
 
     marker.setMap(map);

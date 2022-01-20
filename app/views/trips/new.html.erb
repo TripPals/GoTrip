@@ -1,47 +1,47 @@
-<%#= render 'layouts/header_trip' %>
+<%= render 'layouts/header_trip' %>
 <div class="new-trip-container">
   <div class="new-trip-box">
     <h1 class="new-trip-page-title">新增行程</h1>
     <div class="new-trip-wrap">
       <h2 class="new-trip-form-title">行程資訊</h2>
-      <%= form_for(@trip, url: trips_create_path) do |t| %>
-      <div class="new-trip-form-content">
-        <div class="new-trip-fieldname-top">
-          <div class="new-trip-field-label">
-          <%= t.label :name, "行程名稱" %> 
-          </div>
-          <div>
-          <%= t.text_field :name ,class:'new-trip-field', placeholder:'新的行程'%>
-          </div>
-        </div>
-        <div class="new-trip-fieldname-down">
-          <div class="new-trip-fieldname-left" >
+        <%= form_for(@trip, url: trips_create_path) do |t| %>
+        <div class="new-trip-form-content">
+          <div class="new-trip-fieldname-top">
             <div class="new-trip-field-label">
-              <%= t.label :length, "天數" %>
+            <%= t.label :name, "行程名稱" %> 
             </div>
             <div>
-              <%= t.number_field :length, min: 1 ,class:'new-trip-field', placeholder:'請選擇'%>
+            <%= t.text_field :name ,class:'new-trip-field', placeholder:'新的行程'%>
             </div>
           </div>
-          <div class="new-trip-fieldname-right">
-            <div class="new-trip-field-label">
-              <%= t.label :start_date, "開始日期"%>
+          <div class="new-trip-fieldname-down">
+            <div class="new-trip-fieldname-left" >
+              <div class="new-trip-field-label">
+                <%= t.label :length, "天數" %>
+              </div>
+              <div>
+                <%= t.number_field :length, min: 1 ,class:'new-trip-field', placeholder:'請選擇'%>
+              </div>
             </div>
-            <div>
-              <%= t.date_field :start_date, start_year: 1800, end_year: Time.now.year ,class:'new-trip-field'%>
+            <div class="new-trip-fieldname-right">
+              <div class="new-trip-field-label">
+                <%= t.label :start_date, "開始日期"%>
+              </div>
+              <div>
+                <%= t.date_field :start_date, start_year: 1800, end_year: Time.now.year ,class:'new-trip-field'%>
+              </div>
             </div>
           </div>
+          <div class="new-trip-button-box">
+            <%= t.submit "建立行程" %>
+          </div>
         </div>
-        <div class="new-trip-button-box">
-          <%= t.submit "建立行程" %>
-        </div>
-            <% end %>
-      </div>
+        <% end %>
     </div>
   </div>
   <div class="new-trip-illustration-box">
       <img src="/images/new_trip_illustration.png" alt="">
   </div>
 </div>
+<%= render 'layouts/footer' %>
 
-<%#= render 'layouts/footer' %>

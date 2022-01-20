@@ -12,11 +12,11 @@ class Api::V1::SpotfindersController < ApplicationController
 
       # 先判斷前端傳回來的input組合
       case 
-      when  @search_input_keyword && search_input_city # 兩個input都存在
+      when  @search_input_keyword != "" && search_input_city != "" # 兩個input都存在
         @spots = Spot.where("name LIKE ? AND city LIKE ?", "%#{@search_input_keyword}%", "%#{search_input_city}%")
-      when @search_input_keyword && search_input_city == "" # 只有景點關鍵字input存在
+      when @search_input_keyword != "" && search_input_city == "" # 只有景點關鍵字input存在
         @spots = Spot.where("name LIKE ?", "%#{@search_input_keyword}%")
-      when @search_input_keyword == "" && search_input_city # 只有城市關鍵字input存在
+      when @search_input_keyword == "" && search_input_city !="" # 只有城市關鍵字input存在
         @spots = Spot.where("city LIKE ?", "%#{search_input_city}%")
       end
 
@@ -52,9 +52,30 @@ class Api::V1::SpotfindersController < ApplicationController
     # 使用者城市＆關鍵字都沒有給，丟回錯誤
     else
       respond_to do |format|
-        format.json { render :json => { status: "failed", message: "Invalid call! Need to have input"}, status => 406 }
+        format.json { render :json => ["Invalid call! Need to have input"], status => 418 }
       end
     end  
+
+  end
+
+  def getSpotInfo
+
+    # 第一步：把FE call帶入的spot_id抓取出來
+    spot_id = params[:spot_id]
+
+    # 第二步：去Spot資料表找吻合的景點資料
+    spot_details = Spot.find_by(id: spot_id)
+
+    # 第三步：判斷，如果找到，就render json回去，找不到(nil)就回傳“No such spot found”
+    if spot_details.present?
+      respond_to do |format|
+        format.json { render :json => spot_details, status => 200}
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => { status: "ok", message: "No such spot found"}, status => 200 }
+      end
+    end
 
   end
 

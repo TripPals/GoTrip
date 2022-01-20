@@ -1,17 +1,23 @@
-
 import Vue from 'vue'
 import App from '../trip_body.vue'
+import viewApp from '../trip_body_view.vue'
+
 
 document.addEventListener('DOMContentLoaded', () => {
-  let spotList = [];
-  let positionList = [];
-  
   const app = new Vue({
     render: h => h(App)
   }).$mount()
-  const tripBody = document.getElementById('spotPlanningSection')
-  tripBody.appendChild(app.$el)
-  
-  sessionStorage.setItem('spotList', JSON.stringify(spotList));
-  sessionStorage.setItem('positionList', JSON.stringify(positionList));
+  const planningPage = document.getElementById('spotPlanningSection')
+
+  const viewapp = new Vue({
+    render: h => h(viewApp)
+  }).$mount()
+  const viewPage = document.getElementById('PlanPageView')
+
+  if (planningPage) {
+    planningPage.appendChild(app.$el)
+  }
+  else {
+    viewPage.appendChild(viewapp.$el)
+  }
 })

@@ -15,20 +15,32 @@ export default class extends Controller {
     const cityinput = this.cityinputTarget.value.trim()
     const keywordinput = this.keywordinputTarget.value.trim()
     const resultBox = document.querySelector(".searchResultBox")
+    const spotDetailsBox = document.querySelector("#spotDetailsBox")
+    const mapBox = document.querySelector("#mapInSearchSection")
+    
+
 
     // 每次按下搜尋先清空搜尋結果列表
     resultBox.innerHTML = ""
+    if (spotDetailsBox) {
+      spotDetailsBox.remove()
+      mapBox.classList.remove("mapInSearchSectionWithDetails")
+      mapBox.classList.add("mapInSearchSection")
+    }
+    
+    const loader = document.querySelector(".loaderBox")
+    loader.classList.add("loaderBoxShow")
 
     async function fetchData() {
       try {
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`, {
+        const response = await fetch(`/api/v1/spotfinders/search?keyword=${keywordinput}&city=${cityinput}`, {
           method: 'GET'
         })
         const result = await response.json()
         return result
       } catch {
         const result = "Empty Result"
-        console.error("Something went wrong...");
+        console.log("Something went wrong...");
         return result
       }
     };
@@ -36,7 +48,8 @@ export default class extends Controller {
     async function renderData() {
       
       const spotResultData = await fetchData()
-      console.log(spotResultData);
+
+      loader.classList.remove("loaderBoxShow")
       
       // 如果搜尋結果是空的
       if (spotResultData.length === 0) {
@@ -58,10 +71,29 @@ export default class extends Controller {
 
         resultBox.insertAdjacentElement("afterbegin", noResultMessage)
 
+        // 如果使用者什麼都沒輸入
+      } else if (spotResultData[0] === 'Invalid call! Need to have input') {
+        const noResultMessage = document.createElement("div")
+
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">咦？您是否忘記輸入關鍵字了呢？</p>`
+
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+      
+        // 如果fetch失敗了
+      } else if (spotResultData === "Empty Result") {
+        
+        const noResultMessage = document.createElement("div")
+
+        noResultMessage.classList.add("noResultMessageDiv")
+        noResultMessage.innerHTML = `<p class="noResultMessage">哇!搜尋時發生了點小問題，請再嘗試搜尋一次，或者晚點再試</p>`
+
+        resultBox.insertAdjacentElement("afterbegin", noResultMessage)
+
         // 如果搜尋結果有>=1筆資料
       } else {
-        console.log("Hello");
-        spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude}) => {
+
+        spotResultData.forEach(({name, city, photo_reference_1, latitude, longitude, id}) => {
           
           const spot_name_char_limit = 25
           const spot_name_adjusted = name.length > spot_name_char_limit ?
@@ -76,7 +108,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo click->spotInfo#prepareSpotId" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
@@ -97,7 +129,7 @@ export default class extends Controller {
   
             spotbox.innerHTML = 
             `
-            <div data-controller="spotItem" class="spotItem" data-spotItem-target="spotitem" data-action="click->spotItem#refreshMap" data-lat="${latitude}" data-lng="${longitude}">
+            <div data-controller="spotItem spotInfo" class="spotItem" data-spotItem-target="spotitem" data-spotInfo-target="spotitem" data-action="click->spotItem#refreshMap click->spotInfo#getSpotInfo click->spotInfo#prepareSpotId" data-clicked="false" data-lat="${latitude}" data-lng="${longitude}" data-id="${id}">
               <div class="spotmeta">
                 <p>${spot_name_adjusted}</p>
                 <p>${city}</p>
@@ -123,11 +155,11 @@ export default class extends Controller {
   }
 
   clearCityInput() {
-    this.cityinputTarget.value.clear()
+    this.cityinputTarget.value = ""
   }
 
   clearKeywordInput() {
-    this.keywordinputTarget.value.clear()
+    this.keywordinputTarget.value = ""
   }
 
 

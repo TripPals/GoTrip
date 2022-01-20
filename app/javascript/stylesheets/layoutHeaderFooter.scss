@@ -1,0 +1,317 @@
+//header_indx ＆ header_trip 共用元素
+#gotrip-header{
+  width: 100%;
+  margin-top: 0px;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+}
+//按鈕 hover 的搖擺動畫
+@keyframes swing{
+  15%{transform: translateX(5px);}
+  40%{transform: translateX(-5px);}
+  65%{transform: translateX(2px);}
+  85%{transform: translateX(-2px);}
+  100%{transform: translateX(0px);}
+}
+
+//header-index 檔案內的設定 -------
+.header-in-wrap{
+  display: flex;
+  margin: 40px 60px 0;
+  justify-content: space-between;
+  align-items: center;
+  
+  .header-in-logo{
+    width: 200px;
+    img{
+      width: 100%;
+      -webkit-filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8));
+      filter: drop-shadow(4px 4px 4px rgba(38, 44, 76, 0.8))
+    }
+  }
+  .header-in-nav-befor{
+    background:linear-gradient(to top,#EEBC38,#f5da78 );
+    background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
+    padding: 5px 8px;
+    border-radius: 7px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    display: flex;
+    box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    .gotrip-header-nav-btn{
+      padding: 5px 8px;
+      border-radius: 7px;
+      letter-spacing: 2px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .gotrip-header-nav-btn:hover{
+      animation: swing 1s;
+      background-color:rgba(255,255,255,0.5);
+      color: #DB6A43;
+    }
+    .gotrip-about{
+      color:#262C4C;
+      margin-right: 30px;
+    }
+    .gotrip-signin{
+      color:#262C4C;
+      border: 1px solid #262C4C;
+      margin-right: 2px;
+    }
+    .gotrip-signup{
+      background-color: #262C4C;
+      color: #EEBC38;
+      border: 1px solid #262C4C;
+    }
+  }
+  .header-in-nav-after{
+    max-width: 300px;
+    min-width: 118px;
+    width:auto; 
+    padding: 5px 8px;
+    border-radius: 7px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    background:linear-gradient(to top,#EEBC38,#f5da78 );
+    background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
+    box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    cursor: pointer;
+    .header-in-user-show{
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
+        }
+      .header-in-user-info{
+        line-height: 42px;
+        font-size: 18px;
+        font-weight: bold;
+        display : inline-block;
+        overflow : hidden;
+        text-overflow : ellipsis;
+        white-space : nowrap;
+        max-width: 240px;
+        min-width: 60px;
+        }
+      img{
+        margin: 1px 10px 1px 2px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .header-in-nav-after:hover {
+    cursor: pointer;
+  }
+
+  label:hover .header-in-after-login{
+    color: #DB6A43;
+    cursor: pointer;
+  }
+  #list-checked:checked ~ .header-in-after-list{
+    display: block;
+  }
+  #list-checked{
+    display: none;
+  }
+  .header-in-after-list{
+    display: none;
+    position: absolute;
+    right: 60px;
+    bottom: -160px;
+    div{
+      padding: 5px 8px;
+      border-radius: 7px;
+      border: 1px solid #262C4C;
+      letter-spacing: 2px;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    }
+    div:hover{
+      background-color:rgba(255,255,255,0.5);
+      animation: swing 1s;
+      background-color:rgba(255,255,255,0.5);
+      color: #DB6A43;
+      backdrop-filter: blur(5px);
+    }
+    .gotrip-mytrip{
+      padding: 17px 0;
+      background-color: #262C4C;
+      color: #EEBC38;
+    }
+    .gotrip-myinfo{
+      background-color: #EEBC38;
+      color: #262C4C;
+    }
+  }
+}
+
+//header-trip 檔案內的設定 -------
+
+.trip-header-outter-box {
+  width: 100%;
+  height: 60px;
+  margin:auto;
+  // border-bottom: 4px solid #EEBC38;
+  padding: 0 5% 0 5%;
+  background: linear-gradient(225deg, rgba(255,226,89,1) 0%, rgba(237,150,70,1) 100%);
+  // background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.461) 0px 8px 15px;
+  position: relative;
+  
+}
+
+.trip-header-outter-box:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(225deg, rgba(237,150,70,1) 0%, rgba(255,226,89,1) 100%);
+
+}
+
+.header-trip-wrap {
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+
+  .trip-header-logo {
+    width: 100px;
+  }
+
+  .header-in-nav-after {
+    max-width: 300px;
+    min-width: 118px;
+    height: 40px;
+    width: auto; 
+    padding: 5px 8px;
+    border-radius: 7px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    background:linear-gradient(to top,#EEBC38,#f5da78 );
+    background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.438) 0px 8px 16px -8px, rgba(0, 0, 0, 0.438) 0px -5px 16px -8px;
+    
+    .header-in-user-show{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      
+      .header-in-user-info{
+        line-height: 42px;
+        font-size: 18px;
+        font-weight: bold;
+        display : inline-block;
+        overflow : hidden;
+        text-overflow : ellipsis;
+        white-space : nowrap;
+        max-width: 240px;
+        min-width: 60px;
+        margin-top: 12px;
+
+      }
+      img{
+        margin: 1px 10px 1px 2px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .header-in-nav-after:hover {
+    cursor: pointer;
+  }
+
+  label:hover .header-in-after-login{
+    color: #DB6A43;
+    cursor: pointer;
+  }
+  #list-checked:checked ~ .header-in-after-list{
+    display: block;
+  }
+  #list-checked{
+    display: none;
+  }
+
+  .header-in-after-list{
+    display: none;
+    position: absolute;
+    right: 5%;
+    bottom: -170px;
+    
+    div{
+      padding: 5px 8px;
+      border-radius: 7px;
+      border: 1px solid #262C4C;
+      letter-spacing: 2px;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
+    }
+    div:hover{
+      background-color:rgb(255, 255, 255);
+      animation: swing 1s;
+      background-color:rgb(255, 255, 255);
+      color: #DB6A43;
+    }
+    .gotrip-mytrip{
+      padding: 17px 0;
+      background-color: #262C4C;
+      color: #EEBC38;
+    }
+    .gotrip-myinfo{
+      background-color: #EEBC38;
+      color: #262C4C;
+    }
+  }
+}
+
+//footer -------
+.gotrip-footer{
+  box-sizing: border-box;
+  width: 100%;
+  height: 20px;
+  background-color: #EEBC38;
+  display: flex;
+  justify-content: center;
+  line-height: 20px;
+  p{
+    font-size: x-small;
+    color: #207F8C;
+  }
+  a{
+    padding: 3px;
+    border-radius: 4px;
+    color: #262C4C;
+  }
+  a:hover{
+    background-color: #207F8C;
+    color: #EEBC38;
+  }
+} 
+
+@media screen and (max-width: 768px) {
+  .header-trip-wrap {
+
+    .header-in-nav-after {
+      max-width: 130px;
+    }
+  }
+}
