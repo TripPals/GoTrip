@@ -2,7 +2,10 @@
   <div>
     <div class="planPageUp" :class="{planPageDown: isA}">
       <section id="dataTitle">
-        <div id="tripNameView">{{tripData.name}}</div>
+        <div class="tripNameDiv">
+          <div id="tripNameView">{{tripData.name}}</div>
+          <button @click="backToMyTrips" >行程縱覽</button>
+        </div>
         <div class="nameError"></div>
         <div class="tripDate">
           <div class="starEnd">{{startDay}} ～ {{endDay}}</div>
@@ -177,6 +180,9 @@ export default {
     slideLeft() {
       const dayTitle = this.$refs.dayTitle;
       dayTitle.scrollLeft -= 140;
+    },
+    backToMyTrips(){
+      window.location.replace(`/mytrips`)
     },
     changeIndex() {
       if (this.isA == false){
