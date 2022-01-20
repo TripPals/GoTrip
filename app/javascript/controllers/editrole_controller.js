@@ -88,7 +88,7 @@ export default class extends Controller {
 				
 
 				const deletebtn = this.deletebtnTarget
-				deletebtn.parentNode.parentNode.parentNode.remove()
+				deletebtn.parentNode.parentNode.parentNode.parentNode.remove()
 			}
 		})
 		
