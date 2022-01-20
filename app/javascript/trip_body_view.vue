@@ -93,10 +93,16 @@ export default {
   },
   mounted() {
 
+    const editingDay = JSON.parse(sessionStorage.getItem('editingDay'))
+    let index;
+
+    editingDay ? index = editingDay : index = 0; 
+    this.isActive = index;
+
     responseData.then((data)=>{
       this.tripData = data;
 
-      var spotData = this.tripData.schedules[0];
+      var spotData = this.tripData.schedules[index];
       this.spotData = spotData;
 
       const startDay = dayjs(this.tripData.startDate).format('YYYY-MM-DD');
