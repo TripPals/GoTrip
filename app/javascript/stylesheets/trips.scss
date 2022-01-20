@@ -221,6 +221,12 @@
   overflow: hidden;
   background: linear-gradient(124deg, rgba(255,226,89,1) 0%, rgba(237,150,70,1) 38%);
 
+  i {
+    font-size: 4rem;
+    position: relative;
+    left: 20px;
+    top: 20px;
+  }
 
   a {
     width: 100%;
@@ -245,7 +251,19 @@
   }
 
 
-  p {
+  p:nth-of-type(1) {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #262D4B;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    z-index: 4;
+    transition: all 0.3s ease;
+  }
+
+  p:nth-of-type(2) {
     font-size: 2rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0);
@@ -271,8 +289,6 @@
 
   p:nth-of-type(1) {
     bottom: 60px;
-    color: #262D4B;
-    background-color: rgb(255, 255, 255);
   }
 
   p:nth-of-type(2) {
