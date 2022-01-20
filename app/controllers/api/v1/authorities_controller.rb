@@ -1,5 +1,5 @@
 class Api::V1::AuthoritiesController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   def alluser
     # @users = UserTrip.find_by(trip_id: params[:trip_id]).user
