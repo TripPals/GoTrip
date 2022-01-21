@@ -20,7 +20,7 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
-def create
+  def create
 
   @trip = Trip.new(trip_params)
 
@@ -84,12 +84,25 @@ end
   def search
   end
 
+
+  def plan
+
+    allTrips = current_user.user_trips.select(:trip_id)
+    tripids = []
+    allTrips.each do |item|
+      tripids.push(item.trip_id.to_s)
+    end
+
+    if tripids.include?(params[:trip_id]) == false
+      redirect_to '/404'
+    end
+
+  end
+
   private
   def trip_params
     params.require(:trip).permit(:name, :length, :start_date)
   end
 
-  def plan
-  end
 
 end
