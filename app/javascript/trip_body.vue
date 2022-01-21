@@ -65,6 +65,9 @@
                   <div class="moveIcon">
                     <i class="fas fa-arrows-alt"></i>
                   </div>
+                  <div v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0' class="comment">
+                    <i class="fas fa-comment-dots"></i>
+                  </div>
                 </div>
               </div>
             </draggable>

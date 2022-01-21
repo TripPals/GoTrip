@@ -51,7 +51,11 @@
                   <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
                   <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
                 </div>
-                <div class="spotIconControl"></div>
+                <div class="spotIconControl">
+                  <div v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0' class="comment">
+                    <i class="fas fa-comment-dots"></i>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
