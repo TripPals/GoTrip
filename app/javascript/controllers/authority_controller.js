@@ -308,7 +308,6 @@ export default class extends Controller {
     renderData()
   }
 
-
   closeRightCard() {
 
     const hiddenTripID = document.querySelector(".authority-hide-trip-id")

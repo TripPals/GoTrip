@@ -349,7 +349,7 @@
 .spotBTN:hover {
   font-weight: bold;
   color: white;
-  background-color: #D96A49;
+  background-color: #262D4B;
 }
 
 .tripNameDiv {
@@ -431,6 +431,7 @@
   animation-duration: 0.3s;
   animation-name: showRouteError;
   animation-timing-function: ease;
+  z-index: 100;
 }
 
 
