@@ -47,7 +47,7 @@
   background-color: white;  
   display: flex;
   align-items: center;
-  box-shadow:4px 4px 4px rgba(38, 44, 76, 0.5);
+  box-shadow:6px 6px 6px rgba(38, 44, 76, 0.5);
   .about-member-photo{
     width: 50%;
     // background-color: yellowgreen;
@@ -76,12 +76,17 @@
         margin-right: 5px;
       }
       a:hover{
-        color: #262C4C;
+        color: #DB6A43;
       }
     }
   }
 }
-
+.about-team-item:hover{
+  box-shadow:8px 8px 8px rgba(38, 44, 76, 0.8);
+  p{
+    color: #DB6A43;
+  }
+}
 
 @media screen and (min-width: 768px){
   .about-wrap{
