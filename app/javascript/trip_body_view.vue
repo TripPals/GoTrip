@@ -177,7 +177,7 @@ export default {
         }, 100)
         setTimeout(()=>{
           refreshMapIfInteracted()
-        }, 200)
+        }, 500)
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;

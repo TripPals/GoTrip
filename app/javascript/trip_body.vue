@@ -257,7 +257,7 @@ export default {
         }, 100)
         setTimeout(()=>{
           refreshMapIfInteracted()
-        }, 200)
+        }, 500)
     },
     backToMyTrips(){
       sessionStorage.removeItem('editingDay');

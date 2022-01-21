@@ -6,6 +6,8 @@ class Trip < ApplicationRecord
   has_many :user_trips, dependent: :delete_all
   has_many :users, through: :user_trips
 
+  attribute :role, :string
+
   scope :followed_trip, ->(user_id) {joins(:user_trips).where('user_trips.user_id = ? and user_trips.role != 0', user_id)}
   scope :own_trip, ->(user_id) {joins(:user_trips).where('user_trips.user_id = ? and user_trips.role = 0', user_id)}
 

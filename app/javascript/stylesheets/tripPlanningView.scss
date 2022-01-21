@@ -44,7 +44,7 @@
     max-height: calc(100vh - 290px);
   }
   .spotBoxView {
-    height: calc(100vh - 255px);
+    height: calc(100vh - 275px);
     max-height: calc(100vh - 255px);
   }
   .changeIndex {
@@ -88,6 +88,7 @@
     color: #666;
   }
   .dayLength {
+    width: 100%;
     padding: 0px 20px;
     color: #666;
   }
@@ -101,6 +102,11 @@
   .mx-icon-calendar {
     display: block;
   }
+
+  .boxforVueViewShow {
+    display: flex;
+  }
+
 }
 
 #dataBody {

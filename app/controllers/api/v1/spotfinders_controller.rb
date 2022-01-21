@@ -24,7 +24,7 @@ class Api::V1::SpotfindersController < ApplicationController
       if !@spots.empty?
 
         respond_to do |format|
-          format.json { render :json => @spots, status => 200 }
+          format.json { render :json => @spots.last(20), status => 200 }
         end
 
       # 如果我們自己的資料表有沒有，把input丟給service object去call Google API
