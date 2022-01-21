@@ -319,6 +319,13 @@
         transition: all 0.3s ease;
       } 
 
+      .comment {
+        color: #EDBB46;
+        position: absolute;
+        margin-top: 60px;
+        margin-left: 45px;
+      }
+
       .spotDeleteIcon:hover {
         cursor: pointer;
         color: #D96A49;

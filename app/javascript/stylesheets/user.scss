@@ -3,13 +3,18 @@
   width: 100vw;
   height: calc(100% - 20px);
   margin: 0, auto;
-  background: rgb(255,226,89);
   background: linear-gradient(225deg, rgba(255,226,89,1) 15%, rgba(237,150,70,1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-attachment: fixed;
 }
-
+.users-container::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
 @keyframes showcaseIllustration {
   from {
     margin-left: -180px;
@@ -77,6 +82,7 @@
     img {
       height: 500px;
       margin-left: -100px;
+      margin-top: 40px;
       animation-name: showcaseIllustration;
       animation-duration: 1s;
       animation-timing-function: ease-in-out;
@@ -100,7 +106,7 @@
     margin-left: 15px;
     position: absolute;
     left: 0;
-    top: 20px;
+    top: -20px;
     animation-name: showcaseMessage;
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
@@ -270,7 +276,37 @@
     color: #262D4B;
     text-align: center;
   }
-
+}
+@media screen and (max-width: 767px) {
+  .users-container {
+    flex-direction: column;
+    height: calc(100% - 20px);
+    padding-top: 200px;
+  }
+  .users-wrap {
+    animation-name: none;
+  }
+  .registeration-message-illustration-box{
+    margin-top: -600px;
+    position: static;
+    .register-page-title {
+      position: relative ;
+      top: 0px;
+      left: auto;
+      right: auto;
+      p {
+        font-size: 1.2rem;
+      }
+      h1 {
+        margin-top: -10px;
+        font-size: 2.0rem;
+      }
+    }
+    .register-page-image-box img {
+      position: relative;
+      left: 120px;
+    }
+  }
 }
 
 // User info editing SCSS section ======================
@@ -495,3 +531,63 @@
   animation-duration: 0.3s;
   animation-timing-function: ease-in;
 }
+
+@media screen and (max-width: 767px) {
+  .login-message-illustration-box {
+    position: static;
+    margin-top: -460px;
+    .login-page-title {
+      position: relative;
+      top: -30px;
+      left: auto;
+      right: auto;
+      p {
+        font-size: 1.2rem;
+      }
+      h1 {
+        margin-top: -10px;
+        font-size: 2.0rem;
+      }
+    }
+    .login-page-image-box img {
+      position: relative;
+      top: 200px;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  #user-edit {
+    padding-top: 0px;
+  }
+  .user-edit-info {
+    flex-direction: column;
+    align-items: center;
+    min-width: 240px;
+  }
+  .user-info-section {
+    min-width: 320px;
+  }
+  .user-edit-photoupload-section {
+    margin-top: 20px;
+  }
+  .user-info-content-box {
+    min-width: 280px;
+    margin-top: 350px;
+    margin-bottom: 50px;
+    form .user-edit-info .user-edit-name-section {
+      width: 100%;
+      padding-bottom: 55px;
+    }
+  }
+  .user-edit-submit input {
+    margin: auto;
+    position: relative;
+    top: 20;
+    right: 0;
+  }
+  .user-delete {
+    margin-top: 0px;
+  }
+}
+
+ 
