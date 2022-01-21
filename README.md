@@ -16,20 +16,21 @@
 
 ## GoTrip 核心功能
 
-1. 會員功能
+1. 會員系統
 2. 共同編輯
-3. 行程編輯
-4. 地圖資訊同步
+3. 景點搜尋
+4. 行程編輯
+5. 地圖即時顯示
 
 ## GoTrip 開發技術
 
-前端：HTML / JavaScript / SCSS / bootstrap / Vue.js / Stimilus<br />
-後端：Ruby on Rails/ Devise / Pundit<br />
+前端：HTML / JavaScript / SCSS / Bootstrap / Vue.js / Stimilus<br />
+後端：Ruby on Rails/ i18n<br />
 資料庫：PostgreSQL<br />
 部署：Heroku<br />
 版本控制：Git / GitHub<br />
-API串接：第三方登入 Google / GitHub / Google JavaScript map Api / Google Places Api<br />
-專案規劃：Whimsical / Figma / Notion<br />
+API串接：第三方登入 Google / GitHub / Google JavaScript map / Google Places<br />
+專案規劃：Whimsical / Figma / Notion / Mirror<br />
 其他技術：AWS S3 / Docker<br />
 
 ## GoTrip 成員
