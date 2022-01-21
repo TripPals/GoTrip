@@ -43,7 +43,10 @@ export default class extends mapInSearch  {
 
         detailsBox.innerHTML = 
         `
-        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+        <div class="spotDetailsTitleBox">
+          <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+          <div class="detailsCloseBtn" data-action="click->mapInSearch#closeSpotDetails"><i class="fas fa-times"></i></div>
+        </div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
 
@@ -87,7 +90,10 @@ export default class extends mapInSearch  {
         
         detailsBox.innerHTML = 
         `
-        <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+        <div class="spotDetailsTitleBox">
+          <div class="spotDetailsTitle"><i class="fas fa-map-marked-alt"></i>${spotDetails.name}</div>
+          <div class="detailsCloseBtn" data-action="click->mapInSearch#closeSpotDetails"><i class="fas fa-times"></i></div>
+        </div>
         <div class="spotDetailsPhotoBox">
           <div class="spotDetailsMainPhoto">
 

@@ -30,7 +30,6 @@ export default class extends Controller {
 				function removeRoleCheck(){
 					const roleCheck = document.querySelector(".show-edit-role-checked")
 					roleCheck.classList.remove("show-edit-role-checked")
-					// roleCheck.remove()
 				}
 
 				setTimeout(()=>{
@@ -88,7 +87,7 @@ export default class extends Controller {
 				
 
 				const deletebtn = this.deletebtnTarget
-				deletebtn.parentNode.parentNode.parentNode.remove()
+				deletebtn.parentNode.parentNode.parentNode.parentNode.remove()
 			}
 		})
 		

@@ -2,7 +2,10 @@
   <div>
     <div class="planPageUp" :class="{planPageDown: isA}">
       <section id="dataTitle">
-        <div id="tripNameView">{{tripData.name}}</div>
+        <div class="tripNameDiv">
+          <div id="tripNameView">{{tripData.name}}</div>
+          <button @click="backToMyTrips" >行程縱覽</button>
+        </div>
         <div class="nameError"></div>
         <div class="tripDate">
           <div class="starEnd">{{startDay}} ～ {{endDay}}</div>
@@ -90,10 +93,16 @@ export default {
   },
   mounted() {
 
+    const editingDay = JSON.parse(sessionStorage.getItem('editingDay'))
+    let index;
+
+    editingDay ? index = editingDay : index = 0; 
+    this.isActive = index;
+
     responseData.then((data)=>{
       this.tripData = data;
 
-      var spotData = this.tripData.schedules[0];
+      var spotData = this.tripData.schedules[index];
       this.spotData = spotData;
 
       const startDay = dayjs(this.tripData.startDate).format('YYYY-MM-DD');
@@ -177,6 +186,9 @@ export default {
     slideLeft() {
       const dayTitle = this.$refs.dayTitle;
       dayTitle.scrollLeft -= 140;
+    },
+    backToMyTrips(){
+      window.location.replace(`/mytrips`)
     },
     changeIndex() {
       if (this.isA == false){

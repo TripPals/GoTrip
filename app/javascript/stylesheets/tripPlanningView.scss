@@ -37,9 +37,10 @@
 
   #dataBody {
     height: calc(100vh - 230px);
+    padding-top: 20px;
   }
   .spotBox {
-    height: calc(100vh - 290px);
+    height: calc(100vh - 310px);
     max-height: calc(100vh - 290px);
   }
   .spotBoxView {
@@ -56,6 +57,7 @@
   width: 100%;
   position: relative;
   background-color: #fff;
+  padding-top: 20px;
   #tripName {
     width: 70%;
     font-weight: bold;
@@ -104,6 +106,8 @@
 #dataBody {
   width: 100%;
   background-color: #fff;
+  padding-top: 20px;
+
   .dayBox {
     height: 70px;
     display: flex;
@@ -340,9 +344,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
 }
 .spotBTN:hover {
   font-weight: bold;
+  color: white;
+  background-color: #262D4B;
+}
+
+.tripNameDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+
+  button {
+    width: 80px;
+    border: 1px solid #262D4B;
+    border-radius: 8px;
+    color: #262D4B;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #EDBB46;
+    border: none;
+  }
 }
 
 // planMessage CSS
@@ -403,6 +431,7 @@
   animation-duration: 0.3s;
   animation-name: showRouteError;
   animation-timing-function: ease;
+  z-index: 100;
 }
 
 
@@ -487,7 +516,7 @@
 
   .spotCommentInput {
     width: 100%;
-    height: 500px;
+    height: 60vh;
     border-radius: 10px;
     padding: 10px;
     color: #262D4B;
@@ -681,7 +710,7 @@ $duration: 1.4s;
     width: 100%;
     height: calc(100vh - 60px);
     position: relative;
-    z-index: 3;
+    z-index: 2;
     background-color: #fff;
   }
 

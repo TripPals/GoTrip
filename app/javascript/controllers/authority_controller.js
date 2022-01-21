@@ -41,23 +41,25 @@ export default class extends Controller {
                 <div class="rightinfo">
                   <div class="user-pic"><img src="/images/fallback/default-avatar.jpg"></div>
                   <div class="text">
-                    <span>${name}</span>
-                    <span>${email}</span>
+                    <p>${name}</p>
+                    <p>${email}</p>
                   </div>
                 </div>
                 <div class="rightdetail">
                   <div class="changerole">
-                    <label class="rightlabel" for="role-select">變更權限:</label>
+                    <label class="rightlabel" for="role-select">變更權限：</label>
                     <select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
                     data-editrole-target="selector" data-action="change->editrole#role" >
                       <option selected="selected" data-value="1">可檢視</option>
                       <option data-value="2">可編輯</option>
                     </select>
-                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                    <div class="deleterole" data-editrole-target="deletebtn">
+                      <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                    </div>
                   </div>
-                  <div class="deleterole" data-editrole-target="deletebtn">
-                    <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                    </button>
+                  
+                  <div>
+                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                   </div>
                 </div>
               </div>
@@ -75,23 +77,24 @@ export default class extends Controller {
                     <div class="rightinfo">
                       <div class="user-pic" ><img src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${user_id}/${fileName}"></div>
                       <div class="text">
-                        <span>${name}</span>
-                        <span>${email}</span>
+                        <p>${name}</p>
+                        <p>${email}</p>
                       </div>
                     </div>
                     <div class="rightdetail">
                       <div class="changerole">
-                        <label class="rightlabel" for="role-select">變更權限:</label>
+                        <label class="rightlabel" for="role-select">變更權限：</label>
                         <select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
                         data-editrole-target="selector" data-action="change->editrole#role" >
                           <option selected="selected" data-value="1">可檢視</option>
                           <option data-value="2">可編輯</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div> 
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                       </div>
                     </div>
                   </div>
@@ -106,23 +109,24 @@ export default class extends Controller {
                     <div class="rightinfo" >
                       <div class="user-pic"><img src= "${image}"></div>
                       <div class="text">
-                        <span>${name}</span>
-                        <span>${email}</span>
+                        <p>${name}</p>
+                        <p>${email}</p>
                       </div>
                     </div>
                     <div class="rightdetail">
                       <div class="changerole">
-                        <label class="rightlabel" for="role-select">變更權限:</label>
+                        <label class="rightlabel" for="role-select">變更權限：</label>
                         <select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
                         data-editrole-target="selector" data-action="change->editrole#role" >
                           <option selected="selected" data-value="1">可檢視</option>
                           <option data-value="2">可編輯</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div>
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                       </div>
                     </div>
                   </div>
@@ -140,23 +144,24 @@ export default class extends Controller {
                 <div class="rightinfo">
                   <div class="user-pic"><img src="/images/fallback/default-avatar.jpg"></div>
                   <div class="text">
-                    <span>${name}</span>
-                    <span>${email}</span>
+                    <p>${name}</p>
+                    <p>${email}</p>
                   </div>
                 </div>
                 <div class="rightdetail">
                   <div class="changerole">
-                    <label class="rightlabel" for="role-select">變更權限:</label>
+                    <label class="rightlabel" for="role-select">變更權限：</label>
                     <select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
                     data-editrole-target="selector" data-action="change->editrole#role" >
                       <option selected="selected" data-value="2">可編輯</option>
                       <option data-value="1">可檢視</option>
                     </select>
-                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                    <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                    </div>
                   </div>
-                  <div class="deleterole" data-editrole-target="deletebtn">
-                    <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                    </button>
+                  <div>
+                    <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
                   </div>
                 </div>
               </div>
@@ -174,23 +179,24 @@ export default class extends Controller {
                     <div class="rightinfo">
                       <div class="user-pic" ><img src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${user_id}/${fileName}"></div>
                       <div class="text">
-                        <span>${name}</span>
-                        <span>${email}</span>
+                        <p>${name}</p>
+                        <p>${email}</p>
                       </div>
                     </div>
                     <div class="rightdetail">
                       <div class="changerole">
-                        <label class="rightlabel" for="role-select">變更權限:</label>
+                        <label class="rightlabel" for="role-select">變更權限：</label>
                         <select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
                         data-editrole-target="selector" data-action="change->editrole#role" >
                           <option selected="selected" data-value="2">可編輯</option>
                           <option data-value="１">可檢視</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div>
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i> 
                       </div>
                     </div>
                   </div>
@@ -205,23 +211,24 @@ export default class extends Controller {
                     <div class="rightinfo" >
                       <div class="user-pic"><img src= "${image}"></div>
                       <div class="text">
-                        <span>${name}</span>
-                        <span>${email}</span>
+                        <p>${name}</p>
+                        <p>${email}</p>
                       </div>
                     </div>
                     <div class="rightdetail">
                       <div class="changerole">
-                        <label class="rightlabel" for="role-select">變更權限:</label>
+                        <label class="rightlabel" for="role-select">變更權限：</label>
                         <select name="role"id="role-select"  data-role="${role}" data-id="${ut_id}" 
                         data-editrole-target="selector" data-action="change->editrole#role" >
                           <option selected="selected" data-value="2">可編輯</option>
                           <option data-value="1">可檢視</option>
                         </select>
-                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i>
+                        <div class="deleterole" data-editrole-target="deletebtn">
+                          <i class="fas fa-trash-alt deletebtn" data-action="click->editrole#delete"></i>
+                        </div>
                       </div>
-                      <div class="deleterole" data-editrole-target="deletebtn">
-                        <button class="deletebtn" data-action="click->editrole#delete"><p>刪除成員</p>
-                        </button>
+                      <div>
+                        <i class="fas fa-check-circle hide-edit-role-checked" data-id="${ut_id}">已更新</i> 
                       </div>
                     </div>
                   </div>
@@ -236,13 +243,16 @@ export default class extends Controller {
             rightBox.classList.add("main-rightresultdiv")
             rightBox.innerHTML = `
               <div class="main-rightsection" data-controller="editrole">
-                <p class="main-rightresultdiv-owner">行程擁有者</p>
                 <div class="main-rightinfo" >
-                  <div class="user-pic" ><img src="/images/fallback/default-avatar.jpg"></div>
-                  <div class="text">
+                  <div class="user-pic" ><img src="/images/fallback/default-avatar.jpg">
+                  </div>
+                  <div class="main-text">
                     <p>${name}</p>
                     <p>${email}</p>
                   </div>
+                </div>
+                <div class="main-rightresultdiv-owner">
+                  <p >行程擁有者</p>
                 </div>
               </div>
             `
@@ -256,13 +266,16 @@ export default class extends Controller {
               rightBox.classList.add("main-rightresultdiv")
               rightBox.innerHTML = `
                 <div class="main-rightsection" data-controller="editrole">
-                  <p class="main-rightresultdiv-owner">行程擁有者</p>
                   <div class="main-rightinfo" >
-                    <div class="user-pic" ><img src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${user_id}/${fileName}"></div>
-                    <div class="text">
+                    <div class="user-pic" ><img src="https://gogotrip.s3.amazonaws.com/uploads/user/avatar/${user_id}/${fileName}">
+                    </div>
+                    <div class="main-text">
                       <p>${name}</p>
                       <p>${email}</p>
                     </div>
+                  </div>
+                  <div class="main-rightresultdiv-owner">
+                    <p >行程擁有者</p>
                   </div>
                 </div>
               `
@@ -273,13 +286,15 @@ export default class extends Controller {
               rightBox.classList.add("main-rightresultdiv")
               rightBox.innerHTML = `
                 <div class="main-rightsection" data-controller="editrole">
-                  <p class="main-rightresultdiv-owner">行程擁有者</p>
                   <div class="main-rightinfo" >
                     <div class="user-pic" ><img src="${image}"></div>
-                    <div class="text">
+                    <div class="main-text">
                       <p>${name}</p>
                       <p>${email}</p>
                     </div>
+                  </div>
+                  <div class="main-rightresultdiv-owner">
+                    <p >行程擁有者</p>
                   </div>
                 </div>
               `
@@ -292,7 +307,6 @@ export default class extends Controller {
     }
     renderData()
   }
-
 
   closeRightCard() {
 
