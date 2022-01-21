@@ -9,9 +9,10 @@ json.length @trip.length
       json.order spot.schedule_spots.where(schedule_id: schedule.id).pluck(:order)
       json.id spot.id
       json.name spot.name
-      json.address spot.address
+      json.address spot.city
       json.lat spot.latitude
       json.lng spot.longitude
+      json.type spot.poi_type
     end
   end
 

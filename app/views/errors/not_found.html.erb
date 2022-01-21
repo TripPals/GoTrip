@@ -1,49 +1,52 @@
-<%#This page does not exist. Please go back.%>
-<section class="gotrip-index-container">
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="3000">
-        <img src="/images/index_img/1.jpg" class="d-block index-img" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="3000">
-        <img src="/images/index_img/2.jpg" class="d-block index-img" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="3000">
-        <img src="/images/index_img/3.jpg" class="d-block index-img" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="3000">
-        <img src="/images/index_img/4.jpg" class="d-block index-img" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="3000">
-        <img src="/images/index_img/5.jpg" class="d-block index-img" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+<div class="fourofour_container">
+
+  <div class="moon"></div>
+  <div class="moon__crater moon__crater1"></div>
+  <div class="moon__crater moon__crater2"></div>
+  <div class="moon__crater moon__crater3"></div>
+
+  <div class="star star1"></div>
+  <div class="star star2"></div>
+  <div class="star star3"></div>
+  <div class="star star4"></div>
+  <div class="star star5"></div>
+
+  <div class="error">
+    <div class="error__title">404</div>
+    <div class="error__subtitle">Hmmm...</div>
+    <div class="error__description">你迷路到外太空了，快點返回 GoTrip 吧!</div>
+
+    <%= link_to "返回上頁", :back, class: "error__button error__button--active" %>
+    <%= link_to "GoTrip首頁", root_path , class: "error__button" %>
   </div>
 
-  <section class="gotrip-index-content">
-    <div class="gotrip-index-wrap font-dark">
-      <h1>404</h1>
-      <p>咦？！您搜尋的頁面好像不存在噎!</p>
-      <div class=''>
-        <%= link_to "返回上頁", :back, class: "gotrip-start-btn" %>
-      </div>
+  <div class="astronaut">
+    <div class="astronaut__backpack"></div>
+    <div class="astronaut__body"></div>
+    <div class="astronaut__body__chest"></div>
+    <div class="astronaut__arm-left1"></div>
+    <div class="astronaut__arm-left2"></div>
+    <div class="astronaut__arm-right1"></div>
+    <div class="astronaut__arm-right2"></div>
+    <div class="astronaut__arm-thumb-left"></div>
+    <div class="astronaut__arm-thumb-right"></div>
+    <div class="astronaut__leg-left"></div>
+    <div class="astronaut__leg-right"></div>
+    <div class="astronaut__foot-left"></div>
+    <div class="astronaut__foot-right"></div>
+    <div class="astronaut__wrist-left"></div>
+    <div class="astronaut__wrist-right"></div>
+    
+    <div class="astronaut__cord">
+      <canvas id="cord" height="500px" width="500px"></canvas>
     </div>
-  </section>
-</section>
+    
+    <div class="astronaut__head">
+      <canvas id="visor" width="60px" height="60px"></canvas>
+      <div class="astronaut__head-visor-flare1"></div>
+      <div class="astronaut__head-visor-flare2"></div>
+    </div>
+  </div>
 
-<%= render 'layouts/footer' %>
+</div>
+<%= javascript_pack_tag 'four_o_four' %>

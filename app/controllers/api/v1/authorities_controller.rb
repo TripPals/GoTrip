@@ -2,10 +2,6 @@ class Api::V1::AuthoritiesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def alluser
-    # @users = UserTrip.find_by(trip_id: params[:trip_id]).user
-
-    # @trip = params[:trip_id]
-    # @users = UserTrip.joins(:users).where(@trip.present?)
     trip_id = params[:trip_id]
     @user = Trip.find(trip_id).users
     @users = User.find_by_sql("SELECT user_trips.id as ut_id, user_trips.role, users.id as user_id, users.name, users.email ,users.image, users.avatar FROM user_trips INNER JOIN users ON user_trips.user_id = users.id where trip_id = '#{trip_id}'")

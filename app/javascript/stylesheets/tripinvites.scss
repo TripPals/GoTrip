@@ -7,8 +7,8 @@
   width: 100%;
   height: calc(100% - 60px);
   position: fixed;
-  top: 60px;
-  left: 0;
+  top: 30px;
+  // left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,10 +16,9 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  
 
   .inviteSearchModal {
-    width: 50%;
+    width: 90%;
     height: 400px;
     max-width: 800px;
     border-radius: 10px;
@@ -37,13 +36,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 50px 0px 50px;
+  padding: 0px 20px 0px 20px;
   border-radius: 10px 10px 0px 0px;
   overflow: hidden;
 
   h1 {
     color: white;
     font-size: 25px;
+    margin-bottom: 0px;
   }
 
   .closebtn{
@@ -62,6 +62,8 @@
     font-size: 1.5rem;
     position: relative;
     z-index: 2;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 
   .closebtn:after {
@@ -125,13 +127,13 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  padding: 0px 50px 0px 50px;
+  padding: 0px 20px 0px 20px;
   margin-top: 30px;
   margin-bottom: 20px;
 
 
   input:first-child {
-    width: 78%;
+    width: 75%;
     height: 50px;
     font-size: 1.3rem;
     padding-left: 20px;
@@ -154,18 +156,16 @@
     cursor: pointer;
   }
 
-  
-}
-  
-.searchresultbox {
+  .searchresultbox {
     padding-top: 30px;
     height: 240px;
     overflow-x: hidden;
     overflow-y: auto;
+  }
 }
-      
+
 .noresultmessagediv {
-  width: calc(100% - 100px);
+  width: calc(100% - 40px);
   margin: auto;
   height: 100px;
   border-radius: 10px;
@@ -173,13 +173,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 10px;
   font-size: 1.3rem;
 }
 
 .emailresultdiv {
-  width: calc(100% - 100px);
+  width: calc(100% - 40px);
   margin: auto;
-  height: 130px;
+  height: 200px;
   border-radius: 10px;
   background-color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 25px 100px -20px, rgba(0, 0, 0, 0.3) 0px 15px 60px -30px;
@@ -187,21 +188,19 @@
   align-items: center;
   margin-bottom: 20px;
   
-
 }
 
 .emailsection {
   width: 100%;
-  display: flex;
+  // display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px 0px 20px;
 }
 
 .emailinfo {
-
+  
   width: 80%;
-  padding: 20px;
 
 
   p:nth-child(1) {
@@ -211,10 +210,10 @@
   p:nth-child(2) {
     display: inline-block;
     font-size: 1.3rem;
-    line-height: 25px;
+    line-height: 20px;
     color: rgb(170, 170, 170);
     margin-right: 10px;
-    margin-top: 8px;
+    // margin-top: 8px;
     margin-bottom: 8px;
   }
 
@@ -234,10 +233,8 @@
 }
 
 .connect {
-  width: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  margin: auto;
 
   button {
     width: 100%;
@@ -264,9 +261,8 @@
   transition: all 0.2s ease;
 }
 
-
 .noemailinputdiv{
-  width: calc(100% - 100px);
+  width: calc(100% - 40px);
   margin: auto;
   height: 100px;
   border-radius: 10px;
@@ -279,6 +275,7 @@
   
 .invite-hide-trip-id {
   visibility: hidden;
+  display: none;
 }
 
 .hide-search-section {
@@ -292,7 +289,7 @@
 
 
 .addfriendmessagediv{
-  width: calc(100% - 100px);
+  width: calc(100% - 40px);
   font-size: 1.3rem;
   margin: auto;
   height: 100px;
@@ -301,10 +298,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 10px;
 }
 
 .addtwicemessagediv{
-  width: calc(100% - 100px);
+  width: calc(100% - 40px);
   margin: auto;
   font-size: 1.3rem;
   height: 100px;
@@ -315,3 +313,330 @@
   align-items: center;
 }
 
+
+
+@media screen and (min-width: 768px) {
+  
+  #inviteSearchSection {
+
+    width: 100%;
+    height: calc(100% - 60px);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+
+    .inviteSearchModal {
+      width: 50%;
+      height: 400px;
+      max-width: 800px;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    }
+
+  }
+
+  .inviteSearchTitle {
+    width: 100%;
+    height: 60px;
+    border-bottom: 4px solid #EDBB46;
+    background: linear-gradient(90deg, rgba(20,30,48,1) 32%, rgba(36,59,85,1) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px 0px 50px;
+    border-radius: 10px 10px 0px 0px;
+    overflow: hidden;
+
+    h1 {
+      color: white;
+      font-size: 25px;
+    }
+
+    .closebtn{
+      width: 30px;
+      height: 30px;
+      background-color: #35537500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border: none;
+    }
+
+    p {
+      color: white;
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .closebtn:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      background-color: #262D4B;
+      opacity: 0;
+      z-index: 0;
+      border-radius: 50%;
+      transition: background-color 0.2s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease, z-index 0.2s ease;
+    }
+
+    @keyframes closeBtnAnimation {
+      0% {    
+        width: 0px;
+        height: 0px;}
+      60% {
+        width: 140px;
+        height: 140px;
+      }
+      70% {
+        width: 110px;
+        height: 110px;
+      }
+      80% {
+        width: 140px;
+        height: 140px;
+      }
+      90% {
+        width: 120px;
+        height: 120px;
+      }
+      100% {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
+    .closebtn:hover:after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background-color: #EC5362;
+      opacity: 1;
+      z-index: 1;
+      border-radius: 50%;
+      animation-name: closeBtnAnimation;
+      animation-duration: 0.3s;
+      animation-timing-function: ease-in-out;
+    }
+
+    
+
+  }  
+
+  .searchform form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0px 50px 0px 50px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+
+    input:first-child {
+      width: 78%;
+      height: 50px;
+      font-size: 1.3rem;
+      padding-left: 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: rgb(206, 206, 206);
+    }
+
+    .searchbtn {
+      width: 20%;
+      height: 50px;
+      background-color: #EDBB46;
+      color: white;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .searchbtn:hover {
+      cursor: pointer;
+    }
+
+    
+  }
+    
+  .searchresultbox {
+      padding-top: 30px;
+      height: 240px;
+      overflow-x: hidden;
+      overflow-y: auto;
+  }
+        
+  .noresultmessagediv {
+    width: calc(100% - 100px);
+    margin: auto;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 25px 100px -20px, rgba(0, 0, 0, 0.3) 0px 15px 60px -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+  }
+
+  .emailresultdiv {
+    width: calc(100% - 100px);
+    margin: auto;
+    height: 180px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 25px 100px -20px, rgba(0, 0, 0, 0.3) 0px 15px 60px -30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    
+
+  }
+
+  .emailsection {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px 20px 30px;
+  }
+
+  .emailinfo {
+
+    width: 80%;
+
+
+    p:nth-child(1) {
+      font-size: 1.5rem;
+    }
+
+    p:nth-child(2) {
+      display: inline-block;
+      font-size: 1.3rem;
+      line-height: 25px;
+      color: rgb(170, 170, 170);
+      margin-right: 10px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    p:nth-child(3) {
+      display: inline-block;
+      height: 25px;
+      width: 130px;
+      color: white;
+      text-align: center;
+      font-size: 0.8rem;
+      line-height: 25px;
+      background-color: rgb(199, 199, 199);
+      border-radius: 15px;
+
+    }
+
+  }
+
+  .connect {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 100%;
+      height: 40px;
+      text-align: center;
+    }
+  }
+
+  .addbtn {
+    width: 80px;
+    height: 50%;
+    margin: auto;
+    background-color: #262D4B;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .addbtn:hover {
+    cursor: pointer;
+    background-color: #EDBB46;
+    transition: all 0.2s ease;
+  }
+
+
+  .noemailinputdiv{
+    width: calc(100% - 100px);
+    margin: auto;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 25px 100px -20px, rgba(0, 0, 0, 0.3) 0px 15px 60px -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+  }
+    
+  .invite-hide-trip-id {
+    visibility: hidden;
+  }
+
+  .hide-search-section {
+    // 暫時開起來
+    visibility: hidden;
+  }
+
+  .show-search-section {
+    visibility: visible;
+  }
+
+
+  .addfriendmessagediv{
+    width: calc(100% - 100px);
+    font-size: 1.3rem;
+    margin: auto;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addtwicemessagediv{
+    width: calc(100% - 100px);
+    margin: auto;
+    font-size: 1.3rem;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  
+  .searchresultbox {
+    padding-top: 30px;
+    height: 240px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
