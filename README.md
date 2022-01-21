@@ -50,6 +50,6 @@ GitHub：[https://github.com/Lilith-Jin](https://github.com/Lilith-Jin)
 E-mail：rinko2210@gmail.com<br />
 GitHub：[https://github.com/takekun2210](https://github.com/takekun2210)
 
-### 莊肇元 Tsaoyuan Chunag<br />
+### 莊肇元 Tsaoyuan Chunang<br />
 E-mail： [tsao.yuan@gmail.com](mailto:tsao.yuan@gmail.com)<br />
 GitHub：[https://github.com/tsaoyuan](https://github.com/tsaoyuan)
