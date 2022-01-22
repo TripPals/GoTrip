@@ -82,3 +82,18 @@
     left: 15vw;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .carousel-control-next, .carousel-control-prev {
+    display: none;
+  }
+
+  #carouselExampleIndicators {
+    width: 100%;
+  }
+
+  .gotrip-index-container {
+    min-width: 100%;
+  }
+
+}
