@@ -21,6 +21,7 @@
   margin: 40px 90px 0;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   
   .header-in-logo{
     width: 200px;
@@ -123,7 +124,7 @@
   .header-in-after-list{
     display: none;
     position: absolute;
-    right: 20px;
+    right: 0px;
     bottom: -160px;
     div{
       padding: 5px 8px;
@@ -314,6 +315,7 @@
   }
   .header-in-wrap {
     margin: 40px 20px 0;
+
     .header-in-nav-after {
 
       max-width: 130px;
