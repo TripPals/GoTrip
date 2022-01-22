@@ -17,6 +17,10 @@
   margin-right: 15px;
 }
 .about-gotrip-intro{
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+
   p{
     margin-top: 50px;
     color: #262C4C;
@@ -43,30 +47,30 @@
 .about-team-item{
   border-radius: 20px;
   margin-top: 10px;
-  // width: 100%;
   background-color: white;  
   display: flex;
   align-items: center;
-  box-shadow:6px 6px 6px rgba(38, 44, 76, 0.5);
+  box-shadow:0 2px 6px rgba(38, 44, 76, 0.5);
+  transition:all .3S ease-in-out;
   .about-member-photo{
     width: 50%;
-    // background-color: yellowgreen;
     padding: 20px;
     img{
-      // margin-bottom: 40px; 
       width: 100%;
       border-radius: 50%;
+      transition: .2S ease
     }
   }
   .about-member-info{
-    // background-color: wheat;
     color: #262C4C;
     p{
       font-size: 22px;
       margin-bottom: 0;
+      transition: .2S ease
     }
       span{
       font-size: 14px;
+      transition: .2S ease
     }
     .about-member-link{
       margin-top: 20px;
@@ -74,6 +78,7 @@
       a{
         color: #898a91;
         margin-right: 5px;
+        transition: .3S;
       }
       a:hover{
         color: #DB6A43;
@@ -82,9 +87,18 @@
   }
 }
 .about-team-item:hover{
-  box-shadow:8px 8px 8px rgba(38, 44, 76, 0.8);
+  border-color: #eee;
+  box-shadow:6px 6px 15px rgba(38, 44, 76, 0.7);
+  
+  img{
+    border: 3px solid #EEBC38;
+    
+  }
   p{
     color: #DB6A43;
+  }
+  span{
+    color: #EEBC38;
   }
 }
 
@@ -93,9 +107,10 @@
     padding-top: 150px;
   }
   .about-gotrip-intro{
-    justify-content: center;
+    background-color: #pink;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
     line-height: 20px;
     p{
       margin-left: 30px;
@@ -105,11 +120,6 @@
     width: 40vw;
     max-width: 358px;
   }
-  // .about-intro-wrap{
-  //   width: 40vw;
-  //   background-color: cornflowerblue;
-  //   padding-left: 30px;
-  // }
   .about-team{
     display: flex;
     justify-content:space-between;

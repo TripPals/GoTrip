@@ -20,7 +20,7 @@
           <div ref="dayTitle" class="dayTitle">
             <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
               <p>第 {{value}} 天</p>
-              <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
+              <i v-if="tripData.length > 1" class="fas fa-trash-alt" @click="confirmMessage(index)"></i>
             </div>
             <div class="dayAddBTN" @click="addSchedule">
               <i class="far fa-plus-square"></i>

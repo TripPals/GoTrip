@@ -18,7 +18,7 @@
 //header-index 檔案內的設定 -------
 .header-in-wrap{
   display: flex;
-  margin: 40px 20px 0;
+  margin: 40px 90px 0;
   justify-content: space-between;
   align-items: center;
   
@@ -201,7 +201,7 @@
     font-size: 16px;
     background:linear-gradient(to top,#EEBC38,#f5da78 );
     background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.438) 0px 8px 16px -8px, rgba(0, 0, 0, 0.438) 0px -5px 16px -8px;
+    box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
     
     .header-in-user-show{
       height: 100%;
@@ -312,7 +312,9 @@
     }
   }
   .header-in-wrap {
+    margin: 40px 20px 0;
     .header-in-nav-after {
+
       max-width: 130px;
     }
     .header-in-logo{
