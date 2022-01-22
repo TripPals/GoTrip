@@ -1,10 +1,9 @@
 # [GoTrip | 出去走走](gotriptw.com)
 
-你是一個旅行前需要規劃的人嗎？
-你是一個喜歡和朋–友一起出遊的人嗎？
-你是一個需要Google Map旅遊的人嗎？
-<br/>
-**使用GoTrip! Create your own trip!**
+你是一個旅行前需要規劃的人嗎？<br/>
+你是一個喜歡和朋–友一起出遊的人嗎？<br/>
+你是一個需要Google Map旅遊的人嗎？<br/>
+使用GoTrip! Create your own trip!<br/>
 
 ## GoTrip四大特色
 - 介面簡單，輕鬆編輯旅程
@@ -23,7 +22,7 @@
 ## 2. 共同編輯<br/>
 Pundit套件設定會員權限為擁有者、檢視者、編輯者的動作，讓創建行程者可以搜尋朋友並加入該行程，且調整朋友對於行程的權限為“可檢視”或“可編輯”
 
-![Recording 2022-01-21 at 12 46 46](https://user-images.githubusercontent.com/86815575/150621297-d2db198c-1d06-4939-a22c-49d8becb2ff5.gif)
+![Recording 2022-01-22 at 15 04 08](https://user-images.githubusercontent.com/86815575/150628685-bc436f7b-c431-464c-a40a-43bdd1e09576.gif)
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/86815575/150621032-df50453f-103a-4a2e-8f26-c263e4995d88.gif)
 
 ## 3. 搜尋景點<br/>
