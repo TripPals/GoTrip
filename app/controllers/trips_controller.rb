@@ -4,22 +4,23 @@ class TripsController < ApplicationController
   def index
     time_today = DateTime.now().to_date
     
-    @trips_yours = Trip.own_trip(current_user.id).order("updated_at DESC")
+    @trips_yours = Trip.own_trip(current_user.id)
     @trips_yours_past = @trips_yours.where("? > end_date", time_today)
     @trips_yours_future = @trips_yours.where("start_date > ?", time_today)
     @trips_yours_now = @trips_yours.where("? >= start_date AND ? <= end_date", time_today, time_today)
     
-    @trips_followed = Trip.followed_trip(current_user.id).order("updated_at DESC")
+    @trips_followed = Trip.followed_trip(current_user.id).select('user_trips.role, name, length, trips.id, start_date, end_date').order("trips.updated_at DESC")
     @trips_followed_past = @trips_followed.where("? > end_date", time_today)
     @trips_followed_future = @trips_followed.where("start_date > ?", time_today)
     @trips_followed_now = @trips_followed.where("? >= start_date AND ? <= end_date", time_today, time_today)
+
   end
 
   def new
     @trip = Trip.new
   end
 
-def create
+  def create
 
   @trip = Trip.new(trip_params)
 
@@ -83,12 +84,25 @@ end
   def search
   end
 
+
+  def plan
+
+    allTrips = current_user.user_trips.select(:trip_id)
+    tripids = []
+    allTrips.each do |item|
+      tripids.push(item.trip_id.to_s)
+    end
+
+    if tripids.include?(params[:trip_id]) == false
+      redirect_to '/404'
+    end
+
+  end
+
   private
   def trip_params
     params.require(:trip).permit(:name, :length, :start_date)
   end
 
-  def plan
-  end
 
 end

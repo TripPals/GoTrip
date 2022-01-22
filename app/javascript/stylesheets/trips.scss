@@ -385,6 +385,23 @@
   margin: 0px;
 }
 
+// 角色標籤
+
+.role_tag_view, .role_tag_edit {
+  position: absolute;
+  bottom: 25px;
+  right: 20px;
+}
+
+.role_tag_view {
+  color: #1f7f8c;
+}
+
+.role_tag_edit {
+  color: #db6a43;
+}
+
+
 @media screen and (max-width: 768px) {
   .tripdata {
 

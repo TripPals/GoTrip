@@ -14,7 +14,16 @@ module GooglePlacesApi
 
     def call
 
-      return Spot.last(@count - @counter_count)
+      # return Spot.last(@count - @counter_count) + @repeated_record
+      # return (Spot.last(@count - @counter_count) + @repeated_record).uniq
+
+      if (@count - @counter_count) == 0
+        return @repeated_record
+      else
+        # return Spot.last(@count - @counter_count)
+        return @new_record + @repeated_record
+      end  
+      # return @repeated_record
 
     end
 
@@ -32,6 +41,8 @@ module GooglePlacesApi
       i = 0
       @count = 0
       @counter_count = 0
+      @repeated_record = []
+      @new_record = []
 
       datalength = first_batch_data["results"].length
       if datalength <= 20 && datalength > 10
@@ -247,10 +258,11 @@ module GooglePlacesApi
       @spot_in_table = Spot.find_by(name: @name)
 
       if @spot_in_table
+        @repeated_record.push(@spot_in_table)
         @counter_count += 1
-        return @spot_in_table
+        # return @spot_in_table
       else  
-        return @spot = Spot.create(name: @name, 
+        @spot = Spot.create(name: @name, 
                             city: @city, 
                             phone: @phone, 
                             address: @address, 
@@ -281,6 +293,8 @@ module GooglePlacesApi
                             ugc3_comment: @ugc3_comment,
                             poi_type: @type
                           )
+        
+        @new_record.push(@spot)
       end                    
     end
   

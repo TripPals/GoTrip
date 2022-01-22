@@ -199,6 +199,11 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
                     <div class="timetag_now">正在進行</div>
+                    <% if trip.role == "1" %>
+                    <div class="role_tag_view"><i class="fas fa-eye"></i> 可檢視</div>
+                    <% else %>
+                    <div class="role_tag_edit"><i class="fas fa-marker"></i> 可編輯</div>
+                    <% end %>
                     <div class="tripdataPic">
                       <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
                     </div>
@@ -227,6 +232,11 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
                     <div class="timetag_future">即將到來</div>
+                    <% if trip.role == "1" %>
+                    <div class="role_tag_view"><i class="fas fa-eye"></i> 可檢視</div>
+                    <% else %>
+                    <div class="role_tag_edit"><i class="fas fa-marker"></i> 可編輯</div>
+                    <% end %>
                     <div class="tripdataPic">
                       <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
                     </div>
@@ -255,6 +265,11 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="tripdata">
                     <div class="timetag_past">已經結束</div>
+                    <% if trip.role == "1" %>
+                    <div class="role_tag_view"><i class="fas fa-eye"></i> 可檢視</div>
+                    <% else %>
+                    <div class="role_tag_edit"><i class="fas fa-marker"></i> 可編輯</div>
+                    <% end %>
                     <div class="tripdataPic">
                       <img src="https://picsum.photos/300/200/?random=<%= rand(1..10) %>">
                     </div>
