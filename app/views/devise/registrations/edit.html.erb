@@ -18,7 +18,7 @@
                 <img  v-if="avatar !== ''" :src="avatar" />
               </div>
             
-              <%= image_tag @user.avatar_url, class:"avatar-original" %><br/>
+              <img src="<%= current_user.show_image %>" alt="嗨"class="avatar-original"><br/>
               <label class="avatar-uploader">
                 <%= f.file_field :avatar, accept: "image/gif, image/jpeg, image/gif, image/png", "@change":"fileSelected", class:"form-control form-control-sm", id:"formFileSm" %>
                 <i class="far fa-image"></i> 選擇檔案

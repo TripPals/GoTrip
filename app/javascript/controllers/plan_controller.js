@@ -166,13 +166,16 @@ export default class extends Controller {
     detailsBox.remove()
     mapBox.classList.remove("mapInPlanPageWithDetails")
     mapBox.classList.add("mapInPlanPage")
-    refreshmap_if_interacted()
+    // refreshmap_if_interacted()
+    location.reload()
   }
 
   closeSpotDetailsMobile() {
     const detailsBox = document.querySelector(".spotDetailsBoxinPlanMobile")
     detailsBox.remove()
-    refreshmap_if_interacted()
+    // refreshmap_if_interacted()
+    location.reload()
+
   }
 
  }

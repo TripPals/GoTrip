@@ -7,7 +7,7 @@ class Api::V1::TripinvitesController < ApplicationController
             end
         else
             @email = params[:search]
-            @results = User.where(email:@email)
+            @results = User.where('email LIKE ? ', "#{@email}%")
         
             if @results.present?
                 respond_to do |format|

@@ -2,7 +2,10 @@
   <div>
     <div class="planPageUp" :class="{planPageDown: isA}">
       <section id="dataTitle">
-        <input type="text" v-model.trim="tripData.name" id="tripName" @change="changeName">
+        <div class="tripNameDiv">
+          <input type="text" v-model.trim="tripData.name" id="tripName" @change="changeName">
+          <button @click="backToMyTrips" >行程縱覽</button>
+        </div>
         <div class="nameError">{{nameError}}<div class="loading"><svg v-if="loading" class="spinner" width="14px" height="14px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>{{loadingMessenge}}</div></div>
         <div class="tripDate">
           <div class="starEnd">{{startDay}}<date-picker v-model="startDay" input-class="hideInput" :clearable="false" valueType='format' @change="changeDate"></date-picker> ～ {{endDay}}</div>
@@ -17,7 +20,7 @@
           <div ref="dayTitle" class="dayTitle">
             <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
               <p>第 {{value}} 天</p>
-              <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
+              <i v-if="tripData.length > 1" class="fas fa-trash-alt" @click="confirmMessage(index)"></i>
             </div>
             <div class="dayAddBTN" @click="addSchedule">
               <i class="far fa-plus-square"></i>
@@ -30,7 +33,7 @@
             新增景點
           </a>
           <div class="spotBox">
-            <draggable v-model="spotsList" @change="dragSpot" animation="300">
+            <draggable v-model="spotsList" @change="dragSpot" handle=".spotIconControl" animation="300">
               <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue">
                 <div class="poitypeAndNumberBox">
                   <div class="poiNumber">{{s}}</div>
@@ -49,7 +52,7 @@
                     {{spotsList[s-1].name}}
                   </div>
                   <div class="address">
-                    {{spotsList[s-1].address}}
+                    {{spotsList[s-1].address}} <span class="commentSign"><i class="fas fa-comment-dots" v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0'></i></span>
                   </div>
                   <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
                   <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
@@ -127,10 +130,16 @@ export default {
   },
   mounted() {
 
+    const editingDay = JSON.parse(sessionStorage.getItem('editingDay'))
+    let index;
+
+    editingDay ? index = editingDay : index = 0; 
+    this.isActive = index;
+
     responseData.then((data)=>{
       this.tripData = data;
 
-      var spotData = this.tripData.schedules[0];
+      var spotData = this.tripData.schedules[index];
       this.spotData = spotData;
 
       const endDay = dayjs(this.tripData.startDate).add(this.tripData.length - 1, "day").format('YYYY-MM-DD');
@@ -144,7 +153,7 @@ export default {
       let spotMapList = [];
       let positionMapList = [];
       this.spotsList.forEach(el => {
-        spotMapList.push(el.name);
+        spotMapList.push(el.full_address);
       });
       this.spotsList.forEach(el => {
         const obj = {};
@@ -210,7 +219,7 @@ export default {
         let spotMapList = [];
         let positionMapList = [];
         this.spotsList.forEach(el => {
-          spotMapList.push(el.name);
+          spotMapList.push(el.full_address);
         });
         this.spotsList.forEach(el => {
           const obj = {};
@@ -221,6 +230,10 @@ export default {
         sessionStorage.setItem('spotMapList', JSON.stringify(spotMapList));
         sessionStorage.setItem('positionMapList', JSON.stringify(positionMapList));
       })
+
+      sessionStorage.setItem('editingDay', JSON.stringify(index))      
+
+      // 因為點擊會先抓到變化前的資料，所以sessionStorage用setTimeout方式延遲執行!
       setTimeout(() => {
         const position = this.$refs.position;
         const spotName = this.$refs.spotName;
@@ -228,8 +241,8 @@ export default {
         if (position !== undefined && spotName !== undefined) {
           
           let spotMapList = [];
-          spotName.forEach(el => {
-            spotMapList.push(el.innerText);
+          this.spotsList.forEach(el => {
+            spotMapList.push(el.full_address);
           });
           let positionMapList = [];
           position.forEach(el => {
@@ -244,7 +257,11 @@ export default {
         }, 100)
         setTimeout(()=>{
           refreshMapIfInteracted()
-        }, 200)
+        }, 500)
+    },
+    backToMyTrips(){
+      sessionStorage.removeItem('editingDay');
+      window.location.replace(`/mytrips`)
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
@@ -284,8 +301,8 @@ export default {
       const spotName = this.$refs.spotName;
 
       let spotMapList = [];
-      spotName.forEach(el => {
-        spotMapList.push(el.innerText);
+      this.spotsList.forEach(el => {
+        spotMapList.push(el.full_address);
       });
       let positionMapList = [];
       position.forEach(el => {
@@ -331,6 +348,8 @@ export default {
       messageModal.dataset.index = index
     },
     deleteSchedule(){
+      
+      sessionStorage.removeItem('editingDay') 
       const responseData = fetchData(trip_id)
       const index = this.$refs['hide-confirmed-message'].dataset.index
 

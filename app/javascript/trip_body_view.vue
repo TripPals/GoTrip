@@ -2,7 +2,10 @@
   <div>
     <div class="planPageUp" :class="{planPageDown: isA}">
       <section id="dataTitle">
-        <div id="tripNameView">{{tripData.name}}</div>
+        <div class="tripNameDiv">
+          <div id="tripNameView">{{tripData.name}}</div>
+          <button @click="backToMyTrips" >行程縱覽</button>
+        </div>
         <div class="nameError"></div>
         <div class="tripDate">
           <div class="starEnd">{{startDay}} ～ {{endDay}}</div>
@@ -48,7 +51,11 @@
                   <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
                   <div ref="scheduleSpotsId" v-else="spotsList[s-1].schedule_spots_id.length > 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id}}</div>
                 </div>
-                <div class="spotIconControl"></div>
+                <div class="spotIconControl">
+                  <div v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0' class="comment">
+                    <i class="fas fa-comment-dots"></i>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -90,10 +97,16 @@ export default {
   },
   mounted() {
 
+    const editingDay = JSON.parse(sessionStorage.getItem('editingDay'))
+    let index;
+
+    editingDay ? index = editingDay : index = 0; 
+    this.isActive = index;
+
     responseData.then((data)=>{
       this.tripData = data;
 
-      var spotData = this.tripData.schedules[0];
+      var spotData = this.tripData.schedules[index];
       this.spotData = spotData;
 
       const startDay = dayjs(this.tripData.startDate).format('YYYY-MM-DD');
@@ -107,7 +120,7 @@ export default {
       let spotMapList = [];
       let positionMapList = [];
       this.spotsList.forEach(el => {
-        spotMapList.push(el.name);
+        spotMapList.push(el.full_address);
       });
       this.spotsList.forEach(el => {
         const obj = {};
@@ -134,7 +147,7 @@ export default {
         let spotMapList = [];
         let positionMapList = [];
         this.spotsList.forEach(el => {
-          spotMapList.push(el.name);
+          spotMapList.push(el.full_address);
         });
         this.spotsList.forEach(el => {
           const obj = {};
@@ -152,8 +165,8 @@ export default {
         if (position !== undefined && spotName !== undefined) {
           
           let spotMapList = [];
-          spotName.forEach(el => {
-            spotMapList.push(el.innerText);
+          this.spotsList.forEach(el => {
+            spotMapList.push(el.full_address);
           });
           let positionMapList = [];
           position.forEach(el => {
@@ -168,7 +181,7 @@ export default {
         }, 100)
         setTimeout(()=>{
           refreshMapIfInteracted()
-        }, 200)
+        }, 500)
     },
     slideRight() {
       const dayTitle = this.$refs.dayTitle;
@@ -177,6 +190,9 @@ export default {
     slideLeft() {
       const dayTitle = this.$refs.dayTitle;
       dayTitle.scrollLeft -= 140;
+    },
+    backToMyTrips(){
+      window.location.replace(`/mytrips`)
     },
     changeIndex() {
       if (this.isA == false){
