@@ -363,7 +363,11 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+<<<<<<< HEAD
   ruby
+=======
+  arm64-darwin-21
+>>>>>>> e67024f67c768eeb74ca15ffce50363d8437a9b4
 
 DEPENDENCIES
   better_errors (~> 2.9, >= 2.9.1)
