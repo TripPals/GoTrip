@@ -33,7 +33,7 @@
             新增景點
           </a>
           <div class="spotBox">
-            <draggable v-model="spotsList" @change="dragSpot" animation="300">
+            <draggable v-model="spotsList" @change="dragSpot" handle=".spotIconControl" animation="300">
               <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue">
                 <div class="poitypeAndNumberBox">
                   <div class="poiNumber">{{s}}</div>
