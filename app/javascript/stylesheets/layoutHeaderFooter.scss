@@ -18,9 +18,10 @@
 //header-index 檔案內的設定 -------
 .header-in-wrap{
   display: flex;
-  margin: 40px 60px 0;
+  margin: 40px 90px 0;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   
   .header-in-logo{
     width: 200px;
@@ -40,9 +41,9 @@
     display: flex;
     box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
     .gotrip-header-nav-btn{
-      padding: 5px 8px;
+      padding: 4px 8px;
       border-radius: 7px;
-      letter-spacing: 2px;
+      letter-spacing: 0px;
       font-size: 16px;
       text-align: center;
     }
@@ -53,7 +54,7 @@
     }
     .gotrip-about{
       color:#262C4C;
-      margin-right: 30px;
+      margin-right: 10px;
     }
     .gotrip-signin{
       color:#262C4C;
@@ -123,7 +124,7 @@
   .header-in-after-list{
     display: none;
     position: absolute;
-    right: 60px;
+    right: 0px;
     bottom: -160px;
     div{
       padding: 5px 8px;
@@ -153,9 +154,6 @@
     }
   }
 }
-
-//header-trip 檔案內的設定 -------
-
 .trip-header-outter-box {
   width: 100%;
   height: 60px;
@@ -205,7 +203,7 @@
     font-size: 16px;
     background:linear-gradient(to top,#EEBC38,#f5da78 );
     background: -webkit-linear-gradient(to top, #EEBC38,#f5da78);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.438) 0px 8px 16px -8px, rgba(0, 0, 0, 0.438) 0px -5px 16px -8px;
+    box-shadow:4px 4px 4px rgba(38, 44, 76, 0.7);
     
     .header-in-user-show{
       height: 100%;
@@ -313,6 +311,29 @@
 
     .header-in-nav-after {
       max-width: 130px;
+    }
+  }
+  .header-in-wrap {
+    margin: 40px 20px 0;
+
+    .header-in-nav-after {
+
+      max-width: 130px;
+    }
+    .header-in-logo{
+      width: 130px;
+    }
+    .gotrip-signup{
+      display:none;
+    }
+    .gotrip-about{
+      margin-right: 0px;
+    }
+    .gotrip-header-nav-btn{
+      padding: 3px 5px;
+      border-radius: 7px;
+      letter-spacing: 0px;
+      font-size: 14px;
     }
   }
 }

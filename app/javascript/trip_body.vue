@@ -20,7 +20,7 @@
           <div ref="dayTitle" class="dayTitle">
             <div v-for="(value,index) in tripData.length" :key="index" id="dayBTN" @click="changePage(index)" :class="{ active:index == isActive}">
               <p>第 {{value}} 天</p>
-              <i v-if="tripData.length > 1" class="far fa-window-close" @click="confirmMessage(index)"></i>
+              <i v-if="tripData.length > 1" class="fas fa-trash-alt" @click="confirmMessage(index)"></i>
             </div>
             <div class="dayAddBTN" @click="addSchedule">
               <i class="far fa-plus-square"></i>
@@ -33,7 +33,7 @@
             新增景點
           </a>
           <div class="spotBox">
-            <draggable v-model="spotsList" @change="dragSpot" animation="300">
+            <draggable v-model="spotsList" @change="dragSpot" handle=".spotIconControl" animation="300">
               <div draggable="true" v-if="spotsList !== null || spotsList.length > 1 " v-for="s in spotsList.length" class="spotMapList" data-controller="spotItemVue">
                 <div class="poitypeAndNumberBox">
                   <div class="poiNumber">{{s}}</div>
@@ -52,7 +52,7 @@
                     {{spotsList[s-1].name}}
                   </div>
                   <div class="address">
-                    {{spotsList[s-1].address}}
+                    {{spotsList[s-1].address}} <span class="commentSign"><i class="fas fa-comment-dots" v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0'></i></span>
                   </div>
                   <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
                   <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
@@ -64,9 +64,6 @@
                   </div>
                   <div class="moveIcon">
                     <i class="fas fa-arrows-alt"></i>
-                  </div>
-                  <div v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0' class="comment">
-                    <i class="fas fa-comment-dots"></i>
                   </div>
                 </div>
               </div>

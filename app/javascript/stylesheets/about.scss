@@ -1,0 +1,135 @@
+.about-container{
+  position: relative;
+  overflow-y: scroll;
+  width: 100vw;
+  height: calc(100% - 20px);
+  margin: 0, auto;
+  background-image: linear-gradient(225deg, rgba(255,226,89,1) 15%, rgba(237,150,70,1) 100%);
+  background-attachment: fixed;
+}
+.about-container::-webkit-scrollbar {
+  width: 0px;
+}
+.about-wrap{
+  min-width: 300px;
+  padding-top: 100px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.about-gotrip-intro{
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+
+  p{
+    margin-top: 50px;
+    color: #262C4C;
+    font-size: medium;
+    line-height: 28px;
+  }
+  .about-gotrip-logo{
+    margin-top: 50px;
+    width: 100%;
+  }
+}
+.about-team-title{
+  margin: 60px 0 30px;
+  color: #262C4C;
+  font-weight: 600;
+  border-top: 1px solid #262C4C;
+  border-bottom: 1px solid #262C4C;
+  text-align: center;
+}
+.about-team{
+  width: 100%;
+  margin-bottom: 50px;
+}
+.about-team-item{
+  border-radius: 20px;
+  margin-top: 10px;
+  background-color: white;  
+  display: flex;
+  align-items: center;
+  box-shadow:0 2px 6px rgba(38, 44, 76, 0.5);
+  transition:all .3S ease-in-out;
+  .about-member-photo{
+    width: 50%;
+    padding: 20px;
+    img{
+      width: 100%;
+      border-radius: 50%;
+      transition: .2S ease
+    }
+  }
+  .about-member-info{
+    color: #262C4C;
+    p{
+      font-size: 22px;
+      margin-bottom: 0;
+      transition: .2S ease
+    }
+      span{
+      font-size: 14px;
+      transition: .2S ease
+    }
+    .about-member-link{
+      margin-top: 20px;
+      font-size: 30px;
+      a{
+        color: #898a91;
+        margin-right: 5px;
+        transition: .3S;
+      }
+      a:hover{
+        color: #DB6A43;
+      }
+    }
+  }
+}
+.about-team-item:hover{
+  border-color: #eee;
+  box-shadow:6px 6px 15px rgba(38, 44, 76, 0.7);
+  
+  img{
+    border: 3px solid #EEBC38;
+    
+  }
+  p{
+    color: #DB6A43;
+  }
+  span{
+    color: #EEBC38;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .about-wrap{
+    padding-top: 150px;
+  }
+  .about-gotrip-intro{
+    background-color: #pink;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    line-height: 20px;
+    p{
+      margin-left: 30px;
+    }
+  }
+  .about-logo-wrap{
+    width: 40vw;
+    max-width: 358px;
+  }
+  .about-team{
+    display: flex;
+    justify-content:space-between;
+  }
+  .about-team-item{
+    width: 18%;
+    text-align: center;
+    flex-direction: column;
+    .about-member-photo{
+      width: 70%;
+    }
+  }
+}

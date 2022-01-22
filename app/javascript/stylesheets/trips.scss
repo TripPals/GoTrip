@@ -595,6 +595,12 @@
   }
 
   @media screen and(max-width: 767px) {
+    
+    #MyTripPage {
+      padding-top: 65px;
+      padding-bottom: 60px;
+    }
+
     .new-trip-container{
       flex-direction: column;
     }
