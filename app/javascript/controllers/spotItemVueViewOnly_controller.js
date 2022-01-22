@@ -176,7 +176,7 @@ export default class extends Controller {
         const photodiv = document.createElement("div")
         photodiv.innerHTML = 
           `
-          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyAU6npzHfzO8wUYLwl3zcOqxOS7-Oy6wBs&photo_reference=${p1}">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBj1Sdrj-A0Cq1sGy5ypDHBWJjnxVMAMT0&photo_reference=${p1}">
           
           `
         spotDetailsMainPhoto.appendChild(photodiv)  
@@ -189,7 +189,7 @@ export default class extends Controller {
           const photodiv = document.createElement("div")
           photodiv.innerHTML = 
           `
-          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyAU6npzHfzO8wUYLwl3zcOqxOS7-Oy6wBs&photo_reference=${photo}">
+          <img data-controller="replaceSpotPhoto" data-replaceSpotPhoto-target="smallphoto" data-action="click->replaceSpotPhoto#replacephoto" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBj1Sdrj-A0Cq1sGy5ypDHBWJjnxVMAMT0&photo_reference=${photo}">
           
           `
           photoLists.appendChild(photodiv)

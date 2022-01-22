@@ -135,7 +135,7 @@ export default class extends Controller {
                 <p>${city}</p>
               </div>
               <div class="spotitemphotodiv">
-              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyCDFIwPfRL7RRk61laBlsT0uZaiOW4udUg&photo_reference=${photo_reference_1}" alt=""></img>
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&key=AIzaSyBj1Sdrj-A0Cq1sGy5ypDHBWJjnxVMAMT0&photo_reference=${photo_reference_1}" alt=""></img>
               </div>
             </div>
             `
