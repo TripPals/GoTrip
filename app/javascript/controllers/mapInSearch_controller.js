@@ -45,8 +45,13 @@ export default class extends Controller {
     async function fetchData() {
       try {
 
+        const csrfToken = document.querySelector("[name='csrf-token']").content
         const response = await fetch(`/api/v1/schedulespots/confirm_to_add?trip_id=${trip_id}&day_order=${day_order}&spot_id=${spot_id}`, {
-          method: 'POST'
+          method: 'POST',
+          headers: {
+            "X-CSRF-Token": csrfToken, //  Set the token
+            "Content-Type": "application/json"
+          },
         })  
 
         const result = await response.json()

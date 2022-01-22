@@ -10,9 +10,7 @@ export default class extends Controller {
     
     join(event){
         event.preventDefault()
-
         const userID = this.data.get("id")
-        // console.log(userID);
         const tripID = document.querySelector(".invite-hide-trip-id").textContent
         const resultBox = document.querySelector(".searchresultbox")
 

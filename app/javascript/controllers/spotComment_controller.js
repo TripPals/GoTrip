@@ -155,11 +155,14 @@ export default class extends Controller {
 
     async function fetchData(data) {
       try {
+        const csrfToken = document.querySelector("[name='csrf-token']").content
         const response = await fetch(`/api/v1/schedulespots/commentupdate?schedulespot_id=${schedulespot_id}`,
         {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "X-CSRF-Token": csrfToken, 
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(data)
         })

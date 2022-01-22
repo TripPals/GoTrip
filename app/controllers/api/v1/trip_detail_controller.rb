@@ -1,5 +1,4 @@
 class Api::V1::TripDetailController < ApplicationController
-  skip_before_action :verify_authenticity_token
   require 'json'
 
   def show

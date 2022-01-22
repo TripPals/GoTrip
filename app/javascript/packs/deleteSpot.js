@@ -2,9 +2,14 @@ export default async function processDeleteSpot( scheduleId, spotOrder) {
   
   async function fetchAPI() {
     try {
+      const csrfToken = document.querySelector("[name='csrf-token']").content
       const response = await fetch(`/api/v1/schedulespots/delete?schedule_id=${scheduleId}&spot_order=${spotOrder}`, 
       {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          "X-CSRF-Token": csrfToken, 
+          "Content-Type": "application/json"
+        },
       })
       const result = await response.json()
       return result
