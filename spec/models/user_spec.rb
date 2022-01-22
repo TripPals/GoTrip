@@ -16,17 +16,6 @@ RSpec.describe User, type: :model do
     it { should have_many(:trips).through(:user_trips) }
     it { should have_many(:user_trips).dependent(:delete_all) }
   end
-
-  describe "#display_name" do
-    it "returns display name" do
-      # user = build（:user)
-
-      # user_display = user.display_name
-
-      # expect(user_display).to eq user.email || user.name
-    end
-  end
-
 end
 
 
