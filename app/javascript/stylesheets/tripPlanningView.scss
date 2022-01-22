@@ -297,6 +297,11 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       color: rgb(171, 171, 171);
+
+      .commentSign {
+        color: #EDBB46;
+      }
+
     }
     .position {
       display: none;
@@ -325,13 +330,6 @@
         margin: 0 15px 0 15px;
         transition: all 0.3s ease;
       } 
-
-      .comment {
-        color: #EDBB46;
-        position: absolute;
-        margin-top: 60px;
-        margin-left: 45px;
-      }
 
       .spotDeleteIcon:hover {
         cursor: pointer;

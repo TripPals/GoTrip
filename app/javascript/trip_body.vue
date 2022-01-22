@@ -52,7 +52,7 @@
                     {{spotsList[s-1].name}}
                   </div>
                   <div class="address">
-                    {{spotsList[s-1].address}}
+                    {{spotsList[s-1].address}} <span class="commentSign"><i class="fas fa-comment-dots" v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0'></i></span>
                   </div>
                   <div ref="position" class="position">{{spotsList[s-1].lat}},{{spotsList[s-1].lng}}</div>
                   <div ref="scheduleSpotsId" v-if="spotsList[s-1].schedule_spots_id.length == 1" :data-spotorder="s" class="schedule_spots_id">{{spotsList[s-1].schedule_spots_id[0]}}</div>
@@ -64,9 +64,6 @@
                   </div>
                   <div class="moveIcon">
                     <i class="fas fa-arrows-alt"></i>
-                  </div>
-                  <div v-if='spotsList[s-1].comment[0] !== null && spotsList[s-1].comment[0].length > 0' class="comment">
-                    <i class="fas fa-comment-dots"></i>
                   </div>
                 </div>
               </div>
