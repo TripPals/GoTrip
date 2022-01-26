@@ -52,6 +52,10 @@ API串接：第三方登入 Google / GitHub / Google JavaScript map / Google Pla
 專案規劃：Whimsical / Figma / Notion / Mirror<br />
 其他技術：AWS S3 / Docker<br />
 
+## GoTrip Demo 發表影片
+[![GoTrip Demo Presentation](https://img.youtube.com/vi/4SgvliuuOqE/0.jpg)](https://www.youtube.com/watch?v=4SgvliuuOqE&ab_channel=5xRuby%E4%BA%94%E5%80%8D%E7%B4%85%E5%AF%B6%E7%9F%B3%E5%B0%88%E6%A5%AD%E7%A8%8B%E5%BC%8F%E6%95%99%E8%82%B2%E6%A9%9F%E6%A7%8B)
+
+
 ## GoTrip 成員
 
 ### 王晨驊 Roy Wang<br />
